@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pokedex/modules/pages/home/widgets/app_bar.dart';
+import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
 
 class HomePage extends StatelessWidget {
@@ -10,6 +12,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final statusBarPadding = MediaQuery.of(context).padding.top;
+
+    final pokeApiStore = PokeApiStore();
 
     return Scaffold(
       body: Stack(
@@ -34,58 +38,27 @@ class HomePage extends StatelessWidget {
               ),
               AppBarWidget(),
               Expanded(
-                child: SingleChildScrollView(
-                  child: Container(
-                    child: Column(
-                      children: [
-                        ListTile(
-                          title: Text("Pokémon"),
+                child: Container(
+                  child: Observer(builder: (context) {
+                    final pokeApi = pokeApiStore.pokeApi;
+
+                    if (pokeApi != null) {
+                      return ListView.builder(
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Text(pokeApi.pokemon![index].name!),
+                          );
+                        },
+                        itemCount: pokeApi.pokemon!.length,
+                      );
+                    } else {
+                      return Container(
+                        child: Center(
+                          child: CircularProgressIndicator(),
                         ),
-                        ListTile(
-                          title: Text("Pokémon"),
-                        ),
-                        ListTile(
-                          title: Text("Pokémon"),
-                        ),
-                        ListTile(
-                          title: Text("Pokémon"),
-                        ),
-                        ListTile(
-                          title: Text("Pokémon"),
-                        ),
-                        ListTile(
-                          title: Text("Pokémon"),
-                        ),
-                        ListTile(
-                          title: Text("Pokémon"),
-                        ),
-                        ListTile(
-                          title: Text("Pokémon"),
-                        ),
-                        ListTile(
-                          title: Text("Pokémon"),
-                        ),
-                        ListTile(
-                          title: Text("Pokémon"),
-                        ),
-                        ListTile(
-                          title: Text("Pokémon"),
-                        ),
-                        ListTile(
-                          title: Text("Pokémon"),
-                        ),
-                        ListTile(
-                          title: Text("Pokémon"),
-                        ),
-                        ListTile(
-                          title: Text("Pokémon"),
-                        ),
-                        ListTile(
-                          title: Text("Pokémon"),
-                        )
-                      ],
-                    ),
-                  ),
+                      );
+                    }
+                  }),
                 ),
               )
             ],
