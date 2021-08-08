@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   flutter_svg: ^0.22.0
+  http: ^0.13.3
 
 dev_dependencies:
   flutter_test:
@@ -28,3 +29,11 @@ flutter:
     - family: CircularStd-Book
       fonts:
         - asset: assets/fonts/CircularStd-Book.otf
+
+jsonToDart:
+  outputFolder: lib/models #default: lib/
+  typeChecking: true  #default: undefined (Select from picker)
+  nullValueDataType: String #default: dynamic
+  nullSafety: true #default: false
+  copyWithMethod: true #default: false
+  mergeArrayApproach: false #default: true
