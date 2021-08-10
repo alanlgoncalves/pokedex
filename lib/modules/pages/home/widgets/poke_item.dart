@@ -33,8 +33,8 @@ class PokeItemWidget extends StatelessWidget {
                 opacity: 0.3,
                 child: SvgPicture.asset(
                   AppConstants.whitePokeballLogo,
-                  height: 93,
-                  width: 93,
+                  height: 83,
+                  width: 83,
                 ),
               ),
             ),
@@ -45,47 +45,46 @@ class PokeItemWidget extends StatelessWidget {
               padding: EdgeInsets.only(right: 7, bottom: 3),
               child: Container(
                 child: image,
-                height: 90,
-                width: 90,
+                height: 71,
+                width: 76,
               ),
             ),
           ),
           Align(
             alignment: Alignment.topLeft,
             child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Text(
-                pokemon.name!,
-                style: AppTheme.texts.pokemonItemName,
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 50, left: 15),
+              padding: const EdgeInsets.only(top: 24, left: 16),
               child: Column(
-                children: pokemon.type!
-                    .map((type) => Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4),
-                          child: Container(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 15, vertical: 5),
-                              child: Text(
-                                type,
-                                style: AppTheme.texts.pokemonItemType,
+                children: [
+                  Text(
+                    pokemon.name!,
+                    style: AppTheme.texts.pokemonItemName,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  ...pokemon.type!
+                      .map((type) => Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4),
+                            child: Container(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 15, vertical: 5),
+                                child: Text(
+                                  type,
+                                  style: AppTheme.texts.pokemonItemType,
+                                ),
                               ),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(38),
+                                  color: Colors.white.withOpacity(0.4)),
                             ),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(38),
-                                color: Colors.white.withOpacity(0.4)),
-                          ),
-                        ))
-                    .toList(),
+                          ))
+                      .toList(),
+                ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

@@ -19,7 +19,7 @@ class AppTextStylesDefault extends AppTextStyles {
   @override
   TextStyle get pokemonItemName => TextStyle(
         fontFamily: "CircularStd-Book",
-        fontSize: 18,
+        fontSize: 14,
         fontWeight: FontWeight.bold,
         color: Color(0xFFFFFFFF),
       );
@@ -27,7 +27,7 @@ class AppTextStylesDefault extends AppTextStyles {
   @override
   TextStyle get pokemonItemType => TextStyle(
         fontFamily: "CircularStd-Book",
-        fontSize: 14,
+        fontSize: 8,
         fontWeight: FontWeight.normal,
         color: Color(0xFFFFFFFF),
       );

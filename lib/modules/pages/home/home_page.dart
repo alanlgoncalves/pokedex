@@ -49,6 +49,7 @@ class HomePage extends StatelessWidget {
                         padding: EdgeInsets.only(top: 10),
                         child: AnimationLimiter(
                           child: GridView.builder(
+                            addAutomaticKeepAlives: false,
                             padding: const EdgeInsets.all(10.0),
                             physics: BouncingScrollPhysics(),
                             gridDelegate:
