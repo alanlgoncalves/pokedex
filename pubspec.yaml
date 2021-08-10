@@ -17,8 +17,8 @@ dependencies:
   mobx: ^2.0.4
   flutter_mobx: ^2.0.2
   mobx_codegen: ^2.0.2
-  flutter_staggered_animations: ^1.0.0
   cached_network_image: ^3.1.0
+  auto_animated: ^3.0.0
 
 dev_dependencies:
   build_runner: ^2.1.0
