@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pokedex/modules/pages/home/widgets/app_bar.dart';
+import 'package:pokedex/modules/pages/home/widgets/poke_item.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
 
@@ -43,13 +45,44 @@ class HomePage extends StatelessWidget {
                     final pokeApi = pokeApiStore.pokeApi;
 
                     if (pokeApi != null) {
-                      return ListView.builder(
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            title: Text(pokeApi.pokemon![index].name!),
-                          );
-                        },
-                        itemCount: pokeApi.pokemon!.length,
+                      return Padding(
+                        padding: EdgeInsets.only(top: 10),
+                        child: AnimationLimiter(
+                          child: GridView.builder(
+                            padding: const EdgeInsets.all(10.0),
+                            physics: BouncingScrollPhysics(),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              mainAxisSpacing: 10,
+                              crossAxisSpacing: 10,
+                              childAspectRatio: (4 / 3),
+                            ),
+                            itemBuilder: (context, index) {
+                              pokeApiStore.setIndex(index);
+
+                              return AnimationConfiguration.staggeredGrid(
+                                position: index,
+                                duration: const Duration(milliseconds: 375),
+                                columnCount: 2,
+                                child: ScaleAnimation(
+                                  child: FadeInAnimation(
+                                    child: InkWell(
+                                      onTap: () {},
+                                      child: Ink(
+                                          child: PokeItemWidget(
+                                        pokemon: pokeApiStore.pokemon,
+                                        image: pokeApiStore.pokemonImage,
+                                        index: index,
+                                      )),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                            itemCount: pokeApi.pokemon!.length,
+                          ),
+                        ),
                       );
                     } else {
                       return Container(
