@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 abstract class AppColors {
   Color get background;
-  Color pokemonType(String type);
+  Color pokemonItem(String type);
 }
 
 class AppColorsDefault extends AppColors {
   @override
   Color get background => Color(0xFFFFFFFF);
 
-  Color pokemonType(String type) {
+  Color pokemonItem(String type) {
     switch (type) {
       case 'Normal':
         return Color(0xFFA7A877);

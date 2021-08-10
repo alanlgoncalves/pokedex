@@ -20,7 +20,7 @@ class PokeItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppTheme.colors.pokemonType(pokemon.type![0]),
+        color: AppTheme.colors.pokemonItem(pokemon.type![0]),
         borderRadius: BorderRadius.circular(15),
       ),
       child: Stack(
@@ -56,7 +56,7 @@ class PokeItemWidget extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               child: Text(
                 pokemon.name!,
-                style: AppTheme.texts.pokemonName,
+                style: AppTheme.texts.pokemonItemName,
               ),
             ),
           ),
@@ -72,7 +72,10 @@ class PokeItemWidget extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 15, vertical: 5),
-                              child: Text(type),
+                              child: Text(
+                                type,
+                                style: AppTheme.texts.pokemonItemType,
+                              ),
                             ),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(38),

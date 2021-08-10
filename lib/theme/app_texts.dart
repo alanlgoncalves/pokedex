@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 abstract class AppTextStyles {
   TextStyle get homePageTitle;
-  TextStyle get pokemonName;
+
+  TextStyle get pokemonItemName;
+  TextStyle get pokemonItemType;
 }
 
 class AppTextStylesDefault extends AppTextStyles {
@@ -15,10 +17,18 @@ class AppTextStylesDefault extends AppTextStyles {
       );
 
   @override
-  TextStyle get pokemonName => TextStyle(
+  TextStyle get pokemonItemName => TextStyle(
         fontFamily: "CircularStd-Book",
         fontSize: 18,
         fontWeight: FontWeight.bold,
+        color: Color(0xFFFFFFFF),
+      );
+
+  @override
+  TextStyle get pokemonItemType => TextStyle(
+        fontFamily: "CircularStd-Book",
+        fontSize: 14,
+        fontWeight: FontWeight.normal,
         color: Color(0xFFFFFFFF),
       );
 }
