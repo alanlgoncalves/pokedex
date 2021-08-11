@@ -50,8 +50,23 @@ class PokeItemWidget extends StatelessWidget {
               ),
             ),
           ),
+          Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 8, top: 8),
+              child: Text(
+                "#${pokemon.id.toString().padLeft(3, '0')}",
+                style: TextStyle(
+                  fontFamily: "CircularStd-Book",
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0x99FFFFFF),
+                ),
+              ),
+            ),
+          ),
           Padding(
-            padding: const EdgeInsets.only(top: 14, left: 16),
+            padding: const EdgeInsets.only(left: 16),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
