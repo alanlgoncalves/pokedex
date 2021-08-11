@@ -1,9 +1,8 @@
-import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
+
 import 'package:pokedex/modules/pages/home/widgets/app_bar.dart';
-import 'package:pokedex/modules/pages/home/widgets/poke_item.dart';
+
 import 'package:pokedex/modules/pages/home/widgets/pokemon_grid.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/shared/widgets/fade_animation.dart';

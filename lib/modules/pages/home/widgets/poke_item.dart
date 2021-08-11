@@ -50,20 +50,22 @@ class PokeItemWidget extends StatelessWidget {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 24, left: 16),
-              child: Column(
-                children: [
-                  Text(
-                    pokemon.name!,
-                    style: AppTheme.texts.pokemonItemName,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  ...pokemon.type!
+          Padding(
+            padding: const EdgeInsets.only(top: 14, left: 16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  pokemon.name!,
+                  style: AppTheme.texts.pokemonItemName,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: pokemon.type!
                       .map((type) => Padding(
                             padding: const EdgeInsets.symmetric(vertical: 4),
                             child: Container(
@@ -81,8 +83,8 @@ class PokeItemWidget extends StatelessWidget {
                             ),
                           ))
                       .toList(),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ],
