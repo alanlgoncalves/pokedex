@@ -16,20 +16,6 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
       (_$pokeApiComputed ??= Computed<PokeApi?>(() => super.pokeApi,
               name: '_PokeApiStoreBase.pokeApi'))
           .value;
-  Computed<Pokemon>? _$pokemonComputed;
-
-  @override
-  Pokemon get pokemon =>
-      (_$pokemonComputed ??= Computed<Pokemon>(() => super.pokemon,
-              name: '_PokeApiStoreBase.pokemon'))
-          .value;
-  Computed<Widget>? _$pokemonImageComputed;
-
-  @override
-  Widget get pokemonImage =>
-      (_$pokemonImageComputed ??= Computed<Widget>(() => super.pokemonImage,
-              name: '_PokeApiStoreBase.pokemonImage'))
-          .value;
 
   final _$_pokeApiAtom = Atom(name: '_PokeApiStoreBase._pokeApi');
 
@@ -46,38 +32,30 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
     });
   }
 
-  final _$_indexAtom = Atom(name: '_PokeApiStoreBase._index');
+  final _$_pokemonAtom = Atom(name: '_PokeApiStoreBase._pokemon');
 
   @override
-  int get _index {
-    _$_indexAtom.reportRead();
-    return super._index;
+  Pokemon? get _pokemon {
+    _$_pokemonAtom.reportRead();
+    return super._pokemon;
   }
 
   @override
-  set _index(int value) {
-    _$_indexAtom.reportWrite(value, super._index, () {
-      super._index = value;
+  set _pokemon(Pokemon? value) {
+    _$_pokemonAtom.reportWrite(value, super._pokemon, () {
+      super._pokemon = value;
     });
-  }
-
-  final _$fetchPokemonListAsyncAction =
-      AsyncAction('_PokeApiStoreBase.fetchPokemonList');
-
-  @override
-  Future fetchPokemonList() {
-    return _$fetchPokemonListAsyncAction.run(() => super.fetchPokemonList());
   }
 
   final _$_PokeApiStoreBaseActionController =
       ActionController(name: '_PokeApiStoreBase');
 
   @override
-  void setIndex(int index) {
+  void setPokemon(int index) {
     final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
-        name: '_PokeApiStoreBase.setIndex');
+        name: '_PokeApiStoreBase.setPokemon');
     try {
-      return super.setIndex(index);
+      return super.setPokemon(index);
     } finally {
       _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -86,9 +64,7 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   @override
   String toString() {
     return '''
-pokeApi: ${pokeApi},
-pokemon: ${pokemon},
-pokemonImage: ${pokemonImage}
+pokeApi: ${pokeApi}
     ''';
   }
 }

@@ -120,6 +120,10 @@ class Pokemon {
     }
     return map;
   }
+
+  String get imageUrl {
+    return "https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${(this.num)}.png";
+  }
 }
 
 class NextEvolution {
