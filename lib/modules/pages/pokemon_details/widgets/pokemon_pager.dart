@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 
@@ -43,13 +44,25 @@ class _PokemonPagerState extends State<PokemonPagerWidget> {
           itemBuilder: (context, index) {
             final listPokemon = _pokeApiStore.getPokemon(index);
 
-            return Container(
-              child: Hero(
-                tag: "pokemon-image-${listPokemon.num}",
-                child: CachedNetworkImage(
-                  imageUrl: listPokemon.imageUrl,
-                ),
-              ),
+            return Observer(
+              builder: (_) {
+                return AnimatedPadding(
+                  padding: EdgeInsets.all(
+                      _pokeApiStore.pokemon == listPokemon ? 0 : 60),
+                  duration: Duration(milliseconds: 300),
+                  child: Container(
+                    child: Hero(
+                      tag: "pokemon-image-${listPokemon.num}",
+                      child: CachedNetworkImage(
+                        imageUrl: listPokemon.imageUrl,
+                        color: _pokeApiStore.pokemon == listPokemon
+                            ? null
+                            : Colors.black.withOpacity(0.2),
+                      ),
+                    ),
+                  ),
+                );
+              },
             );
           },
         ),

@@ -8,7 +8,7 @@ class PokemonPanelWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SlidingSheet(
       elevation: 0,
-      cornerRadius: 16,
+      cornerRadius: 30,
       snapSpec: const SnapSpec(
         snap: true,
         snappings: [0.6, 1.0],
