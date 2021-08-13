@@ -24,8 +24,17 @@ class PokemonDetailsPage extends StatefulWidget {
 class _PokemonDetailsPageState extends State<PokemonDetailsPage>
     with SingleTickerProviderStateMixin {
   late PokeApiStore _pokeApiStore;
-
   late AnimationController _animationController;
+
+  double _progress = 0;
+  double _opacityTitleAppbar = 0;
+  double _opacityPokemon = 1;
+
+  double interval(double lower, double upper, double progress) {
+    assert(lower < upper);
+
+    return ((progress - lower) / (upper - lower)).clamp(0.0, 1.0);
+  }
 
   @override
   void initState() {
@@ -44,6 +53,12 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
     super.dispose();
   }
 
+  EdgeInsets get paggerPadding => EdgeInsets.only(
+        top: _opacityTitleAppbar == 1
+            ? MediaQuery.of(context).size.height
+            : (MediaQuery.of(context).size.height * 0.15) - (_progress * 100),
+      );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,6 +66,13 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
         preferredSize: Size.fromHeight(70),
         child: Observer(builder: (_) {
           return AppBar(
+            title: Opacity(
+              opacity: _opacityTitleAppbar,
+              child: Text(
+                _pokeApiStore.pokemon!.name!,
+                style: AppTheme.texts.pokemonDetailNumber,
+              ),
+            ),
             backgroundColor:
                 AppTheme.colors.pokemonItem(_pokeApiStore.pokemon!.type![0]),
             shadowColor: Colors.transparent,
@@ -77,34 +99,46 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                   AppTheme.colors.pokemonItem(_pokeApiStore.pokemon!.type![0]),
             );
           }),
-          PokemonPanelWidget(),
-          Padding(
-            padding: EdgeInsets.only(
-                top: (MediaQuery.of(context).size.height * 0.2) -
-                    MediaQuery.of(context).padding.top),
-            child: SizedBox(
-              height: 223,
-              child: Center(
-                child: Opacity(
-                  opacity: 0.2,
-                  child: AnimatedBuilder(
-                    animation: _animationController,
-                    builder: (_, child) {
-                      return Transform.rotate(
-                        angle: _animationController.value * 2 * pi,
-                        child: child,
-                      );
-                    },
-                    child: SvgPicture.asset(
-                      AppConstants.whitePokeballLogo,
+          PokemonPanelWidget(listener: (state) {
+            _progress = state.progress;
+            _opacityPokemon = 1 - interval(0.0, 0.6, _progress);
+            _opacityTitleAppbar = interval(0.0, 0.6, _progress);
+
+            setState(() {});
+          }),
+          Opacity(
+            opacity: _opacityPokemon,
+            child: Padding(
+              padding: paggerPadding,
+              child: SizedBox(
+                height: 223,
+                child: Center(
+                  child: Opacity(
+                    opacity: 0.2,
+                    child: AnimatedBuilder(
+                      animation: _animationController,
+                      builder: (_, child) {
+                        return Transform.rotate(
+                          angle: _animationController.value * 2 * pi,
+                          child: child,
+                        );
+                      },
+                      child: SvgPicture.asset(
+                        AppConstants.whitePokeballLogo,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
           ),
-          PokemonPagerWidget(index: widget.index),
-          PokemonTitleInfoWidget()
+          Opacity(
+            opacity: _opacityPokemon,
+            child: Padding(
+                padding: paggerPadding,
+                child: PokemonPagerWidget(index: widget.index)),
+          ),
+          Opacity(opacity: _opacityPokemon, child: PokemonTitleInfoWidget())
         ],
       ),
     );

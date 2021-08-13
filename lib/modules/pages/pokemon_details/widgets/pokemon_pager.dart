@@ -33,39 +33,36 @@ class _PokemonPagerState extends State<PokemonPagerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.15),
-      child: SizedBox(
-        height: 223,
-        child: PageView.builder(
-          controller: _pageController,
-          itemCount: _pokeApiStore.pokeApi!.pokemon!.length,
-          onPageChanged: _pokeApiStore.setPokemon,
-          itemBuilder: (context, index) {
-            final listPokemon = _pokeApiStore.getPokemon(index);
+    return SizedBox(
+      height: 223,
+      child: PageView.builder(
+        controller: _pageController,
+        itemCount: _pokeApiStore.pokeApi!.pokemon!.length,
+        onPageChanged: _pokeApiStore.setPokemon,
+        itemBuilder: (context, index) {
+          final listPokemon = _pokeApiStore.getPokemon(index);
 
-            return Observer(
-              builder: (_) {
-                return AnimatedPadding(
-                  padding: EdgeInsets.all(
-                      _pokeApiStore.pokemon == listPokemon ? 0 : 60),
-                  duration: Duration(milliseconds: 300),
-                  child: Container(
-                    child: Hero(
-                      tag: "pokemon-image-${listPokemon.num}",
-                      child: CachedNetworkImage(
-                        imageUrl: listPokemon.imageUrl,
-                        color: _pokeApiStore.pokemon == listPokemon
-                            ? null
-                            : Colors.black.withOpacity(0.2),
-                      ),
+          return Observer(
+            builder: (_) {
+              return AnimatedPadding(
+                padding: EdgeInsets.all(
+                    _pokeApiStore.pokemon == listPokemon ? 0 : 60),
+                duration: Duration(milliseconds: 300),
+                child: Container(
+                  child: Hero(
+                    tag: "pokemon-image-${listPokemon.num}",
+                    child: CachedNetworkImage(
+                      imageUrl: listPokemon.imageUrl,
+                      color: _pokeApiStore.pokemon == listPokemon
+                          ? null
+                          : Colors.black.withOpacity(0.2),
                     ),
                   ),
-                );
-              },
-            );
-          },
-        ),
+                ),
+              );
+            },
+          );
+        },
       ),
     );
   }
