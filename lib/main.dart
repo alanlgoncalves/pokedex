@@ -13,7 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     GetIt getIt = GetIt.instance;
 
-    getIt.registerSingleton<PokeApiStore>(PokeApiStore());
+    if (!GetIt.I.isRegistered<PokeApiStore>()) {
+      getIt.registerSingleton<PokeApiStore>(PokeApiStore());
+    }
 
     return MaterialApp(
       title: 'Pokedex',

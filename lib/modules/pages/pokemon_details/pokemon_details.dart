@@ -1,14 +1,16 @@
 import 'dart:math';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
+import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_pager.dart';
+import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel.dart';
+import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_title_info.dart';
+
 import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
-import 'package:sliding_sheet/sliding_sheet.dart';
 
 class PokemonDetailsPage extends StatefulWidget {
   final int index;
@@ -22,7 +24,7 @@ class PokemonDetailsPage extends StatefulWidget {
 class _PokemonDetailsPageState extends State<PokemonDetailsPage>
     with SingleTickerProviderStateMixin {
   late PokeApiStore _pokeApiStore;
-  late PageController _pageController;
+
   late AnimationController _animationController;
 
   @override
@@ -30,7 +32,6 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
     super.initState();
 
     _pokeApiStore = GetIt.instance<PokeApiStore>();
-    _pageController = PageController(initialPage: widget.index);
 
     _animationController =
         AnimationController(vsync: this, duration: Duration(seconds: 2))
@@ -39,7 +40,6 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
 
   @override
   void dispose() {
-    _pageController.dispose();
     _animationController.dispose();
     super.dispose();
   }
@@ -77,20 +77,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                   AppTheme.colors.pokemonItem(_pokeApiStore.pokemon!.type![0]),
             );
           }),
-          SlidingSheet(
-            elevation: 0,
-            cornerRadius: 16,
-            snapSpec: const SnapSpec(
-              snap: true,
-              snappings: [0.6, 1.0],
-              positioning: SnapPositioning.relativeToSheetHeight,
-            ),
-            builder: (context, state) {
-              return Container(
-                height: MediaQuery.of(context).size.height,
-              );
-            },
-          ),
+          PokemonPanelWidget(),
           Padding(
             padding: EdgeInsets.only(
                 top: (MediaQuery.of(context).size.height * 0.2) -
@@ -116,84 +103,8 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
               ),
             ),
           ),
-          Padding(
-            padding:
-                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.15),
-            child: SizedBox(
-              height: 223,
-              child: PageView.builder(
-                controller: _pageController,
-                itemCount: _pokeApiStore.pokeApi!.pokemon!.length,
-                onPageChanged: _pokeApiStore.setPokemon,
-                itemBuilder: (context, index) {
-                  final listPokemon = _pokeApiStore.getPokemon(index);
-
-                  return Container(
-                    child: Hero(
-                      tag: "pokemon-image-${listPokemon.num}",
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            "https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${listPokemon.num}.png",
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 26),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Observer(builder: (_) {
-                      return Text(
-                        _pokeApiStore.pokemon!.name!,
-                        style: AppTheme.texts.pokemonDetailName,
-                      );
-                    }),
-                    Observer(builder: (_) {
-                      return Text("#${_pokeApiStore.pokemon!.num!}",
-                          style: AppTheme.texts.pokemonDetailNumber);
-                    }),
-                  ],
-                ),
-                SizedBox(
-                  height: 6,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Observer(builder: (_) {
-                      return Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: _pokeApiStore.pokemon!.type!
-                            .map((type) => Padding(
-                                  padding: const EdgeInsets.only(right: 8),
-                                  child: Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 15, vertical: 5),
-                                      child: Text(
-                                        type,
-                                        style: AppTheme.texts.pokemonDetailType,
-                                      ),
-                                    ),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(38),
-                                        color: Colors.white.withOpacity(0.4)),
-                                  ),
-                                ))
-                            .toList(),
-                      );
-                    }),
-                  ],
-                )
-              ],
-            ),
-          )
+          PokemonPagerWidget(index: widget.index),
+          PokemonTitleInfoWidget()
         ],
       ),
     );
