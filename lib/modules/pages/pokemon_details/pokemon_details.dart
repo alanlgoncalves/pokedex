@@ -92,8 +92,9 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
             },
           ),
           Padding(
-            padding:
-                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.15),
+            padding: EdgeInsets.only(
+                top: (MediaQuery.of(context).size.height * 0.2) -
+                    MediaQuery.of(context).padding.top),
             child: SizedBox(
               height: 223,
               child: Center(
@@ -128,9 +129,12 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                   final listPokemon = _pokeApiStore.getPokemon(index);
 
                   return Container(
-                    child: CachedNetworkImage(
-                      imageUrl:
-                          "https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${listPokemon.num}.png",
+                    child: Hero(
+                      tag: "pokemon-image-${listPokemon.num}",
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            "https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${listPokemon.num}.png",
+                      ),
                     ),
                   );
                 },

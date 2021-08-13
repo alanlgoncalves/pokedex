@@ -44,7 +44,10 @@ class PokeItemWidget extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.only(right: 7, bottom: 3),
               child: Container(
-                child: image,
+                child: Hero(
+                  child: image,
+                  tag: "pokemon-image-${pokemon.num}",
+                ),
                 height: 71,
                 width: 76,
               ),
