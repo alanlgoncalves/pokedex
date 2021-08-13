@@ -4,9 +4,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get_it/get_it.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
-import 'package:provider/provider.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 
@@ -29,7 +29,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
   void initState() {
     super.initState();
 
-    _pokeApiStore = Provider.of<PokeApiStore>(context, listen: false);
+    _pokeApiStore = GetIt.instance<PokeApiStore>();
     _pageController = PageController(initialPage: widget.index);
 
     _animationController =

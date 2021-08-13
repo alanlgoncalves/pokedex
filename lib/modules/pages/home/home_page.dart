@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 
 import 'package:pokedex/modules/pages/home/widgets/app_bar.dart';
 
@@ -7,15 +8,14 @@ import 'package:pokedex/modules/pages/home/widgets/pokemon_grid.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 
 import 'package:pokedex/theme/app_theme.dart';
-import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
+  final _pokeApiStore = GetIt.instance<PokeApiStore>();
+
   HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final pokeApiStore = Provider.of<PokeApiStore>(context);
-
     return Scaffold(
       backgroundColor: AppTheme.colors.background,
       body: SafeArea(
@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
             AppBarWidget(),
             Observer(
               builder: (_) {
-                if (pokeApiStore.pokeApi == null) {
+                if (_pokeApiStore.pokeApi == null) {
                   return SliverFillRemaining(
                       child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
                 } else {
                   return SliverPadding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
-                    sliver: PokemonGridWidget(pokeApiStore: pokeApiStore),
+                    sliver: PokemonGridWidget(pokeApiStore: _pokeApiStore),
                   );
                 }
               },
