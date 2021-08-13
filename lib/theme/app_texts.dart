@@ -38,7 +38,6 @@ class AppTextStylesDefault extends AppTextStyles {
       );
 
   @override
-  // TODO: implement pokemonDetailKind
   TextStyle get pokemonDetailKind => TextStyle(
         fontFamily: "CircularStd-Book",
         fontSize: 14,
@@ -47,7 +46,6 @@ class AppTextStylesDefault extends AppTextStyles {
       );
 
   @override
-  // TODO: implement pokemonDetailName
   TextStyle get pokemonDetailName => TextStyle(
         fontFamily: "CircularStd-Book",
         fontSize: 36,
