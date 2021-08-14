@@ -48,7 +48,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
   EdgeInsets get paggerPadding => EdgeInsets.only(
         top: _pokemonDetailsStore.opacityTitleAppbar == 1
             ? MediaQuery.of(context).size.height
-            : (MediaQuery.of(context).size.height * 0.15) -
+            : (MediaQuery.of(context).size.height * 0.12) -
                 (_pokemonDetailsStore.progress * 100),
       );
 
@@ -93,7 +93,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
             );
           }),
           PokemonPanelWidget(listener: (state) {
-            _pokemonDetailsStore.setProgress(state.progress, 0.0, 0.6);
+            _pokemonDetailsStore.setProgress(state.progress, 0.0, 0.65);
           }),
           Observer(
             builder: (_) => Opacity(

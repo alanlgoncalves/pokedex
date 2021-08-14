@@ -15,7 +15,7 @@ class PokemonPanelWidget extends StatelessWidget {
       cornerRadius: 30,
       snapSpec: const SnapSpec(
         snap: true,
-        snappings: [0.6, 1.0],
+        snappings: [0.65, 1.0],
         positioning: SnapPositioning.relativeToSheetHeight,
       ),
       builder: (context, state) {
