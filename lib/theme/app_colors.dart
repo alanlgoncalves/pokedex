@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 abstract class AppColors {
   Color get background;
   Color pokemonItem(String type);
+
+  Color get selectPokemonTabTitle;
+  Color get pokemonTabTitle;
+  Color get tabDivisor;
+  Color get tabIndicator;
 }
 
 class AppColorsDefault extends AppColors {
@@ -51,4 +56,16 @@ class AppColorsDefault extends AppColors {
         return Colors.grey;
     }
   }
+
+  @override
+  Color get pokemonTabTitle => Color(0xFF303943).withOpacity(0.4);
+
+  @override
+  Color get selectPokemonTabTitle => Color(0xFF303943);
+
+  @override
+  Color get tabDivisor => Color(0xFFE4E4E4);
+
+  @override
+  Color get tabIndicator => Color(0xFF6C79DB);
 }

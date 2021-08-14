@@ -10,6 +10,9 @@ abstract class AppTextStyles {
   TextStyle get pokemonDetailNumber;
   TextStyle get pokemonDetailType;
   TextStyle get pokemonDetailKind;
+
+  TextStyle get selectPokemonTabTitle;
+  TextStyle get pokemonTabTitle;
 }
 
 class AppTextStylesDefault extends AppTextStyles {
@@ -67,5 +70,19 @@ class AppTextStylesDefault extends AppTextStyles {
         fontSize: 12,
         fontWeight: FontWeight.bold,
         color: Color(0xFFFFFFFF),
+      );
+
+  @override
+  TextStyle get pokemonTabTitle => TextStyle(
+        fontFamily: "CircularStd-Book",
+        fontSize: 14,
+        fontWeight: FontWeight.normal,
+      );
+
+  @override
+  TextStyle get selectPokemonTabTitle => TextStyle(
+        fontFamily: "CircularStd-Book",
+        fontSize: 14,
+        fontWeight: FontWeight.bold,
       );
 }

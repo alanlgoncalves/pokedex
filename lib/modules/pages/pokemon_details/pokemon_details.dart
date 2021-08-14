@@ -6,7 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/modules/pages/pokemon_details/pokemon_details_store.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_pager.dart';
-import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel.dart';
+import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pokemon_panel.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_title_info.dart';
 
 import 'package:pokedex/shared/utils/app_constants.dart';
