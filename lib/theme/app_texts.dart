@@ -13,6 +13,8 @@ abstract class AppTextStyles {
 
   TextStyle get selectPokemonTabTitle;
   TextStyle get pokemonTabTitle;
+  TextStyle get pokemonTabViewTitle;
+  TextStyle get pokemonEvolutionChainName;
 }
 
 class AppTextStylesDefault extends AppTextStyles {
@@ -83,6 +85,20 @@ class AppTextStylesDefault extends AppTextStyles {
   TextStyle get selectPokemonTabTitle => TextStyle(
         fontFamily: "CircularStd-Book",
         fontSize: 14,
+        fontWeight: FontWeight.bold,
+      );
+
+  @override
+  TextStyle get pokemonEvolutionChainName => TextStyle(
+        fontFamily: "CircularStd-Book",
+        fontSize: 14,
+        fontWeight: FontWeight.normal,
+      );
+
+  @override
+  TextStyle get pokemonTabViewTitle => TextStyle(
+        fontFamily: "CircularStd-Book",
+        fontSize: 16,
         fontWeight: FontWeight.bold,
       );
 }

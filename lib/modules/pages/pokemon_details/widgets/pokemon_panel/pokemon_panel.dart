@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about_page.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/base_stats_page.dart';
-import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution_page.dart';
+import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution_page/evolution_page.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/moves_page.dart';
 
 import 'package:pokedex/theme/app_theme.dart';
@@ -26,9 +26,6 @@ class _PokemonPanelWidgetState extends State<PokemonPanelWidget>
     super.initState();
 
     _tabController = TabController(vsync: this, length: 4);
-    _tabController.addListener(() {
-      print(_tabController.index);
-    });
   }
 
   @override
