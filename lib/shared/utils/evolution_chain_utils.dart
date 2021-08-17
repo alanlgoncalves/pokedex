@@ -1,8 +1,9 @@
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution_page/widgets/evolution_chain_item.dart';
+import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution_page/widgets/super_evolution_chain_item.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
 
 class EvolutionChainUtils {
-  static List<EvolutionChainItemWidget> buildChain(Pokemon pokemon) {
+  static List<EvolutionChainItemWidget> buildEvolutionChain(Pokemon pokemon) {
     List<EvolutionChainItemWidget> _evolutionChainWidgetList = [];
 
     if (pokemon.middleEvolutions.isEmpty && pokemon.lastEvolutions.isEmpty) {
@@ -42,6 +43,28 @@ class EvolutionChainUtils {
           });
         });
       }
+    }
+
+    return _evolutionChainWidgetList;
+  }
+
+  static List<SuperEvolutionChainItemWidget> buildSuperEvolutionChain(
+      Pokemon pokemon) {
+    List<SuperEvolutionChainItemWidget> _evolutionChainWidgetList = [];
+
+    if (pokemon.superEvolutions.isEmpty) {
+      return _evolutionChainWidgetList;
+    }
+
+    if (pokemon.megaEvolutions.isNotEmpty) {
+      pokemon.megaEvolutions.forEach((megaEvolution) {
+        var _evolutionChainItemWidget = SuperEvolutionChainItemWidget(
+          pokemon: pokemon,
+          superEvolution: megaEvolution,
+        );
+
+        _evolutionChainWidgetList.add(_evolutionChainItemWidget);
+      });
     }
 
     return _evolutionChainWidgetList;

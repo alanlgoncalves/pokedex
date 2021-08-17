@@ -5,12 +5,12 @@ import 'package:pokedex/shared/models/pokemon.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
-class EvolutionChainItemWidget extends StatelessWidget {
-  final EvolutionChain previousEvolution;
-  final EvolutionChain nextEvolution;
+class SuperEvolutionChainItemWidget extends StatelessWidget {
+  final Pokemon pokemon;
+  final SuperEvolution superEvolution;
 
-  const EvolutionChainItemWidget(
-      {Key? key, required this.previousEvolution, required this.nextEvolution})
+  const SuperEvolutionChainItemWidget(
+      {Key? key, required this.pokemon, required this.superEvolution})
       : super(key: key);
 
   @override
@@ -39,7 +39,7 @@ class EvolutionChainItemWidget extends StatelessWidget {
                     width: 83,
                     child: Center(
                       child: CachedNetworkImage(
-                        imageUrl: previousEvolution.image,
+                        imageUrl: pokemon.image,
                         width: 76,
                         height: 71,
                       ),
@@ -48,29 +48,13 @@ class EvolutionChainItemWidget extends StatelessWidget {
                 ],
               ),
               Text(
-                previousEvolution.name,
+                pokemon.name,
                 style: AppTheme.texts.pokemonEvolutionChainName,
-              ),
-              Text(
-                "#${previousEvolution.number}",
-                style: AppTheme.texts.pokemonEvolutionChainNumber,
               ),
             ],
           ),
-          Column(
-            children: [
-              Icon(
-                Icons.arrow_forward,
-              ),
-              Container(
-                width: 100,
-                child: Text(
-                  nextEvolution.requirement!,
-                  style: AppTheme.texts.pokemonEvolutionChainRequirement,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ],
+          Icon(
+            Icons.arrow_forward,
           ),
           Column(
             children: [
@@ -89,7 +73,7 @@ class EvolutionChainItemWidget extends StatelessWidget {
                     width: 83,
                     child: Center(
                       child: CachedNetworkImage(
-                        imageUrl: nextEvolution.image,
+                        imageUrl: superEvolution.image,
                         width: 76,
                         height: 71,
                       ),
@@ -98,12 +82,8 @@ class EvolutionChainItemWidget extends StatelessWidget {
                 ],
               ),
               Text(
-                nextEvolution.name,
+                superEvolution.name,
                 style: AppTheme.texts.pokemonEvolutionChainName,
-              ),
-              Text(
-                "#${nextEvolution.number}",
-                style: AppTheme.texts.pokemonEvolutionChainNumber,
               ),
             ],
           ),

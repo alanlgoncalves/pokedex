@@ -14,7 +14,7 @@ class Pokemon {
   late List<EvolutionChain> evolutionChain;
   late List<EvolutionChain> previousEvolutions;
   late List<EvolutionChain> nextEvolutions;
-  late List<SuperEvolutions> superEvolutions;
+  late List<SuperEvolution> superEvolutions;
   late Egg? egg;
   late BaseStats baseStats;
   late List<Cards> cards;
@@ -57,6 +57,21 @@ class Pokemon {
   List<EvolutionChain> get lastEvolutions =>
       this.evolutionChain.where((it) => it.type == EvolutionType.LAST).toList();
 
+  List<SuperEvolution> get megaEvolutions => this
+      .superEvolutions
+      .where((it) => it.type == SuperEvolutionType.MEGA)
+      .toList();
+
+  List<SuperEvolution> get gigantamaxEvolutions => this
+      .superEvolutions
+      .where((it) => it.type == SuperEvolutionType.GIGANTAMAX)
+      .toList();
+
+  bool get hasEvolutions =>
+      previousEvolutions.isNotEmpty ||
+      nextEvolutions.isNotEmpty ||
+      superEvolutions.isNotEmpty;
+
   Pokemon.fromJson(Map<String, dynamic> json) {
     number = json['number'];
     name = json['name'];
@@ -88,9 +103,9 @@ class Pokemon {
     json['nextEvolutions'].forEach((v) {
       nextEvolutions.add(new EvolutionChain.fromJson(v));
     });
-    superEvolutions = <SuperEvolutions>[];
+    superEvolutions = <SuperEvolution>[];
     json['superEvolutions'].forEach((v) {
-      superEvolutions.add(new SuperEvolutions.fromJson(v));
+      superEvolutions.add(new SuperEvolution.fromJson(v));
     });
     egg = json['egg'] != null ? new Egg.fromJson(json['egg']) : null;
     baseStats = BaseStats.fromJson(json['baseStats']);
@@ -182,18 +197,21 @@ class EvolutionChain {
   }
 }
 
-class SuperEvolutions {
+enum SuperEvolutionType { MEGA, GIGANTAMAX }
+
+class SuperEvolution {
   late String name;
   late String image;
-  late String type;
+  late SuperEvolutionType type;
 
-  SuperEvolutions(
-      {required this.name, required this.image, required this.type});
+  SuperEvolution({required this.name, required this.image, required this.type});
 
-  SuperEvolutions.fromJson(Map<String, dynamic> json) {
+  SuperEvolution.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     image = json['image'];
-    type = json['type'];
+    type = SuperEvolutionType.values
+        .where((it) => it.toString().endsWith(json['type']))
+        .first;
   }
 }
 
