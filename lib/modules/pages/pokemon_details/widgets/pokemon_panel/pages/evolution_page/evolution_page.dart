@@ -5,6 +5,7 @@ import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/page
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution_page/widgets/next_evolution_chain.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution_page/widgets/previous_evolution_chain.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/utils/evolution_chain_utils.dart';
 
 class EvolutionPage extends StatelessWidget {
   EvolutionPage({Key? key}) : super(key: key);
@@ -16,15 +17,18 @@ class EvolutionPage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 28),
       child: Observer(builder: (_) {
+        final evolutionChain =
+            EvolutionChainUtils.buildChain(_pokeApiStore.pokemon!);
+
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (_pokeApiStore.pokemon!.prevEvolution != null)
-              PreviousEvolutionChainWidget(),
-            if (_pokeApiStore.pokemon!.nextEvolution != null)
-              NextEvolutionChainWidget(),
-            if (_pokeApiStore.pokemon!.nextEvolution == null &&
-                _pokeApiStore.pokemon!.prevEvolution == null)
+            if (_pokeApiStore.pokemon!.previousEvolutions.isNotEmpty)
+              PreviousEvolutionChainWidget(evolutionChain: evolutionChain),
+            if (_pokeApiStore.pokemon!.nextEvolutions.isNotEmpty)
+              NextEvolutionChainWidget(evolutionChain: evolutionChain),
+            if (_pokeApiStore.pokemon!.previousEvolutions.isEmpty &&
+                _pokeApiStore.pokemon!.nextEvolutions.isEmpty)
               EmptyEvolutionChainWidget(),
           ],
         );

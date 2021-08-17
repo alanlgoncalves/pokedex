@@ -20,12 +20,12 @@ class PokemonTitleInfoWidget extends StatelessWidget {
             children: [
               Observer(builder: (_) {
                 return Text(
-                  _pokeApiStore.pokemon!.name!,
+                  _pokeApiStore.pokemon!.name,
                   style: AppTheme.texts.pokemonDetailName,
                 );
               }),
               Observer(builder: (_) {
-                return Text("#${_pokeApiStore.pokemon!.num!}",
+                return Text("#${_pokeApiStore.pokemon!.number}",
                     style: AppTheme.texts.pokemonDetailNumber);
               }),
             ],
@@ -39,7 +39,7 @@ class PokemonTitleInfoWidget extends StatelessWidget {
               Observer(builder: (_) {
                 return Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: _pokeApiStore.pokemon!.type!
+                  children: _pokeApiStore.pokemon!.types
                       .map((type) => Padding(
                             padding: const EdgeInsets.only(right: 8),
                             child: Container(

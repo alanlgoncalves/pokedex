@@ -62,12 +62,12 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
             title: Opacity(
               opacity: _pokemonDetailsStore.opacityTitleAppbar,
               child: Text(
-                _pokeApiStore.pokemon!.name!,
+                _pokeApiStore.pokemon!.name,
                 style: AppTheme.texts.pokemonDetailNumber,
               ),
             ),
             backgroundColor:
-                AppTheme.colors.pokemonItem(_pokeApiStore.pokemon!.type![0]),
+                AppTheme.colors.pokemonItem(_pokeApiStore.pokemon!.types[0]),
             shadowColor: Colors.transparent,
             leading: IconButton(
               icon: Icon(Icons.arrow_back),
@@ -89,7 +89,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
           Observer(builder: (_) {
             return Container(
               color:
-                  AppTheme.colors.pokemonItem(_pokeApiStore.pokemon!.type![0]),
+                  AppTheme.colors.pokemonItem(_pokeApiStore.pokemon!.types[0]),
             );
           }),
           PokemonPanelWidget(listener: (state) {

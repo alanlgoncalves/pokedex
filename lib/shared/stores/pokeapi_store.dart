@@ -1,34 +1,63 @@
 import 'package:mobx/mobx.dart';
-import 'package:pokedex/shared/models/poke_api.dart';
+import 'package:pokedex/shared/models/pokemon.dart';
+import 'package:pokedex/shared/models/pokemon_summary.dart';
 import 'package:pokedex/shared/repositories/poke_api_repository.dart';
 part 'pokeapi_store.g.dart';
 
 class PokeApiStore = _PokeApiStoreBase with _$PokeApiStore;
 
 abstract class _PokeApiStoreBase with Store {
-  PokeApiRepository pokeApiRepository = PokeApiRepository();
+  PokeApiRepository _pokeApiRepository = PokeApiRepository();
 
   _PokeApiStoreBase() {
     this._fetchPokemonList();
   }
 
   @observable
-  PokeApi? _pokeApi;
+  List<PokemonSummary>? _pokemonsSummary;
+
+  @observable
+  PokemonSummary? _pokemonSummary;
+
+  @computed
+  PokemonSummary? get pokemonSummary => _pokemonSummary;
+
+  @observable
+  List<Pokemon> _pokemons = [];
 
   @observable
   Pokemon? _pokemon;
 
   @computed
-  PokeApi? get pokeApi => _pokeApi;
-
   Pokemon? get pokemon => _pokemon;
 
-  @action
-  void setPokemon(int index) => _pokemon = _pokeApi!.pokemon![index];
+  @computed
+  List<PokemonSummary>? get pokemonsSummary => _pokemonsSummary;
 
-  Pokemon getPokemon(int index) => _pokeApi!.pokemon![index];
+  @action
+  Future<void> setPokemon(int index) async {
+    _pokemonSummary = _pokemonsSummary![index];
+
+    final pokemonDetailsIndex =
+        _pokemons.indexWhere((it) => it.number == _pokemonSummary!.number);
+
+    if (pokemonDetailsIndex < 0) {
+      final fetchedPokemon =
+          await _pokeApiRepository.fetchPokemon(_pokemonSummary!.number);
+
+      final sortedPokemonList = [..._pokemons, fetchedPokemon];
+      sortedPokemonList.sort((a, b) => a.number.compareTo(b.number));
+
+      _pokemons = sortedPokemonList;
+      _pokemon = fetchedPokemon;
+    } else {
+      _pokemon = _pokemons[pokemonDetailsIndex];
+    }
+  }
+
+  PokemonSummary getPokemon(int index) => _pokemonsSummary![index];
 
   _fetchPokemonList() async {
-    _pokeApi = await pokeApiRepository.fetchPokemons();
+    _pokemonsSummary = await _pokeApiRepository.fetchPokemonsSummary();
   }
 }

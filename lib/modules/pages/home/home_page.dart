@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
             AppBarWidget(),
             Observer(
               builder: (_) {
-                if (_pokeApiStore.pokeApi == null) {
+                if (_pokeApiStore.pokemonsSummary == null) {
                   return SliverFillRemaining(
                       child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:pokedex/shared/models/poke_api.dart';
+import 'package:pokedex/shared/models/pokemon_summary.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class PokeItemWidget extends StatelessWidget {
-  final Pokemon pokemon;
+  final PokemonSummary pokemon;
   final int index;
   final Widget image;
 
@@ -20,7 +20,7 @@ class PokeItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppTheme.colors.pokemonItem(pokemon.type![0]),
+        color: AppTheme.colors.pokemonItem(pokemon.types[0]),
         borderRadius: BorderRadius.circular(15),
       ),
       child: Stack(
@@ -46,7 +46,7 @@ class PokeItemWidget extends StatelessWidget {
               child: Container(
                 child: Hero(
                   child: image,
-                  tag: "pokemon-image-${pokemon.num}",
+                  tag: "pokemon-image-${pokemon.number}",
                 ),
                 height: 71,
                 width: 76,
@@ -58,7 +58,7 @@ class PokeItemWidget extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(right: 8, top: 8),
               child: Text(
-                "#${pokemon.id.toString().padLeft(3, '0')}",
+                "#${pokemon.number}",
                 style: TextStyle(
                   fontFamily: "CircularStd-Book",
                   fontSize: 14,
@@ -75,7 +75,7 @@ class PokeItemWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  pokemon.name!,
+                  pokemon.name,
                   style: AppTheme.texts.pokemonItemName,
                 ),
                 SizedBox(
@@ -83,7 +83,7 @@ class PokeItemWidget extends StatelessWidget {
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: pokemon.type!
+                  children: pokemon.types
                       .map((type) => Padding(
                             padding: const EdgeInsets.symmetric(vertical: 4),
                             child: Container(

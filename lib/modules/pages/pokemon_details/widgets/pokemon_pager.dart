@@ -38,24 +38,27 @@ class _PokemonPagerState extends State<PokemonPagerWidget> {
       height: 223,
       child: PageView.builder(
         controller: _pageController,
-        itemCount: _pokeApiStore.pokeApi!.pokemon!.length,
+        itemCount: _pokeApiStore.pokemonsSummary!.length,
         onPageChanged: _pokeApiStore.setPokemon,
         itemBuilder: (context, index) {
-          final listPokemon = _pokeApiStore.getPokemon(index);
+          final listPokemon = _pokeApiStore.pokemonsSummary![index];
 
           return Observer(
             builder: (_) {
               return AnimatedPadding(
                 padding: EdgeInsets.all(
-                    _pokeApiStore.pokemon == listPokemon ? 0 : 40),
+                    _pokeApiStore.pokemonSummary!.number == listPokemon.number
+                        ? 0
+                        : 40),
                 duration: Duration(milliseconds: 300),
                 child: Container(
                   child: Hero(
-                    tag: "pokemon-image-${listPokemon.num}",
+                    tag: "pokemon-image-${listPokemon.number}",
                     child: CachedNetworkImage(
-                      imageUrl: listPokemon.imageUrl,
+                      imageUrl: listPokemon.image,
                       height: 300,
-                      color: _pokeApiStore.pokemon == listPokemon
+                      color: _pokeApiStore.pokemonSummary!.number ==
+                              listPokemon.number
                           ? null
                           : Colors.black.withOpacity(0.2),
                     ),

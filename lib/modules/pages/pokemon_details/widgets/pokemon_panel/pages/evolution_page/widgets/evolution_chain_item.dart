@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pokedex/shared/models/poke_api.dart';
+import 'package:pokedex/shared/models/pokemon.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class EvolutionChainItemWidget extends StatelessWidget {
-  final Pokemon previousEvolution;
-  final Pokemon nextEvolution;
+  final EvolutionChain previousEvolution;
+  final EvolutionChain nextEvolution;
 
   const EvolutionChainItemWidget(
       {Key? key, required this.previousEvolution, required this.nextEvolution})
@@ -39,7 +39,7 @@ class EvolutionChainItemWidget extends StatelessWidget {
                     width: 83,
                     child: Center(
                       child: CachedNetworkImage(
-                        imageUrl: previousEvolution.imageUrl,
+                        imageUrl: previousEvolution.image,
                         width: 76,
                         height: 71,
                       ),
@@ -48,7 +48,7 @@ class EvolutionChainItemWidget extends StatelessWidget {
                 ],
               ),
               Text(
-                previousEvolution.name!,
+                previousEvolution.name,
                 style: AppTheme.texts.pokemonEvolutionChainName,
               ),
             ],
@@ -73,7 +73,7 @@ class EvolutionChainItemWidget extends StatelessWidget {
                     width: 83,
                     child: Center(
                       child: CachedNetworkImage(
-                        imageUrl: nextEvolution.imageUrl,
+                        imageUrl: nextEvolution.image,
                         width: 76,
                         height: 71,
                       ),
@@ -82,7 +82,7 @@ class EvolutionChainItemWidget extends StatelessWidget {
                 ],
               ),
               Text(
-                nextEvolution.name!,
+                nextEvolution.name,
                 style: AppTheme.texts.pokemonEvolutionChainName,
               ),
             ],

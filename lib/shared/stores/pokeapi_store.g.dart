@@ -9,26 +9,71 @@ part of 'pokeapi_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PokeApiStore on _PokeApiStoreBase, Store {
-  Computed<PokeApi?>? _$pokeApiComputed;
+  Computed<PokemonSummary?>? _$pokemonSummaryComputed;
 
   @override
-  PokeApi? get pokeApi =>
-      (_$pokeApiComputed ??= Computed<PokeApi?>(() => super.pokeApi,
-              name: '_PokeApiStoreBase.pokeApi'))
+  PokemonSummary? get pokemonSummary => (_$pokemonSummaryComputed ??=
+          Computed<PokemonSummary?>(() => super.pokemonSummary,
+              name: '_PokeApiStoreBase.pokemonSummary'))
+      .value;
+  Computed<Pokemon?>? _$pokemonComputed;
+
+  @override
+  Pokemon? get pokemon =>
+      (_$pokemonComputed ??= Computed<Pokemon?>(() => super.pokemon,
+              name: '_PokeApiStoreBase.pokemon'))
           .value;
-
-  final _$_pokeApiAtom = Atom(name: '_PokeApiStoreBase._pokeApi');
+  Computed<List<PokemonSummary>?>? _$pokemonsSummaryComputed;
 
   @override
-  PokeApi? get _pokeApi {
-    _$_pokeApiAtom.reportRead();
-    return super._pokeApi;
+  List<PokemonSummary>? get pokemonsSummary => (_$pokemonsSummaryComputed ??=
+          Computed<List<PokemonSummary>?>(() => super.pokemonsSummary,
+              name: '_PokeApiStoreBase.pokemonsSummary'))
+      .value;
+
+  final _$_pokemonsSummaryAtom =
+      Atom(name: '_PokeApiStoreBase._pokemonsSummary');
+
+  @override
+  List<PokemonSummary>? get _pokemonsSummary {
+    _$_pokemonsSummaryAtom.reportRead();
+    return super._pokemonsSummary;
   }
 
   @override
-  set _pokeApi(PokeApi? value) {
-    _$_pokeApiAtom.reportWrite(value, super._pokeApi, () {
-      super._pokeApi = value;
+  set _pokemonsSummary(List<PokemonSummary>? value) {
+    _$_pokemonsSummaryAtom.reportWrite(value, super._pokemonsSummary, () {
+      super._pokemonsSummary = value;
+    });
+  }
+
+  final _$_pokemonSummaryAtom = Atom(name: '_PokeApiStoreBase._pokemonSummary');
+
+  @override
+  PokemonSummary? get _pokemonSummary {
+    _$_pokemonSummaryAtom.reportRead();
+    return super._pokemonSummary;
+  }
+
+  @override
+  set _pokemonSummary(PokemonSummary? value) {
+    _$_pokemonSummaryAtom.reportWrite(value, super._pokemonSummary, () {
+      super._pokemonSummary = value;
+    });
+  }
+
+  final _$_pokemonsAtom = Atom(name: '_PokeApiStoreBase._pokemons');
+
+  @override
+  List<Pokemon> get _pokemons {
+    _$_pokemonsAtom.reportRead();
+    return super._pokemons;
+  }
+
+  @override
+  set _pokemons(List<Pokemon> value) {
+    _$_pokemonsAtom.reportWrite(value, super._pokemons, () {
+      super._pokemons = value;
     });
   }
 
@@ -47,24 +92,19 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
     });
   }
 
-  final _$_PokeApiStoreBaseActionController =
-      ActionController(name: '_PokeApiStoreBase');
+  final _$setPokemonAsyncAction = AsyncAction('_PokeApiStoreBase.setPokemon');
 
   @override
-  void setPokemon(int index) {
-    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
-        name: '_PokeApiStoreBase.setPokemon');
-    try {
-      return super.setPokemon(index);
-    } finally {
-      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
-    }
+  Future<void> setPokemon(int index) {
+    return _$setPokemonAsyncAction.run(() => super.setPokemon(index));
   }
 
   @override
   String toString() {
     return '''
-pokeApi: ${pokeApi}
+pokemonSummary: ${pokemonSummary},
+pokemon: ${pokemon},
+pokemonsSummary: ${pokemonsSummary}
     ''';
   }
 }

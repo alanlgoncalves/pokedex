@@ -33,12 +33,12 @@ class PokemonGridWidget extends StatelessWidget {
         return FadeTrasitionWidget(
           animation: animation,
           child: InkWell(
-            onTap: () {
+            onTap: () async {
+              await pokeApiStore.setPokemon(index);
+
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) {
-                  pokeApiStore.setPokemon(index);
-
                   return PokemonDetailsPage(index: index);
                 }),
               );
@@ -46,15 +46,15 @@ class PokemonGridWidget extends StatelessWidget {
             child: Ink(
               child: PokeItemWidget(
                 pokemon: _pokemon,
-                image: CachedNetworkImage(imageUrl: _pokemon.imageUrl),
+                image: CachedNetworkImage(imageUrl: _pokemon.image),
                 index: index,
               ),
             ),
           ),
         );
       },
-      itemCount: pokeApiStore.pokeApi != null
-          ? pokeApiStore.pokeApi!.pokemon!.length
+      itemCount: pokeApiStore.pokemonsSummary != null
+          ? pokeApiStore.pokemonsSummary!.length
           : 0,
       controller: _scrollController,
     );
