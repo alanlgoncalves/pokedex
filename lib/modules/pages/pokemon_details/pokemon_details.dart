@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
@@ -60,12 +61,24 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
         child: Observer(builder: (_) {
           return AppBar(
             title: Opacity(
-              opacity: _pokemonDetailsStore.opacityTitleAppbar,
-              child: Text(
-                _pokeApiStore.pokemon!.name,
-                style: AppTheme.texts.pokemonDetailNumber,
-              ),
-            ),
+                opacity: _pokemonDetailsStore.opacityTitleAppbar,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 6),
+                      child: CachedNetworkImage(
+                          height: 35,
+                          width: 35,
+                          imageUrl: _pokeApiStore.pokemon!.sprites.mainSprite),
+                    ),
+                    Text(
+                      _pokeApiStore.pokemon!.name,
+                      style: AppTheme.texts.pokemonDetailNumber,
+                    ),
+                  ],
+                )),
             backgroundColor:
                 AppTheme.colors.pokemonItem(_pokeApiStore.pokemon!.types[0]),
             shadowColor: Colors.transparent,
