@@ -46,6 +46,8 @@ class Pokemon {
       required this.moves,
       required this.generation});
 
+  bool get hasAnimatedSprites => this.sprites.frontAnimatedSprite != null;
+
   EvolutionChain get firstEvolution =>
       this.evolutionChain.where((it) => it.type == EvolutionType.FIRST).first;
 

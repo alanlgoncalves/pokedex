@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
@@ -25,6 +26,43 @@ class AboutPage extends StatelessWidget {
                       ),
                     ))
                 .toList(),
+            if (_pokeApiStore.pokemon!.hasAnimatedSprites)
+              Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Column(
+                      children: [
+                        CachedNetworkImage(
+                            height: 65,
+                            width: 65,
+                            imageUrl: _pokeApiStore
+                                .pokemon!.sprites.frontAnimatedSprite!),
+                        Text(
+                          "Front animated \n Sprite",
+                          style: AppTheme.texts.pokemonText,
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        CachedNetworkImage(
+                            height: 65,
+                            width: 65,
+                            imageUrl: _pokeApiStore
+                                .pokemon!.sprites.backAnimatedSprite!),
+                        Text(
+                          "Back animated \n Sprite",
+                          style: AppTheme.texts.pokemonText,
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
           ],
         );
       }),
