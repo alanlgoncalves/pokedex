@@ -59,6 +59,12 @@ class PokemonTitleInfoWidget extends StatelessWidget {
                       .toList(),
                 );
               }),
+              Observer(
+                builder: (_) {
+                  return Text("${_pokeApiStore.pokemon!.specie} Pokemon",
+                      style: AppTheme.texts.pokemonDetailSpecie);
+                },
+              ),
             ],
           )
         ],

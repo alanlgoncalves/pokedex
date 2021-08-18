@@ -8,6 +8,7 @@ abstract class AppTextStyles {
 
   TextStyle get pokemonDetailName;
   TextStyle get pokemonDetailNumber;
+  TextStyle get pokemonDetailSpecie;
   TextStyle get pokemonDetailType;
   TextStyle get pokemonDetailKind;
 
@@ -74,6 +75,14 @@ class AppTextStylesDefault extends AppTextStyles {
         fontFamily: "CircularStd-Book",
         fontSize: 12,
         fontWeight: FontWeight.bold,
+        color: Color(0xFFFFFFFF),
+      );
+
+  @override
+  TextStyle get pokemonDetailSpecie => TextStyle(
+        fontFamily: "CircularStd-Book",
+        fontSize: 14,
+        fontWeight: FontWeight.normal,
         color: Color(0xFFFFFFFF),
       );
 
