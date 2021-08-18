@@ -92,19 +92,21 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                   AppTheme.colors.pokemonItem(_pokeApiStore.pokemon!.types[0]),
             );
           }),
-          Padding(
-            padding: paggerPadding.add(EdgeInsets.only(top: 150)),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
+          Observer(builder: (_) {
+            return Padding(
+              padding: paggerPadding.add(EdgeInsets.only(top: 150)),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
+                  color: Colors.white,
                 ),
-                color: Colors.white,
+                height: 100,
               ),
-              height: 100,
-            ),
-          ),
+            );
+          }),
           Observer(
             builder: (_) => Opacity(
               opacity: _pokemonDetailsStore.opacityPokemon,
@@ -148,11 +150,8 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
             ),
           ),
           PokemonPanelWidget(
-            listener: (notification) {
-              final dragRatio = (notification.extent - notification.minExtent) /
-                  (notification.maxExtent - notification.minExtent);
-
-              _pokemonDetailsStore.setProgress(dragRatio, 0.0, 0.65);
+            listener: (position) {
+              _pokemonDetailsStore.setProgress(position, 0.0, 0.65);
 
               return true;
             },

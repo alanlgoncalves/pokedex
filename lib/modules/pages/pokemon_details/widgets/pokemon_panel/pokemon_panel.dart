@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/modules/pages/pokemon_details/pokemon_details_store.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about_page.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/base_stats_page.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution_page/evolution_page.dart';
@@ -8,7 +8,7 @@ import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/page
 import 'package:pokedex/theme/app_theme.dart';
 
 class PokemonPanelWidget extends StatefulWidget {
-  final bool Function(DraggableScrollableNotification notification) listener;
+  final Function(double position) listener;
 
   const PokemonPanelWidget({Key? key, required this.listener})
       : super(key: key);
@@ -37,14 +37,15 @@ class _PokemonPanelWidgetState extends State<PokemonPanelWidget>
 
   @override
   Widget build(BuildContext context) {
-    return NotificationListener<DraggableScrollableNotification>(
-      onNotification: widget.listener,
-      child: DraggableScrollableSheet(
-        initialChildSize: 0.55,
-        minChildSize: 0.55,
-        maxChildSize: 1,
-        builder: (context, scrollController) {
-          return Container(
+    return SlidingUpPanel(
+      maxHeight: MediaQuery.of(context).size.height * 0.80,
+      minHeight: MediaQuery.of(context).size.height * 0.52,
+      parallaxEnabled: true,
+      parallaxOffset: 0.5,
+      panelBuilder: (scrollController) {
+        return Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(30),
@@ -101,9 +102,13 @@ class _PokemonPanelWidgetState extends State<PokemonPanelWidget>
                 ),
               ]),
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
+      borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+      onPanelSlide: widget.listener,
+      boxShadow: null,
     );
   }
 }
