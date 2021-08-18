@@ -38,7 +38,7 @@ class _PokemonPanelWidgetState extends State<PokemonPanelWidget>
   @override
   Widget build(BuildContext context) {
     return SlidingUpPanel(
-      maxHeight: MediaQuery.of(context).size.height,
+      maxHeight: MediaQuery.of(context).size.height * 0.9,
       minHeight: MediaQuery.of(context).size.height * 0.52,
       parallaxEnabled: true,
       parallaxOffset: 0.5,
