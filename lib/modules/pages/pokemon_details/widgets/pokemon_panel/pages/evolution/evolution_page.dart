@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution_page/widgets/empty_evolution_chain.dart';
-import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution_page/widgets/next_evolution_chain.dart';
-import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution_page/widgets/previous_evolution_chain.dart';
-import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution_page/widgets/super_evolution_chain.dart';
+import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution/widgets/empty_evolution_chain.dart';
+import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution/widgets/next_evolution_chain.dart';
+import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution/widgets/previous_evolution_chain.dart';
+import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution/widgets/super_evolution_chain.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/shared/utils/evolution_chain_utils.dart';
 

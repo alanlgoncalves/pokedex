@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about_page.dart';
+import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about/about_page.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/base_stats_page.dart';
-import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution_page/evolution_page.dart';
+import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution/evolution_page.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/moves_page.dart';
 
 import 'package:pokedex/theme/app_theme.dart';
@@ -38,7 +38,7 @@ class _PokemonPanelWidgetState extends State<PokemonPanelWidget>
   @override
   Widget build(BuildContext context) {
     return SlidingUpPanel(
-      maxHeight: MediaQuery.of(context).size.height * 0.80,
+      maxHeight: MediaQuery.of(context).size.height,
       minHeight: MediaQuery.of(context).size.height * 0.52,
       parallaxEnabled: true,
       parallaxOffset: 0.5,

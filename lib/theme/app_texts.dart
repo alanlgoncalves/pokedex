@@ -17,6 +17,7 @@ abstract class AppTextStyles {
   TextStyle get pokemonEvolutionChainName;
   TextStyle get pokemonEvolutionChainNumber;
   TextStyle get pokemonEvolutionChainRequirement;
+  TextStyle get pokemonText;
 }
 
 class AppTextStylesDefault extends AppTextStyles {
@@ -118,6 +119,14 @@ class AppTextStylesDefault extends AppTextStyles {
   TextStyle get pokemonEvolutionChainRequirement => TextStyle(
         fontFamily: "CircularStd-Book",
         fontSize: 12,
+        fontWeight: FontWeight.normal,
+        color: Color(0xFF303943),
+      );
+
+  @override
+  TextStyle get pokemonText => TextStyle(
+        fontFamily: "CircularStd-Book",
+        fontSize: 14,
         fontWeight: FontWeight.normal,
         color: Color(0xFF303943),
       );
