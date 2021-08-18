@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/modules/pages/pokemon_details/pokemon_details_store.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about_page.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/base_stats_page.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution_page/evolution_page.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/moves_page.dart';
 
 import 'package:pokedex/theme/app_theme.dart';
-import 'package:sliding_sheet/sliding_sheet.dart';
 
 class PokemonPanelWidget extends StatefulWidget {
-  final void Function(SheetState) listener;
+  final bool Function(DraggableScrollableNotification notification) listener;
 
   const PokemonPanelWidget({Key? key, required this.listener})
       : super(key: key);
@@ -37,77 +37,73 @@ class _PokemonPanelWidgetState extends State<PokemonPanelWidget>
 
   @override
   Widget build(BuildContext context) {
-    return SlidingSheet(
-      listener: widget.listener,
-      elevation: 0,
-      cornerRadius: 30,
-      snapSpec: const SnapSpec(
-        snap: true,
-        snappings: [0.65, 1.0],
-        positioning: SnapPositioning.relativeToSheetHeight,
-      ),
-      builder: (context, state) {
-        return Container(
-          height: MediaQuery.of(context).size.height - 130,
-          child: Stack(
-            children: [
-              Scaffold(
-                appBar: AppBar(
-                    backgroundColor: Colors.transparent,
-                    shadowColor: Colors.transparent,
-                    elevation: 0,
-                    leadingWidth: 0,
-                    toolbarHeight: 100,
-                    centerTitle: true,
-                    leading: Container(),
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        TabBar(
-                          unselectedLabelColor: AppTheme.colors.pokemonTabTitle,
-                          labelColor: AppTheme.colors.selectPokemonTabTitle,
-                          unselectedLabelStyle: AppTheme.texts.pokemonTabTitle,
-                          labelStyle: AppTheme.texts.selectPokemonTabTitle,
-                          indicatorColor: AppTheme.colors.tabIndicator,
-                          controller: _tabController,
-                          tabs: [
-                            Tab(
-                              text: "About",
-                            ),
-                            Tab(
-                              text: "Base Stats",
-                            ),
-                            Tab(
-                              text: "Evolution",
-                            ),
-                            Tab(
-                              text: "Moves",
-                            ),
-                          ],
-                        ),
-                      ],
-                    )),
-                body: TabBarView(
-                  controller: _tabController,
+    return NotificationListener<DraggableScrollableNotification>(
+      onNotification: widget.listener,
+      child: DraggableScrollableSheet(
+        initialChildSize: 0.55,
+        minChildSize: 0.55,
+        maxChildSize: 1,
+        builder: (context, scrollController) {
+          return Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+              ),
+              color: Colors.white,
+            ),
+            child: Padding(
+              padding: EdgeInsets.only(top: 0),
+              child: Stack(children: [
+                Padding(
+                  padding: EdgeInsets.only(top: 70),
+                  child: TabBarView(
+                    controller: _tabController,
+                    children: [
+                      AboutPage(),
+                      BaseStatsPage(),
+                      SingleChildScrollView(
+                        controller: scrollController,
+                        child: EvolutionPage(),
+                      ),
+                      MovesPage(),
+                    ],
+                  ),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    AboutPage(),
-                    BaseStatsPage(),
-                    EvolutionPage(),
-                    MovesPage(),
+                    Container(
+                      child: TabBar(
+                        unselectedLabelColor: AppTheme.colors.pokemonTabTitle,
+                        labelColor: AppTheme.colors.selectPokemonTabTitle,
+                        unselectedLabelStyle: AppTheme.texts.pokemonTabTitle,
+                        labelStyle: AppTheme.texts.selectPokemonTabTitle,
+                        indicatorColor: AppTheme.colors.tabIndicator,
+                        controller: _tabController,
+                        tabs: [
+                          Tab(
+                            text: "About",
+                          ),
+                          Tab(
+                            text: "Base Stats",
+                          ),
+                          Tab(
+                            text: "Evolution",
+                          ),
+                          Tab(
+                            text: "Moves",
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 75),
-                child: Container(
-                  height: 1,
-                  color: AppTheme.colors.tabDivisor,
-                ),
-              ),
-            ],
-          ),
-        );
-      },
+              ]),
+            ),
+          );
+        },
+      ),
     );
   }
 }

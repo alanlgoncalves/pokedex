@@ -48,7 +48,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
   EdgeInsets get paggerPadding => EdgeInsets.only(
         top: _pokemonDetailsStore.opacityTitleAppbar == 1
             ? MediaQuery.of(context).size.height
-            : (MediaQuery.of(context).size.height * 0.12) -
+            : (MediaQuery.of(context).size.height * 0.14) -
                 (_pokemonDetailsStore.progress * 100),
       );
 
@@ -92,9 +92,19 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                   AppTheme.colors.pokemonItem(_pokeApiStore.pokemon!.types[0]),
             );
           }),
-          PokemonPanelWidget(listener: (state) {
-            _pokemonDetailsStore.setProgress(state.progress, 0.0, 0.65);
-          }),
+          Padding(
+            padding: paggerPadding.add(EdgeInsets.only(top: 150)),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
+                color: Colors.white,
+              ),
+              height: 100,
+            ),
+          ),
           Observer(
             builder: (_) => Opacity(
               opacity: _pokemonDetailsStore.opacityPokemon,
@@ -133,8 +143,19 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
           ),
           Observer(
             builder: (_) => Opacity(
-                opacity: _pokemonDetailsStore.opacityPokemon,
-                child: PokemonTitleInfoWidget()),
+              opacity: _pokemonDetailsStore.opacityPokemon,
+              child: PokemonTitleInfoWidget(),
+            ),
+          ),
+          PokemonPanelWidget(
+            listener: (notification) {
+              final dragRatio = (notification.extent - notification.minExtent) /
+                  (notification.maxExtent - notification.minExtent);
+
+              _pokemonDetailsStore.setProgress(dragRatio, 0.0, 0.65);
+
+              return true;
+            },
           ),
         ],
       ),

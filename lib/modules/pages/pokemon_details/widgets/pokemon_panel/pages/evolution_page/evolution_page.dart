@@ -32,6 +32,9 @@ class EvolutionPage extends StatelessWidget {
               SuperEvolutionChainWidget(),
             if (!_pokeApiStore.pokemon!.hasEvolutions)
               EmptyEvolutionChainWidget(),
+            SizedBox(
+              height: 50,
+            )
           ],
         );
       }),

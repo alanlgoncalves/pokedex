@@ -13,10 +13,13 @@ abstract class _PokemonDetailsStoreBase with Store {
   @observable
   double _opacityPokemon = 1;
 
+  @computed
   double get progress => _progress;
 
+  @computed
   double get opacityTitleAppbar => _opacityTitleAppbar;
 
+  @computed
   double get opacityPokemon => _opacityPokemon;
 
   @action
