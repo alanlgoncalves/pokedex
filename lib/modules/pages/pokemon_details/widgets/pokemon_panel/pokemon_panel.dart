@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about/about_page.dart';
-import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/base_stats_page.dart';
+import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/base_stats/base_stats_page.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution/evolution_page.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/moves_page.dart';
 

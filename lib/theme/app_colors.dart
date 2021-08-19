@@ -8,6 +8,8 @@ abstract class AppColors {
   Color get pokemonTabTitle;
   Color get tabDivisor;
   Color get tabIndicator;
+
+  Color baseStatsBar(double percentage);
 }
 
 class AppColorsDefault extends AppColors {
@@ -68,4 +70,21 @@ class AppColorsDefault extends AppColors {
 
   @override
   Color get tabIndicator => Color(0xFF6C79DB);
+
+  @override
+  Color baseStatsBar(double percentage) {
+    if (percentage < 0.1666) {
+      return Color(0xFFF34544);
+    } else if (percentage < 0.3332) {
+      return Color(0xFFFF7F0F);
+    } else if (percentage < 0.4998) {
+      return Color(0xFFFFDD57);
+    } else if (percentage < 0.6664) {
+      return Color(0xFFA1E515);
+    } else if (percentage < 0.833) {
+      return Color(0xFF22CD5E);
+    } else {
+      return Color(0xFF00C2B7);
+    }
+  }
 }
