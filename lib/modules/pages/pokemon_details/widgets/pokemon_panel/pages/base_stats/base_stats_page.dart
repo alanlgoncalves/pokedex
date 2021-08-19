@@ -3,7 +3,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/base_stats/widgets/base_stats_item.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
-import 'package:pokedex/theme/app_theme.dart';
 
 class BaseStatsPage extends StatelessWidget {
   final _pokeApiStore = GetIt.instance<PokeApiStore>();
@@ -12,8 +11,9 @@ class BaseStatsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.all(27),
+    return Observer(
+      builder: (_) => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 27),
         child: Observer(
           builder: (_) {
             return Column(
@@ -50,6 +50,8 @@ class BaseStatsPage extends StatelessWidget {
               ],
             );
           },
-        ));
+        ),
+      ),
+    );
   }
 }
