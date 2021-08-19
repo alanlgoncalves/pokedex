@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about/widget/height_weigh_info.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
@@ -63,6 +64,10 @@ class AboutPage extends StatelessWidget {
                   ],
                 ),
               ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: HeightWeightInfoWidget(),
+            )
           ],
         );
       }),
