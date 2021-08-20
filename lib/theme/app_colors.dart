@@ -10,6 +10,9 @@ abstract class AppColors {
   Color get tabIndicator;
 
   Color baseStatsBar(double percentage);
+
+  Color get marsIcon;
+  Color get venusIcon;
 }
 
 class AppColorsDefault extends AppColors {
@@ -87,4 +90,10 @@ class AppColorsDefault extends AppColors {
       return Color(0xFF00C2B7);
     }
   }
+
+  @override
+  Color get marsIcon => Color(0xFF919BE4);
+
+  @override
+  Color get venusIcon => Color(0xFFF38EB3);
 }

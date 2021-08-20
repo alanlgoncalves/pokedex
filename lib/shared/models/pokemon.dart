@@ -173,14 +173,18 @@ class Breeding {
   }
 }
 
+enum GenderType { MALE, FEMALE }
+
 class Gender {
-  late String type;
+  late GenderType type;
   late String? percentage;
 
   Gender({required this.type, this.percentage});
 
   Gender.fromJson(Map<String, dynamic> json) {
-    type = json['type'];
+    type = GenderType.values
+        .where((it) => it.toString().endsWith(json['type']))
+        .first;
     percentage = json['percentage'];
   }
 }
