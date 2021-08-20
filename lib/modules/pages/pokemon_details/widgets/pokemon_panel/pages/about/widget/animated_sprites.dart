@@ -14,10 +14,10 @@ class AnimatedSpritesWidget extends StatelessWidget {
   }) : super(key: key);
 
   String get frontTitle =>
-      isShiny ? "Back animated \n shiny sprite" : "Front animated \n sprite";
+      isShiny ? "Front animated \n shiny sprite" : "Front animated \n sprite";
 
   String get backTitle =>
-      isShiny ? "Back animated \n shiny sprite" : "Front animated \n sprite";
+      isShiny ? "Back animated \n shiny sprite" : "Back animated \n sprite";
 
   String get frontUrl => isShiny
       ? sprites.frontShinyAnimatedSpriteUrl!
