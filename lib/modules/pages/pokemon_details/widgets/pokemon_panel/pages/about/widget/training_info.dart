@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
-class BreedingInfoWidget extends StatelessWidget {
+class TrainingInfoWidget extends StatelessWidget {
   final Pokemon pokemon;
 
-  const BreedingInfoWidget({Key? key, required this.pokemon}) : super(key: key);
+  const TrainingInfoWidget({Key? key, required this.pokemon}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class BreedingInfoWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 9),
                 child: Text(
-                  "Breeding",
+                  "Training",
                   style: AppTheme.texts.pokemonTabViewTitle,
                 ),
               ),
@@ -35,57 +34,12 @@ class BreedingInfoWidget extends StatelessWidget {
                         Container(
                           width: 88,
                           child: Text(
-                            "Gender",
-                            style: AppTheme.texts.pokemonTabViewSubTitle,
-                          ),
-                        ),
-                        ...pokemon.breeding.genders.map((gender) {
-                          return Padding(
-                            padding: const EdgeInsets.only(right: 20),
-                            child: Row(
-                              children: [
-                                if (gender.type == GenderType.MALE)
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
-                                    child: FaIcon(
-                                      FontAwesomeIcons.mars,
-                                      color: AppTheme.colors.marsIcon,
-                                    ),
-                                  ),
-                                if (gender.type == GenderType.FEMALE)
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
-                                    child: FaIcon(
-                                      FontAwesomeIcons.venus,
-                                      color: AppTheme.colors.venusIcon,
-                                    ),
-                                  ),
-                                Text(
-                                  "${gender.percentage}",
-                                  style: AppTheme.texts.pokemonText,
-                                ),
-                              ],
-                            ),
-                          );
-                        }),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 9),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 88,
-                          child: Text(
-                            "Egg Groups",
+                            "EV yield",
                             style: AppTheme.texts.pokemonTabViewSubTitle,
                           ),
                         ),
                         Text(
-                          "${pokemon.breeding.egg!.groups.join(", ")}",
+                          "${pokemon.training.evYield}",
                           style: AppTheme.texts.pokemonText,
                         ),
                       ],
@@ -98,16 +52,73 @@ class BreedingInfoWidget extends StatelessWidget {
                         Container(
                           width: 88,
                           child: Text(
-                            "Egg Cycle",
+                            "Catch rate",
                             style: AppTheme.texts.pokemonTabViewSubTitle,
                           ),
                         ),
                         Text(
-                          "${pokemon.breeding.egg!.cycle}",
+                          "${pokemon.training.catchRate}",
                           style: AppTheme.texts.pokemonText,
                         ),
                       ],
                     ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 9),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 88,
+                          child: Text(
+                            "Base Friendship",
+                            style: AppTheme.texts.pokemonTabViewSubTitle,
+                          ),
+                        ),
+                        Text(
+                          "${pokemon.training.baseFriendship}",
+                          style: AppTheme.texts.pokemonText,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 9),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 88,
+                          child: Text(
+                            "Base Exp.",
+                            style: AppTheme.texts.pokemonTabViewSubTitle,
+                          ),
+                        ),
+                        Text(
+                          "${pokemon.training.baseExp}",
+                          style: AppTheme.texts.pokemonText,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 9),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 88,
+                          child: Text(
+                            "Growth Rate	",
+                            style: AppTheme.texts.pokemonTabViewSubTitle,
+                          ),
+                        ),
+                        Text(
+                          "${pokemon.training.growthRate}",
+                          style: AppTheme.texts.pokemonText,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 100,
                   ),
                 ],
               )

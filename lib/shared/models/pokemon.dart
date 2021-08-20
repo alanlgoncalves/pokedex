@@ -194,14 +194,14 @@ class Training {
   late String catchRate;
   late String baseFriendship;
   late String baseExp;
-  late String growthRat;
+  late String growthRate;
 
   Training({
     required this.evYield,
     required this.catchRate,
     required this.baseFriendship,
     required this.baseExp,
-    required this.growthRat,
+    required this.growthRate,
   });
 
   Training.fromJson(Map<String, dynamic> json) {
@@ -209,7 +209,7 @@ class Training {
     catchRate = json['catchRate'];
     baseFriendship = json['baseFriendship'];
     baseExp = json['baseExp'];
-    growthRat = json['growthRate'];
+    growthRate = json['growthRate'];
   }
 }
 

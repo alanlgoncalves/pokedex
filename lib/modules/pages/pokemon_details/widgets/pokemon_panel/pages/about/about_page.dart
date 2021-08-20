@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about/widget/breeding_info.dart';
+import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about/widget/training_info.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
@@ -41,10 +42,11 @@ class AboutPage extends StatelessWidget {
                 isShiny: true,
               ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 40),
+              padding: const EdgeInsets.symmetric(vertical: 20),
               child: HeightWeightInfoWidget(),
             ),
-            BreedingInfoWidget(pokemon: _pokeApiStore.pokemon!)
+            BreedingInfoWidget(pokemon: _pokeApiStore.pokemon!),
+            TrainingInfoWidget(pokemon: _pokeApiStore.pokemon!),
           ],
         );
       }),
