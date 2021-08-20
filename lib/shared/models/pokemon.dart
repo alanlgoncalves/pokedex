@@ -1,7 +1,7 @@
 class Pokemon {
   late String number;
   late String name;
-  late String image;
+  late String imageUrl;
   late Sprites sprites;
   late List<String> types;
   late List<String> weaknesses;
@@ -9,23 +9,24 @@ class Pokemon {
   late String specie;
   late String height;
   late String weight;
-  late List<Genders> genders;
+  late Breeding breeding;
+  late Training training;
+  late Map<String, String> typeDefenses;
   late List<Abilities> abilities;
   late List<EvolutionChain> evolutionChain;
   late List<EvolutionChain> previousEvolutions;
   late List<EvolutionChain> nextEvolutions;
   late List<SuperEvolution> superEvolutions;
-  late Egg? egg;
   late BaseStats baseStats;
   late List<Cards> cards;
-  late String? sound;
+  late String? soundUrl;
   late Moves moves;
   late String generation;
 
   Pokemon(
       {required this.number,
       required this.name,
-      required this.image,
+      required this.imageUrl,
       required this.sprites,
       required this.types,
       required this.weaknesses,
@@ -33,20 +34,21 @@ class Pokemon {
       required this.specie,
       required this.height,
       required this.weight,
-      required this.genders,
+      required this.breeding,
+      required this.training,
+      required this.typeDefenses,
       required this.abilities,
       required this.evolutionChain,
       required this.previousEvolutions,
       required this.nextEvolutions,
       required this.superEvolutions,
-      required this.egg,
       required this.baseStats,
       required this.cards,
-      this.sound,
+      this.soundUrl,
       required this.moves,
       required this.generation});
 
-  bool get hasAnimatedSprites => this.sprites.frontAnimatedSprite != null;
+  bool get hasAnimatedSprites => this.sprites.frontAnimatedSpriteUrl != null;
 
   EvolutionChain get firstEvolution =>
       this.evolutionChain.where((it) => it.type == EvolutionType.FIRST).first;
@@ -77,7 +79,7 @@ class Pokemon {
   Pokemon.fromJson(Map<String, dynamic> json) {
     number = json['number'];
     name = json['name'];
-    image = json['image'];
+    imageUrl = json['imageUrl'];
     sprites = Sprites.fromJson(json['sprites']);
     types = json['types'].cast<String>();
     weaknesses = json['weaknesses'].cast<String>();
@@ -85,10 +87,9 @@ class Pokemon {
     specie = json['specie'];
     height = json['height'];
     weight = json['weight'];
-    genders = <Genders>[];
-    json['genders'].forEach((v) {
-      genders.add(new Genders.fromJson(v));
-    });
+    breeding = Breeding.fromJson(json['breeding']);
+    training = Training.fromJson(json['training']);
+    typeDefenses = Map<String, String>.from(json['typeDefenses']);
     abilities = <Abilities>[];
     json['abilities'].forEach((v) {
       abilities.add(new Abilities.fromJson(v));
@@ -109,47 +110,99 @@ class Pokemon {
     json['superEvolutions'].forEach((v) {
       superEvolutions.add(new SuperEvolution.fromJson(v));
     });
-    egg = json['egg'] != null ? new Egg.fromJson(json['egg']) : null;
     baseStats = BaseStats.fromJson(json['baseStats']);
     cards = <Cards>[];
     json['cards'].forEach((v) {
       cards.add(new Cards.fromJson(v));
     });
-    sound = json['sound'];
+    soundUrl = json['soundUrl'];
     moves = Moves.fromJson(json['moves']);
     generation = json['generation'];
   }
 }
 
 class Sprites {
-  late String mainSprite;
-  String? frontAnimatedSprite;
-  String? backAnimatedSprite;
+  late String mainSpriteUrl;
+  String? frontAnimatedSpriteUrl;
+  String? backAnimatedSpriteUrl;
+  String? frontShinyAnimatedSpriteUrl;
+  String? backShinyAnimatedSpriteUrl;
 
   Sprites(
-      {required this.mainSprite,
-      this.frontAnimatedSprite,
-      this.backAnimatedSprite});
+      {required this.mainSpriteUrl,
+      this.frontAnimatedSpriteUrl,
+      this.backAnimatedSpriteUrl,
+      this.frontShinyAnimatedSpriteUrl,
+      this.backShinyAnimatedSpriteUrl});
 
   Sprites.fromJson(Map<String, dynamic> json) {
-    mainSprite = json['mainSprite']!;
-    frontAnimatedSprite = json['frontAnimatedSprite'] != null
-        ? json['frontAnimatedSprite']
+    mainSpriteUrl = json['mainSpriteUrl']!;
+    frontAnimatedSpriteUrl = json['frontAnimatedSpriteUrl'] != null
+        ? json['frontAnimatedSpriteUrl']
         : null;
-    backAnimatedSprite =
-        json['backAnimatedSprite'] != null ? json['backAnimatedSprite'] : null;
+    backAnimatedSpriteUrl = json['backAnimatedSpriteUrl'] != null
+        ? json['backAnimatedSpriteUrl']
+        : null;
+    frontShinyAnimatedSpriteUrl = json['frontShinyAnimatedSpriteUrl'] != null
+        ? json['frontShinyAnimatedSpriteUrl']
+        : null;
+    backShinyAnimatedSpriteUrl = json['backShinyAnimatedSpriteUrl'] != null
+        ? json['backShinyAnimatedSpriteUrl']
+        : null;
   }
 }
 
-class Genders {
+class Breeding {
+  late Egg? egg;
+  late List<Gender> genders;
+
+  Breeding({
+    this.egg,
+    required this.genders,
+  });
+
+  Breeding.fromJson(Map<String, dynamic> json) {
+    egg = egg = json['egg'] != null ? new Egg.fromJson(json['egg']) : null;
+    genders = <Gender>[];
+    json['genders'].forEach((v) {
+      genders.add(new Gender.fromJson(v));
+    });
+  }
+}
+
+class Gender {
   late String type;
   late String? percentage;
 
-  Genders({required this.type, this.percentage});
+  Gender({required this.type, this.percentage});
 
-  Genders.fromJson(Map<String, dynamic> json) {
+  Gender.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     percentage = json['percentage'];
+  }
+}
+
+class Training {
+  late String evYield;
+  late String catchRate;
+  late String baseFriendship;
+  late String baseExp;
+  late String growthRat;
+
+  Training({
+    required this.evYield,
+    required this.catchRate,
+    required this.baseFriendship,
+    required this.baseExp,
+    required this.growthRat,
+  });
+
+  Training.fromJson(Map<String, dynamic> json) {
+    evYield = json['evYield'];
+    catchRate = json['catchRate'];
+    baseFriendship = json['baseFriendship'];
+    baseExp = json['baseExp'];
+    growthRat = json['growthRate'];
   }
 }
 
@@ -177,21 +230,21 @@ enum EvolutionType { FIRST, MIDDLE, LAST }
 class EvolutionChain {
   late String number;
   late String name;
-  late String image;
+  late String imageUrl;
   late EvolutionType type;
   late String? requirement;
 
   EvolutionChain(
       {required this.number,
       required this.name,
-      required this.image,
+      required this.imageUrl,
       required this.type,
       this.requirement});
 
   EvolutionChain.fromJson(Map<String, dynamic> json) {
     number = json['number'];
     name = json['name'];
-    image = json['image'];
+    imageUrl = json['imageUrl'];
     type = EvolutionType.values
         .where((it) => it.toString().endsWith(json['type']))
         .first;
@@ -203,14 +256,15 @@ enum SuperEvolutionType { MEGA, GIGANTAMAX }
 
 class SuperEvolution {
   late String name;
-  late String image;
+  late String imageUrl;
   late SuperEvolutionType type;
 
-  SuperEvolution({required this.name, required this.image, required this.type});
+  SuperEvolution(
+      {required this.name, required this.imageUrl, required this.type});
 
   SuperEvolution.fromJson(Map<String, dynamic> json) {
     name = json['name'];
-    image = json['image'];
+    imageUrl = json['imageUrl'];
     type = SuperEvolutionType.values
         .where((it) => it.toString().endsWith(json['type']))
         .first;
@@ -262,19 +316,19 @@ class Cards {
   late String number;
   late String name;
   late String expansionName;
-  late String image;
+  late String imageUrl;
 
   Cards(
       {required this.number,
       required this.name,
       required this.expansionName,
-      required this.image});
+      required this.imageUrl});
 
   Cards.fromJson(Map<String, dynamic> json) {
     number = json['number'];
     name = json['name'];
     expansionName = json['expansionName'];
-    image = json['image'];
+    imageUrl = json['imageUrl'];
   }
 }
 

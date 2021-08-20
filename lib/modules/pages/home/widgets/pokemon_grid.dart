@@ -46,7 +46,7 @@ class PokemonGridWidget extends StatelessWidget {
             child: Ink(
               child: PokeItemWidget(
                 pokemon: _pokemon,
-                image: CachedNetworkImage(imageUrl: _pokemon.image),
+                image: CachedNetworkImage(imageUrl: _pokemon.imageUrl),
                 index: index,
               ),
             ),

@@ -48,7 +48,7 @@ class SuperEvolutionChainWidget extends StatelessWidget {
                               Container(
                                 width: 300,
                                 child: CachedNetworkImage(
-                                    imageUrl: gigantamax.image),
+                                    imageUrl: gigantamax.imageUrl),
                               ),
                               Text(
                                 gigantamax.name,

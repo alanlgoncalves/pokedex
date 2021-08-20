@@ -39,7 +39,7 @@ class EvolutionChainItemWidget extends StatelessWidget {
                     width: 83,
                     child: Center(
                       child: CachedNetworkImage(
-                        imageUrl: previousEvolution.image,
+                        imageUrl: previousEvolution.imageUrl,
                         width: 76,
                         height: 71,
                       ),
@@ -89,7 +89,7 @@ class EvolutionChainItemWidget extends StatelessWidget {
                     width: 83,
                     child: Center(
                       child: CachedNetworkImage(
-                        imageUrl: nextEvolution.image,
+                        imageUrl: nextEvolution.imageUrl,
                         width: 76,
                         height: 71,
                       ),

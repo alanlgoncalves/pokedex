@@ -39,7 +39,7 @@ class AboutPage extends StatelessWidget {
                             height: 65,
                             width: 65,
                             imageUrl: _pokeApiStore
-                                .pokemon!.sprites.frontAnimatedSprite!),
+                                .pokemon!.sprites.frontAnimatedSpriteUrl!),
                         Text(
                           "Front animated \n Sprite",
                           style: AppTheme.texts.pokemonText,
@@ -53,7 +53,7 @@ class AboutPage extends StatelessWidget {
                             height: 65,
                             width: 65,
                             imageUrl: _pokeApiStore
-                                .pokemon!.sprites.backAnimatedSprite!),
+                                .pokemon!.sprites.backAnimatedSpriteUrl!),
                         Text(
                           "Back animated \n Sprite",
                           style: AppTheme.texts.pokemonText,

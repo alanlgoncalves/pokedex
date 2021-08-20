@@ -39,7 +39,7 @@ class SuperEvolutionChainItemWidget extends StatelessWidget {
                     width: 83,
                     child: Center(
                       child: CachedNetworkImage(
-                        imageUrl: pokemon.image,
+                        imageUrl: pokemon.imageUrl,
                         width: 76,
                         height: 71,
                       ),
@@ -73,7 +73,7 @@ class SuperEvolutionChainItemWidget extends StatelessWidget {
                     width: 83,
                     child: Center(
                       child: CachedNetworkImage(
-                        imageUrl: superEvolution.image,
+                        imageUrl: superEvolution.imageUrl,
                         width: 76,
                         height: 71,
                       ),

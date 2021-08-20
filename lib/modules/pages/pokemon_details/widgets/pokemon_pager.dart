@@ -55,7 +55,7 @@ class _PokemonPagerState extends State<PokemonPagerWidget> {
                   child: Hero(
                     tag: "pokemon-image-${listPokemon.number}",
                     child: CachedNetworkImage(
-                      imageUrl: listPokemon.image,
+                      imageUrl: listPokemon.imageUrl,
                       height: 300,
                       color: _pokeApiStore.pokemonSummary!.number ==
                               listPokemon.number

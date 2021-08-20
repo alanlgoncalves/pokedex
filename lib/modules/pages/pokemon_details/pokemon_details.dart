@@ -71,7 +71,8 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                       child: CachedNetworkImage(
                           height: 35,
                           width: 35,
-                          imageUrl: _pokeApiStore.pokemon!.sprites.mainSprite),
+                          imageUrl:
+                              _pokeApiStore.pokemon!.sprites.mainSpriteUrl),
                     ),
                     Text(
                       _pokeApiStore.pokemon!.name,
