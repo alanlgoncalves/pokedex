@@ -50,6 +50,9 @@ class Pokemon {
 
   bool get hasAnimatedSprites => this.sprites.frontAnimatedSpriteUrl != null;
 
+  bool get hasAnimatedShinySprites =>
+      this.sprites.frontAnimatedSpriteUrl != null;
+
   EvolutionChain get firstEvolution =>
       this.evolutionChain.where((it) => it.type == EvolutionType.FIRST).first;
 

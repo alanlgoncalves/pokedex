@@ -64,6 +64,43 @@ class AboutPage extends StatelessWidget {
                   ],
                 ),
               ),
+            if (_pokeApiStore.pokemon!.hasAnimatedShinySprites)
+              Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Column(
+                      children: [
+                        CachedNetworkImage(
+                            height: 65,
+                            width: 65,
+                            imageUrl: _pokeApiStore
+                                .pokemon!.sprites.frontShinyAnimatedSpriteUrl!),
+                        Text(
+                          "Front animated \n Shiny Sprite",
+                          style: AppTheme.texts.pokemonText,
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        CachedNetworkImage(
+                            height: 65,
+                            width: 65,
+                            imageUrl: _pokeApiStore
+                                .pokemon!.sprites.backShinyAnimatedSpriteUrl!),
+                        Text(
+                          "Back animated \n Shiny Sprite",
+                          style: AppTheme.texts.pokemonText,
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: HeightWeightInfoWidget(),
