@@ -46,8 +46,9 @@ class BreedingInfoWidget extends StatelessWidget {
                               children: [
                                 if (gender.type == GenderType.MALE)
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
+                                    padding: const EdgeInsets.only(
+                                      right: 5,
+                                    ),
                                     child: FaIcon(
                                       FontAwesomeIcons.mars,
                                       color: AppTheme.colors.marsIcon,
@@ -55,8 +56,9 @@ class BreedingInfoWidget extends StatelessWidget {
                                   ),
                                 if (gender.type == GenderType.FEMALE)
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5),
+                                    padding: const EdgeInsets.only(
+                                      right: 5,
+                                    ),
                                     child: FaIcon(
                                       FontAwesomeIcons.venus,
                                       color: AppTheme.colors.venusIcon,
