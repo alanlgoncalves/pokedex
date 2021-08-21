@@ -18,44 +18,49 @@ class EvolutionChainItemWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Column(
-            children: [
-              Stack(
-                children: [
-                  Container(
-                    height: 83,
-                    width: 83,
-                    child: Opacity(
-                      opacity: 0.1,
-                      child: SvgPicture.asset(
-                        AppConstants.blackPokeballLogo,
+          Container(
+            width: 83,
+            child: Column(
+              children: [
+                Stack(
+                  children: [
+                    Container(
+                      height: 83,
+                      width: 83,
+                      child: Opacity(
+                        opacity: 0.1,
+                        child: SvgPicture.asset(
+                          AppConstants.blackPokeballLogo,
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    height: 83,
-                    width: 83,
-                    child: Center(
-                      child: CachedNetworkImage(
-                        imageUrl: previousEvolution.imageUrl,
-                        width: 76,
-                        height: 71,
+                    Container(
+                      height: 83,
+                      width: 83,
+                      child: Center(
+                        child: CachedNetworkImage(
+                          imageUrl: previousEvolution.imageUrl,
+                          width: 76,
+                          height: 71,
+                        ),
                       ),
-                    ),
-                  )
-                ],
-              ),
-              Text(
-                previousEvolution.name,
-                style: AppTheme.texts.pokemonEvolutionChainName,
-              ),
-              Text(
-                "#${previousEvolution.number}",
-                style: AppTheme.texts.pokemonEvolutionChainNumber,
-              ),
-            ],
+                    )
+                  ],
+                ),
+                Text(
+                  previousEvolution.name,
+                  style: AppTheme.texts.pokemonEvolutionChainName,
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  "#${previousEvolution.number}",
+                  style: AppTheme.texts.pokemonEvolutionChainNumber,
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
           ),
           Column(
             children: [
@@ -72,40 +77,45 @@ class EvolutionChainItemWidget extends StatelessWidget {
               ),
             ],
           ),
-          Column(
-            children: [
-              Stack(
-                children: [
-                  Container(
-                    height: 83,
-                    width: 83,
-                    child: Opacity(
-                      opacity: 0.1,
-                      child: SvgPicture.asset(AppConstants.blackPokeballLogo),
-                    ),
-                  ),
-                  Container(
-                    height: 83,
-                    width: 83,
-                    child: Center(
-                      child: CachedNetworkImage(
-                        imageUrl: nextEvolution.imageUrl,
-                        width: 76,
-                        height: 71,
+          Container(
+            width: 83,
+            child: Column(
+              children: [
+                Stack(
+                  children: [
+                    Container(
+                      height: 83,
+                      width: 83,
+                      child: Opacity(
+                        opacity: 0.1,
+                        child: SvgPicture.asset(AppConstants.blackPokeballLogo),
                       ),
                     ),
-                  )
-                ],
-              ),
-              Text(
-                nextEvolution.name,
-                style: AppTheme.texts.pokemonEvolutionChainName,
-              ),
-              Text(
-                "#${nextEvolution.number}",
-                style: AppTheme.texts.pokemonEvolutionChainNumber,
-              ),
-            ],
+                    Container(
+                      height: 83,
+                      width: 83,
+                      child: Center(
+                        child: CachedNetworkImage(
+                          imageUrl: nextEvolution.imageUrl,
+                          width: 76,
+                          height: 71,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                Text(
+                  nextEvolution.name,
+                  style: AppTheme.texts.pokemonEvolutionChainName,
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  "#${nextEvolution.number}",
+                  style: AppTheme.texts.pokemonEvolutionChainNumber,
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
           ),
         ],
       ),

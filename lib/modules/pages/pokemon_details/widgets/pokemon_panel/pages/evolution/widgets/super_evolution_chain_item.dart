@@ -18,74 +18,85 @@ class SuperEvolutionChainItemWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Column(
-            children: [
-              Stack(
-                children: [
-                  Container(
-                    height: 83,
-                    width: 83,
-                    child: Opacity(
-                      opacity: 0.1,
-                      child: SvgPicture.asset(
-                        AppConstants.blackPokeballLogo,
+          Container(
+            width: 83,
+            child: Column(
+              children: [
+                Stack(
+                  children: [
+                    Container(
+                      height: 83,
+                      width: 83,
+                      child: Opacity(
+                        opacity: 0.1,
+                        child: SvgPicture.asset(
+                          AppConstants.blackPokeballLogo,
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    height: 83,
-                    width: 83,
-                    child: Center(
-                      child: CachedNetworkImage(
-                        imageUrl: pokemon.imageUrl,
-                        width: 76,
-                        height: 71,
+                    Container(
+                      height: 83,
+                      width: 83,
+                      child: Center(
+                        child: CachedNetworkImage(
+                          imageUrl: pokemon.imageUrl,
+                          width: 76,
+                          height: 71,
+                        ),
                       ),
-                    ),
-                  )
-                ],
-              ),
-              Text(
-                pokemon.name,
-                style: AppTheme.texts.pokemonEvolutionChainName,
-              ),
-            ],
+                    )
+                  ],
+                ),
+                Text(
+                  pokemon.name,
+                  style: AppTheme.texts.pokemonEvolutionChainName,
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
           ),
-          Icon(
-            Icons.arrow_forward,
+          Container(
+            width: 100,
+            child: Icon(
+              Icons.arrow_forward,
+            ),
           ),
-          Column(
-            children: [
-              Stack(
-                children: [
-                  Container(
-                    height: 83,
-                    width: 83,
-                    child: Opacity(
-                      opacity: 0.1,
-                      child: SvgPicture.asset(AppConstants.blackPokeballLogo),
-                    ),
-                  ),
-                  Container(
-                    height: 83,
-                    width: 83,
-                    child: Center(
-                      child: CachedNetworkImage(
-                        imageUrl: superEvolution.imageUrl,
-                        width: 76,
-                        height: 71,
+          Container(
+            width: 83,
+            child: Column(
+              children: [
+                Stack(
+                  children: [
+                    Container(
+                      height: 83,
+                      width: 83,
+                      child: Opacity(
+                        opacity: 0.1,
+                        child: SvgPicture.asset(AppConstants.blackPokeballLogo),
                       ),
                     ),
-                  )
-                ],
-              ),
-              Text(
-                superEvolution.name,
-                style: AppTheme.texts.pokemonEvolutionChainName,
-              ),
-            ],
+                    Container(
+                      height: 83,
+                      width: 83,
+                      child: Center(
+                        child: CachedNetworkImage(
+                          imageUrl: superEvolution.imageUrl,
+                          width: 76,
+                          height: 71,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                Text(
+                  superEvolution.name,
+                  style: AppTheme.texts.pokemonEvolutionChainName,
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
           ),
         ],
       ),
