@@ -18,7 +18,7 @@ class MovesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Observer(
       builder: (_) => Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 27),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             children: [
               if (_pokeApiStore.pokemon!.moves.levelUp.isNotEmpty)
