@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about/about_page.dart';
@@ -35,11 +37,13 @@ class _PokemonPanelWidgetState extends State<PokemonPanelWidget>
     super.dispose();
   }
 
+  double get _minSlideUpHeight => Platform.isAndroid ? 0.48 : 0.52;
+
   @override
   Widget build(BuildContext context) {
     return SlidingUpPanel(
       maxHeight: MediaQuery.of(context).size.height * 0.9,
-      minHeight: MediaQuery.of(context).size.height * 0.52,
+      minHeight: MediaQuery.of(context).size.height * _minSlideUpHeight,
       parallaxEnabled: true,
       parallaxOffset: 0.5,
       panelBuilder: (scrollController) {
