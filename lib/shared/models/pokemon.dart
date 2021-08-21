@@ -79,6 +79,9 @@ class Pokemon {
       nextEvolutions.isNotEmpty ||
       superEvolutions.isNotEmpty;
 
+  EvolutionType get evolutionType =>
+      evolutionChain.where((it) => it.number == this.number).first.type;
+
   Pokemon.fromJson(Map<String, dynamic> json) {
     number = json['number'];
     name = json['name'];

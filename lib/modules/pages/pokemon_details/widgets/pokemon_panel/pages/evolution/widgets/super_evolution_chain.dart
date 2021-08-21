@@ -41,22 +41,23 @@ class SuperEvolutionChainWidget extends StatelessWidget {
                   "Gigantamax Evolution${_pokeApiStore.pokemon!.megaEvolutions.length > 1 ? "s" : ""}",
                   style: AppTheme.texts.pokemonTabViewTitle,
                 ),
-                ..._pokeApiStore.pokemon!.gigantamaxEvolutions
-                    .map((gigantamax) => Center(
-                          child: Column(
-                            children: [
-                              Container(
-                                width: 300,
-                                child: CachedNetworkImage(
-                                    imageUrl: gigantamax.imageUrl),
-                              ),
-                              Text(
-                                gigantamax.name,
-                                style: AppTheme.texts.pokemonEvolutionChainName,
-                              ),
-                            ],
-                          ),
-                        )),
+                ..._pokeApiStore.pokemon!.gigantamaxEvolutions.map(
+                  (gigantamax) => Center(
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 300,
+                          child:
+                              CachedNetworkImage(imageUrl: gigantamax.imageUrl),
+                        ),
+                        Text(
+                          gigantamax.name,
+                          style: AppTheme.texts.pokemonEvolutionChainName,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

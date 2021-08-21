@@ -22,8 +22,8 @@ class PreviousEvolutionChainWidget extends StatelessWidget {
         ),
         ...evolutionChain
             .where((element) =>
-                element.previousEvolution.number
-                    .compareTo(_pokeApiStore.pokemon!.number) ==
+                element.previousEvolution.type.index
+                    .compareTo(_pokeApiStore.pokemon!.evolutionType.index) ==
                 -1)
             .toList(),
       ],
