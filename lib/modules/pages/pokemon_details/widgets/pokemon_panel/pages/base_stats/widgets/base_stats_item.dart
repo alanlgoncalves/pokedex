@@ -37,26 +37,22 @@ class BaseStatsItemWidget extends StatelessWidget {
             flex: 1,
             child: Stack(
               children: [
-                Expanded(
-                  child: Container(
+                Container(
+                  height: 10,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFF4F5F4),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  //color: Colors.red,
+                ),
+                FractionallySizedBox(
+                  widthFactor: barPercentage,
+                  child: AnimatedContainer(
+                    duration: Duration(seconds: 3),
                     height: 10,
                     decoration: BoxDecoration(
-                      color: Color(0xFFF4F5F4),
+                      color: AppTheme.colors.baseStatsBar(barPercentage),
                       borderRadius: BorderRadius.circular(5),
-                    ),
-                    //color: Colors.red,
-                  ),
-                ),
-                Expanded(
-                  child: FractionallySizedBox(
-                    widthFactor: barPercentage,
-                    child: AnimatedContainer(
-                      duration: Duration(seconds: 3),
-                      height: 10,
-                      decoration: BoxDecoration(
-                        color: AppTheme.colors.baseStatsBar(barPercentage),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
                     ),
                   ),
                 ),

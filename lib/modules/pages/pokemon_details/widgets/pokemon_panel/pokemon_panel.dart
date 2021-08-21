@@ -57,69 +57,71 @@ class _PokemonPanelWidgetState extends State<PokemonPanelWidget>
               ),
               color: Colors.white,
             ),
-            child: Padding(
-              padding: EdgeInsets.only(top: 0),
-              child: Stack(children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 70),
-                  child: TabBarView(
-                    controller: _tabController,
-                    children: [
-                      SingleChildScrollView(
-                        controller: scrollController,
-                        child: AboutPage(),
-                      ),
-                      SingleChildScrollView(
-                        controller: scrollController,
-                        child: BaseStatsPage(),
-                      ),
-                      SingleChildScrollView(
-                        controller: scrollController,
-                        child: EvolutionPage(),
-                      ),
-                      SingleChildScrollView(
-                        controller: scrollController,
-                        child: MovesPage(),
-                      ),
-                    ],
-                  ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      child: TabBar(
-                        unselectedLabelColor: AppTheme.colors.pokemonTabTitle,
-                        labelColor: AppTheme.colors.selectPokemonTabTitle,
-                        unselectedLabelStyle: AppTheme.texts.pokemonTabTitle,
-                        labelStyle: AppTheme.texts.selectPokemonTabTitle,
-                        indicatorColor: AppTheme.colors.tabIndicator,
-                        controller: _tabController,
-                        tabs: [
-                          Tab(
-                            text: "About",
-                          ),
-                          Tab(
-                            text: "Base Stats",
-                          ),
-                          Tab(
-                            text: "Evolution",
-                          ),
-                          Tab(
-                            text: "Moves",
-                          ),
-                        ],
+            child: NestedScrollView(
+              controller: scrollController,
+              headerSliverBuilder: (context, value) {
+                return [
+                  SliverPadding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    sliver: SliverAppBar(
+                      leading: Container(),
+                      backgroundColor: Colors.white,
+                      shadowColor: Colors.transparent,
+                      pinned: true,
+                      centerTitle: true,
+                      flexibleSpace: Container(
+                        child: TabBar(
+                          unselectedLabelColor: AppTheme.colors.pokemonTabTitle,
+                          labelColor: AppTheme.colors.selectPokemonTabTitle,
+                          unselectedLabelStyle: AppTheme.texts.pokemonTabTitle,
+                          labelStyle: AppTheme.texts.selectPokemonTabTitle,
+                          indicatorColor: AppTheme.colors.tabIndicator,
+                          controller: _tabController,
+                          tabs: [
+                            Tab(
+                              text: "About",
+                            ),
+                            Tab(
+                              text: "Base Stats",
+                            ),
+                            Tab(
+                              text: "Evolution",
+                            ),
+                            Tab(
+                              text: "Moves",
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ],
-                ),
-              ]),
+                  )
+                ];
+              },
+              body: TabBarView(
+                controller: _tabController,
+                children: [
+                  SingleChildScrollView(
+                    child: AboutPage(),
+                  ),
+                  SingleChildScrollView(
+                    child: BaseStatsPage(),
+                  ),
+                  SingleChildScrollView(
+                    child: EvolutionPage(),
+                  ),
+                  SingleChildScrollView(
+                    child: MovesPage(),
+                  ),
+                ],
+              ),
             ),
           ),
         );
       },
       borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+        topLeft: Radius.circular(30),
+        topRight: Radius.circular(30),
+      ),
       onPanelSlide: widget.listener,
       boxShadow: null,
     );
