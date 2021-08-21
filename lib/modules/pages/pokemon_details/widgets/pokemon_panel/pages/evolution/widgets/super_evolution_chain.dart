@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/shared/utils/evolution_chain_utils.dart';
+import 'package:pokedex/shared/widgets/image_dialog.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class SuperEvolutionChainWidget extends StatelessWidget {
@@ -45,10 +46,19 @@ class SuperEvolutionChainWidget extends StatelessWidget {
                   (gigantamax) => Center(
                     child: Column(
                       children: [
-                        Container(
-                          width: 300,
-                          child:
-                              CachedNetworkImage(imageUrl: gigantamax.imageUrl),
+                        InkWell(
+                          onTap: () async {
+                            await showDialog(
+                              context: context,
+                              builder: (_) => ImageDialogWidget(
+                                  imageUrl: gigantamax.imageUrl),
+                            );
+                          },
+                          child: Container(
+                            width: 300,
+                            child: CachedNetworkImage(
+                                imageUrl: gigantamax.imageUrl),
+                          ),
                         ),
                         Text(
                           gigantamax.name,

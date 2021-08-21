@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pokedex/shared/widgets/image_dialog.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
@@ -24,30 +25,39 @@ class EvolutionChainItemWidget extends StatelessWidget {
             width: 83,
             child: Column(
               children: [
-                Stack(
-                  children: [
-                    Container(
-                      height: 83,
-                      width: 83,
-                      child: Opacity(
-                        opacity: 0.1,
-                        child: SvgPicture.asset(
-                          AppConstants.blackPokeballLogo,
+                InkWell(
+                  onTap: () async {
+                    await showDialog(
+                      context: context,
+                      builder: (_) => ImageDialogWidget(
+                          imageUrl: previousEvolution.imageUrl),
+                    );
+                  },
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: 83,
+                        width: 83,
+                        child: Opacity(
+                          opacity: 0.1,
+                          child: SvgPicture.asset(
+                            AppConstants.blackPokeballLogo,
+                          ),
                         ),
                       ),
-                    ),
-                    Container(
-                      height: 83,
-                      width: 83,
-                      child: Center(
-                        child: CachedNetworkImage(
-                          imageUrl: previousEvolution.imageUrl,
-                          width: 76,
-                          height: 71,
+                      Container(
+                        height: 83,
+                        width: 83,
+                        child: Center(
+                          child: CachedNetworkImage(
+                            imageUrl: previousEvolution.imageUrl,
+                            width: 76,
+                            height: 71,
+                          ),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
                 Text(
                   previousEvolution.name,
@@ -81,28 +91,38 @@ class EvolutionChainItemWidget extends StatelessWidget {
             width: 83,
             child: Column(
               children: [
-                Stack(
-                  children: [
-                    Container(
-                      height: 83,
-                      width: 83,
-                      child: Opacity(
-                        opacity: 0.1,
-                        child: SvgPicture.asset(AppConstants.blackPokeballLogo),
-                      ),
-                    ),
-                    Container(
-                      height: 83,
-                      width: 83,
-                      child: Center(
-                        child: CachedNetworkImage(
-                          imageUrl: nextEvolution.imageUrl,
-                          width: 76,
-                          height: 71,
+                InkWell(
+                  onTap: () async {
+                    await showDialog(
+                      context: context,
+                      builder: (_) =>
+                          ImageDialogWidget(imageUrl: nextEvolution.imageUrl),
+                    );
+                  },
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: 83,
+                        width: 83,
+                        child: Opacity(
+                          opacity: 0.1,
+                          child:
+                              SvgPicture.asset(AppConstants.blackPokeballLogo),
                         ),
                       ),
-                    )
-                  ],
+                      Container(
+                        height: 83,
+                        width: 83,
+                        child: Center(
+                          child: CachedNetworkImage(
+                            imageUrl: nextEvolution.imageUrl,
+                            width: 76,
+                            height: 71,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 Text(
                   nextEvolution.name,
