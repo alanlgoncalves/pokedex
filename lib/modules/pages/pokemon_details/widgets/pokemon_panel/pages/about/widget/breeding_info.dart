@@ -62,8 +62,19 @@ class BreedingInfoWidget extends StatelessWidget {
                                       color: AppTheme.colors.venusIcon,
                                     ),
                                   ),
+                                if (gender.type == GenderType.UNKNOWN)
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 5),
+                                    child: Text(
+                                      "???",
+                                      style: AppTheme.texts.pokemonText,
+                                    ),
+                                  ),
                                 Text(
-                                  "${gender.percentage}",
+                                  gender.type == GenderType.UNKNOWN
+                                      ? "--%"
+                                      : "${gender.percentage}",
                                   style: AppTheme.texts.pokemonText,
                                 ),
                               ],

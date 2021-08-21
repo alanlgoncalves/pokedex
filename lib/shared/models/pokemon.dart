@@ -176,7 +176,7 @@ class Breeding {
   }
 }
 
-enum GenderType { MALE, FEMALE }
+enum GenderType { MALE, FEMALE, UNKNOWN }
 
 class Gender {
   late GenderType type;

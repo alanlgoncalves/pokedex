@@ -13,6 +13,7 @@ abstract class AppColors {
 
   Color get marsIcon;
   Color get venusIcon;
+  Color get unknownIcon;
 }
 
 class AppColorsDefault extends AppColors {
@@ -96,4 +97,7 @@ class AppColorsDefault extends AppColors {
 
   @override
   Color get venusIcon => Color(0xFFF38EB3);
+
+  @override
+  Color get unknownIcon => Color(0xFF303943);
 }
