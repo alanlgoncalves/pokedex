@@ -14,8 +14,9 @@ class PokemonPagerWidget extends StatefulWidget {
 }
 
 class _PokemonPagerState extends State<PokemonPagerWidget> {
-  late PageController _pageController;
-  late PokeApiStore _pokeApiStore;
+  late PageController _pageController =
+      PageController(initialPage: widget.index, viewportFraction: 0.4);
+  late PokeApiStore _pokeApiStore = GetIt.instance<PokeApiStore>();
 
   @override
   void initState() {

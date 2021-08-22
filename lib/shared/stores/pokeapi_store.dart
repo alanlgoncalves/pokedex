@@ -34,6 +34,10 @@ abstract class _PokeApiStoreBase with Store {
   @computed
   List<PokemonSummary>? get pokemonsSummary => _pokemonsSummary;
 
+  @computed
+  int get index =>
+      _pokemonsSummary!.indexWhere((it) => it.number == _pokemon!.number);
+
   @action
   Future<void> setPokemon(int index) async {
     _pokemonSummary = _pokemonsSummary![index];
@@ -53,6 +57,20 @@ abstract class _PokeApiStoreBase with Store {
     } else {
       _pokemon = _pokemons[pokemonDetailsIndex];
     }
+  }
+
+  Future<void> previousPokemon() async {
+    final pokemonIndex =
+        _pokemonsSummary!.indexWhere((it) => it.number == _pokemon!.number);
+
+    await setPokemon(pokemonIndex - 1);
+  }
+
+  Future<void> nextPokemon() async {
+    final pokemonIndex =
+        _pokemonsSummary!.indexWhere((it) => it.number == _pokemon!.number);
+
+    await setPokemon(pokemonIndex + 1);
   }
 
   PokemonSummary getPokemon(int index) => _pokemonsSummary![index];

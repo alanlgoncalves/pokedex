@@ -30,6 +30,12 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
           Computed<List<PokemonSummary>?>(() => super.pokemonsSummary,
               name: '_PokeApiStoreBase.pokemonsSummary'))
       .value;
+  Computed<int>? _$indexComputed;
+
+  @override
+  int get index => (_$indexComputed ??=
+          Computed<int>(() => super.index, name: '_PokeApiStoreBase.index'))
+      .value;
 
   final _$_pokemonsSummaryAtom =
       Atom(name: '_PokeApiStoreBase._pokemonsSummary');
@@ -104,7 +110,8 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
     return '''
 pokemonSummary: ${pokemonSummary},
 pokemon: ${pokemon},
-pokemonsSummary: ${pokemonsSummary}
+pokemonsSummary: ${pokemonsSummary},
+index: ${index}
     ''';
   }
 }

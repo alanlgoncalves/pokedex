@@ -6,6 +6,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/modules/pages/pokemon_details/pokemon_details_store.dart';
+import 'package:pokedex/modules/pages/pokemon_details/widgets/app_bar_navigation.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_pager.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pokemon_panel.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_title_info.dart';
@@ -62,24 +63,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
           return AppBar(
             title: Opacity(
                 opacity: _pokemonDetailsStore.opacityTitleAppbar,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 6),
-                      child: CachedNetworkImage(
-                          height: 35,
-                          width: 35,
-                          imageUrl:
-                              _pokeApiStore.pokemon!.sprites.mainSpriteUrl),
-                    ),
-                    Text(
-                      _pokeApiStore.pokemon!.name,
-                      style: AppTheme.texts.pokemonDetailNumber,
-                    ),
-                  ],
-                )),
+                child: AppBarNavigationWidget()),
             backgroundColor:
                 AppTheme.colors.pokemonItem(_pokeApiStore.pokemon!.types[0]),
             shadowColor: Colors.transparent,
@@ -154,7 +138,8 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
               opacity: _pokemonDetailsStore.opacityPokemon,
               child: Padding(
                   padding: paggerPadding,
-                  child: PokemonPagerWidget(index: widget.index)),
+                  child: PokemonPagerWidget(
+                      key: UniqueKey(), index: _pokeApiStore.index)),
             ),
           ),
           Observer(
