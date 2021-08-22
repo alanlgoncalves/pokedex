@@ -139,7 +139,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
               child: Padding(
                   padding: paggerPadding,
                   child: PokemonPagerWidget(
-                      key: UniqueKey(), index: _pokeApiStore.index)),
+                      pokemonDetailStore: _pokemonDetailsStore)),
             ),
           ),
           Observer(

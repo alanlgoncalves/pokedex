@@ -79,21 +79,25 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
                               tag: "${card.name}-" +
                                   "${card.number}- " +
                                   "${card.expansionName}",
-                              child: Container(
-                                child: CachedNetworkImage(
-                                  imageUrl: card.imageUrl,
-                                ),
-                                decoration: BoxDecoration(boxShadow: [
-                                  BoxShadow(
-                                    color: Color(0xFF000000).withAlpha(60),
-                                    blurRadius: 15.0,
-                                    spreadRadius: 3.0,
-                                    offset: Offset(
-                                      0.0,
-                                      10.0,
-                                    ),
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: Container(
+                                  child: CachedNetworkImage(
+                                    imageUrl: card.imageUrl,
                                   ),
-                                ]),
+                                  decoration: BoxDecoration(boxShadow: [
+                                    BoxShadow(
+                                      color: Color(0xFF000000).withAlpha(60),
+                                      blurRadius: 6.0,
+                                      spreadRadius: 3.0,
+                                      offset: Offset(
+                                        0.0,
+                                        5.0,
+                                      ),
+                                    ),
+                                  ]),
+                                ),
                               ),
                             ),
                             SizedBox(
