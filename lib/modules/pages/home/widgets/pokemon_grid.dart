@@ -1,5 +1,4 @@
 import 'package:auto_animated/auto_animated.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/modules/pages/home/widgets/poke_item.dart';
 import 'package:pokedex/modules/pages/pokemon_details/pokemon_details.dart';
