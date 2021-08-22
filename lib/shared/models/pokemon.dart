@@ -11,7 +11,7 @@ class Pokemon {
   late String weight;
   late Breeding breeding;
   late Training training;
-  late Map<String, String> typeDefenses;
+  late Map<String, String> typesEffectiveness;
   late List<Abilities> abilities;
   late List<EvolutionChain> evolutionChain;
   late List<EvolutionChain> previousEvolutions;
@@ -36,7 +36,7 @@ class Pokemon {
       required this.weight,
       required this.breeding,
       required this.training,
-      required this.typeDefenses,
+      required this.typesEffectiveness,
       required this.abilities,
       required this.evolutionChain,
       required this.previousEvolutions,
@@ -95,7 +95,7 @@ class Pokemon {
     weight = json['weight'];
     breeding = Breeding.fromJson(json['breeding']);
     training = Training.fromJson(json['training']);
-    typeDefenses = Map<String, String>.from(json['typeDefenses']);
+    typesEffectiveness = Map<String, String>.from(json['typesEffectiveness']);
     abilities = <Abilities>[];
     json['abilities'].forEach((v) {
       abilities.add(new Abilities.fromJson(v));

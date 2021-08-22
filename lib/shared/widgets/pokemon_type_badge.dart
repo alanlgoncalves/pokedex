@@ -7,12 +7,16 @@ class PokemonTypeBadge extends StatelessWidget {
   final String type;
   final double height;
   final double width;
+  final bool? showText;
+  final bool? showBorder;
 
   const PokemonTypeBadge({
     Key? key,
     required this.type,
     required this.height,
     required this.width,
+    this.showText = true,
+    this.showBorder = true,
   }) : super(key: key);
 
   @override
@@ -31,23 +35,26 @@ class PokemonTypeBadge extends StatelessWidget {
           ),
           decoration: BoxDecoration(
             color: AppTheme.colors.pokemonItem(type),
-            border: Border.all(color: AppTheme.colors.pokemonTabTitle),
+            border: showBorder!
+                ? Border.all(color: AppTheme.colors.pokemonTabTitle)
+                : null,
             borderRadius: BorderRadius.circular(50),
           ),
         ),
-        Container(
-          width: 30,
-          child: Text(
-            type,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontFamily: "CircularStd-Book",
-              fontSize: 8,
-              fontWeight: FontWeight.normal,
-              color: Color(0xFF303943),
+        if (showText!)
+          Container(
+            width: 30,
+            child: Text(
+              type,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: "CircularStd-Book",
+                fontSize: 8,
+                fontWeight: FontWeight.normal,
+                color: Color(0xFF303943),
+              ),
             ),
-          ),
-        )
+          )
       ],
     );
   }

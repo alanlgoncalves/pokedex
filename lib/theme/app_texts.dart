@@ -20,6 +20,7 @@ abstract class AppTextStyles {
   TextStyle get pokemonEvolutionChainNumber;
   TextStyle get pokemonEvolutionChainRequirement;
   TextStyle get pokemonText;
+  TextStyle get pokemonTypeBadge;
 }
 
 class AppTextStylesDefault extends AppTextStyles {
@@ -147,5 +148,13 @@ class AppTextStylesDefault extends AppTextStyles {
         fontSize: 14,
         fontWeight: FontWeight.normal,
         color: Color(0xFF303943).withOpacity(0.4),
+      );
+
+  @override
+  TextStyle get pokemonTypeBadge => TextStyle(
+        fontFamily: "CircularStd-Book",
+        fontSize: 8,
+        fontWeight: FontWeight.normal,
+        color: Color(0xFF303943),
       );
 }
