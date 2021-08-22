@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_svg/svg.dart';
@@ -61,7 +60,8 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
         preferredSize: Size.fromHeight(70),
         child: Observer(builder: (_) {
           return AppBar(
-            title: Opacity(
+            title: AnimatedOpacity(
+                duration: Duration(milliseconds: 30),
                 opacity: _pokemonDetailsStore.opacityTitleAppbar,
                 child: AppBarNavigationWidget()),
             backgroundColor:
@@ -106,26 +106,25 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
             );
           }),
           Observer(
-            builder: (_) => Opacity(
+            builder: (_) => AnimatedOpacity(
+              duration: Duration(milliseconds: 30),
               opacity: _pokemonDetailsStore.opacityPokemon,
               child: Padding(
                 padding: paggerPadding,
                 child: SizedBox(
                   height: 223,
                   child: Center(
-                    child: Opacity(
-                      opacity: 0.2,
-                      child: AnimatedBuilder(
-                        animation: _animationController,
-                        builder: (_, child) {
-                          return Transform.rotate(
-                            angle: _animationController.value * 2 * pi,
-                            child: child,
-                          );
-                        },
-                        child: SvgPicture.asset(
-                          AppConstants.whitePokeballLogo,
-                        ),
+                    child: AnimatedBuilder(
+                      animation: _animationController,
+                      builder: (_, child) {
+                        return Transform.rotate(
+                          angle: _animationController.value * 2 * pi,
+                          child: child,
+                        );
+                      },
+                      child: SvgPicture.asset(
+                        AppConstants.whitePokeballLogo,
+                        color: Colors.white.withOpacity(0.2),
                       ),
                     ),
                   ),
@@ -134,7 +133,8 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
             ),
           ),
           Observer(
-            builder: (_) => Opacity(
+            builder: (_) => AnimatedOpacity(
+              duration: Duration(milliseconds: 300),
               opacity: _pokemonDetailsStore.opacityPokemon,
               child: Padding(
                   padding: paggerPadding,
@@ -143,7 +143,8 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
             ),
           ),
           Observer(
-            builder: (_) => Opacity(
+            builder: (_) => AnimatedOpacity(
+              duration: Duration(milliseconds: 30),
               opacity: _pokemonDetailsStore.opacityPokemon,
               child: PokemonTitleInfoWidget(),
             ),

@@ -1,13 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about/about_page.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/base_stats/base_stats_page.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution/evolution_page.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/moves/moves_page.dart';
-
 import 'package:pokedex/theme/app_theme.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class PokemonPanelWidget extends StatefulWidget {
   final Function(double position) listener;
@@ -20,8 +19,13 @@ class PokemonPanelWidget extends StatefulWidget {
 }
 
 class _PokemonPanelWidgetState extends State<PokemonPanelWidget>
-    with TickerProviderStateMixin {
+    with
+        TickerProviderStateMixin,
+        AutomaticKeepAliveClientMixin<PokemonPanelWidget> {
   late TabController _tabController;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -41,6 +45,8 @@ class _PokemonPanelWidgetState extends State<PokemonPanelWidget>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return SlidingUpPanel(
       maxHeight: MediaQuery.of(context).size.height * 0.9,
       minHeight: MediaQuery.of(context).size.height * _minSlideUpHeight,

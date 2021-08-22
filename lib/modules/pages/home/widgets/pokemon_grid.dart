@@ -15,8 +15,8 @@ class PokemonGridWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LiveSliverGrid(
-      showItemDuration: const Duration(milliseconds: 500),
-      showItemInterval: const Duration(milliseconds: 0),
+      showItemDuration: const Duration(milliseconds: 200),
+      showItemInterval: const Duration(milliseconds: 10),
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 200,
         mainAxisSpacing: 10.0,
