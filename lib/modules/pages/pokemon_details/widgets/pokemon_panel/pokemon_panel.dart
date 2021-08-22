@@ -107,16 +107,16 @@ class _PokemonPanelWidgetState extends State<PokemonPanelWidget>
                 controller: _tabController,
                 children: [
                   SingleChildScrollView(
-                    child: AboutPage(),
+                    child: const AboutPage(),
                   ),
                   SingleChildScrollView(
-                    child: BaseStatsPage(),
+                    child: const BaseStatsPage(),
                   ),
                   SingleChildScrollView(
-                    child: EvolutionPage(),
+                    child: const EvolutionPage(),
                   ),
                   SingleChildScrollView(
-                    child: MovesPage(),
+                    child: const MovesPage(),
                   ),
                 ],
               ),

@@ -9,9 +9,9 @@ import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/shared/utils/evolution_chain_utils.dart';
 
 class EvolutionPage extends StatelessWidget {
-  EvolutionPage({Key? key}) : super(key: key);
+  static final _pokeApiStore = GetIt.instance<PokeApiStore>();
 
-  final _pokeApiStore = GetIt.instance<PokeApiStore>();
+  const EvolutionPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

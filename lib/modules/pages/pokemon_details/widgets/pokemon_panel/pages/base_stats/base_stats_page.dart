@@ -7,59 +7,52 @@ import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class BaseStatsPage extends StatelessWidget {
-  final _pokeApiStore = GetIt.instance<PokeApiStore>();
+  static final _pokeApiStore = GetIt.instance<PokeApiStore>();
 
-  BaseStatsPage({Key? key}) : super(key: key);
+  const BaseStatsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Observer(
-      builder: (_) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 27),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              children: [
-                BaseStatsItemWidget(
-                  title: "HP",
-                  value: _pokeApiStore.pokemon!.baseStats.hp,
-                ),
-                BaseStatsItemWidget(
-                  title: "Attack",
-                  value: _pokeApiStore.pokemon!.baseStats.attack,
-                ),
-                BaseStatsItemWidget(
-                  title: "Defense",
-                  value: _pokeApiStore.pokemon!.baseStats.defense,
-                ),
-                BaseStatsItemWidget(
-                  title: "Sp. Atk",
-                  value: _pokeApiStore.pokemon!.baseStats.spAtk,
-                ),
-                BaseStatsItemWidget(
-                  title: "Sp. Def",
-                  value: _pokeApiStore.pokemon!.baseStats.spDef,
-                ),
-                BaseStatsItemWidget(
-                  title: "Speed",
-                  value: _pokeApiStore.pokemon!.baseStats.speed,
-                ),
-                BaseStatsItemWidget(
-                  title: "Total",
-                  value: _pokeApiStore.pokemon!.baseStats.total,
-                  maxValue: 1200,
-                ),
-              ],
-            ),
-            SizedBox(height: 40),
-            Text(
-              "Type Effectiveness",
-              style: AppTheme.texts.pokemonTabViewTitle,
-            ),
-            SizedBox(height: 20),
-            Table(
-              columnWidths: {0: FixedColumnWidth(100)},
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 27),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Column(
+            children: [
+              const BaseStatsItemWidget(
+                title: "HP",
+              ),
+              const BaseStatsItemWidget(
+                title: "Attack",
+              ),
+              const BaseStatsItemWidget(
+                title: "Defense",
+              ),
+              const BaseStatsItemWidget(
+                title: "Sp. Atk",
+              ),
+              const BaseStatsItemWidget(
+                title: "Sp. Def",
+              ),
+              const BaseStatsItemWidget(
+                title: "Speed",
+              ),
+              const BaseStatsItemWidget(
+                title: "Total",
+                maxValue: 1200,
+              ),
+            ],
+          ),
+          SizedBox(height: 40),
+          Text(
+            "Type Effectiveness",
+            style: AppTheme.texts.pokemonTabViewTitle,
+          ),
+          SizedBox(height: 20),
+          Observer(
+            builder: (_) => Table(
+              columnWidths: {0: const FixedColumnWidth(100)},
               children: [
                 TableRowFactory.build(
                     title: "Damaged normally by",
@@ -79,11 +72,11 @@ class BaseStatsPage extends StatelessWidget {
                         .where((it) => it.value == "0")),
               ],
             ),
-            SizedBox(
-              height: 100,
-            )
-          ],
-        ),
+          ),
+          SizedBox(
+            height: 100,
+          )
+        ],
       ),
     );
   }

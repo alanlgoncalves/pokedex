@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/shared/models/pokemon.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
+import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class TrainingInfoWidget extends StatelessWidget {
-  final Pokemon pokemon;
+  static final _pokeApiStore = GetIt.instance<PokeApiStore>();
 
-  const TrainingInfoWidget({Key? key, required this.pokemon}) : super(key: key);
+  const TrainingInfoWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +40,11 @@ class TrainingInfoWidget extends StatelessWidget {
                             style: AppTheme.texts.pokemonTabViewSubTitle,
                           ),
                         ),
-                        Text(
-                          "${pokemon.training.evYield}",
-                          style: AppTheme.texts.pokemonText,
+                        Observer(
+                          builder: (_) => Text(
+                            "${_pokeApiStore.pokemon!.training.evYield}",
+                            style: AppTheme.texts.pokemonText,
+                          ),
                         ),
                       ],
                     ),
@@ -56,9 +60,11 @@ class TrainingInfoWidget extends StatelessWidget {
                             style: AppTheme.texts.pokemonTabViewSubTitle,
                           ),
                         ),
-                        Text(
-                          "${pokemon.training.catchRate}",
-                          style: AppTheme.texts.pokemonText,
+                        Observer(
+                          builder: (_) => Text(
+                            "${_pokeApiStore.pokemon!.training.catchRate}",
+                            style: AppTheme.texts.pokemonText,
+                          ),
                         ),
                       ],
                     ),
@@ -74,9 +80,11 @@ class TrainingInfoWidget extends StatelessWidget {
                             style: AppTheme.texts.pokemonTabViewSubTitle,
                           ),
                         ),
-                        Text(
-                          "${pokemon.training.baseFriendship}",
-                          style: AppTheme.texts.pokemonText,
+                        Observer(
+                          builder: (_) => Text(
+                            "${_pokeApiStore.pokemon!.training.baseFriendship}",
+                            style: AppTheme.texts.pokemonText,
+                          ),
                         ),
                       ],
                     ),
@@ -92,9 +100,11 @@ class TrainingInfoWidget extends StatelessWidget {
                             style: AppTheme.texts.pokemonTabViewSubTitle,
                           ),
                         ),
-                        Text(
-                          "${pokemon.training.baseExp}",
-                          style: AppTheme.texts.pokemonText,
+                        Observer(
+                          builder: (_) => Text(
+                            "${_pokeApiStore.pokemon!.training.baseExp}",
+                            style: AppTheme.texts.pokemonText,
+                          ),
                         ),
                       ],
                     ),
@@ -110,9 +120,11 @@ class TrainingInfoWidget extends StatelessWidget {
                             style: AppTheme.texts.pokemonTabViewSubTitle,
                           ),
                         ),
-                        Text(
-                          "${pokemon.training.growthRate}",
-                          style: AppTheme.texts.pokemonText,
+                        Observer(
+                          builder: (_) => Text(
+                            "${_pokeApiStore.pokemon!.training.growthRate}",
+                            style: AppTheme.texts.pokemonText,
+                          ),
                         ),
                       ],
                     ),

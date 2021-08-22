@@ -14,9 +14,13 @@ abstract class AppColors {
   Color get marsIcon;
   Color get venusIcon;
   Color get unknownIcon;
+
+  const AppColors();
 }
 
 class AppColorsDefault extends AppColors {
+  const AppColorsDefault();
+
   @override
   Color get background => Color(0xFFFFFFFF);
 

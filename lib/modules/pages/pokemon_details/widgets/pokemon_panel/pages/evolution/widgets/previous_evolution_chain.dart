@@ -4,6 +4,7 @@ import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/page
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
+
 class PreviousEvolutionChainWidget extends StatelessWidget {
   final PokeApiStore _pokeApiStore = GetIt.instance<PokeApiStore>();
 

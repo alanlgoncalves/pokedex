@@ -12,31 +12,39 @@ import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class MovesPage extends StatefulWidget {
-  MovesPage({Key? key}) : super(key: key);
+  const MovesPage({Key? key}) : super(key: key);
 
   @override
   _MovesPageState createState() => _MovesPageState();
 }
 
-class _MovesPageState extends State<MovesPage> {
-  late PokeApiStore _pokeApiStore;
+class _MovesPageState extends State<MovesPage>
+    with AutomaticKeepAliveClientMixin<MovesPage> {
+  static final PokeApiStore _pokeApiStore = GetIt.instance<PokeApiStore>();
   late MovesStore _movesStore;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
     super.initState();
-
-    _pokeApiStore = GetIt.instance<PokeApiStore>();
     _movesStore = MovesStore();
   }
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return Column(
       children: [
         Observer(
           builder: (_) {
             int counter = 0;
+
+            int getCounter() {
+              return counter;
+            }
 
             int getCounterAndAdd() {
               return counter++;
@@ -47,69 +55,87 @@ class _MovesPageState extends State<MovesPage> {
               children: [
                 if (_pokeApiStore.pokemon!.moves.levelUp.isNotEmpty)
                   ExpansionPanel(
-                    isExpanded: _movesStore.panels[getCounterAndAdd()],
+                    isExpanded: _movesStore.panels[getCounter()],
                     headerBuilder: (context, opened) => Center(
                       child: Text(
                         "Moves learnt by level up",
                         style: AppTheme.texts.pokemonTabViewTitle,
                       ),
                     ),
-                    body: const LevelUpMovesTableWidget(),
+                    body: LevelUpMovesTableWidget(
+                      movesStore: _movesStore,
+                      index: getCounterAndAdd(),
+                    ),
                   ),
                 if (_pokeApiStore.pokemon!.moves.technicalMachine.isNotEmpty)
                   ExpansionPanel(
-                    isExpanded: _movesStore.panels[getCounterAndAdd()],
+                    isExpanded: _movesStore.panels[getCounter()],
                     headerBuilder: (context, opened) => Center(
                       child: Text(
                         "Moves learnt by Technical Machines",
                         style: AppTheme.texts.pokemonTabViewTitle,
                       ),
                     ),
-                    body: const TechnicalMachinesMovesTableWidget(),
+                    body: TechnicalMachinesMovesTableWidget(
+                      movesStore: _movesStore,
+                      index: getCounterAndAdd(),
+                    ),
                   ),
                 if (_pokeApiStore.pokemon!.moves.technicalRecords.isNotEmpty)
                   ExpansionPanel(
-                    isExpanded: _movesStore.panels[getCounterAndAdd()],
+                    isExpanded: _movesStore.panels[getCounter()],
                     headerBuilder: (context, opened) => Center(
                       child: Text(
                         "Moves learnt by Technical Records",
                         style: AppTheme.texts.pokemonTabViewTitle,
                       ),
                     ),
-                    body: const TechnicalRecordsMovesTableWidget(),
+                    body: TechnicalRecordsMovesTableWidget(
+                      movesStore: _movesStore,
+                      index: getCounterAndAdd(),
+                    ),
                   ),
                 if (_pokeApiStore.pokemon!.moves.evolution.isNotEmpty)
                   ExpansionPanel(
-                    isExpanded: _movesStore.panels[getCounterAndAdd()],
+                    isExpanded: _movesStore.panels[getCounter()],
                     headerBuilder: (context, opened) => Center(
                       child: Text(
                         "Moves learnt on evolution",
                         style: AppTheme.texts.pokemonTabViewTitle,
                       ),
                     ),
-                    body: const EvolutionMovesTableWidget(),
+                    body: EvolutionMovesTableWidget(
+                      movesStore: _movesStore,
+                      index: getCounterAndAdd(),
+                    ),
                   ),
                 if (_pokeApiStore.pokemon!.moves.egg.isNotEmpty)
                   ExpansionPanel(
-                    isExpanded: _movesStore.panels[getCounterAndAdd()],
+                    isExpanded: _movesStore.panels[getCounter()],
                     headerBuilder: (context, opened) => Center(
                       child: Text(
                         "Egg moves",
                         style: AppTheme.texts.pokemonTabViewTitle,
                       ),
                     ),
-                    body: const EggMovesTableWidget(),
+                    body: EggMovesTableWidget(
+                      movesStore: _movesStore,
+                      index: getCounterAndAdd(),
+                    ),
                   ),
                 if (_pokeApiStore.pokemon!.moves.tutor.isNotEmpty)
                   ExpansionPanel(
-                    isExpanded: _movesStore.panels[getCounterAndAdd()],
+                    isExpanded: _movesStore.panels[getCounter()],
                     headerBuilder: (context, opened) => Center(
                       child: Text(
                         "Tutor moves",
                         style: AppTheme.texts.pokemonTabViewTitle,
                       ),
                     ),
-                    body: const TutorMovesTableWidget(),
+                    body: TutorMovesTableWidget(
+                      movesStore: _movesStore,
+                      index: getCounterAndAdd(),
+                    ),
                   ),
               ],
               expansionCallback: (index, isOpen) => _movesStore.setOpen(index),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 abstract class AppTextStyles {
+  const AppTextStyles();
+
   TextStyle get homePageTitle;
 
   TextStyle get pokemonItemName;
@@ -24,6 +26,8 @@ abstract class AppTextStyles {
 }
 
 class AppTextStylesDefault extends AppTextStyles {
+  const AppTextStylesDefault();
+
   @override
   TextStyle get homePageTitle => TextStyle(
         fontFamily: "CircularStd-Book",

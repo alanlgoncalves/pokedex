@@ -5,9 +5,9 @@ import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class HeightWeightInfoWidget extends StatelessWidget {
-  final _pokeApiStore = GetIt.instance<PokeApiStore>();
+  static final _pokeApiStore = GetIt.instance<PokeApiStore>();
 
-  HeightWeightInfoWidget({Key? key}) : super(key: key);
+  const HeightWeightInfoWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

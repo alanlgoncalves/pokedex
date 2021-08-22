@@ -7,7 +7,7 @@ class TypeEffectivenessWidget extends StatelessWidget {
   final String? value;
   final bool? hasNone;
 
-  TypeEffectivenessWidget(
+  const TypeEffectivenessWidget(
       {Key? key, this.type, this.value, this.hasNone = false})
       : super(key: key);
 
