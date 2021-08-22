@@ -75,26 +75,26 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
                         },
                         child: Column(
                           children: [
-                            Container(
-                              child: Hero(
-                                tag: "${card.name}-" +
-                                    "${card.number}- " +
-                                    "${card.expansionName}",
+                            Hero(
+                              tag: "${card.name}-" +
+                                  "${card.number}- " +
+                                  "${card.expansionName}",
+                              child: Container(
                                 child: CachedNetworkImage(
                                   imageUrl: card.imageUrl,
                                 ),
-                              ),
-                              decoration: BoxDecoration(boxShadow: [
-                                BoxShadow(
-                                  color: Color(0xFF000000).withAlpha(60),
-                                  blurRadius: 15.0,
-                                  spreadRadius: 3.0,
-                                  offset: Offset(
-                                    0.0,
-                                    10.0,
+                                decoration: BoxDecoration(boxShadow: [
+                                  BoxShadow(
+                                    color: Color(0xFF000000).withAlpha(60),
+                                    blurRadius: 15.0,
+                                    spreadRadius: 3.0,
+                                    offset: Offset(
+                                      0.0,
+                                      10.0,
+                                    ),
                                   ),
-                                ),
-                              ]),
+                                ]),
+                              ),
                             ),
                             SizedBox(
                               height: 10,
