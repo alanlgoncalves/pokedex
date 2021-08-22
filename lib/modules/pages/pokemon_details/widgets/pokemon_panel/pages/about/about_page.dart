@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about/widget/breeding_info.dart';
+import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about/widget/pokemon_cards.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about/widget/training_info.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
@@ -15,39 +16,44 @@ class AboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 28),
-      child: Observer(builder: (_) {
-        return Column(
-          children: [
-            ..._pokeApiStore.pokemon!.descriptions
-                .map((it) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4),
-                      child: Text(
-                        it,
-                        style: AppTheme.texts.pokemonText,
-                      ),
-                    ))
-                .toList(),
-            if (_pokeApiStore.pokemon!.hasAnimatedSprites)
-              AnimatedSpritesWidget(
-                sprites: _pokeApiStore.pokemon!.sprites,
-                isShiny: false,
-              ),
-            if (_pokeApiStore.pokemon!.hasAnimatedShinySprites)
-              AnimatedSpritesWidget(
-                sprites: _pokeApiStore.pokemon!.sprites,
-                isShiny: true,
-              ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              child: HeightWeightInfoWidget(),
+    return Observer(builder: (_) {
+      return Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 28),
+            child: Column(
+              children: [
+                ..._pokeApiStore.pokemon!.descriptions
+                    .map((it) => Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          child: Text(
+                            it,
+                            style: AppTheme.texts.pokemonText,
+                          ),
+                        ))
+                    .toList(),
+                if (_pokeApiStore.pokemon!.hasAnimatedSprites)
+                  AnimatedSpritesWidget(
+                    sprites: _pokeApiStore.pokemon!.sprites,
+                    isShiny: false,
+                  ),
+                if (_pokeApiStore.pokemon!.hasAnimatedShinySprites)
+                  AnimatedSpritesWidget(
+                    sprites: _pokeApiStore.pokemon!.sprites,
+                    isShiny: true,
+                  ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: HeightWeightInfoWidget(),
+                ),
+                BreedingInfoWidget(pokemon: _pokeApiStore.pokemon!),
+                TrainingInfoWidget(pokemon: _pokeApiStore.pokemon!),
+              ],
             ),
-            BreedingInfoWidget(pokemon: _pokeApiStore.pokemon!),
-            TrainingInfoWidget(pokemon: _pokeApiStore.pokemon!),
-          ],
-        );
-      }),
-    );
+          ),
+          PokemonCardsWidget(pokemon: _pokeApiStore.pokemon!),
+        ],
+      );
+    });
   }
 }

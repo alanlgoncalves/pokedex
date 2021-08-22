@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/shared/utils/evolution_chain_utils.dart';
+import 'package:pokedex/shared/utils/hero_dialog_route.dart';
 import 'package:pokedex/shared/widgets/image_dialog.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
@@ -47,17 +48,26 @@ class SuperEvolutionChainWidget extends StatelessWidget {
                     child: Column(
                       children: [
                         InkWell(
-                          onTap: () async {
-                            await showDialog(
-                              context: context,
-                              builder: (_) => ImageDialogWidget(
-                                  imageUrl: gigantamax.imageUrl),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              new HeroDialogRoute(
+                                builder: (BuildContext context) {
+                                  return ImageDialogWidget(
+                                      tag:
+                                          "super-evolution-chain-${gigantamax.name}",
+                                      imageUrl: gigantamax.imageUrl);
+                                },
+                              ),
                             );
                           },
                           child: Container(
                             width: 300,
-                            child: CachedNetworkImage(
-                                imageUrl: gigantamax.imageUrl),
+                            child: Hero(
+                              tag: "super-evolution-chain-${gigantamax.name}",
+                              child: CachedNetworkImage(
+                                  imageUrl: gigantamax.imageUrl),
+                            ),
                           ),
                         ),
                         Text(

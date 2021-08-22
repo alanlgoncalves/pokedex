@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pokedex/shared/utils/hero_dialog_route.dart';
 import 'package:pokedex/shared/widgets/image_dialog.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
@@ -26,11 +27,17 @@ class EvolutionChainItemWidget extends StatelessWidget {
             child: Column(
               children: [
                 InkWell(
-                  onTap: () async {
-                    await showDialog(
-                      context: context,
-                      builder: (_) => ImageDialogWidget(
-                          imageUrl: previousEvolution.imageUrl),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      new HeroDialogRoute(
+                        builder: (BuildContext context) {
+                          return ImageDialogWidget(
+                              tag:
+                                  "prev-${previousEvolution.number}-${previousEvolution.name}",
+                              imageUrl: previousEvolution.imageUrl);
+                        },
+                      ),
                     );
                   },
                   child: Stack(
@@ -49,10 +56,14 @@ class EvolutionChainItemWidget extends StatelessWidget {
                         height: 83,
                         width: 83,
                         child: Center(
-                          child: CachedNetworkImage(
-                            imageUrl: previousEvolution.imageUrl,
-                            width: 76,
-                            height: 71,
+                          child: Hero(
+                            tag:
+                                "prev-${previousEvolution.number}-${previousEvolution.name}",
+                            child: CachedNetworkImage(
+                              imageUrl: previousEvolution.imageUrl,
+                              width: 76,
+                              height: 71,
+                            ),
                           ),
                         ),
                       )
@@ -93,10 +104,16 @@ class EvolutionChainItemWidget extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () async {
-                    await showDialog(
-                      context: context,
-                      builder: (_) =>
-                          ImageDialogWidget(imageUrl: nextEvolution.imageUrl),
+                    Navigator.push(
+                      context,
+                      new HeroDialogRoute(
+                        builder: (BuildContext context) {
+                          return ImageDialogWidget(
+                              tag:
+                                  "next-${nextEvolution.number}-${nextEvolution.name}",
+                              imageUrl: nextEvolution.imageUrl);
+                        },
+                      ),
                     );
                   },
                   child: Stack(
@@ -114,10 +131,14 @@ class EvolutionChainItemWidget extends StatelessWidget {
                         height: 83,
                         width: 83,
                         child: Center(
-                          child: CachedNetworkImage(
-                            imageUrl: nextEvolution.imageUrl,
-                            width: 76,
-                            height: 71,
+                          child: Hero(
+                            tag:
+                                "next-${nextEvolution.number}-${nextEvolution.name}",
+                            child: CachedNetworkImage(
+                              imageUrl: nextEvolution.imageUrl,
+                              width: 76,
+                              height: 71,
+                            ),
                           ),
                         ),
                       )

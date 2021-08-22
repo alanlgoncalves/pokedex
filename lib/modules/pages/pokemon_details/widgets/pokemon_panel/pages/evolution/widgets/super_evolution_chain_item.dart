@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
+import 'package:pokedex/shared/utils/hero_dialog_route.dart';
 import 'package:pokedex/shared/widgets/image_dialog.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
@@ -10,7 +11,10 @@ class SuperEvolutionChainItemWidget extends StatelessWidget {
   final Pokemon pokemon;
   final SuperEvolution superEvolution;
 
-  const SuperEvolutionChainItemWidget(
+  final String pokemonHeroTag = "super-evolution-item-${UniqueKey()}";
+  final String superEvolutionHeroTag = "super-evolution-item-${UniqueKey()}";
+
+  SuperEvolutionChainItemWidget(
       {Key? key, required this.pokemon, required this.superEvolution})
       : super(key: key);
 
@@ -26,11 +30,15 @@ class SuperEvolutionChainItemWidget extends StatelessWidget {
             child: Column(
               children: [
                 InkWell(
-                  onTap: () async {
-                    await showDialog(
-                      context: context,
-                      builder: (_) =>
-                          ImageDialogWidget(imageUrl: pokemon.imageUrl),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      new HeroDialogRoute(
+                        builder: (BuildContext context) {
+                          return ImageDialogWidget(
+                              tag: pokemonHeroTag, imageUrl: pokemon.imageUrl);
+                        },
+                      ),
                     );
                   },
                   child: Stack(
@@ -49,10 +57,13 @@ class SuperEvolutionChainItemWidget extends StatelessWidget {
                         height: 83,
                         width: 83,
                         child: Center(
-                          child: CachedNetworkImage(
-                            imageUrl: pokemon.imageUrl,
-                            width: 76,
-                            height: 71,
+                          child: Hero(
+                            tag: pokemonHeroTag,
+                            child: CachedNetworkImage(
+                              imageUrl: pokemon.imageUrl,
+                              width: 76,
+                              height: 71,
+                            ),
                           ),
                         ),
                       )
@@ -78,11 +89,16 @@ class SuperEvolutionChainItemWidget extends StatelessWidget {
             child: Column(
               children: [
                 InkWell(
-                  onTap: () async {
-                    await showDialog(
-                      context: context,
-                      builder: (_) =>
-                          ImageDialogWidget(imageUrl: superEvolution.imageUrl),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      new HeroDialogRoute(
+                        builder: (BuildContext context) {
+                          return ImageDialogWidget(
+                              tag: superEvolutionHeroTag,
+                              imageUrl: superEvolution.imageUrl);
+                        },
+                      ),
                     );
                   },
                   child: Stack(
@@ -100,10 +116,13 @@ class SuperEvolutionChainItemWidget extends StatelessWidget {
                         height: 83,
                         width: 83,
                         child: Center(
-                          child: CachedNetworkImage(
-                            imageUrl: superEvolution.imageUrl,
-                            width: 76,
-                            height: 71,
+                          child: Hero(
+                            tag: superEvolutionHeroTag,
+                            child: CachedNetworkImage(
+                              imageUrl: superEvolution.imageUrl,
+                              width: 76,
+                              height: 71,
+                            ),
                           ),
                         ),
                       )

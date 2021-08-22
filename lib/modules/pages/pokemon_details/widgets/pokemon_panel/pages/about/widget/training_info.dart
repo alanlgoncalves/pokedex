@@ -117,9 +117,6 @@ class TrainingInfoWidget extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 100,
-                  ),
                 ],
               )
             ],

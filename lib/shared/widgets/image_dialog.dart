@@ -1,21 +1,23 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ImageDialogWidget extends StatelessWidget {
   final String imageUrl;
+  final String tag;
 
-  const ImageDialogWidget({Key? key, required this.imageUrl}) : super(key: key);
+  const ImageDialogWidget({Key? key, required this.imageUrl, required this.tag})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
+    return Center(
       child: Container(
-        height: 430,
-        width: 430,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          image: DecorationImage(
-            image: NetworkImage(imageUrl),
-            fit: BoxFit.scaleDown,
+        child: Hero(
+          tag: tag,
+          child: Container(
+            child: CachedNetworkImage(
+              imageUrl: imageUrl,
+            ),
           ),
         ),
       ),
