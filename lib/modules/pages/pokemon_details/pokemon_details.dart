@@ -15,9 +15,7 @@ import 'package:pokedex/theme/app_theme.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 
 class PokemonDetailsPage extends StatefulWidget {
-  final int index;
-
-  const PokemonDetailsPage({Key? key, required this.index}) : super(key: key);
+  const PokemonDetailsPage({Key? key}) : super(key: key);
 
   @override
   _PokemonDetailsPageState createState() => _PokemonDetailsPageState();

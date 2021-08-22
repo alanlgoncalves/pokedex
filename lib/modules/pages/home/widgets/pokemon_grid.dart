@@ -39,14 +39,13 @@ class PokemonGridWidget extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) {
-                  return PokemonDetailsPage(index: index);
+                  return PokemonDetailsPage();
                 }),
               );
             },
             child: Ink(
               child: PokeItemWidget(
                 pokemon: _pokemon,
-                image: CachedNetworkImage(imageUrl: _pokemon.imageUrl),
                 index: index,
               ),
             ),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pokedex/shared/models/pokemon_summary.dart';
@@ -7,14 +8,12 @@ import 'package:pokedex/theme/app_theme.dart';
 class PokeItemWidget extends StatelessWidget {
   final PokemonSummary pokemon;
   final int index;
-  final Widget image;
 
-  const PokeItemWidget(
-      {Key? key,
-      required this.pokemon,
-      required this.index,
-      required this.image})
-      : super(key: key);
+  const PokeItemWidget({
+    Key? key,
+    required this.pokemon,
+    required this.index,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +44,10 @@ class PokeItemWidget extends StatelessWidget {
               padding: EdgeInsets.only(right: 7, bottom: 3),
               child: Container(
                 child: Hero(
-                  child: image,
                   tag: "pokemon-image-${pokemon.number}",
+                  child: CachedNetworkImage(
+                    imageUrl: pokemon.imageUrl,
+                  ),
                 ),
                 height: 71,
                 width: 76,

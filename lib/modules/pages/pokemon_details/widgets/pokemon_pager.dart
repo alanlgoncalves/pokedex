@@ -68,17 +68,27 @@ class _PokemonPagerState extends State<PokemonPagerWidget> {
                         : 40),
                 duration: Duration(milliseconds: 300),
                 child: Container(
-                  child: Hero(
-                    tag: "pokemon-image-${listPokemon.number}",
-                    child: CachedNetworkImage(
-                      imageUrl: listPokemon.imageUrl,
-                      height: 300,
-                      color: _pokeApiStore.pokemonSummary!.number ==
-                              listPokemon.number
-                          ? null
-                          : Colors.black.withOpacity(0.2),
-                    ),
-                  ),
+                  child:
+                      _pokeApiStore.pokemonSummary!.number == listPokemon.number
+                          ? Hero(
+                              tag: "pokemon-image-${listPokemon.number}",
+                              child: CachedNetworkImage(
+                                imageUrl: listPokemon.imageUrl,
+                                height: 300,
+                                color: _pokeApiStore.pokemonSummary!.number ==
+                                        listPokemon.number
+                                    ? null
+                                    : Colors.black.withOpacity(0.2),
+                              ),
+                            )
+                          : CachedNetworkImage(
+                              imageUrl: listPokemon.imageUrl,
+                              height: 300,
+                              color: _pokeApiStore.pokemonSummary!.number ==
+                                      listPokemon.number
+                                  ? null
+                                  : Colors.black.withOpacity(0.2),
+                            ),
                 ),
               );
             },
