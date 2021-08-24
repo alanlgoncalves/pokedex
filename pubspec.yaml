@@ -35,6 +35,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/icons/
     - assets/images/pokemon_types/
     - assets/images/technical_records_types/
     - assets/images/technical_machines_types/

@@ -1,0 +1,309 @@
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:pokedex/shared/utils/app_constants.dart';
+
+import 'package:pokedex/theme/app_theme.dart';
+
+class AnimatedFloatActionButtonWidget extends StatefulWidget {
+  const AnimatedFloatActionButtonWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  _AnimatedFloatActionButtonWidgetState createState() =>
+      _AnimatedFloatActionButtonWidgetState();
+}
+
+class _AnimatedFloatActionButtonWidgetState
+    extends State<AnimatedFloatActionButtonWidget>
+    with SingleTickerProviderStateMixin {
+  late bool isOpen;
+  late bool showFadeBackground;
+
+  late AnimationController animationController;
+  late Animation<double> blackBackgroundOpacityAnimation;
+  late Animation<double> degOneTranslationAnimation,
+      degTwoTranslationAnimation,
+      degThreeTranslationAnimation;
+  late Animation<double> rotationAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    isOpen = false;
+    showFadeBackground = false;
+
+    animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 250),
+    );
+
+    blackBackgroundOpacityAnimation =
+        Tween(begin: 0.0, end: 1.0).animate(animationController);
+
+    degOneTranslationAnimation = TweenSequence([
+      TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.2), weight: 75.0),
+      TweenSequenceItem(tween: Tween(begin: 1.2, end: 1.0), weight: 25.0),
+    ]).animate(animationController);
+
+    degTwoTranslationAnimation = TweenSequence([
+      TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.4), weight: 55.0),
+      TweenSequenceItem(tween: Tween(begin: 1.4, end: 1.0), weight: 45.0),
+    ]).animate(animationController);
+
+    degThreeTranslationAnimation = TweenSequence([
+      TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.6), weight: 35.0),
+      TweenSequenceItem(tween: Tween(begin: 1.6, end: 1.0), weight: 65.0),
+    ]).animate(animationController);
+
+    rotationAnimation = Tween(begin: 180.0, end: 0.0).animate(
+        CurvedAnimation(parent: animationController, curve: Curves.easeOut));
+
+    animationController.addListener(() {
+      isOpen = animationController.isCompleted;
+
+      setState(() {});
+    });
+  }
+
+  double getRadiansFromDegree(double degree) {
+    double unitRadian = 57.295779513;
+
+    return degree / unitRadian;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
+    return Stack(
+      children: [
+        if (showFadeBackground)
+          FadeTransition(
+            opacity: blackBackgroundOpacityAnimation,
+            child: Container(
+              width: size.width,
+              height: size.height,
+              color: Colors.black87,
+            ),
+          ),
+        Stack(
+          children: [
+            Positioned(
+              bottom: 30,
+              right: 20,
+              child: Transform.translate(
+                offset: Offset.fromDirection(getRadiansFromDegree(270),
+                    degOneTranslationAnimation.value * 80.0),
+                child: Transform(
+                  transform: Matrix4.rotationZ(
+                      getRadiansFromDegree(rotationAnimation.value))
+                    ..scale(degOneTranslationAnimation.value),
+                  alignment: Alignment.center,
+                  child: _CircularTextButton(
+                      isOpened: isOpen,
+                      text: "Search",
+                      icon: SizedBox(
+                        child: Icon(
+                          Icons.search,
+                          color: AppTheme.colors.floatActionButton,
+                        ),
+                      ),
+                      color: Colors.white,
+                      onClick: () {}),
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 30,
+              right: 20,
+              child: Transform.translate(
+                offset: Offset.fromDirection(getRadiansFromDegree(270),
+                    degOneTranslationAnimation.value * 130.0),
+                child: Transform(
+                  transform: Matrix4.rotationZ(
+                      getRadiansFromDegree(rotationAnimation.value))
+                    ..scale(degOneTranslationAnimation.value),
+                  alignment: Alignment.center,
+                  child: _CircularTextButton(
+                      isOpened: isOpen,
+                      text: "All Gen",
+                      icon: SvgPicture.asset(
+                        AppConstants.whitePokeballLogo,
+                        color: AppTheme.colors.floatActionButton,
+                      ),
+                      color: Colors.white,
+                      onClick: () {}),
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 30,
+              right: 20,
+              child: Transform.translate(
+                offset: Offset.fromDirection(getRadiansFromDegree(270),
+                    degTwoTranslationAnimation.value * 180.0),
+                child: Transform(
+                  transform: Matrix4.rotationZ(
+                      getRadiansFromDegree(rotationAnimation.value))
+                    ..scale(degTwoTranslationAnimation.value),
+                  alignment: Alignment.center,
+                  child: _CircularTextButton(
+                      isOpened: isOpen,
+                      text: "All Type",
+                      icon: SvgPicture.asset(
+                        AppConstants.whitePokeballLogo,
+                        color: AppTheme.colors.floatActionButton,
+                      ),
+                      color: Colors.white,
+                      onClick: () {}),
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 30,
+              right: 20,
+              child: Transform.translate(
+                offset: Offset.fromDirection(getRadiansFromDegree(270),
+                    degThreeTranslationAnimation.value * 230),
+                child: Transform(
+                  transform: Matrix4.rotationZ(
+                      getRadiansFromDegree(rotationAnimation.value))
+                    ..scale(degThreeTranslationAnimation.value),
+                  alignment: Alignment.center,
+                  child: _CircularTextButton(
+                      isOpened: isOpen,
+                      text: "Favorite Pokemons",
+                      icon: Icon(
+                        Icons.favorite,
+                        color: AppTheme.colors.floatActionButton,
+                      ),
+                      color: Colors.white,
+                      onClick: () {}),
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 30,
+              right: 20,
+              child: Transform(
+                transform: Matrix4.rotationZ(
+                    getRadiansFromDegree(rotationAnimation.value)),
+                alignment: Alignment.center,
+                child: _CircularButton(
+                    heigth: 60,
+                    width: 60,
+                    icon: isOpen
+                        ? Icon(
+                            Icons.close,
+                            color: Colors.white,
+                            size: 20,
+                          )
+                        : SvgPicture.asset(AppConstants.fabIcon),
+                    color: AppTheme.colors.floatActionButton,
+                    onClick: () {
+                      if (animationController.isCompleted) {
+                        showFadeBackground = false;
+                        animationController.reverse();
+                      } else {
+                        showFadeBackground = true;
+                        animationController.forward();
+                      }
+                    }),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class _CircularButton extends StatelessWidget {
+  final double heigth;
+  final double width;
+  final Color color;
+  final Widget icon;
+  final VoidCallback onClick;
+
+  const _CircularButton({
+    Key? key,
+    required this.heigth,
+    required this.width,
+    required this.color,
+    required this.icon,
+    required this.onClick,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onClick,
+      enableFeedback: true,
+      child: Container(
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(50),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: icon,
+        ),
+      ),
+    );
+  }
+}
+
+class _CircularTextButton extends StatelessWidget {
+  final bool isOpened;
+  final Color color;
+  final String text;
+  final Widget icon;
+  final VoidCallback onClick;
+
+  const _CircularTextButton({
+    Key? key,
+    required this.isOpened,
+    required this.color,
+    required this.text,
+    required this.icon,
+    required this.onClick,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onClick,
+      enableFeedback: true,
+      child: Container(
+        decoration: BoxDecoration(
+            color: color, borderRadius: BorderRadius.circular(33)),
+        child: Container(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 14),
+            child: Row(
+              children: [
+                if (isOpened)
+                  Text(
+                    text,
+                  ),
+                if (isOpened)
+                  SizedBox(
+                    width: 10,
+                  ),
+                SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: icon,
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -2,6 +2,8 @@ class AppConstants {
   static String get blackPokeballLogo => "assets/images/pokeball_black.svg";
   static String get whitePokeballLogo => "assets/images/pokeball_white.svg";
 
+  static String get fabIcon => "assets/images/icons/fab.svg";
+
   static String pokemonTypeLogo(String type) {
     switch (type.toLowerCase()) {
       case "dark":

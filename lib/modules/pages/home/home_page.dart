@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:pokedex/modules/pages/home/widgets/animated_float_action_button.dart';
 
 import 'package:pokedex/modules/pages/home/widgets/app_bar.dart';
 
@@ -18,29 +19,34 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.colors.background,
-      body: SafeArea(
-        bottom: false,
-        child: CustomScrollView(
-          slivers: [
-            AppBarWidget(),
-            Observer(
-              builder: (_) {
-                if (_pokeApiStore.pokemonsSummary == null) {
-                  return SliverFillRemaining(
-                      child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [CircularProgressIndicator()],
-                  ));
-                } else {
-                  return SliverPadding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    sliver: PokemonGridWidget(pokeApiStore: _pokeApiStore),
-                  );
-                }
-              },
-            )
-          ],
-        ),
+      body: Stack(
+        children: [
+          SafeArea(
+            bottom: false,
+            child: CustomScrollView(
+              slivers: [
+                AppBarWidget(),
+                Observer(
+                  builder: (_) {
+                    if (_pokeApiStore.pokemonsSummary == null) {
+                      return SliverFillRemaining(
+                          child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [CircularProgressIndicator()],
+                      ));
+                    } else {
+                      return SliverPadding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        sliver: PokemonGridWidget(pokeApiStore: _pokeApiStore),
+                      );
+                    }
+                  },
+                )
+              ],
+            ),
+          ),
+          AnimatedFloatActionButtonWidget(),
+        ],
       ),
     );
   }

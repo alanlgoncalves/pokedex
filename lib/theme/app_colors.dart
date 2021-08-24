@@ -4,6 +4,8 @@ abstract class AppColors {
   Color get background;
   Color pokemonItem(String type);
 
+  Color get floatActionButton;
+
   Color get selectPokemonTabTitle;
   Color get pokemonTabTitle;
   Color get tabDivisor;
@@ -104,4 +106,7 @@ class AppColorsDefault extends AppColors {
 
   @override
   Color get unknownIcon => Color(0xFF303943);
+
+  @override
+  Color get floatActionButton => Color(0xFF6C79DB);
 }
