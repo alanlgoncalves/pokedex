@@ -28,7 +28,7 @@ class PokemonGenerationFilter extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Click on the same selected item to clear filter",
+                        "Click on the selected item to clear the filter",
                         style: AppTheme.texts.pokemonText,
                       ),
                     ],
@@ -56,10 +56,11 @@ class PokemonGenerationFilter extends StatelessWidget {
                 generation: generation,
                 color: color,
                 onClick: () {
-                  if (pokeApiStore.generationFilter == null) {
-                    pokeApiStore.addGenerationFilter(generation);
-                  } else {
+                  if (pokeApiStore.generationFilter != null &&
+                      pokeApiStore.generationFilter == generation) {
                     pokeApiStore.clearGenerationFilter();
+                  } else {
+                    pokeApiStore.addGenerationFilter(generation);
                   }
 
                   homeStore.closeFilter();
