@@ -36,9 +36,18 @@ flutter:
   assets:
     - assets/images/
     - assets/images/icons/
-    - assets/images/pokemon_types/
+    - assets/images/pokemons_types/
     - assets/images/technical_records_types/
     - assets/images/technical_machines_types/
+    - assets/images/pokemons_generations/generation_1/
+    - assets/images/pokemons_generations/generation_2/
+    - assets/images/pokemons_generations/generation_3/
+    - assets/images/pokemons_generations/generation_4/
+    - assets/images/pokemons_generations/generation_5/
+    - assets/images/pokemons_generations/generation_6/
+    - assets/images/pokemons_generations/generation_7/
+    - assets/images/pokemons_generations/generation_7/
+    - assets/images/pokemons_generations/generation_8/
     - assets/lotties/
 
   fonts:

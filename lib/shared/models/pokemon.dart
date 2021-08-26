@@ -21,7 +21,7 @@ class Pokemon {
   late List<Cards> cards;
   late String? soundUrl;
   late Moves moves;
-  late String generation;
+  late Generation generation;
 
   Pokemon(
       {required this.number,
@@ -123,7 +123,68 @@ class Pokemon {
     });
     soundUrl = json['soundUrl'];
     moves = Moves.fromJson(json['moves']);
-    generation = json['generation'];
+    generation = Generation.values
+        .where((it) => it.toString().endsWith(json['generation']))
+        .first;
+  }
+}
+
+enum Generation {
+  GENERATION_I,
+  GENERATION_II,
+  GENERATION_III,
+  GENERATION_IV,
+  GENERATION_V,
+  GENERATION_VI,
+  GENERATION_VII,
+  GENERATION_VIII
+}
+
+extension GenerationExtension on Generation {
+  String get description {
+    switch (this) {
+      case Generation.GENERATION_I:
+        return "Generation I";
+      case Generation.GENERATION_II:
+        return "Generation II";
+      case Generation.GENERATION_III:
+        return "Generation III";
+      case Generation.GENERATION_IV:
+        return "Generation IV";
+      case Generation.GENERATION_V:
+        return "Generation V";
+      case Generation.GENERATION_VI:
+        return "Generation VI";
+      case Generation.GENERATION_VII:
+        return "Generation VII";
+      case Generation.GENERATION_VIII:
+        return "Generation VIII";
+      default:
+        return "All Types";
+    }
+  }
+
+  int get number {
+    switch (this) {
+      case Generation.GENERATION_I:
+        return 1;
+      case Generation.GENERATION_II:
+        return 2;
+      case Generation.GENERATION_III:
+        return 3;
+      case Generation.GENERATION_IV:
+        return 4;
+      case Generation.GENERATION_V:
+        return 5;
+      case Generation.GENERATION_VI:
+        return 6;
+      case Generation.GENERATION_VII:
+        return 7;
+      case Generation.GENERATION_VIII:
+        return 8;
+      default:
+        return 0;
+    }
   }
 }
 

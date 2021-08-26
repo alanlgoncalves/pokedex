@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 abstract class AppColors {
+  const AppColors();
+
   Color get background;
   Color pokemonItem(String type);
 
@@ -17,7 +19,7 @@ abstract class AppColors {
   Color get venusIcon;
   Color get unknownIcon;
 
-  const AppColors();
+  Color get selectedGenerationFilter;
 }
 
 class AppColorsDefault extends AppColors {
@@ -109,4 +111,7 @@ class AppColorsDefault extends AppColors {
 
   @override
   Color get floatActionButton => Color(0xFF6C79DB);
+
+  @override
+  Color get selectedGenerationFilter => Color(0xFF666666).withOpacity(0.4);
 }

@@ -7,7 +7,7 @@ class PokemonSummary {
   late Sprites sprites;
   late List<String> types;
   late String specie;
-  late String generation;
+  late Generation generation;
 
   PokemonSummary(
       {required this.number,
@@ -25,6 +25,8 @@ class PokemonSummary {
     sprites = Sprites.fromJson(json['sprites']);
     types = json['types'].cast<String>();
     specie = json['specie'];
-    generation = json['generation'];
+    generation = Generation.values
+        .where((it) => it.toString().endsWith(json['generation']))
+        .first;
   }
 }

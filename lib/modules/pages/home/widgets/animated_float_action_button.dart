@@ -2,13 +2,23 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get_it/get_it.dart';
+import 'package:pokedex/modules/pages/home/home_store.dart';
+import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
+import 'package:pokedex/shared/utils/converters.dart';
+import 'package:pokedex/shared/models/pokemon.dart';
 
 import 'package:pokedex/theme/app_theme.dart';
 
 class AnimatedFloatActionButtonWidget extends StatefulWidget {
+  final HomeStore homeStore;
+  final AnimationController backgroundAnimationController;
+
   const AnimatedFloatActionButtonWidget({
     Key? key,
+    required this.homeStore,
+    required this.backgroundAnimationController,
   }) : super(key: key);
 
   @override
@@ -19,6 +29,8 @@ class AnimatedFloatActionButtonWidget extends StatefulWidget {
 class _AnimatedFloatActionButtonWidgetState
     extends State<AnimatedFloatActionButtonWidget>
     with SingleTickerProviderStateMixin {
+  static final PokeApiStore pokeApiStore = GetIt.instance<PokeApiStore>();
+
   late bool isOpen;
   late bool showFadeBackground;
 
@@ -69,150 +81,163 @@ class _AnimatedFloatActionButtonWidgetState
     });
   }
 
-  double getRadiansFromDegree(double degree) {
-    double unitRadian = 57.295779513;
-
-    return degree / unitRadian;
-  }
-
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Stack(
       children: [
-        if (showFadeBackground)
-          FadeTransition(
-            opacity: blackBackgroundOpacityAnimation,
-            child: Container(
-              width: size.width,
-              height: size.height,
-              color: Colors.black87,
-            ),
-          ),
         Stack(
           children: [
             Positioned(
               bottom: 30,
               right: 20,
-              child: Transform.translate(
-                offset: Offset.fromDirection(getRadiansFromDegree(270),
-                    degOneTranslationAnimation.value * 80.0),
-                child: Transform(
-                  transform: Matrix4.rotationZ(
-                      getRadiansFromDegree(rotationAnimation.value))
-                    ..scale(degOneTranslationAnimation.value),
-                  alignment: Alignment.center,
-                  child: _CircularTextButton(
-                      isOpened: isOpen,
-                      text: "Search",
-                      icon: SizedBox(
-                        child: Icon(
-                          Icons.search,
-                          color: AppTheme.colors.floatActionButton,
-                        ),
-                      ),
-                      color: Colors.white,
-                      onClick: () {}),
+              child: AnimatedBuilder(
+                animation: animationController,
+                builder: (context, child) => Transform.translate(
+                  offset: Offset.fromDirection(getRadiansFromDegree(270),
+                      degOneTranslationAnimation.value * 80.0),
+                  child: Transform(
+                    transform: Matrix4.rotationZ(
+                        getRadiansFromDegree(rotationAnimation.value))
+                      ..scale(degOneTranslationAnimation.value),
+                    alignment: Alignment.center,
+                    child: child,
+                  ),
+                ),
+                child: _CircularTextButton(
+                  isOpened: isOpen,
+                  text: "Search",
+                  icon: SizedBox(
+                    child: Icon(
+                      Icons.search,
+                      color: AppTheme.colors.floatActionButton,
+                    ),
+                  ),
+                  color: Colors.white,
+                  onClick: () {},
                 ),
               ),
             ),
             Positioned(
               bottom: 30,
               right: 20,
-              child: Transform.translate(
-                offset: Offset.fromDirection(getRadiansFromDegree(270),
-                    degOneTranslationAnimation.value * 130.0),
-                child: Transform(
-                  transform: Matrix4.rotationZ(
-                      getRadiansFromDegree(rotationAnimation.value))
-                    ..scale(degOneTranslationAnimation.value),
-                  alignment: Alignment.center,
-                  child: _CircularTextButton(
-                      isOpened: isOpen,
-                      text: "All Gen",
-                      icon: SvgPicture.asset(
-                        AppConstants.whitePokeballLogo,
-                        color: AppTheme.colors.floatActionButton,
-                      ),
-                      color: Colors.white,
-                      onClick: () {}),
+              child: AnimatedBuilder(
+                animation: animationController,
+                builder: (context, child) => Transform.translate(
+                  offset: Offset.fromDirection(getRadiansFromDegree(270),
+                      degTwoTranslationAnimation.value * 130.0),
+                  child: Transform(
+                    transform: Matrix4.rotationZ(
+                        getRadiansFromDegree(rotationAnimation.value))
+                      ..scale(degTwoTranslationAnimation.value),
+                    alignment: Alignment.center,
+                    child: child,
+                  ),
                 ),
-              ),
-            ),
-            Positioned(
-              bottom: 30,
-              right: 20,
-              child: Transform.translate(
-                offset: Offset.fromDirection(getRadiansFromDegree(270),
-                    degTwoTranslationAnimation.value * 180.0),
-                child: Transform(
-                  transform: Matrix4.rotationZ(
-                      getRadiansFromDegree(rotationAnimation.value))
-                    ..scale(degTwoTranslationAnimation.value),
-                  alignment: Alignment.center,
-                  child: _CircularTextButton(
-                      isOpened: isOpen,
-                      text: "All Type",
-                      icon: SvgPicture.asset(
-                        AppConstants.whitePokeballLogo,
-                        color: AppTheme.colors.floatActionButton,
-                      ),
-                      color: Colors.white,
-                      onClick: () {}),
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 30,
-              right: 20,
-              child: Transform.translate(
-                offset: Offset.fromDirection(getRadiansFromDegree(270),
-                    degThreeTranslationAnimation.value * 230),
-                child: Transform(
-                  transform: Matrix4.rotationZ(
-                      getRadiansFromDegree(rotationAnimation.value))
-                    ..scale(degThreeTranslationAnimation.value),
-                  alignment: Alignment.center,
-                  child: _CircularTextButton(
-                      isOpened: isOpen,
-                      text: "Favorite Pokemons",
-                      icon: Icon(
-                        Icons.favorite,
-                        color: AppTheme.colors.floatActionButton,
-                      ),
-                      color: Colors.white,
-                      onClick: () {}),
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 30,
-              right: 20,
-              child: Transform(
-                transform: Matrix4.rotationZ(
-                    getRadiansFromDegree(rotationAnimation.value)),
-                alignment: Alignment.center,
-                child: _CircularButton(
-                    heigth: 60,
-                    width: 60,
-                    icon: isOpen
-                        ? Icon(
-                            Icons.close,
-                            color: Colors.white,
-                            size: 20,
-                          )
-                        : SvgPicture.asset(AppConstants.fabIcon),
+                child: _CircularTextButton(
+                  isOpened: isOpen,
+                  text: pokeApiStore.generationFilter == null
+                      ? "All generations"
+                      : pokeApiStore.generationFilter!.description,
+                  icon: SvgPicture.asset(
+                    AppConstants.whitePokeballLogo,
                     color: AppTheme.colors.floatActionButton,
-                    onClick: () {
-                      if (animationController.isCompleted) {
-                        showFadeBackground = false;
-                        animationController.reverse();
-                      } else {
-                        showFadeBackground = true;
-                        animationController.forward();
-                      }
-                    }),
+                  ),
+                  color: Colors.white,
+                  onClick: () {
+                    animationController.reverse();
+                    widget.homeStore.openFilter();
+                  },
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 30,
+              right: 20,
+              child: AnimatedBuilder(
+                animation: animationController,
+                builder: (context, child) => Transform.translate(
+                  offset: Offset.fromDirection(getRadiansFromDegree(270),
+                      degTwoTranslationAnimation.value * 180.0),
+                  child: Transform(
+                    transform: Matrix4.rotationZ(
+                        getRadiansFromDegree(rotationAnimation.value))
+                      ..scale(degTwoTranslationAnimation.value),
+                    alignment: Alignment.center,
+                    child: child,
+                  ),
+                ),
+                child: _CircularTextButton(
+                  isOpened: isOpen,
+                  text: "All Type",
+                  icon: SvgPicture.asset(
+                    AppConstants.whitePokeballLogo,
+                    color: AppTheme.colors.floatActionButton,
+                  ),
+                  color: Colors.white,
+                  onClick: () {},
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 30,
+              right: 20,
+              child: AnimatedBuilder(
+                animation: animationController,
+                builder: (context, child) => Transform.translate(
+                  offset: Offset.fromDirection(getRadiansFromDegree(270),
+                      degThreeTranslationAnimation.value * 230),
+                  child: Transform(
+                    transform: Matrix4.rotationZ(
+                        getRadiansFromDegree(rotationAnimation.value))
+                      ..scale(degThreeTranslationAnimation.value),
+                    alignment: Alignment.center,
+                    child: child,
+                  ),
+                ),
+                child: _CircularTextButton(
+                  isOpened: isOpen,
+                  text: "Favorite Pokemons",
+                  icon: Icon(
+                    Icons.favorite,
+                    color: AppTheme.colors.floatActionButton,
+                  ),
+                  color: Colors.white,
+                  onClick: () {},
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 30,
+              right: 20,
+              child: AnimatedBuilder(
+                animation: animationController,
+                builder: (context, child) => Transform(
+                  transform: Matrix4.rotationZ(
+                      getRadiansFromDegree(rotationAnimation.value)),
+                  alignment: Alignment.center,
+                  child: child,
+                ),
+                child: _CircularButton(
+                  heigth: 60,
+                  width: 60,
+                  icon: isOpen
+                      ? Icon(
+                          Icons.close,
+                          color: Colors.white,
+                          size: 20,
+                        )
+                      : SvgPicture.asset(AppConstants.fabIcon),
+                  color: AppTheme.colors.floatActionButton,
+                  onClick: () {
+                    if (animationController.isCompleted) {
+                      animationController.reverse();
+                      widget.homeStore.hideBackgroundBlack();
+                    } else {
+                      animationController.forward();
+                      widget.homeStore.showBackgroundBlack();
+                    }
+                  },
+                ),
               ),
             ),
           ],

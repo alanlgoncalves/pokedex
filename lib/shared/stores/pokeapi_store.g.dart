@@ -36,6 +36,13 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   int get index => (_$indexComputed ??=
           Computed<int>(() => super.index, name: '_PokeApiStoreBase.index'))
       .value;
+  Computed<Generation?>? _$generationFilterComputed;
+
+  @override
+  Generation? get generationFilter => (_$generationFilterComputed ??=
+          Computed<Generation?>(() => super.generationFilter,
+              name: '_PokeApiStoreBase.generationFilter'))
+      .value;
 
   final _$_pokemonsSummaryAtom =
       Atom(name: '_PokeApiStoreBase._pokemonsSummary');
@@ -98,11 +105,52 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
     });
   }
 
+  final _$_generationFilterAtom =
+      Atom(name: '_PokeApiStoreBase._generationFilter');
+
+  @override
+  Generation? get _generationFilter {
+    _$_generationFilterAtom.reportRead();
+    return super._generationFilter;
+  }
+
+  @override
+  set _generationFilter(Generation? value) {
+    _$_generationFilterAtom.reportWrite(value, super._generationFilter, () {
+      super._generationFilter = value;
+    });
+  }
+
   final _$setPokemonAsyncAction = AsyncAction('_PokeApiStoreBase.setPokemon');
 
   @override
   Future<void> setPokemon(int index) {
     return _$setPokemonAsyncAction.run(() => super.setPokemon(index));
+  }
+
+  final _$_PokeApiStoreBaseActionController =
+      ActionController(name: '_PokeApiStoreBase');
+
+  @override
+  void addGenerationFilter(Generation generationFilter) {
+    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
+        name: '_PokeApiStoreBase.addGenerationFilter');
+    try {
+      return super.addGenerationFilter(generationFilter);
+    } finally {
+      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void clearGenerationFilter() {
+    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
+        name: '_PokeApiStoreBase.clearGenerationFilter');
+    try {
+      return super.clearGenerationFilter();
+    } finally {
+      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
+    }
   }
 
   @override
@@ -111,7 +159,8 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
 pokemonSummary: ${pokemonSummary},
 pokemon: ${pokemon},
 pokemonsSummary: ${pokemonsSummary},
-index: ${index}
+index: ${index},
+generationFilter: ${generationFilter}
     ''';
   }
 }

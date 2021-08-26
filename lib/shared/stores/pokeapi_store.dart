@@ -32,15 +32,31 @@ abstract class _PokeApiStoreBase with Store {
   Pokemon? get pokemon => _pokemon;
 
   @computed
-  List<PokemonSummary>? get pokemonsSummary => _pokemonsSummary;
+  List<PokemonSummary>? get pokemonsSummary {
+    var pokemons = _pokemonsSummary;
+
+    if (_generationFilter != null) {
+      pokemons = _pokemonsSummary!
+          .where((it) => it.generation == _generationFilter)
+          .toList();
+    }
+
+    return pokemons;
+  }
 
   @computed
   int get index =>
-      _pokemonsSummary!.indexWhere((it) => it.number == _pokemon!.number);
+      pokemonsSummary!.indexWhere((it) => it.number == _pokemon!.number);
+
+  @observable
+  Generation? _generationFilter;
+
+  @computed
+  Generation? get generationFilter => _generationFilter;
 
   @action
   Future<void> setPokemon(int index) async {
-    _pokemonSummary = _pokemonsSummary![index];
+    _pokemonSummary = pokemonsSummary![index];
 
     final pokemonDetailsIndex =
         _pokemons.indexWhere((it) => it.number == _pokemonSummary!.number);
@@ -59,21 +75,31 @@ abstract class _PokeApiStoreBase with Store {
     }
   }
 
+  @action
+  void addGenerationFilter(Generation generationFilter) {
+    _generationFilter = generationFilter;
+  }
+
+  @action
+  void clearGenerationFilter() {
+    _generationFilter = null;
+  }
+
   Future<void> previousPokemon() async {
     final pokemonIndex =
-        _pokemonsSummary!.indexWhere((it) => it.number == _pokemon!.number);
+        pokemonsSummary!.indexWhere((it) => it.number == _pokemon!.number);
 
     await setPokemon(pokemonIndex - 1);
   }
 
   Future<void> nextPokemon() async {
     final pokemonIndex =
-        _pokemonsSummary!.indexWhere((it) => it.number == _pokemon!.number);
+        pokemonsSummary!.indexWhere((it) => it.number == _pokemon!.number);
 
     await setPokemon(pokemonIndex + 1);
   }
 
-  PokemonSummary getPokemon(int index) => _pokemonsSummary![index];
+  PokemonSummary getPokemon(int index) => pokemonsSummary![index];
 
   _fetchPokemonList() async {
     _pokemonsSummary = await _pokeApiRepository.fetchPokemonsSummary();
