@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class EmptyEvolutionChainWidget extends StatelessWidget {
@@ -18,7 +19,7 @@ class EmptyEvolutionChainWidget extends StatelessWidget {
             height: 250,
             width: 250,
             child: Lottie.asset(
-              'assets/lotties/pikachu.json',
+              AppConstants.pikachuLottie,
             ),
           ),
         ),

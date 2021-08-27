@@ -1,4 +1,6 @@
 class AppConstants {
+  static String get pikachuLottie => "assets/lotties/pikachu.json";
+  static String get squirtleLottie => "assets/lotties/squirtle.json";
   static String get blackPokeballLogo => "assets/images/pokeball_black.svg";
   static String get whitePokeballLogo => "assets/images/pokeball_white.svg";
   static String get fabIcon => "assets/images/icons/fab.svg";
