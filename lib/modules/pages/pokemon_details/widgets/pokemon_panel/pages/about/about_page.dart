@@ -60,7 +60,13 @@ class AboutPage extends StatelessWidget {
             ],
           ),
         ),
-        const PokemonCardsWidget(),
+        Observer(builder: (_) {
+          if (_pokeApiStore.pokemon!.cards.isNotEmpty) {
+            return const PokemonCardsWidget();
+          } else {
+            return Container();
+          }
+        })
       ],
     );
   }
