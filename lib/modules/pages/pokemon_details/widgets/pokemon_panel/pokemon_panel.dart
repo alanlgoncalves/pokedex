@@ -41,7 +41,7 @@ class _PokemonPanelWidgetState extends State<PokemonPanelWidget>
     super.dispose();
   }
 
-  double get _minSlideUpHeight => Platform.isAndroid ? 0.48 : 0.52;
+  double get _minSlideUpHeight => Platform.isAndroid ? 0.45 : 0.52;
 
   @override
   Widget build(BuildContext context) {

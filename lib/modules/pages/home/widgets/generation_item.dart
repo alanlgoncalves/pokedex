@@ -70,18 +70,18 @@ class GenerationItemWidget extends StatelessWidget {
                       children: [
                         Image.asset(
                           "assets/images/pokemons_generations/generation_${generation.number}/1.png",
-                          width: 54,
-                          height: 54,
+                          width: 50,
+                          height: 50,
                         ),
                         Image.asset(
                           "assets/images/pokemons_generations/generation_${generation.number}/2.png",
-                          width: 54,
-                          height: 54,
+                          width: 50,
+                          height: 50,
                         ),
                         Image.asset(
                           "assets/images/pokemons_generations/generation_${generation.number}/3.png",
-                          width: 54,
-                          height: 54,
+                          width: 50,
+                          height: 50,
                         ),
                       ],
                     )
