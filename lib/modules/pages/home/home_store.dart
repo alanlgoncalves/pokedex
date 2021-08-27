@@ -4,6 +4,8 @@ part 'home_store.g.dart';
 
 class HomeStore = _HomeStoreBase with _$HomeStore;
 
+enum PanelType { FILTER_POKEMON_GENERATION, FILTER_POKEMON_TYPE }
+
 abstract class _HomeStoreBase with Store {
   @observable
   bool _isFilterOpen = false;
@@ -14,8 +16,14 @@ abstract class _HomeStoreBase with Store {
   @observable
   bool _isFabVisible = true;
 
+  @observable
+  PanelType _panelType = PanelType.FILTER_POKEMON_GENERATION;
+
   @computed
   bool get isFilterOpen => _isFilterOpen;
+
+  @computed
+  PanelType get panelType => _panelType;
 
   @computed
   bool get isBackgroundBlack => _isBackgroundBlack;
@@ -51,5 +59,10 @@ abstract class _HomeStoreBase with Store {
   @action
   void hideFloatActionButton() {
     _isFabVisible = false;
+  }
+
+  @action
+  void setPanelType(PanelType panelType) {
+    _panelType = panelType;
   }
 }

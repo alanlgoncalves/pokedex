@@ -43,6 +43,13 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
           Computed<Generation?>(() => super.generationFilter,
               name: '_PokeApiStoreBase.generationFilter'))
       .value;
+  Computed<String?>? _$typeFilterComputed;
+
+  @override
+  String? get typeFilter =>
+      (_$typeFilterComputed ??= Computed<String?>(() => super.typeFilter,
+              name: '_PokeApiStoreBase.typeFilter'))
+          .value;
 
   final _$_pokemonsSummaryAtom =
       Atom(name: '_PokeApiStoreBase._pokemonsSummary');
@@ -121,6 +128,21 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
     });
   }
 
+  final _$_typeFilterAtom = Atom(name: '_PokeApiStoreBase._typeFilter');
+
+  @override
+  String? get _typeFilter {
+    _$_typeFilterAtom.reportRead();
+    return super._typeFilter;
+  }
+
+  @override
+  set _typeFilter(String? value) {
+    _$_typeFilterAtom.reportWrite(value, super._typeFilter, () {
+      super._typeFilter = value;
+    });
+  }
+
   final _$setPokemonAsyncAction = AsyncAction('_PokeApiStoreBase.setPokemon');
 
   @override
@@ -154,13 +176,36 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   }
 
   @override
+  void addTypeFilter(String type) {
+    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
+        name: '_PokeApiStoreBase.addTypeFilter');
+    try {
+      return super.addTypeFilter(type);
+    } finally {
+      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void clearTypeFilter() {
+    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
+        name: '_PokeApiStoreBase.clearTypeFilter');
+    try {
+      return super.clearTypeFilter();
+    } finally {
+      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 pokemonSummary: ${pokemonSummary},
 pokemon: ${pokemon},
 pokemonsSummary: ${pokemonsSummary},
 index: ${index},
-generationFilter: ${generationFilter}
+generationFilter: ${generationFilter},
+typeFilter: ${typeFilter}
     ''';
   }
 }

@@ -36,9 +36,12 @@ abstract class _PokeApiStoreBase with Store {
     var pokemons = _pokemonsSummary;
 
     if (_generationFilter != null) {
-      pokemons = _pokemonsSummary!
-          .where((it) => it.generation == _generationFilter)
-          .toList();
+      pokemons =
+          pokemons!.where((it) => it.generation == _generationFilter).toList();
+    }
+
+    if (_typeFilter != null) {
+      pokemons = pokemons!.where((it) => it.types[0] == _typeFilter).toList();
     }
 
     return pokemons;
@@ -51,8 +54,14 @@ abstract class _PokeApiStoreBase with Store {
   @observable
   Generation? _generationFilter;
 
+  @observable
+  String? _typeFilter;
+
   @computed
   Generation? get generationFilter => _generationFilter;
+
+  @computed
+  String? get typeFilter => _typeFilter;
 
   @action
   Future<void> setPokemon(int index) async {
@@ -83,6 +92,16 @@ abstract class _PokeApiStoreBase with Store {
   @action
   void clearGenerationFilter() {
     _generationFilter = null;
+  }
+
+  @action
+  void addTypeFilter(String type) {
+    _typeFilter = type;
+  }
+
+  @action
+  void clearTypeFilter() {
+    _typeFilter = null;
   }
 
   Future<void> previousPokemon() async {

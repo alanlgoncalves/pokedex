@@ -136,7 +136,7 @@ class _AnimatedFloatActionButtonWidgetState
                 child: _CircularTextButton(
                   isOpened: isOpen,
                   text: pokeApiStore.generationFilter == null
-                      ? "All generations"
+                      ? "All Generations"
                       : pokeApiStore.generationFilter!.description,
                   icon: SvgPicture.asset(
                     AppConstants.whitePokeballLogo,
@@ -145,6 +145,8 @@ class _AnimatedFloatActionButtonWidgetState
                   color: Colors.white,
                   onClick: () {
                     animationController.reverse();
+                    widget.homeStore
+                        .setPanelType(PanelType.FILTER_POKEMON_GENERATION);
                     widget.homeStore.openFilter();
                   },
                 ),
@@ -168,13 +170,20 @@ class _AnimatedFloatActionButtonWidgetState
                 ),
                 child: _CircularTextButton(
                   isOpened: isOpen,
-                  text: "All Type",
+                  text: pokeApiStore.typeFilter == null
+                      ? "All Types"
+                      : pokeApiStore.typeFilter!,
                   icon: SvgPicture.asset(
                     AppConstants.whitePokeballLogo,
                     color: AppTheme.colors.floatActionButton,
                   ),
                   color: Colors.white,
-                  onClick: () {},
+                  onClick: () {
+                    animationController.reverse();
+                    widget.homeStore
+                        .setPanelType(PanelType.FILTER_POKEMON_TYPE);
+                    widget.homeStore.openFilter();
+                  },
                 ),
               ),
             ),

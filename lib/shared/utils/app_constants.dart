@@ -1,8 +1,28 @@
 class AppConstants {
   static String get blackPokeballLogo => "assets/images/pokeball_black.svg";
   static String get whitePokeballLogo => "assets/images/pokeball_white.svg";
-
   static String get fabIcon => "assets/images/icons/fab.svg";
+
+  static List<String> types = [
+    "Normal",
+    "Fire",
+    "Water",
+    "Grass",
+    "Electric",
+    "Ice",
+    "Fighting",
+    "Poison",
+    "Ground",
+    "Flying",
+    "Psychic",
+    "Bug",
+    "Rock",
+    "Ghost",
+    "Dark",
+    "Dragon",
+    "Steel",
+    "Fairy",
+  ];
 
   static String pokemonTypeLogo(String type) {
     switch (type.toLowerCase()) {

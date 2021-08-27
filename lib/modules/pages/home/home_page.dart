@@ -4,6 +4,8 @@ import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pokedex/modules/pages/home/home_store.dart';
 import 'package:pokedex/modules/pages/home/pokemon_generation_filter.dart';
+
+import 'package:pokedex/modules/pages/home/pokemon_type_filter.dart';
 import 'package:pokedex/modules/pages/home/widgets/animated_float_action_button.dart';
 import 'package:pokedex/modules/pages/home/widgets/app_bar.dart';
 import 'package:pokedex/modules/pages/home/widgets/pokemon_grid.dart';
@@ -117,6 +119,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       );
                     }
                   },
+                ),
+                SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 100,
+                  ),
                 )
               ],
             ),
@@ -158,7 +165,25 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   },
                   controller: _panelController,
                   panelBuilder: (scrollController) {
-                    return PokemonGenerationFilter(homeStore: _homeStore);
+                    return Observer(builder: (_) {
+                      if (_homeStore.panelType ==
+                          PanelType.FILTER_POKEMON_TYPE) {
+                        return PokemonTypeFilter(
+                          homeStore: _homeStore,
+                          scrollController: scrollController,
+                        );
+                      }
+
+                      if (_homeStore.panelType ==
+                          PanelType.FILTER_POKEMON_GENERATION) {
+                        return PokemonGenerationFilter(
+                          homeStore: _homeStore,
+                          scrollController: scrollController,
+                        );
+                      }
+
+                      return Container();
+                    });
                   }),
             ],
           ),
