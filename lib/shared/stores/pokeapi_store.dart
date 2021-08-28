@@ -2,6 +2,7 @@ import 'package:mobx/mobx.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
 import 'package:pokedex/shared/models/pokemon_summary.dart';
 import 'package:pokedex/shared/repositories/poke_api_repository.dart';
+
 part 'pokeapi_store.g.dart';
 
 class PokeApiStore = _PokeApiStoreBase with _$PokeApiStore;
@@ -28,6 +29,15 @@ abstract class _PokeApiStoreBase with Store {
   @observable
   Pokemon? _pokemon;
 
+  @observable
+  Generation? _generationFilter;
+
+  @observable
+  String? _typeFilter;
+
+  @observable
+  String? _pokemonNameNumberFilter;
+
   @computed
   Pokemon? get pokemon => _pokemon;
 
@@ -44,6 +54,16 @@ abstract class _PokeApiStoreBase with Store {
       pokemons = pokemons!.where((it) => it.types[0] == _typeFilter).toList();
     }
 
+    if (_pokemonNameNumberFilter != null) {
+      pokemons = pokemons!
+          .where((it) =>
+              it.name
+                  .toLowerCase()
+                  .contains(_pokemonNameNumberFilter!.toLowerCase()) ||
+              it.number.contains(_pokemonNameNumberFilter!))
+          .toList();
+    }
+
     return pokemons;
   }
 
@@ -51,17 +71,14 @@ abstract class _PokeApiStoreBase with Store {
   int get index =>
       pokemonsSummary!.indexWhere((it) => it.number == _pokemon!.number);
 
-  @observable
-  Generation? _generationFilter;
-
-  @observable
-  String? _typeFilter;
-
   @computed
   Generation? get generationFilter => _generationFilter;
 
   @computed
   String? get typeFilter => _typeFilter;
+
+  @computed
+  String? get pokemonNameNumberFilter => _pokemonNameNumberFilter;
 
   @action
   Future<void> setPokemon(int index) async {
@@ -102,6 +119,16 @@ abstract class _PokeApiStoreBase with Store {
   @action
   void clearTypeFilter() {
     _typeFilter = null;
+  }
+
+  @action
+  void setNameNumberFilter(String nameNumberFilter) {
+    _pokemonNameNumberFilter = nameNumberFilter;
+  }
+
+  @action
+  void clearNameNumberFilter() {
+    _pokemonNameNumberFilter = null;
   }
 
   Future<void> previousPokemon() async {

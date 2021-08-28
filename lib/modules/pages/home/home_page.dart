@@ -1,15 +1,18 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pokedex/modules/pages/home/home_store.dart';
+import 'package:pokedex/modules/pages/home/pokemon_filter.dart';
 import 'package:pokedex/modules/pages/home/pokemon_generation_filter.dart';
-
 import 'package:pokedex/modules/pages/home/pokemon_type_filter.dart';
 import 'package:pokedex/modules/pages/home/widgets/animated_float_action_button.dart';
 import 'package:pokedex/modules/pages/home/widgets/app_bar.dart';
 import 'package:pokedex/modules/pages/home/widgets/pokemon_grid.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/shared/utils/converters.dart';
 import 'package:pokedex/theme/app_theme.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
@@ -62,6 +65,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       TweenSequenceItem(tween: Tween(begin: 1.4, end: 1.0), weight: 20.0),
     ]).animate(_fabAnimationController);
 
+    // TODO - Add on dispose()
     reaction((_) => _homeStore.isFilterOpen, (_) {
       if (_homeStore.isFilterOpen) {
         _panelController.open();
@@ -74,6 +78,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       }
     });
 
+    // TODO - Add on dispose()
     reaction((_) => _homeStore.isBackgroundBlack, (_) {
       if (_homeStore.isBackgroundBlack) {
         _backgroundAnimationController.forward();
@@ -82,11 +87,19 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       }
     });
 
+    // TODO - Add on dispose()
     reaction((_) => _homeStore.isFabVisible, (_) {
       if (_homeStore.isFabVisible) {
         _fabAnimationController.forward();
       } else {
         _fabAnimationController.reverse();
+      }
+    });
+
+    // TODO - Add on dispose()
+    reaction((_) => _pokeApiStore.pokemonNameNumberFilter, (_) {
+      if (_pokeApiStore.pokemonNameNumberFilter == null) {
+        BotToast.showText(text: "The search by name/number has been cleared");
       }
     });
 
@@ -113,6 +126,35 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         children: [CircularProgressIndicator()],
                       ));
                     } else {
+                      if (_pokeApiStore.pokemonNameNumberFilter != null &&
+                          _pokeApiStore.pokemonsSummary!.isEmpty) {
+                        return SliverToBoxAdapter(
+                          child: Container(
+                            height: 250,
+                            width: 250,
+                            child: Stack(
+                              children: [
+                                Center(
+                                  child: Lottie.asset(
+                                    AppConstants.pikachuLottie,
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(bottom: 30),
+                                    child: Text(
+                                      "${_pokeApiStore.pokemonNameNumberFilter} was not found",
+                                      style: AppTheme.texts.pokemonText,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      }
+
                       return SliverPadding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         sliver: PokemonGridWidget(pokeApiStore: _pokeApiStore),
@@ -147,25 +189,41 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   return Container();
                 }
               }),
-              SlidingUpPanel(
-                  maxHeight: MediaQuery.of(context).size.height * 0.75,
-                  minHeight: MediaQuery.of(context).size.height * 0.0,
-                  parallaxEnabled: true,
-                  parallaxOffset: 0.5,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                  ),
-                  boxShadow: null,
-                  onPanelClosed: () {
-                    _homeStore.closeFilter();
-                  },
-                  onPanelOpened: () {
-                    _homeStore.openFilter();
-                  },
-                  controller: _panelController,
-                  panelBuilder: (scrollController) {
-                    return Observer(builder: (_) {
+              // TODO - Separate on new Widget file
+              Observer(builder: (_) {
+                late double maxHeight;
+
+                if (_homeStore.panelType ==
+                    PanelType.FILTER_POKEMON_NAME_NUMBER) {
+                  maxHeight = 80;
+                } else {
+                  maxHeight = MediaQuery.of(context).size.height * 0.75;
+                }
+
+                return SlidingUpPanel(
+                    maxHeight: maxHeight,
+                    minHeight: MediaQuery.of(context).size.height * 0.0,
+                    parallaxEnabled: true,
+                    parallaxOffset: 0.5,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color(0xFF000000).withOpacity(0.9),
+                        blurRadius: 10.0,
+                      ),
+                    ],
+                    onPanelClosed: () {
+                      _homeStore.closeFilter();
+                      _pokeApiStore.clearNameNumberFilter();
+                    },
+                    onPanelOpened: () {
+                      _homeStore.openFilter();
+                    },
+                    controller: _panelController,
+                    panelBuilder: (scrollController) {
                       if (_homeStore.panelType ==
                           PanelType.FILTER_POKEMON_TYPE) {
                         return PokemonTypeFilter(
@@ -182,9 +240,19 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         );
                       }
 
+                      if (_homeStore.panelType ==
+                          PanelType.FILTER_POKEMON_NAME_NUMBER) {
+                        return PokemonNameNumberFilterPage(
+                          homeStore: _homeStore,
+                          onChanged: (value) {
+                            _pokeApiStore.setNameNumberFilter(value);
+                          },
+                        );
+                      }
+
                       return Container();
                     });
-                  }),
+              }),
             ],
           ),
           AnimatedBuilder(

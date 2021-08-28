@@ -16,11 +16,11 @@ mixin _$HomeStore on _HomeStoreBase, Store {
       (_$isFilterOpenComputed ??= Computed<bool>(() => super.isFilterOpen,
               name: '_HomeStoreBase.isFilterOpen'))
           .value;
-  Computed<PanelType>? _$panelTypeComputed;
+  Computed<PanelType?>? _$panelTypeComputed;
 
   @override
-  PanelType get panelType =>
-      (_$panelTypeComputed ??= Computed<PanelType>(() => super.panelType,
+  PanelType? get panelType =>
+      (_$panelTypeComputed ??= Computed<PanelType?>(() => super.panelType,
               name: '_HomeStoreBase.panelType'))
           .value;
   Computed<bool>? _$isBackgroundBlackComputed;
@@ -87,13 +87,13 @@ mixin _$HomeStore on _HomeStoreBase, Store {
   final _$_panelTypeAtom = Atom(name: '_HomeStoreBase._panelType');
 
   @override
-  PanelType get _panelType {
+  PanelType? get _panelType {
     _$_panelTypeAtom.reportRead();
     return super._panelType;
   }
 
   @override
-  set _panelType(PanelType value) {
+  set _panelType(PanelType? value) {
     _$_panelTypeAtom.reportWrite(value, super._panelType, () {
       super._panelType = value;
     });

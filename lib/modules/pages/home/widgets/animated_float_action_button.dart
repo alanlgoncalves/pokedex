@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/modules/pages/home/home_store.dart';
+import 'package:pokedex/shared/models/pokemon.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/shared/utils/converters.dart';
-import 'package:pokedex/shared/models/pokemon.dart';
-
 import 'package:pokedex/theme/app_theme.dart';
 
 class AnimatedFloatActionButtonWidget extends StatefulWidget {
@@ -113,7 +112,13 @@ class _AnimatedFloatActionButtonWidgetState
                     ),
                   ),
                   color: Colors.white,
-                  onClick: () {},
+                  onClick: () {
+                    animationController.reverse();
+                    widget.homeStore
+                        .setPanelType(PanelType.FILTER_POKEMON_NAME_NUMBER);
+                    widget.homeStore.openFilter();
+                    widget.homeStore.hideBackgroundBlack();
+                  },
                 ),
               ),
             ),

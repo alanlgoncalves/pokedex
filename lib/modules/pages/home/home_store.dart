@@ -4,7 +4,11 @@ part 'home_store.g.dart';
 
 class HomeStore = _HomeStoreBase with _$HomeStore;
 
-enum PanelType { FILTER_POKEMON_GENERATION, FILTER_POKEMON_TYPE }
+enum PanelType {
+  FILTER_POKEMON_GENERATION,
+  FILTER_POKEMON_TYPE,
+  FILTER_POKEMON_NAME_NUMBER
+}
 
 abstract class _HomeStoreBase with Store {
   @observable
@@ -17,13 +21,13 @@ abstract class _HomeStoreBase with Store {
   bool _isFabVisible = true;
 
   @observable
-  PanelType _panelType = PanelType.FILTER_POKEMON_GENERATION;
+  PanelType? _panelType;
 
   @computed
   bool get isFilterOpen => _isFilterOpen;
 
   @computed
-  PanelType get panelType => _panelType;
+  PanelType? get panelType => _panelType;
 
   @computed
   bool get isBackgroundBlack => _isBackgroundBlack;
@@ -39,6 +43,7 @@ abstract class _HomeStoreBase with Store {
   @action
   void closeFilter() {
     _isFilterOpen = false;
+    _panelType = null;
   }
 
   @action

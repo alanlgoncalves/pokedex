@@ -50,6 +50,13 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
       (_$typeFilterComputed ??= Computed<String?>(() => super.typeFilter,
               name: '_PokeApiStoreBase.typeFilter'))
           .value;
+  Computed<String?>? _$pokemonNameNumberFilterComputed;
+
+  @override
+  String? get pokemonNameNumberFilter => (_$pokemonNameNumberFilterComputed ??=
+          Computed<String?>(() => super.pokemonNameNumberFilter,
+              name: '_PokeApiStoreBase.pokemonNameNumberFilter'))
+      .value;
 
   final _$_pokemonsSummaryAtom =
       Atom(name: '_PokeApiStoreBase._pokemonsSummary');
@@ -143,6 +150,23 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
     });
   }
 
+  final _$_pokemonNameNumberFilterAtom =
+      Atom(name: '_PokeApiStoreBase._pokemonNameNumberFilter');
+
+  @override
+  String? get _pokemonNameNumberFilter {
+    _$_pokemonNameNumberFilterAtom.reportRead();
+    return super._pokemonNameNumberFilter;
+  }
+
+  @override
+  set _pokemonNameNumberFilter(String? value) {
+    _$_pokemonNameNumberFilterAtom
+        .reportWrite(value, super._pokemonNameNumberFilter, () {
+      super._pokemonNameNumberFilter = value;
+    });
+  }
+
   final _$setPokemonAsyncAction = AsyncAction('_PokeApiStoreBase.setPokemon');
 
   @override
@@ -198,6 +222,28 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   }
 
   @override
+  void setNameNumberFilter(String nameNumberFilter) {
+    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
+        name: '_PokeApiStoreBase.setNameNumberFilter');
+    try {
+      return super.setNameNumberFilter(nameNumberFilter);
+    } finally {
+      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void clearNameNumberFilter() {
+    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
+        name: '_PokeApiStoreBase.clearNameNumberFilter');
+    try {
+      return super.clearNameNumberFilter();
+    } finally {
+      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 pokemonSummary: ${pokemonSummary},
@@ -205,7 +251,8 @@ pokemon: ${pokemon},
 pokemonsSummary: ${pokemonsSummary},
 index: ${index},
 generationFilter: ${generationFilter},
-typeFilter: ${typeFilter}
+typeFilter: ${typeFilter},
+pokemonNameNumberFilter: ${pokemonNameNumberFilter}
     ''';
   }
 }
