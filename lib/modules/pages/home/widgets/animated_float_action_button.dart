@@ -281,6 +281,13 @@ class _CircularButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(50),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.4),
+              blurRadius: 3.0,
+              offset: Offset(-3.0, -3.0),
+            )
+          ],
         ),
         child: Padding(
           padding: const EdgeInsets.all(20),

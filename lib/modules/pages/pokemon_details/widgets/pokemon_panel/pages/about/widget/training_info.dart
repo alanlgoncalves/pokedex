@@ -11,129 +11,135 @@ class TrainingInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 9),
-                child: Text(
-                  "Training",
-                  style: AppTheme.texts.pokemonTabViewTitle,
-                ),
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 9),
+              child: Text(
+                "Training",
+                style: AppTheme.texts.pokemonTabViewTitle,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 9),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 88,
-                          child: Text(
-                            "EV yield",
-                            style: AppTheme.texts.pokemonTabViewSubTitle,
-                          ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 9),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 88,
+                              child: Text(
+                                "EV yield",
+                                style: AppTheme.texts.pokemonTabViewSubTitle,
+                              ),
+                            ),
+                            Observer(
+                              builder: (_) => Text(
+                                "${_pokeApiStore.pokemon!.training.evYield}",
+                                style: AppTheme.texts.pokemonText,
+                              ),
+                            ),
+                          ],
                         ),
-                        Observer(
-                          builder: (_) => Text(
-                            "${_pokeApiStore.pokemon!.training.evYield}",
-                            style: AppTheme.texts.pokemonText,
-                          ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 9),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 88,
+                              child: Text(
+                                "Catch rate",
+                                style: AppTheme.texts.pokemonTabViewSubTitle,
+                              ),
+                            ),
+                            Observer(
+                              builder: (_) => Text(
+                                "${_pokeApiStore.pokemon!.training.catchRate}",
+                                style: AppTheme.texts.pokemonText,
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 9),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 88,
-                          child: Text(
-                            "Catch rate",
-                            style: AppTheme.texts.pokemonTabViewSubTitle,
-                          ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 9),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 88,
+                              child: Text(
+                                "Base Friendship",
+                                style: AppTheme.texts.pokemonTabViewSubTitle,
+                              ),
+                            ),
+                            Observer(
+                              builder: (_) => Text(
+                                "${_pokeApiStore.pokemon!.training.baseFriendship}",
+                                style: AppTheme.texts.pokemonText,
+                              ),
+                            ),
+                          ],
                         ),
-                        Observer(
-                          builder: (_) => Text(
-                            "${_pokeApiStore.pokemon!.training.catchRate}",
-                            style: AppTheme.texts.pokemonText,
-                          ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 9),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 88,
+                              child: Text(
+                                "Base Exp.",
+                                style: AppTheme.texts.pokemonTabViewSubTitle,
+                              ),
+                            ),
+                            Observer(
+                              builder: (_) => Text(
+                                "${_pokeApiStore.pokemon!.training.baseExp}",
+                                style: AppTheme.texts.pokemonText,
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 9),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 88,
-                          child: Text(
-                            "Base Friendship",
-                            style: AppTheme.texts.pokemonTabViewSubTitle,
-                          ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 9),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 88,
+                              child: Text(
+                                "Growth Rate	",
+                                style: AppTheme.texts.pokemonTabViewSubTitle,
+                              ),
+                            ),
+                            Observer(
+                              builder: (_) => Text(
+                                "${_pokeApiStore.pokemon!.training.growthRate}",
+                                style: AppTheme.texts.pokemonText,
+                              ),
+                            ),
+                          ],
                         ),
-                        Observer(
-                          builder: (_) => Text(
-                            "${_pokeApiStore.pokemon!.training.baseFriendship}",
-                            style: AppTheme.texts.pokemonText,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 9),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 88,
-                          child: Text(
-                            "Base Exp.",
-                            style: AppTheme.texts.pokemonTabViewSubTitle,
-                          ),
-                        ),
-                        Observer(
-                          builder: (_) => Text(
-                            "${_pokeApiStore.pokemon!.training.baseExp}",
-                            style: AppTheme.texts.pokemonText,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 9),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 88,
-                          child: Text(
-                            "Growth Rate	",
-                            style: AppTheme.texts.pokemonTabViewSubTitle,
-                          ),
-                        ),
-                        Observer(
-                          builder: (_) => Text(
-                            "${_pokeApiStore.pokemon!.training.growthRate}",
-                            style: AppTheme.texts.pokemonText,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
-              )
-            ],
-          ),
-        ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

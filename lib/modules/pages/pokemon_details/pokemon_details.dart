@@ -9,10 +9,9 @@ import 'package:pokedex/modules/pages/pokemon_details/widgets/app_bar_navigation
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_pager.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pokemon_panel.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_title_info.dart';
-
+import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
 
 class PokemonDetailsPage extends StatefulWidget {
   const PokemonDetailsPage({Key? key}) : super(key: key);
@@ -43,13 +42,6 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
     _animationController.dispose();
     super.dispose();
   }
-
-  EdgeInsets get paggerPadding => EdgeInsets.only(
-        top: _pokemonDetailsStore.opacityTitleAppbar == 1
-            ? MediaQuery.of(context).size.height
-            : (MediaQuery.of(context).size.height * 0.14) -
-                (_pokemonDetailsStore.progress * 100),
-      );
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +82,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
           }),
           Observer(builder: (_) {
             return Padding(
-              padding: paggerPadding.add(EdgeInsets.only(top: 150)),
+              padding: EdgeInsets.only(top: 280),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -108,7 +100,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
               duration: Duration(milliseconds: 30),
               opacity: _pokemonDetailsStore.opacityPokemon,
               child: Padding(
-                padding: paggerPadding,
+                padding: EdgeInsets.only(top: 110),
                 child: SizedBox(
                   height: 223,
                   child: Center(
@@ -135,7 +127,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
               duration: Duration(milliseconds: 300),
               opacity: _pokemonDetailsStore.opacityPokemon,
               child: Padding(
-                  padding: paggerPadding,
+                  padding: EdgeInsets.only(top: 120),
                   child: PokemonPagerWidget(
                       pokemonDetailStore: _pokemonDetailsStore)),
             ),
@@ -153,6 +145,8 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
 
               return true;
             },
+            topPadding: MediaQuery.of(context).padding.top,
+            bottomPadding: MediaQuery.of(context).padding.bottom,
           ),
         ],
       ),

@@ -56,6 +56,21 @@ class PokemonTypeItemWidget extends StatelessWidget {
                 ),
               ),
             ),
+            Positioned(
+              top: -45,
+              left: -45,
+              child: Container(
+                child: Opacity(
+                  opacity: 0.3,
+                  child: SvgPicture.asset(
+                    AppConstants.whitePokeballLogo,
+                    color: Color(0xFFFFFFFF).withOpacity(0.4),
+                    height: 83,
+                    width: 83,
+                  ),
+                ),
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -68,8 +83,8 @@ class PokemonTypeItemWidget extends StatelessWidget {
                     ),
                     SvgPicture.asset(
                       AppConstants.pokemonTypeLogo(type),
-                      height: 80,
-                      width: 80,
+                      height: 60,
+                      width: 60,
                     ),
                   ],
                 ),

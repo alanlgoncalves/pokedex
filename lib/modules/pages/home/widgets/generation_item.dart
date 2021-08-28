@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:pokedex/shared/models/pokemon.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
-import 'package:pokedex/shared/models/pokemon.dart';
 
 class GenerationItemWidget extends StatelessWidget {
   final Generation generation;
@@ -70,18 +70,18 @@ class GenerationItemWidget extends StatelessWidget {
                       children: [
                         Image.asset(
                           "assets/images/pokemons_generations/generation_${generation.number}/1.png",
-                          width: 50,
-                          height: 50,
+                          width: 46,
+                          height: 46,
                         ),
                         Image.asset(
                           "assets/images/pokemons_generations/generation_${generation.number}/2.png",
-                          width: 50,
-                          height: 50,
+                          width: 46,
+                          height: 46,
                         ),
                         Image.asset(
                           "assets/images/pokemons_generations/generation_${generation.number}/3.png",
-                          width: 50,
-                          height: 50,
+                          width: 46,
+                          height: 46,
                         ),
                       ],
                     )

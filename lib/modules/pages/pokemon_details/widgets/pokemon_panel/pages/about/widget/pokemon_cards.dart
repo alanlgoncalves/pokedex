@@ -83,26 +83,17 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
                                 tag: "${card.name}-" +
                                     "${card.number}- " +
                                     "${card.expansionName}",
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
-                                  child: Container(
+                                child: Container(
+                                  width: 245,
+                                  height: 320,
+                                  child: Card(
+                                    color: Colors.transparent,
                                     child: CachedNetworkImage(
                                       width: 245,
                                       height: 342,
                                       imageUrl: card.imageUrl,
                                     ),
-                                    decoration: BoxDecoration(boxShadow: [
-                                      BoxShadow(
-                                        color: Color(0xFF000000).withAlpha(60),
-                                        blurRadius: 6.0,
-                                        spreadRadius: 3.0,
-                                        offset: Offset(
-                                          0.0,
-                                          5.0,
-                                        ),
-                                      ),
-                                    ]),
+                                    elevation: 8,
                                   ),
                                 ),
                               ),
@@ -113,9 +104,12 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
                                 "${card.number} - ${card.name}",
                                 style: AppTheme.texts.pokemonText,
                               ),
-                              Text(
-                                "${card.expansionName}",
-                                style: AppTheme.texts.pokemonText,
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  "${card.expansionName}",
+                                  style: AppTheme.texts.pokemonText,
+                                ),
                               ),
                             ],
                           ));

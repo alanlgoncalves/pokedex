@@ -126,7 +126,7 @@ class AppTextStylesDefault extends AppTextStyles {
   @override
   TextStyle get pokemonTabViewTitle => TextStyle(
         fontFamily: "CircularStd-Book",
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: FontWeight.bold,
       );
 

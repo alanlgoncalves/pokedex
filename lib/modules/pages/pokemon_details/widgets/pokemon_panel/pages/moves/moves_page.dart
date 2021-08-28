@@ -52,6 +52,7 @@ class _MovesPageState extends State<MovesPage>
 
             return ExpansionPanelList(
               elevation: 0,
+              expandedHeaderPadding: EdgeInsets.zero,
               children: [
                 if (_pokeApiStore.pokemon!.moves.levelUp.isNotEmpty)
                   ExpansionPanel(
@@ -62,9 +63,12 @@ class _MovesPageState extends State<MovesPage>
                         style: AppTheme.texts.pokemonTabViewTitle,
                       ),
                     ),
-                    body: LevelUpMovesTableWidget(
-                      movesStore: _movesStore,
-                      index: getCounterAndAdd(),
+                    body: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: LevelUpMovesTableWidget(
+                        movesStore: _movesStore,
+                        index: getCounterAndAdd(),
+                      ),
                     ),
                   ),
                 if (_pokeApiStore.pokemon!.moves.technicalMachine.isNotEmpty)
@@ -76,9 +80,12 @@ class _MovesPageState extends State<MovesPage>
                         style: AppTheme.texts.pokemonTabViewTitle,
                       ),
                     ),
-                    body: TechnicalMachinesMovesTableWidget(
-                      movesStore: _movesStore,
-                      index: getCounterAndAdd(),
+                    body: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: TechnicalMachinesMovesTableWidget(
+                        movesStore: _movesStore,
+                        index: getCounterAndAdd(),
+                      ),
                     ),
                   ),
                 if (_pokeApiStore.pokemon!.moves.technicalRecords.isNotEmpty)
@@ -90,9 +97,12 @@ class _MovesPageState extends State<MovesPage>
                         style: AppTheme.texts.pokemonTabViewTitle,
                       ),
                     ),
-                    body: TechnicalRecordsMovesTableWidget(
-                      movesStore: _movesStore,
-                      index: getCounterAndAdd(),
+                    body: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: TechnicalRecordsMovesTableWidget(
+                        movesStore: _movesStore,
+                        index: getCounterAndAdd(),
+                      ),
                     ),
                   ),
                 if (_pokeApiStore.pokemon!.moves.evolution.isNotEmpty)
@@ -104,9 +114,12 @@ class _MovesPageState extends State<MovesPage>
                         style: AppTheme.texts.pokemonTabViewTitle,
                       ),
                     ),
-                    body: EvolutionMovesTableWidget(
-                      movesStore: _movesStore,
-                      index: getCounterAndAdd(),
+                    body: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: EvolutionMovesTableWidget(
+                        movesStore: _movesStore,
+                        index: getCounterAndAdd(),
+                      ),
                     ),
                   ),
                 if (_pokeApiStore.pokemon!.moves.egg.isNotEmpty)
@@ -118,9 +131,12 @@ class _MovesPageState extends State<MovesPage>
                         style: AppTheme.texts.pokemonTabViewTitle,
                       ),
                     ),
-                    body: EggMovesTableWidget(
-                      movesStore: _movesStore,
-                      index: getCounterAndAdd(),
+                    body: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: EggMovesTableWidget(
+                        movesStore: _movesStore,
+                        index: getCounterAndAdd(),
+                      ),
                     ),
                   ),
                 if (_pokeApiStore.pokemon!.moves.tutor.isNotEmpty)
@@ -132,9 +148,12 @@ class _MovesPageState extends State<MovesPage>
                         style: AppTheme.texts.pokemonTabViewTitle,
                       ),
                     ),
-                    body: TutorMovesTableWidget(
-                      movesStore: _movesStore,
-                      index: getCounterAndAdd(),
+                    body: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: TutorMovesTableWidget(
+                        movesStore: _movesStore,
+                        index: getCounterAndAdd(),
+                      ),
                     ),
                   ),
               ],
