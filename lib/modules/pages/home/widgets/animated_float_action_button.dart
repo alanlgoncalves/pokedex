@@ -223,6 +223,8 @@ class _AnimatedFloatActionButtonWidgetState
                   color: Colors.white,
                   onClick: () {
                     BotToast.showText(text: "Not implemented yet");
+                    animationController.reverse();
+                    widget.homeStore.hideBackgroundBlack();
                   },
                 ),
               ),
