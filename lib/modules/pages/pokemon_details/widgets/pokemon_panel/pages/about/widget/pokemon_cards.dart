@@ -21,8 +21,6 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
   @override
   void initState() {
     super.initState();
-
-    _pageController = PageController(initialPage: 0, viewportFraction: 0.65);
   }
 
   @override
@@ -33,6 +31,36 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
+    double? viewportFraction = 0;
+
+    if (size.width > 1200) {
+      viewportFraction = 0.18;
+    } else if (size.width > 900) {
+      viewportFraction = 0.22;
+    } else if (size.width > 600) {
+      viewportFraction = 0.35;
+    } else {
+      viewportFraction = 0.5;
+    }
+
+    //TODO - Make it with util class
+    double horizontalPadding = 0;
+
+    if (size.width > 1200) {
+      horizontalPadding = size.width * 0.28;
+    } else if (size.width > 900) {
+      horizontalPadding = size.width * 0.2;
+    } else if (size.width > 600) {
+      horizontalPadding = 28;
+    } else {
+      horizontalPadding = 28;
+    }
+
+    _pageController =
+        PageController(initialPage: 0, viewportFraction: viewportFraction);
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Row(
@@ -41,11 +69,10 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 9, horizontal: 28),
-                child: Observer(
-                  builder: (_) => Text(
+              Observer(
+                builder: (_) => Padding(
+                  padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+                  child: Text(
                     "${_pokeApiStore.pokemon!.name} Cards",
                     style: AppTheme.texts.pokemonTabViewTitle,
                   ),
@@ -84,21 +111,14 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
                                     "${card.number}- " +
                                     "${card.expansionName}",
                                 child: Container(
-                                  width: 245,
-                                  height: 320,
-                                  child: Card(
-                                    color: Colors.transparent,
-                                    child: CachedNetworkImage(
-                                      width: 245,
-                                      height: 342,
-                                      imageUrl: card.imageUrl,
-                                    ),
-                                    elevation: 8,
+                                  width: 230,
+                                  height: 280,
+                                  child: CachedNetworkImage(
+                                    width: 225,
+                                    height: 342,
+                                    imageUrl: card.imageUrl,
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 10,
                               ),
                               Text(
                                 "${card.number} - ${card.name}",
@@ -118,7 +138,7 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
                 ),
               ),
               SizedBox(
-                height: 100,
+                height: 150,
               )
             ],
           ),

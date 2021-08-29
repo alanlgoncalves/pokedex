@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:pokedex/shared/canvas/white_pokeball_canvas.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
-import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class GenerationItemWidget extends StatelessWidget {
@@ -45,13 +44,10 @@ class GenerationItemWidget extends StatelessWidget {
               bottom: -15,
               right: -3,
               child: Container(
-                child: Opacity(
-                  opacity: 0.3,
-                  child: SvgPicture.asset(
-                    AppConstants.whitePokeballLogo,
-                    color: Color(0xFF303943).withOpacity(0.5),
-                    height: 83,
-                    width: 83,
+                child: CustomPaint(
+                  size: Size(83, (83 * 1.0040160642570282).toDouble()),
+                  painter: PokeballLogoPainter(
+                    color: AppTheme.colors.pokeballLogoGray,
                   ),
                 ),
               ),

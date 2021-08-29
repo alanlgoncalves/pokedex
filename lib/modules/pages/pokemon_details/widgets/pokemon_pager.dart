@@ -51,7 +51,7 @@ class _PokemonPagerState extends State<PokemonPagerWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 223,
+      height: 223 * MediaQuery.of(context).devicePixelRatio,
       child: PageView.builder(
         controller: _pageController,
         itemCount: _pokeApiStore.pokemonsSummary!.length,

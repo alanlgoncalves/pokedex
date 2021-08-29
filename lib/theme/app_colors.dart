@@ -4,6 +4,8 @@ abstract class AppColors {
   const AppColors();
 
   Color get background;
+  Color get pokeballLogoBlack;
+  Color get pokeballLogoGray;
   Color pokemonItem(String type);
 
   Color get floatActionButton;
@@ -114,4 +116,10 @@ class AppColorsDefault extends AppColors {
 
   @override
   Color get selectedGenerationFilter => Color(0xFF666666).withOpacity(0.4);
+
+  @override
+  Color get pokeballLogoBlack => Color(0xFF303943);
+
+  @override
+  Color get pokeballLogoGray => Color(0xFF303943).withOpacity(0.1);
 }

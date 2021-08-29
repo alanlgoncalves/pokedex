@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/modules/pages/home/home_store.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
@@ -17,39 +16,38 @@ class PokemonNameNumberFilterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Observer(builder: (_) {
-      return Padding(
-          padding: const EdgeInsets.only(left: 28, right: 28, top: 10),
-          child: Column(
-            children: [
-              TextFormField(
-                onChanged: onChanged,
-                autofocus: true,
-                minLines: 1,
-                textAlign: TextAlign.center,
-                style: AppTheme.texts.pokemonText,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search),
-                  hintText: "Ex: Charizard or 006",
-                  fillColor: Color(0xFFE1E1E1),
-                  filled: true,
-                  //hintStyle: AppTheme.textStyles.stepperHintTextField,
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                ),
+    return Padding(
+      padding: const EdgeInsets.only(left: 28, right: 28, top: 10),
+      child: Column(
+        children: [
+          TextFormField(
+            onChanged: onChanged,
+            autofocus: true,
+            minLines: 1,
+            textAlign: TextAlign.center,
+            style: AppTheme.texts.pokemonText,
+            decoration: InputDecoration(
+              prefixIcon: Icon(Icons.search),
+              hintText: "Ex: Charizard or 006",
+              fillColor: Color(0xFFE1E1E1),
+              filled: true,
+              //hintStyle: AppTheme.textStyles.stepperHintTextField,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(100),
               ),
-            ],
-          ));
-    });
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(100),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(100),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

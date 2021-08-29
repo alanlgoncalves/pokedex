@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about/about_page.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/base_stats/base_stats_page.dart';
@@ -8,26 +6,23 @@ import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/page
 import 'package:pokedex/theme/app_theme.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-class PokemonPanelWidget extends StatefulWidget {
-  final double topPadding;
-  final double bottomPadding;
+class PokemonMobilePanelWidget extends StatefulWidget {
   final Function(double position) listener;
 
-  const PokemonPanelWidget(
-      {Key? key,
-      required this.listener,
-      required this.topPadding,
-      required this.bottomPadding})
-      : super(key: key);
+  const PokemonMobilePanelWidget({
+    Key? key,
+    required this.listener,
+  }) : super(key: key);
 
   @override
-  _PokemonPanelWidgetState createState() => _PokemonPanelWidgetState();
+  _PokemonMobilePanelWidgetState createState() =>
+      _PokemonMobilePanelWidgetState();
 }
 
-class _PokemonPanelWidgetState extends State<PokemonPanelWidget>
+class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
     with
         TickerProviderStateMixin,
-        AutomaticKeepAliveClientMixin<PokemonPanelWidget> {
+        AutomaticKeepAliveClientMixin<PokemonMobilePanelWidget> {
   late TabController _tabController;
 
   @override
@@ -47,15 +42,13 @@ class _PokemonPanelWidgetState extends State<PokemonPanelWidget>
     super.dispose();
   }
 
-  double get _minSlideUpHeight => Platform.isAndroid ? 0.45 : 0.54;
-
   @override
   Widget build(BuildContext context) {
     super.build(context);
 
     return SlidingUpPanel(
-      maxHeight: MediaQuery.of(context).size.height * 0.9,
-      minHeight: MediaQuery.of(context).size.height * _minSlideUpHeight,
+      maxHeight: MediaQuery.of(context).size.height * 1,
+      minHeight: MediaQuery.of(context).size.height * 0.50,
       parallaxEnabled: true,
       parallaxOffset: 0.5,
       panelBuilder: (scrollController) {
@@ -144,7 +137,7 @@ class _PokemonPanelWidgetState extends State<PokemonPanelWidget>
                 ];
               },
               body: Padding(
-                padding: const EdgeInsets.only(top: 20),
+                padding: EdgeInsets.only(top: 20),
                 child: TabBarView(
                   controller: _tabController,
                   children: [

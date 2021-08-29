@@ -1,8 +1,9 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
+import 'package:pokedex/shared/canvas/white_pokeball_canvas.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
@@ -46,10 +47,13 @@ class _AppBarWidgetState extends State<AppBarWidget>
       flexibleSpace: Stack(children: [
         FlexibleSpaceBar(
           centerTitle: false,
-          background: Align(
-            alignment: Alignment.bottomRight,
-            child: Lottie.asset(AppConstants.squirtleLottie, height: 140.0),
-          ),
+          background: !kIsWeb
+              ? Align(
+                  alignment: Alignment.bottomRight,
+                  child:
+                      Lottie.asset(AppConstants.squirtleLottie, height: 140.0),
+                )
+              : Container(),
           titlePadding: EdgeInsets.only(left: 15, bottom: 10),
           title: Row(
             children: [
@@ -61,10 +65,13 @@ class _AppBarWidgetState extends State<AppBarWidget>
                     child: child,
                   );
                 },
-                child: SvgPicture.asset(
-                  AppConstants.blackPokeballLogo,
-                  height: 24,
-                  width: 24,
+                child: CustomPaint(
+                  size: Size(
+                      24,
+                      (24 * 1.0040160642570282)
+                          .toDouble()), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+                  painter: PokeballLogoPainter(
+                      color: AppTheme.colors.pokeballLogoBlack),
                 ),
               ),
               SizedBox(

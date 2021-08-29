@@ -1,9 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/modules/pages/home/home_store.dart';
+import 'package:pokedex/shared/canvas/white_pokeball_canvas.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
@@ -143,9 +143,11 @@ class _AnimatedFloatActionButtonWidgetState
                   text: pokeApiStore.generationFilter == null
                       ? "All Generations"
                       : pokeApiStore.generationFilter!.description,
-                  icon: SvgPicture.asset(
-                    AppConstants.whitePokeballLogo,
-                    color: AppTheme.colors.floatActionButton,
+                  icon: CustomPaint(
+                    size: Size(20, (20 * 1.0040160642570282).toDouble()),
+                    painter: PokeballLogoPainter(
+                      color: AppTheme.colors.floatActionButton,
+                    ),
                   ),
                   color: Colors.white,
                   onClick: () {
@@ -178,9 +180,11 @@ class _AnimatedFloatActionButtonWidgetState
                   text: pokeApiStore.typeFilter == null
                       ? "All Types"
                       : pokeApiStore.typeFilter!,
-                  icon: SvgPicture.asset(
-                    AppConstants.whitePokeballLogo,
-                    color: AppTheme.colors.floatActionButton,
+                  icon: CustomPaint(
+                    size: Size(20, (20 * 1.0040160642570282).toDouble()),
+                    painter: PokeballLogoPainter(
+                      color: AppTheme.colors.floatActionButton,
+                    ),
                   ),
                   color: Colors.white,
                   onClick: () {
@@ -240,7 +244,11 @@ class _AnimatedFloatActionButtonWidgetState
                           color: Colors.white,
                           size: 20,
                         )
-                      : SvgPicture.asset(AppConstants.fabIcon),
+                      : Image.asset(
+                          AppConstants.fabIcon,
+                          width: 20,
+                          height: 20,
+                        ),
                   color: AppTheme.colors.floatActionButton,
                   onClick: () {
                     if (animationController.isCompleted) {

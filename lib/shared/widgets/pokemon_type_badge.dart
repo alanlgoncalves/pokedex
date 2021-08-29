@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
@@ -26,12 +25,12 @@ class PokemonTypeBadge extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          height: height,
           width: width,
-          child: SizedBox(
-            child: SvgPicture.asset(
-              AppConstants.pokemonTypeLogo(type),
-            ),
+          height: height,
+          child: Image.asset(
+            AppConstants.pokemonTypeLogo(type),
+            width: width,
+            height: height,
           ),
           decoration: BoxDecoration(
             color: AppTheme.colors.pokemonItem(type),

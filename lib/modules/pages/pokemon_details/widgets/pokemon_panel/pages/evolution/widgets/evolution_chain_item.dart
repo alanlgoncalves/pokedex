@@ -1,10 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pokedex/shared/canvas/white_pokeball_canvas.dart';
+import 'package:pokedex/shared/models/pokemon.dart';
 import 'package:pokedex/shared/utils/hero_dialog_route.dart';
 import 'package:pokedex/shared/widgets/image_dialog.dart';
-import 'package:pokedex/shared/models/pokemon.dart';
-import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class EvolutionChainItemWidget extends StatelessWidget {
@@ -45,10 +44,11 @@ class EvolutionChainItemWidget extends StatelessWidget {
                       Container(
                         height: 83,
                         width: 83,
-                        child: Opacity(
-                          opacity: 0.1,
-                          child: SvgPicture.asset(
-                            AppConstants.blackPokeballLogo,
+                        child: CustomPaint(
+                          size: Size(83, (83 * 1.0040160642570282).toDouble()),
+                          painter: PokeballLogoPainter(
+                            color: AppTheme.colors.pokeballLogoGray
+                                .withOpacity(0.2),
                           ),
                         ),
                       ),
@@ -121,10 +121,12 @@ class EvolutionChainItemWidget extends StatelessWidget {
                       Container(
                         height: 83,
                         width: 83,
-                        child: Opacity(
-                          opacity: 0.1,
-                          child:
-                              SvgPicture.asset(AppConstants.blackPokeballLogo),
+                        child: CustomPaint(
+                          size: Size(83, (83 * 1.0040160642570282).toDouble()),
+                          painter: PokeballLogoPainter(
+                            color: AppTheme.colors.pokeballLogoGray
+                                .withOpacity(0.2),
+                          ),
                         ),
                       ),
                       Container(

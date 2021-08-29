@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:pokedex/shared/canvas/white_pokeball_canvas.dart';
 import 'package:pokedex/shared/models/pokemon_summary.dart';
-import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class PokeItemWidget extends StatelessWidget {
@@ -28,12 +28,13 @@ class PokeItemWidget extends StatelessWidget {
             bottom: -15,
             right: -3,
             child: Container(
-              child: Opacity(
-                opacity: 0.3,
-                child: SvgPicture.asset(
-                  AppConstants.whitePokeballLogo,
-                  height: 83,
-                  width: 83,
+              child: CustomPaint(
+                size: Size(
+                    83,
+                    (83 * 1.0040160642570282)
+                        .toDouble()), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+                painter: PokeballLogoPainter(
+                  color: Colors.white.withOpacity(0.3),
                 ),
               ),
             ),

@@ -18,9 +18,25 @@ class PokemonGenerationFilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
+    //TODO - Make it with util class
+    double horizontalPadding = 0;
+
+    if (size.width > 1200) {
+      horizontalPadding = size.width * 0.28;
+    } else if (size.width > 900) {
+      horizontalPadding = size.width * 0.2;
+    } else if (size.width > 600) {
+      horizontalPadding = 28;
+    } else {
+      horizontalPadding = 28;
+    }
+
     return Observer(builder: (_) {
       return Padding(
-        padding: const EdgeInsets.only(left: 28, right: 28, top: 28),
+        padding: EdgeInsets.only(
+            left: horizontalPadding, right: horizontalPadding, top: 28),
         child: Stack(
           children: [
             NestedScrollView(

@@ -18,9 +18,15 @@ class MyApp extends StatelessWidget {
       getIt.registerSingleton<PokeApiStore>(PokeApiStore());
     }
 
+    final botToastBuilder = BotToastInit();
+
     return MaterialApp(
       title: 'Pokedex',
-      builder: BotToastInit(), //1. call BotToastInit
+      builder: (context, child) {
+        child = botToastBuilder(context, child);
+
+        return child;
+      },
       navigatorObservers: [BotToastNavigatorObserver()],
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
