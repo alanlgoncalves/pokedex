@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
@@ -67,7 +68,9 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
             actions: [
               IconButton(
                 icon: Icon(Icons.favorite_border),
-                onPressed: () {},
+                onPressed: () {
+                  BotToast.showText(text: "Not implemented yet");
+                },
               ),
             ],
           );
