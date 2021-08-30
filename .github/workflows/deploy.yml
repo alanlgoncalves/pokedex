@@ -25,14 +25,11 @@ jobs:
         
       - name: Deploy to GitHub Pages
         run: |
-          cd build/web
-          git init
+          git pull https://${{secrets.TOKEN}}@github.com/alanlgoncalves/pokedex-web-release.git
+          cp -r build/web/ pokedex-web-release
+          cd pokedex-web-release
           git config --global user.email alan.lgoncalves@outlook.com
           git config --global user.name alanlgoncalves
-          git remote add origin https://${{secrets.TOKEN}}@github.com/alanlgoncalves/pokedex-web-release.git
           git add .
-          git stash
-          git pull origin master
-          git stash apply
-          git commit -m "feat: New release"
-          git push
+          git commit -m "New release"
+          git pull https://${{secrets.TOKEN}}@github.com/alanlgoncalves/pokedex-web-release.git master
