@@ -8,8 +8,6 @@ name: Dart
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   build:
@@ -21,6 +19,8 @@ jobs:
       - uses: shimataro/ssh-key-action@v2.3.1
         with:
           key: ${{secrets.SSH_KEY}}
+          known_hosts: ""
+          if_key_exists: fail
       
       - name: Install Dependencies
         run: flutter pub get
