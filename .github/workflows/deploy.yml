@@ -30,8 +30,9 @@ jobs:
           git config --global user.email alan.lgoncalves@outlook.com
           git config --global user.name alanlgoncalves
           git remote add origin https://${{secrets.TOKEN}}@github.com/alanlgoncalves/pokedex-web-release.git
-          git status
           git add .
+          git stash
+          git pull origin master
+          git stash apply
           git commit -m "feat: New release"
-          git pull --rebase
-          git branch --set-upstream-to=origin/master
+          git push
