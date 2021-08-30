@@ -34,4 +34,4 @@ jobs:
           git add .
           git commit -m "feat: New release"
           git pull --rebase
-          git push origin master
+          git branch --set-upstream-to=origin/master
