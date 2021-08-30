@@ -25,7 +25,7 @@ jobs:
         
       - name: Deploy to GitHub Pages
         run: |
-          git pull https://${{secrets.TOKEN}}@github.com/alanlgoncalves/pokedex-web-release.git
+          git clone https://${{secrets.TOKEN}}@github.com/alanlgoncalves/pokedex-web-release.git
           cp -r build/web/ pokedex-web-release
           cd pokedex-web-release
           git config --global user.email alan.lgoncalves@outlook.com
