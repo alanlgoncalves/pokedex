@@ -1,0 +1,42 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Dart
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v1.5.3
+      - uses: shimataro/ssh-key-action@v2.3.1
+        with:
+          key: ${{secrets.SSH_KEY}}
+      
+      - name: Install Dependencies
+        run: flutter pub get
+        
+      - name: Build Flutter Web
+        run: flutter build web --web-renderer html
+        
+      - name: Deploy to GitHub Pages
+        run: |
+          cd build/web
+          git init
+          git config --global user.email alan.lgoncalves@outlook.com
+          git config --global user.name alanlgsantos
+          git status
+          git remote add origin git@github.com:alanlgoncalves/pokedex-web-release.git
+          git checkout master
+          git add --all
+          git commit -m "feat: New release"
+          git push origin master
