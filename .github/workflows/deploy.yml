@@ -3,7 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Dart
+name: Flutter Web Deploy on GitHub Pages
 
 on:
   push:
@@ -19,8 +19,8 @@ jobs:
       - uses: shimataro/ssh-key-action@v2.3.1
         with:
           key: ${{secrets.SSH_KEY}}
-          known_hosts: ""
-          if_key_exists: fail
+          known_hosts: ${{secrets.KNOW_HOSTS}}
+          if_key_exists: replace
       
       - name: Install Dependencies
         run: flutter pub get
@@ -33,7 +33,7 @@ jobs:
           cd build/web
           git init
           git config --global user.email alan.lgoncalves@outlook.com
-          git config --global user.name alanlgsantos
+          git config --global user.name alanlgoncalves
           git status
           git remote add origin git@github.com:alanlgoncalves/pokedex-web-release.git
           git checkout master
