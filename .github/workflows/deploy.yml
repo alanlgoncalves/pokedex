@@ -33,4 +33,5 @@ jobs:
           git status
           git add .
           git commit -m "feat: New release"
+          git pull --rebase
           git push origin master
