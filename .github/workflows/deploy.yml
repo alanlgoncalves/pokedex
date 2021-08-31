@@ -32,4 +32,4 @@ jobs:
           git config --global user.name alanlgoncalves
           git add .
           git commit -m "New release"
-          git pull https://${{secrets.TOKEN}}@github.com/alanlgoncalves/pokedex-web-release.git master
+          git push https://${{secrets.TOKEN}}@github.com/alanlgoncalves/pokedex-web-release.git master
