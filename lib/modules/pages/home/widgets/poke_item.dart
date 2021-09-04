@@ -47,16 +47,11 @@ class PokeItemWidget extends StatelessWidget {
                 child: Hero(
                   tag: "pokemon-image-${pokemon.number}",
                   child: CachedNetworkImage(
-                    imageUrl:
-                        'https://pokedex.alansantos.dev/assets/assets/images/pokemons/small/${pokemon.number}.png',
-                    maxWidthDiskCache: 76,
-                    maxHeightDiskCache: 76,
-                    memCacheWidth: 76,
-                    memCacheHeight: 76,
+                    imageUrl: pokemon.imageUrl,
                   ),
                 ),
+                height: 71,
                 width: 76,
-                height: 76,
               ),
             ),
           ),
