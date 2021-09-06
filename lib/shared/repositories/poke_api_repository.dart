@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:pokedex/shared/models/pokemon.dart';
 import 'package:pokedex/shared/models/pokemon_summary.dart';
 import 'package:pokedex/shared/utils/api_constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PokeApiRepository {
   Future<List<PokemonSummary>> fetchPokemonsSummary() async {
@@ -16,6 +17,30 @@ class PokeApiRepository {
               (model) => PokemonSummary.fromJson(model),
             ),
       );
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<List<String>> fetchFavoritesPokemonsSummary() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final favorites = prefs.getStringList('favorites-pokemons');
+
+      if (favorites == null) {
+        return [];
+      } else {
+        return favorites;
+      }
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  void saveFavoritePokemonSummary(List<String> favorites) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setStringList('favorites-pokemons', favorites);
     } catch (e) {
       throw e;
     }

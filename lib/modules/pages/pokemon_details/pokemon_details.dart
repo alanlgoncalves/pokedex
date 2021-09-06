@@ -114,12 +114,29 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                   },
                 ),
                 actions: [
-                  IconButton(
-                    icon: Icon(Icons.favorite_border),
-                    onPressed: () {
-                      BotToast.showText(text: "Not implemented yet");
-                    },
-                  ),
+                  if (_pokeApiStore.isFavorite(_pokeApiStore.pokemon!.number))
+                    IconButton(
+                      icon: Icon(Icons.favorite),
+                      onPressed: () {
+                        _pokeApiStore.removeFavoritePokemon(
+                            _pokeApiStore.pokemon!.number);
+
+                        BotToast.showText(
+                            text:
+                                "${_pokeApiStore.pokemon!.name} was removed from favorites");
+                      },
+                    ),
+                  if (!_pokeApiStore.isFavorite(_pokeApiStore.pokemon!.number))
+                    IconButton(
+                      icon: Icon(Icons.favorite_border),
+                      onPressed: () {
+                        _pokeApiStore
+                            .addFavoritePokemon(_pokeApiStore.pokemon!.number);
+                        BotToast.showText(
+                            text:
+                                "${_pokeApiStore.pokemon!.name} was favorited");
+                      },
+                    ),
                 ],
               );
             }),

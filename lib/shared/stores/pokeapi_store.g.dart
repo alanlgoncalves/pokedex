@@ -57,6 +57,14 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
           Computed<String?>(() => super.pokemonNameNumberFilter,
               name: '_PokeApiStoreBase.pokemonNameNumberFilter'))
       .value;
+  Computed<List<PokemonSummary>>? _$favoritesPokemonsSummaryComputed;
+
+  @override
+  List<PokemonSummary> get favoritesPokemonsSummary =>
+      (_$favoritesPokemonsSummaryComputed ??= Computed<List<PokemonSummary>>(
+              () => super.favoritesPokemonsSummary,
+              name: '_PokeApiStoreBase.favoritesPokemonsSummary'))
+          .value;
 
   final _$_pokemonsSummaryAtom =
       Atom(name: '_PokeApiStoreBase._pokemonsSummary');
@@ -71,6 +79,23 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   set _pokemonsSummary(List<PokemonSummary>? value) {
     _$_pokemonsSummaryAtom.reportWrite(value, super._pokemonsSummary, () {
       super._pokemonsSummary = value;
+    });
+  }
+
+  final _$_favoritesPokemonsSummaryAtom =
+      Atom(name: '_PokeApiStoreBase._favoritesPokemonsSummary');
+
+  @override
+  ObservableList<PokemonSummary> get _favoritesPokemonsSummary {
+    _$_favoritesPokemonsSummaryAtom.reportRead();
+    return super._favoritesPokemonsSummary;
+  }
+
+  @override
+  set _favoritesPokemonsSummary(ObservableList<PokemonSummary> value) {
+    _$_favoritesPokemonsSummaryAtom
+        .reportWrite(value, super._favoritesPokemonsSummary, () {
+      super._favoritesPokemonsSummary = value;
     });
   }
 
@@ -178,6 +203,28 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
       ActionController(name: '_PokeApiStoreBase');
 
   @override
+  void addFavoritePokemon(String number) {
+    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
+        name: '_PokeApiStoreBase.addFavoritePokemon');
+    try {
+      return super.addFavoritePokemon(number);
+    } finally {
+      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void removeFavoritePokemon(String number) {
+    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
+        name: '_PokeApiStoreBase.removeFavoritePokemon');
+    try {
+      return super.removeFavoritePokemon(number);
+    } finally {
+      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void addGenerationFilter(Generation generationFilter) {
     final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
         name: '_PokeApiStoreBase.addGenerationFilter');
@@ -252,7 +299,8 @@ pokemonsSummary: ${pokemonsSummary},
 index: ${index},
 generationFilter: ${generationFilter},
 typeFilter: ${typeFilter},
-pokemonNameNumberFilter: ${pokemonNameNumberFilter}
+pokemonNameNumberFilter: ${pokemonNameNumberFilter},
+favoritesPokemonsSummary: ${favoritesPokemonsSummary}
     ''';
   }
 }

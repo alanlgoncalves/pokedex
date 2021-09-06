@@ -12,10 +12,14 @@ abstract class _PokeApiStoreBase with Store {
 
   _PokeApiStoreBase() {
     this._fetchPokemonList();
+    this._fetchFavoritesPokemons();
   }
 
   @observable
   List<PokemonSummary>? _pokemonsSummary;
+
+  @observable
+  ObservableList<PokemonSummary> _favoritesPokemonsSummary = ObservableList();
 
   @observable
   PokemonSummary? _pokemonSummary;
@@ -29,12 +33,15 @@ abstract class _PokeApiStoreBase with Store {
   @observable
   Pokemon? _pokemon;
 
+  // TODO - Encapsulate into a filter object
   @observable
   Generation? _generationFilter;
 
+  // TODO - Encapsulate into a filter object
   @observable
   String? _typeFilter;
 
+  // TODO - Encapsulate into a filter object
   @observable
   String? _pokemonNameNumberFilter;
 
@@ -71,14 +78,21 @@ abstract class _PokeApiStoreBase with Store {
   int get index =>
       pokemonsSummary!.indexWhere((it) => it.number == _pokemon!.number);
 
+  // TODO - Encapsulate into a filter object
   @computed
   Generation? get generationFilter => _generationFilter;
 
+  // TODO - Encapsulate into a filter object
   @computed
   String? get typeFilter => _typeFilter;
 
+  // TODO - Encapsulate into a filter object
   @computed
   String? get pokemonNameNumberFilter => _pokemonNameNumberFilter;
+
+  @computed
+  List<PokemonSummary> get favoritesPokemonsSummary =>
+      _favoritesPokemonsSummary;
 
   @action
   Future<void> setPokemon(int index) async {
@@ -99,6 +113,34 @@ abstract class _PokeApiStoreBase with Store {
     } else {
       _pokemon = _pokemons[pokemonDetailsIndex];
     }
+  }
+
+  @action
+  void addFavoritePokemon(String number) {
+    final indexFavorite =
+        _favoritesPokemonsSummary.indexWhere((it) => it.number == number);
+
+    final indexAll = _pokemonsSummary!.indexWhere((it) => it.number == number);
+
+    if (indexFavorite < 0 && indexAll >= 0) {
+      _favoritesPokemonsSummary.add(_pokemonsSummary![indexAll]);
+    }
+
+    _pokeApiRepository.saveFavoritePokemonSummary(
+        _favoritesPokemonsSummary.map((it) => it.number).toList());
+  }
+
+  @action
+  void removeFavoritePokemon(String number) {
+    final index =
+        _favoritesPokemonsSummary.indexWhere((it) => it.number == number);
+
+    if (index >= 0) {
+      _favoritesPokemonsSummary.removeAt(index);
+    }
+
+    _pokeApiRepository.saveFavoritePokemonSummary(
+        _favoritesPokemonsSummary.map((it) => it.number).toList());
   }
 
   @action
@@ -147,7 +189,26 @@ abstract class _PokeApiStoreBase with Store {
 
   PokemonSummary getPokemon(int index) => pokemonsSummary![index];
 
+  bool isFavorite(String number) {
+    final index =
+        _favoritesPokemonsSummary.indexWhere((it) => it.number == number);
+
+    if (index < 0) {
+      return false;
+    }
+
+    return true;
+  }
+
   _fetchPokemonList() async {
     _pokemonsSummary = await _pokeApiRepository.fetchPokemonsSummary();
+  }
+
+  void _fetchFavoritesPokemons() async {
+    final favorites = await _pokeApiRepository.fetchFavoritesPokemonsSummary();
+
+    _favoritesPokemonsSummary = ObservableList.of(_pokemonsSummary!
+        .where((it) => favorites.contains(it.number))
+        .toList());
   }
 }

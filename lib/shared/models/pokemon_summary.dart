@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:pokedex/shared/models/pokemon.dart';
 
 class PokemonSummary {
