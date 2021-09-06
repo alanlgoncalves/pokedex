@@ -9,8 +9,10 @@ import 'package:pokedex/modules/pages/pokemon_details/widgets/app_bar_navigation
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_pager.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pokemon_mobile_panel.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_title_info.dart';
+import 'package:pokedex/shared/canvas/background_dots.dart';
 import 'package:pokedex/shared/canvas/white_pokeball_canvas.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/utils/converters.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class PokemonDetailsPage extends StatefulWidget {
@@ -46,35 +48,78 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final padding = MediaQuery.of(context).padding;
 
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(70),
-        child: Observer(builder: (_) {
-          return AppBar(
-            title: AnimatedOpacity(
-                duration: Duration(milliseconds: 30),
-                opacity: _pokemonDetailsStore.opacityTitleAppbar,
-                child: AppBarNavigationWidget()),
-            backgroundColor:
-                AppTheme.colors.pokemonItem(_pokeApiStore.pokemon!.types[0]),
-            shadowColor: Colors.transparent,
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.pop(context);
+        child: Stack(
+          children: [
+            Observer(
+              builder: (_) {
+                return Container(
+                  height: size.height,
+                  width: size.width,
+                  color: AppTheme.colors
+                      .pokemonItem(_pokeApiStore.pokemon!.types[0]),
+                );
               },
             ),
-            actions: [
-              IconButton(
-                icon: Icon(Icons.favorite_border),
-                onPressed: () {
-                  BotToast.showText(text: "Not implemented yet");
-                },
+            Positioned(
+              top: -30,
+              left: -70,
+              child: Transform.rotate(
+                angle: getRadiansFromDegree(75),
+                child: Opacity(
+                  opacity: 0.1,
+                  child: Container(
+                    height: 144,
+                    width: 144,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                  ),
+                ),
               ),
-            ],
-          );
-        }),
+            ),
+            Positioned(
+              right: 80,
+              top: padding.top,
+              child: Opacity(
+                opacity: 0.2,
+                child: CustomPaint(
+                  size: Size(57, (57 * 0.543859649122807).toDouble()),
+                  painter: BackgroundDotsPainter(),
+                ),
+              ),
+            ),
+            Observer(builder: (_) {
+              return AppBar(
+                title: AnimatedOpacity(
+                    duration: Duration(milliseconds: 30),
+                    opacity: _pokemonDetailsStore.opacityTitleAppbar,
+                    child: AppBarNavigationWidget()),
+                backgroundColor: Colors.transparent,
+                shadowColor: Colors.transparent,
+                leading: IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                actions: [
+                  IconButton(
+                    icon: Icon(Icons.favorite_border),
+                    onPressed: () {
+                      BotToast.showText(text: "Not implemented yet");
+                    },
+                  ),
+                ],
+              );
+            }),
+          ],
+        ),
       ),
       body: Stack(
         children: [
