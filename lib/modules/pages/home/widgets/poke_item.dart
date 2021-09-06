@@ -50,7 +50,7 @@ class PokeItemWidget extends StatelessWidget {
                     imageUrl: pokemon.imageUrl,
                   ),
                 ),
-                height: 71,
+                height: 76,
                 width: 76,
               ),
             ),
@@ -89,13 +89,19 @@ class PokeItemWidget extends StatelessWidget {
                       .map((type) => Padding(
                             padding: const EdgeInsets.symmetric(vertical: 4),
                             child: Container(
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 15, vertical: 5),
-                                child: Text(
-                                  type,
-                                  style: AppTheme.texts.pokemonItemType,
-                                ),
+                              height: 20,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 15),
+                                    child: Text(
+                                      type,
+                                      style: AppTheme.texts.pokemonItemType,
+                                    ),
+                                  ),
+                                ],
                               ),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(38),

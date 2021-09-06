@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:pokedex/shared/models/pokemon_summary.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
+import 'package:pokedex/shared/models/pokemon_summary.dart';
 import 'package:pokedex/shared/utils/api_constants.dart';
 
 class PokeApiRepository {
@@ -12,7 +12,7 @@ class PokeApiRepository {
           await http.get(Uri.parse(ApiConstants.pokedexSummaryData));
 
       return List<PokemonSummary>.from(
-        json.decode(response.body).map(
+        json.decode(Utf8Decoder().convert(response.body.codeUnits)).map(
               (model) => PokemonSummary.fromJson(model),
             ),
       );
@@ -26,7 +26,8 @@ class PokeApiRepository {
       final response =
           await http.get(Uri.parse(ApiConstants.pokemonDetails(number)));
 
-      return Pokemon.fromJson(jsonDecode(response.body));
+      return Pokemon.fromJson(
+          jsonDecode(Utf8Decoder().convert(response.body.codeUnits)));
     } catch (e) {
       throw e;
     }
