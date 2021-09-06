@@ -23,6 +23,8 @@ dependencies:
   sliding_up_panel: ^2.0.0+1
   font_awesome_flutter: ^9.1.0
   bot_toast: ^4.0.1
+  just_audio: ^0.9.10
+  audio_video_progress_bar: ^0.9.0
   
 
 dev_dependencies:

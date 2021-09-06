@@ -4,6 +4,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:pokedex/modules/pages/pokemon_details/pokemon_details_store.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/app_bar_navigation.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_pager.dart';
@@ -27,12 +28,15 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
   late PokeApiStore _pokeApiStore;
   late PokemonDetailsStore _pokemonDetailsStore;
   late AnimationController _animationController;
+  late AudioPlayer player;
 
   @override
   void initState() {
     super.initState();
     _pokeApiStore = GetIt.instance<PokeApiStore>();
     _pokemonDetailsStore = PokemonDetailsStore();
+
+    player = AudioPlayer();
 
     _animationController =
         AnimationController(vsync: this, duration: Duration(seconds: 2))
@@ -41,6 +45,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
 
   @override
   void dispose() {
+    player.dispose();
     _animationController.dispose();
     super.dispose();
   }

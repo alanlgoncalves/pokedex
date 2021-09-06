@@ -1,18 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about/about_page_store.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about/widget/animated_sprites.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about/widget/breeding_info.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about/widget/height_weigh_info.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about/widget/pokemon_cards.dart';
+import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about/widget/sound_player.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about/widget/training_info.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
-class AboutPage extends StatelessWidget {
-  static final _pokeApiStore = GetIt.instance<PokeApiStore>();
-
+class AboutPage extends StatefulWidget {
   const AboutPage({Key? key}) : super(key: key);
+
+  @override
+  _AboutPageState createState() => _AboutPageState();
+}
+
+class _AboutPageState extends State<AboutPage> {
+  static final _pokeApiStore = GetIt.instance<PokeApiStore>();
+  late AboutPageStore _aboutPageStoreStore;
+  late AudioPlayer _player;
+
+  @override
+  void initState() {
+    super.initState();
+    _player = AudioPlayer();
+    _aboutPageStoreStore = AboutPageStore();
+    _player.positionStream.listen((state) {
+      _aboutPageStoreStore.setAudioProgress(state);
+    });
+
+    _player.bufferedPositionStream.listen((state) {
+      _aboutPageStoreStore.setAudioBuffered(state);
+    });
+
+    _player.durationStream.listen((state) {
+      if (state != null) {
+        _aboutPageStoreStore.setAudioTotal(state);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _player.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,19 +73,38 @@ class AboutPage extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
           child: Column(
             children: [
-              Observer(
-                  builder: (_) => Column(
-                        children: _pokeApiStore.pokemon!.descriptions
-                            .map((it) => Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 4),
-                                  child: Text(
-                                    it,
-                                    style: AppTheme.texts.pokemonText,
-                                  ),
-                                ))
-                            .toList(),
-                      )),
+              Observer(builder: (_) {
+                if (_pokeApiStore.pokemon!.soundUrl != null) {
+                  _player.setUrl(_pokeApiStore.pokemon!.soundUrl!);
+                  _player.pause();
+                }
+
+                return Column(
+                  children: _pokeApiStore.pokemon!.descriptions
+                      .map((it) => Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4),
+                            child: Text(
+                              it,
+                              style: AppTheme.texts.pokemonText,
+                            ),
+                          ))
+                      .toList(),
+                );
+              }),
+              Observer(builder: (_) {
+                if (_pokeApiStore.pokemon!.soundUrl != null)
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 15),
+                    child: SoundPlayer(
+                      pokemon: _pokeApiStore.pokemon!,
+                      player: _player,
+                      pokeApiStore: _pokeApiStore,
+                      aboutPageStore: _aboutPageStoreStore,
+                    ),
+                  );
+                else
+                  return Container();
+              }),
               Observer(builder: (_) {
                 if (_pokeApiStore.pokemon!.hasAnimatedSprites)
                   return const AnimatedSpritesWidget(
