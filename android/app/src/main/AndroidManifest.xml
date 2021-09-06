@@ -2,8 +2,8 @@
     package="dev.alansantos.pokedex.pokedex">
    <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="pokedex"
-        android:icon="@mipmap/ic_launcher">
+        android:label="Pokedex"
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

@@ -25,6 +25,7 @@ dependencies:
   bot_toast: ^4.0.1
   just_audio: ^0.9.10
   audio_video_progress_bar: ^0.9.0
+  flutter_launcher_icons: ^0.9.2
   
 
 dev_dependencies:
@@ -56,3 +57,8 @@ flutter:
     - family: CircularStd-Book
       fonts:
         - asset: assets/fonts/CircularStd-Book.otf
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/app_icon.png"
