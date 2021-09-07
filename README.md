@@ -1,7 +1,4 @@
-<div style="display: flex; justify-content: center; align-items: center">
-    <img src="https://github.com/alanlgoncalves/pokedex/blob/master/web/icons/Icon-192.png?raw=true" width="64" height="64" style="margin-top: 30px" />
-    <h1 align="center">Pokedex</h1>
-</div>
+<h1 align="center"><img src="https://github.com/alanlgoncalves/pokedex/blob/master/web/icons/Icon-192.png?raw=true" width="30" height="30"/> Pokedex</h1>
 
 <h4 align="center">
   Pokedex App with Flutter ans MobX
@@ -15,10 +12,9 @@
   <a href="#memo-license">License</a>
 </p>
 
-<div style="display: flex; justify-content: flex-start; align-items: center">
-    <img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_1/1.png?raw=true" width="32" height="32" style="margin-top: 10px" />&nbsp;
-    <h3 align="center">Technologies</h3>
-</div>
+
+
+<h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_1/1.png?raw=true" width="16" height="16"/> Technologies</h3>
 
 - [Flutter](https://flutter.dev/)
 - [MobX](https://pub.dev/packages/mobx)
@@ -35,20 +31,14 @@
 - [Flutter Native Splash](https://pub.dev/packages/flutter_native_splash)
 - [Shared Preferences](https://pub.dev/packages/shared_preferences)
 
-<div style="display: flex; justify-content: flex-start; align-items: center">
-    <img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_1/2.png?raw=true" width="32" height="32" style="margin-top: 10px" />&nbsp;
-    <h3 align="center">Prerequisites</h3>
-</div>
+<h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_1/2.png?raw=true" width="16" height="16"/> Prerequisites</h3>
 
 Befor start, yout will need to install Flutter on your machine:
 [Git](https://git-scm.com), [Flutter](https://flutter.dev/docs/get-started/install). Besides, it's nice to have an
 editor to work with code like [VSCode](https://code.visualstudio.com/)
 or [IntelliJ IDEA](https://www.jetbrains.com/pt-br/idea/).
 
-<div style="display: flex; justify-content: flex-start; align-items: center">
-    <img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_1/3.png?raw=true" width="32" height="32" style="margin-top: 10px" />&nbsp;
-    <h3 align="center">How to Run</h3>
-</div>
+<h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_1/3.png?raw=true" width="16" height="16"/> How to Run</h3>
 
 ```bash
 # Clone this repository
