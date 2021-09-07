@@ -62,7 +62,7 @@ jobs:
           channel: "stable"
       - run: flutter pub get
       - run: flutter clean
-      - run: flutter build appbundle --release --no-codesign
+      - run: flutter build appbundle --release
       - name: Upload appbundle
         uses: actions/upload-artifact@v2.1.4
         with:
