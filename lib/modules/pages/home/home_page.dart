@@ -35,8 +35,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   late PokeApiStore _pokeApiStore;
   late HomeStore _homeStore;
-
   late PanelController _panelController;
+
+  late List<ReactionDisposer> reactionDisposer = [];
 
   @override
   void initState() {
@@ -66,45 +67,56 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       TweenSequenceItem(tween: Tween(begin: 1.4, end: 1.0), weight: 20.0),
     ]).animate(_fabAnimationController);
 
-    // TODO - Add on dispose()
-    reaction((_) => _homeStore.isFilterOpen, (_) {
-      if (_homeStore.isFilterOpen) {
-        _panelController.open();
-        _homeStore.showBackgroundBlack();
-        _homeStore.hideFloatActionButton();
-      } else {
-        _panelController.close();
-        _homeStore.hideBackgroundBlack();
-        _homeStore.showFloatActionButton();
-      }
-    });
+    reactionDisposer.add(
+      reaction((_) => _homeStore.isFilterOpen, (_) {
+        if (_homeStore.isFilterOpen) {
+          _panelController.open();
+          _homeStore.showBackgroundBlack();
+          _homeStore.hideFloatActionButton();
+        } else {
+          _panelController.close();
+          _homeStore.hideBackgroundBlack();
+          _homeStore.showFloatActionButton();
+        }
+      }),
+    );
 
-    // TODO - Add on dispose()
-    reaction((_) => _homeStore.isBackgroundBlack, (_) {
-      if (_homeStore.isBackgroundBlack) {
-        _backgroundAnimationController.forward();
-      } else {
-        _backgroundAnimationController.reverse();
-      }
-    });
+    reactionDisposer.add(
+      reaction((_) => _homeStore.isBackgroundBlack, (_) {
+        if (_homeStore.isBackgroundBlack) {
+          _backgroundAnimationController.forward();
+        } else {
+          _backgroundAnimationController.reverse();
+        }
+      }),
+    );
 
-    // TODO - Add on dispose()
-    reaction((_) => _homeStore.isFabVisible, (_) {
-      if (_homeStore.isFabVisible) {
-        _fabAnimationController.forward();
-      } else {
-        _fabAnimationController.reverse();
-      }
-    });
+    reactionDisposer.add(
+      reaction((_) => _homeStore.isFabVisible, (_) {
+        if (_homeStore.isFabVisible) {
+          _fabAnimationController.forward();
+        } else {
+          _fabAnimationController.reverse();
+        }
+      }),
+    );
 
-    // TODO - Add on dispose()
-    reaction((_) => _pokeApiStore.pokemonNameNumberFilter, (_) {
-      if (_pokeApiStore.pokemonNameNumberFilter == null) {
-        BotToast.showText(text: "The search by name/number has been cleared");
-      }
-    });
+    reactionDisposer.add(
+      reaction((_) => _pokeApiStore.pokemonNameNumberFilter, (_) {
+        if (_pokeApiStore.pokemonNameNumberFilter == null) {
+          BotToast.showText(text: "The search by name/number has been cleared");
+        }
+      }),
+    );
 
     _fabAnimationController.forward();
+  }
+
+  @override
+  void dispose() {
+    reactionDisposer.forEach((disposer) => disposer());
+
+    super.dispose();
   }
 
   @override
