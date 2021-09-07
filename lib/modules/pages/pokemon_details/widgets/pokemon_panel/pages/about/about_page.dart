@@ -12,6 +12,8 @@ import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/page
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
+import '../../pokemon_mobile_panel.dart';
+
 class AboutPage extends StatefulWidget {
   const AboutPage({Key? key}) : super(key: key);
 
@@ -54,18 +56,7 @@ class _AboutPageState extends State<AboutPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    //TODO - Make it with util class
-    double horizontalPadding = 0;
-
-    if (size.width > 1200) {
-      horizontalPadding = size.width * 0.28;
-    } else if (size.width > 900) {
-      horizontalPadding = size.width * 0.2;
-    } else if (size.width > 600) {
-      horizontalPadding = 28;
-    } else {
-      horizontalPadding = 28;
-    }
+    final horizontalPadding = getDetailsPanelsPadding(size);
 
     return Column(
       children: [

@@ -6,6 +6,22 @@ import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/page
 import 'package:pokedex/theme/app_theme.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
+double getDetailsPanelsPadding(Size size) {
+  double horizontalPadding = 0;
+
+  if (size.width > 1200) {
+    horizontalPadding = size.width * 0.28;
+  } else if (size.width > 900) {
+    horizontalPadding = size.width * 0.2;
+  } else if (size.width > 600) {
+    horizontalPadding = 28;
+  } else {
+    horizontalPadding = 28;
+  }
+
+  return horizontalPadding;
+}
+
 class PokemonMobilePanelWidget extends StatefulWidget {
   final Function(double position) listener;
 

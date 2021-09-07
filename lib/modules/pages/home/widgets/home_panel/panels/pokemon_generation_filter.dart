@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/modules/pages/home/home_store.dart';
 import 'package:pokedex/modules/pages/home/widgets/generation_item.dart';
+import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pokemon_mobile_panel.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
@@ -20,18 +21,7 @@ class PokemonGenerationFilter extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    //TODO - Make it with util class
-    double horizontalPadding = 0;
-
-    if (size.width > 1200) {
-      horizontalPadding = size.width * 0.28;
-    } else if (size.width > 900) {
-      horizontalPadding = size.width * 0.2;
-    } else if (size.width > 600) {
-      horizontalPadding = 28;
-    } else {
-      horizontalPadding = 28;
-    }
+    final horizontalPadding = getDetailsPanelsPadding(size);
 
     return Observer(builder: (_) {
       return Padding(
