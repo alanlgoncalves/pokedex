@@ -26,8 +26,7 @@ class PokemonFavorites extends StatelessWidget {
 
     if (pokeApiStore.favoritesPokemonsSummary.isEmpty) {
       return Container(
-        height: 250,
-        width: 250,
+        width: size.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [

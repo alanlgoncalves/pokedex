@@ -17,7 +17,7 @@ class PokemonNameNumberFilterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 28, right: 28, top: 10),
+      padding: const EdgeInsets.only(left: 28, right: 28, top: 30),
       child: Column(
         children: [
           TextFormField(

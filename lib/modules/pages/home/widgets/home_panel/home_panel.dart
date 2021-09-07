@@ -26,7 +26,7 @@ class HomePanelWidget extends StatelessWidget {
       late double maxHeight;
 
       if (homeStore.panelType == PanelType.FILTER_POKEMON_NAME_NUMBER) {
-        maxHeight = 80;
+        maxHeight = 100;
       } else {
         maxHeight = MediaQuery.of(context).size.height * 0.75;
       }
@@ -55,37 +55,45 @@ class HomePanelWidget extends StatelessWidget {
           },
           controller: panelController,
           panelBuilder: (scrollController) {
-            if (homeStore.panelType == PanelType.FILTER_POKEMON_TYPE) {
-              return PokemonTypeFilter(
-                homeStore: homeStore,
-                scrollController: scrollController,
-              );
-            }
-
-            if (homeStore.panelType == PanelType.FILTER_POKEMON_GENERATION) {
-              return PokemonGenerationFilter(
-                homeStore: homeStore,
-                scrollController: scrollController,
-              );
-            }
-
-            if (homeStore.panelType == PanelType.FILTER_POKEMON_NAME_NUMBER) {
-              return PokemonNameNumberFilterPage(
-                homeStore: homeStore,
-                onChanged: (value) {
-                  pokeApiStore.setNameNumberFilter(value);
-                },
-              );
-            }
-
-            if (homeStore.panelType == PanelType.FAVORITES_POKEMONS) {
-              return PokemonFavorites(
-                homeStore: homeStore,
-                scrollController: scrollController,
-              );
-            }
-
-            return Container();
+            return Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        color: Color(0xFFd4d4d4),
+                        height: 4,
+                        width: 80,
+                      )
+                    ],
+                  ),
+                ),
+                if (homeStore.panelType == PanelType.FILTER_POKEMON_TYPE)
+                  PokemonTypeFilter(
+                    homeStore: homeStore,
+                    scrollController: scrollController,
+                  ),
+                if (homeStore.panelType == PanelType.FILTER_POKEMON_GENERATION)
+                  PokemonGenerationFilter(
+                    homeStore: homeStore,
+                    scrollController: scrollController,
+                  ),
+                if (homeStore.panelType == PanelType.FILTER_POKEMON_NAME_NUMBER)
+                  PokemonNameNumberFilterPage(
+                    homeStore: homeStore,
+                    onChanged: (value) {
+                      pokeApiStore.setNameNumberFilter(value);
+                    },
+                  ),
+                if (homeStore.panelType == PanelType.FAVORITES_POKEMONS)
+                  PokemonFavorites(
+                    homeStore: homeStore,
+                    scrollController: scrollController,
+                  ),
+              ],
+            );
           });
     });
   }
