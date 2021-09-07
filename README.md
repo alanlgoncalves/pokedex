@@ -18,6 +18,7 @@
 </p>
 
 <h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_1/1.png?raw=true" width="24" height="24"/> Functionalities</h3>
+
 - List of all 898 Pokémons
 - All generations (I, II, III, IV, V, VI, VII, VIII)
 - Pokémons details
