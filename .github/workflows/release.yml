@@ -87,4 +87,4 @@ jobs:
         uses: actions/upload-artifact@v2.1.4
         with:
           name: appbundle
-          path: build/web/web-app.zip
+          path: web-app.zip
