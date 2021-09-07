@@ -90,10 +90,12 @@ $ flutter run
 ```
 
 <h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_2/3.png?raw=true" width="24" height="24"/> Find this repository useful? ❤</h3>
+
 - Support it by joining [stargazers](https://github.com/alanlgoncalves/pokedex/stargazers) for this repository. ⭐
 - Follow me for my next creations! 💪🏾
 
 <h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_3/1.png?raw=true" width="24" height="24"/> Special Thanks ❤</h3>
+
 - Application [Figma](https://www.uplabs.com/posts/pokedex-app) by [Saepul Nahwan](https://www.uplabs.com/saepulnahwan)
 - [Squartle Lottie](https://lottiefiles.com/67858-pokemon) by [Kevin Correa](https://lottiefiles.com/avgyhsbmgz)
 - [Pikachu](https://lottiefiles.com/22892-pikachu) Lottie by [Ben Kuhlmann](https://lottiefiles.com/user/309694)
