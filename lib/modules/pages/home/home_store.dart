@@ -7,7 +7,8 @@ class HomeStore = _HomeStoreBase with _$HomeStore;
 enum PanelType {
   FILTER_POKEMON_GENERATION,
   FILTER_POKEMON_TYPE,
-  FILTER_POKEMON_NAME_NUMBER
+  FILTER_POKEMON_NAME_NUMBER,
+  FAVORITES_POKEMONS
 }
 
 abstract class _HomeStoreBase with Store {

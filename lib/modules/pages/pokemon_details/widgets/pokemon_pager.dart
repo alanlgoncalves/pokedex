@@ -8,8 +8,10 @@ import 'package:pokedex/shared/stores/pokeapi_store.dart';
 
 class PokemonPagerWidget extends StatefulWidget {
   final PokemonDetailsStore pokemonDetailStore;
+  final bool isFavorite;
 
-  PokemonPagerWidget({Key? key, required this.pokemonDetailStore})
+  PokemonPagerWidget(
+      {Key? key, required this.pokemonDetailStore, this.isFavorite = false})
       : super(key: key);
 
   @override
@@ -71,7 +73,9 @@ class _PokemonPagerState extends State<PokemonPagerWidget> {
                   child:
                       _pokeApiStore.pokemonSummary!.number == listPokemon.number
                           ? Hero(
-                              tag: "pokemon-image-${listPokemon.number}",
+                              tag: widget.isFavorite
+                                  ? "favorite-pokemon-image-${listPokemon.number}"
+                                  : "pokemon-image-${listPokemon.number}",
                               child: CachedNetworkImage(
                                 imageUrl: listPokemon.imageUrl,
                                 height: 300,

@@ -126,6 +126,8 @@ abstract class _PokeApiStoreBase with Store {
       _favoritesPokemonsSummary.add(_pokemonsSummary![indexAll]);
     }
 
+    _favoritesPokemonsSummary.sort((a, b) => a.number.compareTo(b.number));
+
     _pokeApiRepository.saveFavoritePokemonSummary(
         _favoritesPokemonsSummary.map((it) => it.number).toList());
   }

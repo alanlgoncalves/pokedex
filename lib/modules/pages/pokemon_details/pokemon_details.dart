@@ -17,7 +17,10 @@ import 'package:pokedex/shared/utils/converters.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class PokemonDetailsPage extends StatefulWidget {
-  const PokemonDetailsPage({Key? key}) : super(key: key);
+  final bool isFavoritePokemon;
+
+  const PokemonDetailsPage({Key? key, this.isFavoritePokemon = false})
+      : super(key: key);
 
   @override
   _PokemonDetailsPageState createState() => _PokemonDetailsPageState();
@@ -223,8 +226,9 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                                   child: Container(
                                     height: 220,
                                     child: PokemonPagerWidget(
-                                        pokemonDetailStore:
-                                            _pokemonDetailsStore),
+                                      pokemonDetailStore: _pokemonDetailsStore,
+                                      isFavorite: widget.isFavoritePokemon,
+                                    ),
                                   ),
                                 ),
                               ),

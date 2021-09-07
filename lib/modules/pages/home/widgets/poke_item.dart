@@ -7,13 +7,11 @@ import 'package:pokedex/theme/app_theme.dart';
 
 class PokeItemWidget extends StatelessWidget {
   final PokemonSummary pokemon;
-  final int index;
+  final bool isFavorite;
 
-  const PokeItemWidget({
-    Key? key,
-    required this.pokemon,
-    required this.index,
-  }) : super(key: key);
+  const PokeItemWidget(
+      {Key? key, required this.pokemon, this.isFavorite = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +43,9 @@ class PokeItemWidget extends StatelessWidget {
               padding: EdgeInsets.only(right: 7, bottom: 3),
               child: Container(
                 child: Hero(
-                  tag: "pokemon-image-${pokemon.number}",
+                  tag: isFavorite
+                      ? "favorite-pokemon-image-${pokemon.number}"
+                      : "pokemon-image-${pokemon.number}",
                   child: CachedNetworkImage(
                     imageUrl: pokemon.imageUrl,
                   ),

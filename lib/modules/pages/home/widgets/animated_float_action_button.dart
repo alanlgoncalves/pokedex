@@ -222,9 +222,9 @@ class _AnimatedFloatActionButtonWidgetState
                   ),
                   color: Colors.white,
                   onClick: () {
-                    BotToast.showText(text: "Not implemented yet");
                     animationController.reverse();
-                    widget.homeStore.hideBackgroundBlack();
+                    widget.homeStore.setPanelType(PanelType.FAVORITES_POKEMONS);
+                    widget.homeStore.openFilter();
                   },
                 ),
               ),

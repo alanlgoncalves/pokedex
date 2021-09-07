@@ -2,43 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/modules/pages/home/home_store.dart';
-import 'package:pokedex/modules/pages/home/widgets/generation_item.dart';
-import 'package:pokedex/shared/models/pokemon.dart';
+import 'package:pokedex/modules/pages/home/widgets/pokemon_type_item.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
-class PokemonGenerationFilter extends StatelessWidget {
+class PokemonTypeFilter extends StatelessWidget {
   static final PokeApiStore pokeApiStore = GetIt.instance<PokeApiStore>();
+
   final ScrollController scrollController;
   final HomeStore homeStore;
 
-  const PokemonGenerationFilter(
+  const PokemonTypeFilter(
       {Key? key, required this.homeStore, required this.scrollController})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
-    //TODO - Make it with util class
-    double horizontalPadding = 0;
-
-    if (size.width > 1200) {
-      horizontalPadding = size.width * 0.28;
-    } else if (size.width > 900) {
-      horizontalPadding = size.width * 0.2;
-    } else if (size.width > 600) {
-      horizontalPadding = 28;
-    } else {
-      horizontalPadding = 28;
-    }
-
     return Observer(builder: (_) {
       return Padding(
-        padding: EdgeInsets.only(
-            left: horizontalPadding, right: horizontalPadding, top: 28),
+        padding: const EdgeInsets.only(left: 28, right: 28, top: 28),
         child: Stack(
           children: [
+            if (pokeApiStore.typeFilter != null)
+              SizedBox(
+                height: 40,
+              ),
             NestedScrollView(
               headerSliverBuilder: (context, value) {
                 return [];
@@ -52,31 +41,37 @@ class PokemonGenerationFilter extends StatelessWidget {
                   childAspectRatio: 3 / 2,
                 ),
                 itemBuilder: (context, index) {
-                  final generation = Generation.values[index];
+                  String type = AppConstants.types[index];
 
-                  Color? color = pokeApiStore.generationFilter == generation
-                      ? AppTheme.colors.selectedGenerationFilter
-                      : Colors.white;
+                  Color? color;
 
-                  return GenerationItemWidget(
-                    generation: generation,
+                  if (pokeApiStore.typeFilter == null) {
+                    color = AppTheme.colors.pokemonItem(type);
+                  } else {
+                    color = pokeApiStore.typeFilter == type
+                        ? AppTheme.colors.pokemonItem(type)
+                        : Colors.grey[400];
+                  }
+
+                  return PokemonTypeItemWidget(
+                    type: type,
                     color: color,
                     onClick: () {
-                      if (pokeApiStore.generationFilter != null &&
-                          pokeApiStore.generationFilter == generation) {
-                        pokeApiStore.clearGenerationFilter();
+                      if (pokeApiStore.typeFilter != null &&
+                          pokeApiStore.typeFilter == type) {
+                        pokeApiStore.clearTypeFilter();
                       } else {
-                        pokeApiStore.addGenerationFilter(generation);
+                        pokeApiStore.addTypeFilter(type);
                       }
 
                       homeStore.closeFilter();
                     },
                   );
                 },
-                itemCount: Generation.values.length,
+                itemCount: AppConstants.types.length,
               ),
             ),
-            if (pokeApiStore.generationFilter != null)
+            if (pokeApiStore.typeFilter != null)
               Container(
                 height: 40,
                 color: Colors.white,

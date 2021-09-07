@@ -5,9 +5,10 @@ import 'package:get_it/get_it.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pokedex/modules/pages/home/home_store.dart';
-import 'package:pokedex/modules/pages/home/pokemon_filter.dart';
-import 'package:pokedex/modules/pages/home/pokemon_generation_filter.dart';
-import 'package:pokedex/modules/pages/home/pokemon_type_filter.dart';
+import 'package:pokedex/modules/pages/home/panels/pokemon_favorites.dart';
+import 'package:pokedex/modules/pages/home/panels/pokemon_filter.dart';
+import 'package:pokedex/modules/pages/home/panels/pokemon_generation_filter.dart';
+import 'package:pokedex/modules/pages/home/panels/pokemon_type_filter.dart';
 import 'package:pokedex/modules/pages/home/widgets/animated_float_action_button.dart';
 import 'package:pokedex/modules/pages/home/widgets/app_bar.dart';
 import 'package:pokedex/modules/pages/home/widgets/pokemon_grid.dart';
@@ -247,6 +248,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           onChanged: (value) {
                             _pokeApiStore.setNameNumberFilter(value);
                           },
+                        );
+                      }
+
+                      if (_homeStore.panelType ==
+                          PanelType.FAVORITES_POKEMONS) {
+                        return PokemonFavorites(
+                          homeStore: _homeStore,
+                          scrollController: scrollController,
                         );
                       }
 
