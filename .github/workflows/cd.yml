@@ -1,0 +1,89 @@
+name: CD
+
+on:
+  push:
+    tags:
+      - v*.*.*
+
+jobs:
+  #  flutter_test:
+  #    name: Run Flutter analyze and test
+  #    runs-on: ubuntu-latest
+  #    steps:
+  #      - uses: actions/checkout@v2
+  #      - uses: actions/setup-java@v1
+  #        with:
+  #          java-version: "12.x"
+  #      - uses: subosito/flutter-action@v1
+  #        with:
+  #          channel: "stable"
+  #      - run: flutter pub get
+  #      - run: flutter analyze
+  #      - run: flutter format --dry-run --set-exit-if-changed lib/
+  #      - run: flutter format --dry-run --set-exit-if-changed test/
+  #      - run: flutter test --coverage
+  #      - run: flutter test --machine > test-results.json
+  #      - uses: dorny/test-reporter@v1.4.2
+  #        with:
+  #          name: test-results
+  #          path: test-results.json
+  #          reporter: flutter-json
+  #      - uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
+  #        with:
+  #          min_coverage: 0
+
+  build_ios:
+    name: Build Flutter (iOS)
+    #needs: [flutter_test]
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+      - run: flutter pub get
+      - run: flutter clean
+      - run: flutter build ios --release --no-codesign
+
+  build_appbundle:
+    name: Build Flutter (Android)
+    #needs: [flutter_test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+      - run: flutter pub get
+      - run: flutter clean
+      - run: flutter build appbundle --release --no-codesign
+      - name: Upload appbundle
+        uses: actions/upload-artifact@v2.1.4
+        with:
+          name: appbundle
+          path: build/app/outputs/bundle/release/app-release.aab
+
+  build_web:
+    name: Build Flutter (WEB)
+    #needs: [ flutter_test ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+      - run: flutter pub get
+      - run: flutter clean
+      - run: flutter build web --web-renderer html --release
+      - run: cd build/web
+      - run:  zip -r web-app.zip .
+      - name: Upload WEB
+        uses: actions/upload-artifact@v2.1.4
+        with:
+          name: appbundle
+          path: build/web/web-app.zip
