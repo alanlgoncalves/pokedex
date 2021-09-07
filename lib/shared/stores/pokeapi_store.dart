@@ -12,8 +12,7 @@ abstract class _PokeApiStoreBase with Store {
   PokeApiRepository _pokeApiRepository = PokeApiRepository();
 
   _PokeApiStoreBase() {
-    this._fetchPokemonList();
-    this._fetchFavoritesPokemons();
+    this._fetchPokemonData();
   }
 
   @observable
@@ -168,11 +167,13 @@ abstract class _PokeApiStoreBase with Store {
     return index >= 0;
   }
 
-  _fetchPokemonList() async {
+  _fetchPokemonData() async {
     _pokemonsSummary = await _pokeApiRepository.fetchPokemonsSummary();
+
+    await _fetchFavoritesPokemons();
   }
 
-  void _fetchFavoritesPokemons() async {
+  Future<void> _fetchFavoritesPokemons() async {
     final favorites = await _pokeApiRepository.fetchFavoritesPokemonsSummary();
 
     _favoritesPokemonsSummary = ObservableList.of(_pokemonsSummary!

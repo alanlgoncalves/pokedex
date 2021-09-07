@@ -40,7 +40,7 @@ class PokeApiRepository {
   void saveFavoritePokemonSummary(List<String> favorites) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setStringList('favorites-pokemons', favorites);
+      await prefs.setStringList('favorites-pokemons', favorites);
     } catch (e) {
       throw e;
     }
