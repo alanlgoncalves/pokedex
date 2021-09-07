@@ -39,7 +39,7 @@ class PokemonGenerationFilter extends StatelessWidget {
             left: horizontalPadding, right: horizontalPadding, top: 28),
         child: Stack(
           children: [
-            if (pokeApiStore.generationFilter != null)
+            if (pokeApiStore.pokemonFilter.generationFilter != null)
               SizedBox(
                 height: 40,
               ),
@@ -58,16 +58,18 @@ class PokemonGenerationFilter extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final generation = Generation.values[index];
 
-                  Color? color = pokeApiStore.generationFilter == generation
-                      ? AppTheme.colors.selectedGenerationFilter
-                      : Colors.white;
+                  Color? color =
+                      pokeApiStore.pokemonFilter.generationFilter == generation
+                          ? AppTheme.colors.selectedGenerationFilter
+                          : Colors.white;
 
                   return GenerationItemWidget(
                     generation: generation,
                     color: color,
                     onClick: () {
-                      if (pokeApiStore.generationFilter != null &&
-                          pokeApiStore.generationFilter == generation) {
+                      if (pokeApiStore.pokemonFilter.generationFilter != null &&
+                          pokeApiStore.pokemonFilter.generationFilter ==
+                              generation) {
                         pokeApiStore.clearGenerationFilter();
                       } else {
                         pokeApiStore.addGenerationFilter(generation);
@@ -80,7 +82,7 @@ class PokemonGenerationFilter extends StatelessWidget {
                 itemCount: Generation.values.length,
               ),
             ),
-            if (pokeApiStore.generationFilter != null)
+            if (pokeApiStore.pokemonFilter.generationFilter != null)
               Container(
                 height: 40,
                 color: Colors.white,

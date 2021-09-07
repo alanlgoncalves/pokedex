@@ -102,8 +102,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
 
     reactionDisposer.add(
-      reaction((_) => _pokeApiStore.pokemonNameNumberFilter, (_) {
-        if (_pokeApiStore.pokemonNameNumberFilter == null) {
+      reaction((_) => _pokeApiStore.pokemonFilter.pokemonNameNumberFilter, (_) {
+        if (_pokeApiStore.pokemonFilter.pokemonNameNumberFilter == null) {
           BotToast.showText(text: "The search by name/number has been cleared");
         }
       }),
@@ -139,7 +139,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         children: [CircularProgressIndicator()],
                       ));
                     } else {
-                      if (_pokeApiStore.pokemonNameNumberFilter != null &&
+                      if (_pokeApiStore.pokemonFilter.pokemonNameNumberFilter !=
+                              null &&
                           _pokeApiStore.pokemonsSummary!.isEmpty) {
                         return SliverToBoxAdapter(
                           child: Container(
@@ -157,7 +158,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   child: Padding(
                                     padding: const EdgeInsets.only(bottom: 30),
                                     child: Text(
-                                      "${_pokeApiStore.pokemonNameNumberFilter} was not found",
+                                      "${_pokeApiStore.pokemonFilter.pokemonNameNumberFilter} was not found",
                                       style: AppTheme.texts.pokemonText,
                                     ),
                                   ),

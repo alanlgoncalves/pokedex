@@ -140,9 +140,10 @@ class _AnimatedFloatActionButtonWidgetState
                 ),
                 child: _CircularTextButton(
                   isOpened: isOpen,
-                  text: pokeApiStore.generationFilter == null
+                  text: pokeApiStore.pokemonFilter.generationFilter == null
                       ? "All Generations"
-                      : pokeApiStore.generationFilter!.description,
+                      : pokeApiStore
+                          .pokemonFilter.generationFilter!.description,
                   icon: CustomPaint(
                     size: Size(20, (20 * 1.0040160642570282).toDouble()),
                     painter: PokeballLogoPainter(
@@ -177,9 +178,9 @@ class _AnimatedFloatActionButtonWidgetState
                 ),
                 child: _CircularTextButton(
                   isOpened: isOpen,
-                  text: pokeApiStore.typeFilter == null
+                  text: pokeApiStore.pokemonFilter.typeFilter == null
                       ? "All Types"
-                      : pokeApiStore.typeFilter!,
+                      : pokeApiStore.pokemonFilter.typeFilter!,
                   icon: CustomPaint(
                     size: Size(20, (20 * 1.0040160642570282).toDouble()),
                     painter: PokeballLogoPainter(

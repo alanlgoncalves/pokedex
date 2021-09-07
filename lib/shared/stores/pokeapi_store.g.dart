@@ -36,26 +36,12 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   int get index => (_$indexComputed ??=
           Computed<int>(() => super.index, name: '_PokeApiStoreBase.index'))
       .value;
-  Computed<Generation?>? _$generationFilterComputed;
+  Computed<PokemonFilter>? _$pokemonFilterComputed;
 
   @override
-  Generation? get generationFilter => (_$generationFilterComputed ??=
-          Computed<Generation?>(() => super.generationFilter,
-              name: '_PokeApiStoreBase.generationFilter'))
-      .value;
-  Computed<String?>? _$typeFilterComputed;
-
-  @override
-  String? get typeFilter =>
-      (_$typeFilterComputed ??= Computed<String?>(() => super.typeFilter,
-              name: '_PokeApiStoreBase.typeFilter'))
-          .value;
-  Computed<String?>? _$pokemonNameNumberFilterComputed;
-
-  @override
-  String? get pokemonNameNumberFilter => (_$pokemonNameNumberFilterComputed ??=
-          Computed<String?>(() => super.pokemonNameNumberFilter,
-              name: '_PokeApiStoreBase.pokemonNameNumberFilter'))
+  PokemonFilter get pokemonFilter => (_$pokemonFilterComputed ??=
+          Computed<PokemonFilter>(() => super.pokemonFilter,
+              name: '_PokeApiStoreBase.pokemonFilter'))
       .value;
   Computed<List<PokemonSummary>>? _$favoritesPokemonsSummaryComputed;
 
@@ -65,6 +51,21 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
               () => super.favoritesPokemonsSummary,
               name: '_PokeApiStoreBase.favoritesPokemonsSummary'))
           .value;
+
+  final _$_pokemonFilterAtom = Atom(name: '_PokeApiStoreBase._pokemonFilter');
+
+  @override
+  PokemonFilter get _pokemonFilter {
+    _$_pokemonFilterAtom.reportRead();
+    return super._pokemonFilter;
+  }
+
+  @override
+  set _pokemonFilter(PokemonFilter value) {
+    _$_pokemonFilterAtom.reportWrite(value, super._pokemonFilter, () {
+      super._pokemonFilter = value;
+    });
+  }
 
   final _$_pokemonsSummaryAtom =
       Atom(name: '_PokeApiStoreBase._pokemonsSummary');
@@ -141,54 +142,6 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   set _pokemon(Pokemon? value) {
     _$_pokemonAtom.reportWrite(value, super._pokemon, () {
       super._pokemon = value;
-    });
-  }
-
-  final _$_generationFilterAtom =
-      Atom(name: '_PokeApiStoreBase._generationFilter');
-
-  @override
-  Generation? get _generationFilter {
-    _$_generationFilterAtom.reportRead();
-    return super._generationFilter;
-  }
-
-  @override
-  set _generationFilter(Generation? value) {
-    _$_generationFilterAtom.reportWrite(value, super._generationFilter, () {
-      super._generationFilter = value;
-    });
-  }
-
-  final _$_typeFilterAtom = Atom(name: '_PokeApiStoreBase._typeFilter');
-
-  @override
-  String? get _typeFilter {
-    _$_typeFilterAtom.reportRead();
-    return super._typeFilter;
-  }
-
-  @override
-  set _typeFilter(String? value) {
-    _$_typeFilterAtom.reportWrite(value, super._typeFilter, () {
-      super._typeFilter = value;
-    });
-  }
-
-  final _$_pokemonNameNumberFilterAtom =
-      Atom(name: '_PokeApiStoreBase._pokemonNameNumberFilter');
-
-  @override
-  String? get _pokemonNameNumberFilter {
-    _$_pokemonNameNumberFilterAtom.reportRead();
-    return super._pokemonNameNumberFilter;
-  }
-
-  @override
-  set _pokemonNameNumberFilter(String? value) {
-    _$_pokemonNameNumberFilterAtom
-        .reportWrite(value, super._pokemonNameNumberFilter, () {
-      super._pokemonNameNumberFilter = value;
     });
   }
 
@@ -297,9 +250,7 @@ pokemonSummary: ${pokemonSummary},
 pokemon: ${pokemon},
 pokemonsSummary: ${pokemonsSummary},
 index: ${index},
-generationFilter: ${generationFilter},
-typeFilter: ${typeFilter},
-pokemonNameNumberFilter: ${pokemonNameNumberFilter},
+pokemonFilter: ${pokemonFilter},
 favoritesPokemonsSummary: ${favoritesPokemonsSummary}
     ''';
   }

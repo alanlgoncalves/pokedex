@@ -1,5 +1,6 @@
 import 'package:mobx/mobx.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
+import 'package:pokedex/shared/models/pokemon_filter.dart';
 import 'package:pokedex/shared/models/pokemon_summary.dart';
 import 'package:pokedex/shared/repositories/poke_api_repository.dart';
 
@@ -16,6 +17,9 @@ abstract class _PokeApiStoreBase with Store {
   }
 
   @observable
+  PokemonFilter _pokemonFilter = PokemonFilter();
+
+  @observable
   List<PokemonSummary>? _pokemonsSummary;
 
   @observable
@@ -24,71 +28,29 @@ abstract class _PokeApiStoreBase with Store {
   @observable
   PokemonSummary? _pokemonSummary;
 
-  @computed
-  PokemonSummary? get pokemonSummary => _pokemonSummary;
-
   @observable
   List<Pokemon> _pokemons = [];
 
   @observable
   Pokemon? _pokemon;
 
-  // TODO - Encapsulate into a filter object
-  @observable
-  Generation? _generationFilter;
-
-  // TODO - Encapsulate into a filter object
-  @observable
-  String? _typeFilter;
-
-  // TODO - Encapsulate into a filter object
-  @observable
-  String? _pokemonNameNumberFilter;
+  @computed
+  PokemonSummary? get pokemonSummary => _pokemonSummary;
 
   @computed
   Pokemon? get pokemon => _pokemon;
 
   @computed
   List<PokemonSummary>? get pokemonsSummary {
-    var pokemons = _pokemonsSummary;
-
-    if (_generationFilter != null) {
-      pokemons =
-          pokemons!.where((it) => it.generation == _generationFilter).toList();
-    }
-
-    if (_typeFilter != null) {
-      pokemons = pokemons!.where((it) => it.types[0] == _typeFilter).toList();
-    }
-
-    if (_pokemonNameNumberFilter != null) {
-      pokemons = pokemons!
-          .where((it) =>
-              it.name
-                  .toLowerCase()
-                  .contains(_pokemonNameNumberFilter!.toLowerCase()) ||
-              it.number.contains(_pokemonNameNumberFilter!))
-          .toList();
-    }
-
-    return pokemons;
+    return _pokemonFilter.filter(_pokemonsSummary);
   }
 
   @computed
   int get index =>
       pokemonsSummary!.indexWhere((it) => it.number == _pokemon!.number);
 
-  // TODO - Encapsulate into a filter object
   @computed
-  Generation? get generationFilter => _generationFilter;
-
-  // TODO - Encapsulate into a filter object
-  @computed
-  String? get typeFilter => _typeFilter;
-
-  // TODO - Encapsulate into a filter object
-  @computed
-  String? get pokemonNameNumberFilter => _pokemonNameNumberFilter;
+  PokemonFilter get pokemonFilter => _pokemonFilter;
 
   @computed
   List<PokemonSummary> get favoritesPokemonsSummary =>
@@ -147,32 +109,40 @@ abstract class _PokeApiStoreBase with Store {
 
   @action
   void addGenerationFilter(Generation generationFilter) {
-    _generationFilter = generationFilter;
+    _pokemonFilter =
+        _pokemonFilter.copyWith(generationFilter: generationFilter);
   }
 
   @action
   void clearGenerationFilter() {
-    _generationFilter = null;
+    _pokemonFilter = PokemonFilter(
+        pokemonNameNumberFilter: _pokemonFilter.pokemonNameNumberFilter,
+        typeFilter: _pokemonFilter.typeFilter);
   }
 
   @action
   void addTypeFilter(String type) {
-    _typeFilter = type;
+    _pokemonFilter = _pokemonFilter.copyWith(typeFilter: type);
   }
 
   @action
   void clearTypeFilter() {
-    _typeFilter = null;
+    _pokemonFilter = PokemonFilter(
+        pokemonNameNumberFilter: _pokemonFilter.pokemonNameNumberFilter,
+        generationFilter: _pokemonFilter.generationFilter);
   }
 
   @action
   void setNameNumberFilter(String nameNumberFilter) {
-    _pokemonNameNumberFilter = nameNumberFilter;
+    _pokemonFilter =
+        _pokemonFilter.copyWith(pokemonNameNumberFilter: nameNumberFilter);
   }
 
   @action
   void clearNameNumberFilter() {
-    _pokemonNameNumberFilter = null;
+    _pokemonFilter = PokemonFilter(
+        generationFilter: _pokemonFilter.generationFilter,
+        typeFilter: _pokemonFilter.typeFilter);
   }
 
   Future<void> previousPokemon() async {
@@ -195,11 +165,7 @@ abstract class _PokeApiStoreBase with Store {
     final index =
         _favoritesPokemonsSummary.indexWhere((it) => it.number == number);
 
-    if (index < 0) {
-      return false;
-    }
-
-    return true;
+    return index >= 0;
   }
 
   _fetchPokemonList() async {
