@@ -1,4 +1,4 @@
-<h1 align="center"><img src="https://github.com/alanlgoncalves/pokedex/blob/master/web/icons/Icon-192.png?raw=true" width="30" height="30"/> Pokedex</h1>
+<h1 align="center"><img src="https://user-images.githubusercontent.com/8467311/132367198-86750e1d-96ce-4bb3-8c60-7f85fe90fc8d.png" width="30" height="30"/> Pokedex</h1>
 
 <h4 align="center">
   Pokedex App with Flutter ans MobX
@@ -14,7 +14,7 @@
 
 
 
-<h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_1/1.png?raw=true" width="16" height="16"/> Technologies</h3>
+<h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_1/1.png?raw=true" width="24" height="24"/> Technologies</h3>
 
 - [Flutter](https://flutter.dev/)
 - [MobX](https://pub.dev/packages/mobx)
@@ -31,14 +31,14 @@
 - [Flutter Native Splash](https://pub.dev/packages/flutter_native_splash)
 - [Shared Preferences](https://pub.dev/packages/shared_preferences)
 
-<h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_1/2.png?raw=true" width="16" height="16"/> Prerequisites</h3>
+<h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_1/2.png?raw=true" width="24" height="24"/> Prerequisites</h3>
 
 Befor start, yout will need to install Flutter on your machine:
 [Git](https://git-scm.com), [Flutter](https://flutter.dev/docs/get-started/install). Besides, it's nice to have an
 editor to work with code like [VSCode](https://code.visualstudio.com/)
 or [IntelliJ IDEA](https://www.jetbrains.com/pt-br/idea/).
 
-<h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_1/3.png?raw=true" width="16" height="16"/> How to Run</h3>
+<h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_1/3.png?raw=true" width="24" height="24"/> How to Run</h3>
 
 ```bash
 # Clone this repository
