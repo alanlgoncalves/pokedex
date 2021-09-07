@@ -14,10 +14,10 @@
   <a href="#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-prerequisites">Prerequisites</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-how-to-run">How to Run</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-special-thanks">Special Thanks</a>
+  <a href="#-special-thanks-">Special Thanks</a>
 </p>
 
-<table border="0">
+<table align="center" border="0">
  <tr>
     <td>
         <h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_1/1.png?raw=true" width="24" height="24"/> Functionalities</h3>
@@ -44,6 +44,8 @@
     <td><img src="https://user-images.githubusercontent.com/8467311/132415854-e2dd533f-f495-472b-b1ac-1de27ae0fd4f.gif" /></td>
  </tr>
 </table>
+
+![Screen Shot 2021-09-07 at 15 53 03](https://user-images.githubusercontent.com/8467311/132396453-3de6e399-66bc-45cb-bb2b-7d256477dc23.png)
 
 <h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_1/2.png?raw=true" width="24" height="24"/> Future Updates</h3>
 
