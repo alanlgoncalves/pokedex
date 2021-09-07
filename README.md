@@ -17,6 +17,8 @@
   <a href="#-special-thanks">Special Thanks</a>
 </p>
 
+![Screen Shot 2021-09-07 at 15 53 03](https://user-images.githubusercontent.com/8467311/132396453-3de6e399-66bc-45cb-bb2b-7d256477dc23.png)
+
 <h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_1/1.png?raw=true" width="24" height="24"/> Functionalities</h3>
 
 - List of all 898 Pokémons
