@@ -1,4 +1,4 @@
-name: Create Realease
+name: Create Release
 
 on:
   push:
