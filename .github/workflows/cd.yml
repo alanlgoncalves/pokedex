@@ -1,0 +1,31 @@
+name: Continuous Deployment (CD) 🚀
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build_app:
+    name: Deploy on WEB 🎉
+    runs-on: ubuntu-latest
+    steps:
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+      - name: 🧹 Flutter clean
+        run: flutter clean
+      - name: ⬇️ Get dependencies
+        run: flutter pub get
+      - name: 🔨 Build WEB
+        run: flutter build web --web-renderer html --release
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.1.0
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          local-dir: build/web/
+          server-dir: /pokedex.alansantos.dev/
