@@ -28,9 +28,9 @@ jobs:
       - name: Build Android (APK)
         run: |
           flutter build apk --split-per-abi
-          mv /build/app/outputs/apk/release/app-armeabi-v7a-release.apk /build/app/outputs/apk/release/pokedex-armeabi-v7a-release.apk
-          mv /build/app/outputs/apk/release/app-arm64-v8a-release.apk /build/app/outputs/apk/release/pokedex-arm64-v8a-release.apk
-          mv /build/app/outputs/apk/release/app-x86_64-release.apk /build/app/outputs/apk/release/pokedex-x86_64-release.apk
+          mv build/app/outputs/apk/release/app-armeabi-v7a-release.apk build/app/outputs/apk/release/pokedex-armeabi-v7a-release.apk
+          mv build/app/outputs/apk/release/app-arm64-v8a-release.apk build/app/outputs/apk/release/pokedex-arm64-v8a-release.apk
+          mv build/app/outputs/apk/release/app-x86_64-release.apk build/app/outputs/apk/release/pokedex-x86_64-release.apk
       - name: Build WEB
         run: |
           flutter build web --web-renderer html --release
@@ -38,5 +38,5 @@ jobs:
       - name: Create Github Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/bundle/release/pokedex.aab,/build/app/outputs/apk/release/pokedex-armeabi-v7a-release.apk,/build/app/outputs/apk/release/pokedex-arm64-v8a-release.apk,/build/app/outputs/apk/release/pokedex-x86_64-release.apk,pokedex-web.zip"
+          artifacts: "build/app/outputs/bundle/release/pokedex.aab,build/app/outputs/apk/release/pokedex-armeabi-v7a-release.apk,build/app/outputs/apk/release/pokedex-arm64-v8a-release.apk,build/app/outputs/apk/release/pokedex-x86_64-release.apk,pokedex-web.zip"
           token: ${{ secrets.TOKEN }}
