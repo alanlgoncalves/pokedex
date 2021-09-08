@@ -6,47 +6,8 @@ on:
       - v*.*.*
 
 jobs:
-  #  flutter_test:
-  #    name: Run Flutter analyze and test
-  #    runs-on: ubuntu-latest
-  #    steps:
-  #      - uses: actions/checkout@v2
-  #      - uses: actions/setup-java@v1
-  #        with:
-  #          java-version: "12.x"
-  #      - uses: subosito/flutter-action@v1
-  #        with:
-  #          channel: "stable"
-  #      - run: flutter pub get
-  #      - run: flutter analyze
-  #      - run: flutter format --dry-run --set-exit-if-changed lib/
-  #      - run: flutter format --dry-run --set-exit-if-changed test/
-  #      - run: flutter test --coverage
-  #      - run: flutter test --machine > test-results.json
-  #      - uses: dorny/test-reporter@v1.4.2
-  #        with:
-  #          name: test-results
-  #          path: test-results.json
-  #          reporter: flutter-json
-  #      - uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
-  #        with:
-  #          min_coverage: 0
-
-  create_release:
-    name: Create Release
-    runs-on: ubuntu-latest
-    steps:
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: false
-        prerelease: false
-
-  build_ios:
-    name: Build Flutter (iOS)
+  build_app:
+    name: Build Flutter APP
     needs: [create_release]
     runs-on: macos-latest
     steps:
@@ -57,54 +18,22 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: "stable"
-      - run: flutter pub get
-      - run: flutter clean
-      - run: flutter build ios --release --no-codesign
-
-  build_appbundle:
-    name: Build Flutter (Android)
-    needs: [create_release]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1
+      - name: Flutter Clear
+        run: flutter pub get
+      - name: Build Flutter Web
+        run: flutter pub get
+      - name: Build IOS
+        run: flutter build ios --release --no-codesign
+      - name: Build Android
+        run: |
+          flutter build appbundle --release
+          mv build/app/outputs/bundle/release/app-release.aab  build/app/outputs/bundle/release/pokedex.aab
+      - name: Build WEB
+        run: |
+          flutter build web --web-renderer html --release
+          zip -r pokedex-web.zip build/web/
+      - name: Create Github Release
+        uses: ncipollo/release-action@v1
         with:
-          java-version: "12.x"
-      - uses: subosito/flutter-action@v1
-        with:
-          channel: "stable"
-      - run: flutter pub get
-      - run: flutter clean
-      - run: flutter build appbundle --release
-      - run: mv build/app/outputs/bundle/release/app-release.aab  build/app/outputs/bundle/release/pokedex.aab
-      - uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/app/outputs/bundle/release/pokedex.aab
-          asset_name: pokedex.aab
-          asset_content_type: application/x-authorware-bin
-
-  build_web:
-    name: Build Flutter (WEB)
-    needs: [create_release]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v1
-        with:
-          channel: "stable"
-      - run: flutter pub get
-      - run: flutter clean
-      - run: flutter build web --web-renderer html --release
-      - run: cd build/web
-      - run: zip -r pokedex-web.zip .
-      - uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: pokedex-web.zip
-          asset_name: pokedex-web.zip
-          asset_content_type: application/zip
+          artifacts: "build/app/outputs/bundle/release/pokedex.aab,pokedex-web.zip"
+          token: ${{ secrets.TOKEN }}
