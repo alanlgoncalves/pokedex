@@ -19,14 +19,14 @@ jobs:
           channel: "stable"
       - name: Flutter Clear
         run: flutter pub get
-      - name: Build Flutter Web
+      - name: Get dependencies
         run: flutter pub get
-      - name: Build IOS
-        run: flutter build ios --release --no-codesign
-      - name: Build Android
-        run: |
-          flutter build appbundle --release
-          mv build/app/outputs/bundle/release/app-release.aab  build/app/outputs/bundle/release/pokedex.aab
+#      - name: Build IOS
+#        run: flutter build ios --release --no-codesign
+#      - name: Build Android
+#        run: |
+#          flutter build appbundle --release
+#          mv build/app/outputs/bundle/release/app-release.aab  build/app/outputs/bundle/release/pokedex.aab
       - name: Build WEB
         run: |
           flutter build web --web-renderer html --release
@@ -34,5 +34,6 @@ jobs:
       - name: Create Github Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/bundle/release/pokedex.aab,pokedex-web.zip"
+          #artifacts: "build/app/outputs/bundle/release/pokedex.aab,pokedex-web.zip"
+          artifacts: "pokedex-web.zip"
           token: ${{ secrets.TOKEN }}
