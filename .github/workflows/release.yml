@@ -77,15 +77,14 @@ jobs:
       - run: flutter clean
       - run: flutter build appbundle --release
       - run: mv build/app/outputs/bundle/release/app-release.aab  build/app/outputs/bundle/release/pokedex.aab
-      - name: Upload Release Asset
-          uses: actions/upload-release-asset@v1
-          env:
-            GITHUB_TOKEN: ${{ secrets.TOKEN }}
-          with:
-            upload_url: ${{ steps.create_release.outputs.upload_url }}
-            asset_path: build/app/outputs/bundle/release/pokedex.aab
-            asset_name: pokedex.aab
-            asset_content_type: application/x-authorware-bin
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/app/outputs/bundle/release/pokedex.aab
+          asset_name: pokedex.aab
+          asset_content_type: application/x-authorware-bin
 
   build_web:
     name: Build Flutter (WEB)
@@ -101,12 +100,11 @@ jobs:
       - run: flutter build web --web-renderer html --release
       - run: cd build/web
       - run: zip -r pokedex-web.zip .
-      - name: Upload Release Asset
-          uses: actions/upload-release-asset@v1
-          env:
-            GITHUB_TOKEN: ${{ secrets.TOKEN }}
-          with:
-            upload_url: ${{ steps.create_release.outputs.upload_url }}
-            asset_path: pokedex-web.zip
-            asset_name: pokedex-web.zip
-            asset_content_type: application/zip
+      - uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: pokedex-web.zip
+          asset_name: pokedex-web.zip
+          asset_content_type: application/zip
