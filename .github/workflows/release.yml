@@ -1,4 +1,4 @@
-name: CD
+name: Create Realease
 
 on:
   push:
@@ -32,9 +32,21 @@ jobs:
   #        with:
   #          min_coverage: 0
 
+  create_release:
+    name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
   build_ios:
     name: Build Flutter (iOS)
-    #needs: [flutter_test]
+    needs: [create_release]
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
@@ -50,7 +62,7 @@ jobs:
 
   build_appbundle:
     name: Build Flutter (Android)
-    #needs: [flutter_test]
+    needs: [create_release]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -63,15 +75,21 @@ jobs:
       - run: flutter pub get
       - run: flutter clean
       - run: flutter build appbundle --release
-      - name: Upload appbundle
-        uses: actions/upload-artifact@v2.1.4
-        with:
-          name: appbundle
-          path: build/app/outputs/bundle/release/app-release.aab
+      - run: mv build/app/outputs/bundle/release/app-release.aab  build/app/outputs/bundle/release/pokedex.aab
+      - name: Upload Release Asset
+          id: upload-release-asset
+          uses: actions/upload-release-asset@v1
+          env:
+            GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          with:
+            upload_url: ${{ steps.create_release.outputs.upload_url }}
+            asset_path: build/app/outputs/bundle/release/pokedex.aab
+            asset_name: pokedex.aab
+            asset_content_type: application/x-authorware-bin
 
   build_web:
     name: Build Flutter (WEB)
-    #needs: [ flutter_test ]
+    needs: [create_release]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -82,9 +100,14 @@ jobs:
       - run: flutter clean
       - run: flutter build web --web-renderer html --release
       - run: cd build/web
-      - run:  zip -r web-app.zip .
-      - name: Upload WEB
-        uses: actions/upload-artifact@v2.1.4
-        with:
-          name: appbundle
-          path: web-app.zip
+      - run: zip -r pokedex-web.zip .
+      - name: Upload Release Asset
+          id: upload-release-asset
+          uses: actions/upload-release-asset@v1
+          env:
+            GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          with:
+            upload_url: ${{ steps.create_release.outputs.upload_url }}
+            asset_path: pokedex-web.zip
+            asset_name: pokedex-web.zip
+            asset_content_type: application/zip
