@@ -7,7 +7,7 @@
 </p>
 
 <h4 align="center">
-  Fully functional Pokedex App with Flutter ans MobX
+  Fully functional Pokedex APP with Flutter
 </h4>
 
 <p align="center">
