@@ -20,7 +20,7 @@ jobs:
       - name: ⬇️ Get dependencies
         run: flutter pub get
       - name: 🔨 Build WEB
-        run: flutter build web --web-renderer html --release
+        run: flutter build web --web-renderer canvaskit --release
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
