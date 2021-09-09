@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/shared/canvas/white_pokeball_canvas.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
+import 'package:pokedex/shared/ui/canvas/white_pokeball_canvas.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class GenerationItemWidget extends StatelessWidget {

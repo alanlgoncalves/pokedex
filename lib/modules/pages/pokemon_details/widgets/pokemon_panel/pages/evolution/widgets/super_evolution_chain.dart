@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/ui/widgets/image_dialog.dart';
 import 'package:pokedex/shared/utils/evolution_chain_utils.dart';
 import 'package:pokedex/shared/utils/hero_dialog_route.dart';
-import 'package:pokedex/shared/widgets/image_dialog.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class SuperEvolutionChainWidget extends StatelessWidget {

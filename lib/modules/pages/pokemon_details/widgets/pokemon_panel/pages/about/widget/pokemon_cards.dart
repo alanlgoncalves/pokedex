@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/ui/widgets/image_dialog.dart';
 import 'package:pokedex/shared/utils/hero_dialog_route.dart';
-import 'package:pokedex/shared/widgets/image_dialog.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 import '../../../pokemon_mobile_panel.dart';

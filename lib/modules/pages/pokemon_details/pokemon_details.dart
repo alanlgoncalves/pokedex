@@ -10,9 +10,9 @@ import 'package:pokedex/modules/pages/pokemon_details/widgets/app_bar_navigation
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_pager.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pokemon_mobile_panel.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_title_info.dart';
-import 'package:pokedex/shared/canvas/background_dots.dart';
-import 'package:pokedex/shared/canvas/white_pokeball_canvas.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/ui/canvas/background_dots.dart';
+import 'package:pokedex/shared/ui/canvas/white_pokeball_canvas.dart';
 import 'package:pokedex/shared/utils/converters.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
