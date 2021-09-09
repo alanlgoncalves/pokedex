@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: subosito/flutter-action@v1
         with:
-          channel: "stable"
+          flutter-version: '2.2.3'
       - name: 🚚 Get latest code
         uses: actions/checkout@v2
       - name: 🧹 Flutter clean
@@ -20,7 +20,7 @@ jobs:
       - name: ⬇️ Get dependencies
         run: flutter pub get
       - name: 🔨 Build WEB
-        run: flutter build web --web-renderer canvaskit --release
+        run: flutter build web --web-renderer html --release
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
