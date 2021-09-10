@@ -10,13 +10,18 @@ class ImageDialogWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        child: Hero(
-          tag: tag,
-          child: Container(
-            child: ImageUtils.networkImage(
-              url: imageUrl,
+    return GestureDetector(
+      onTap: () {
+        Navigator.pop(context);
+      },
+      child: Center(
+        child: Container(
+          child: Hero(
+            tag: tag,
+            child: Container(
+              child: ImageUtils.networkImage(
+                url: imageUrl,
+              ),
             ),
           ),
         ),
