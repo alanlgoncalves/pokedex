@@ -10,7 +10,8 @@ jobs:
     name: Deploy on WEB 🎉
     runs-on: ubuntu-latest
     steps:
-      - uses: subosito/flutter-action@v1
+      - name: 📱️Setup Flutter
+        uses: subosito/flutter-action@v1
         with:
           flutter-version: '2.2.3'
       - name: 🚚 Get latest code
