@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:lottie/lottie.dart';
@@ -18,9 +19,12 @@ class EmptyEvolutionChainWidget extends StatelessWidget {
           child: Container(
             height: 250,
             width: 250,
-            child: Lottie.asset(
-              AppConstants.pikachuLottie,
-            ),
+            child: kIsWeb
+                ? Image.asset(AppConstants.pikachuGifLottie)
+                : Lottie.asset(
+                    AppConstants.pikachuLottie,
+                    width: 400,
+                  ),
           ),
         ),
         Text(

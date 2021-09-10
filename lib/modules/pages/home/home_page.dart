@@ -1,4 +1,5 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
@@ -146,9 +147,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             child: Stack(
                               children: [
                                 Center(
-                                  child: Lottie.asset(
-                                    AppConstants.pikachuLottie,
-                                  ),
+                                  child: kIsWeb
+                                      ? Image.asset(
+                                          AppConstants.pikachuGifLottie)
+                                      : Lottie.asset(
+                                          AppConstants.pikachuLottie,
+                                        ),
                                 ),
                                 Align(
                                   alignment: Alignment.bottomCenter,

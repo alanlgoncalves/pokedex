@@ -27,7 +27,6 @@ class PokemonFavorites extends StatelessWidget {
 
     if (pokeApiStore.favoritesPokemonsSummary.isEmpty) {
       return Container(
-        width: size.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -36,9 +35,12 @@ class PokemonFavorites extends StatelessWidget {
               style: AppTheme.texts.pokemonText,
             ),
             Center(
-              child: Lottie.asset(
-                AppConstants.pikachuLottie,
-              ),
+              child: kIsWeb
+                  ? Image.asset(AppConstants.pikachuGifLottie)
+                  : Lottie.asset(
+                      AppConstants.pikachuLottie,
+                      width: 400,
+                    ),
             )
           ],
         ),
