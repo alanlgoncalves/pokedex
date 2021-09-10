@@ -74,7 +74,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
               },
             ),
             Positioned(
-              top: -30,
+              top: -83 + padding.top,
               left: -70,
               child: Transform.rotate(
                 angle: getRadiansFromDegree(75),
