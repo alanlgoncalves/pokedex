@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
@@ -33,43 +34,48 @@ class PokemonGenerationFilter extends StatelessWidget {
               SizedBox(
                 height: 40,
               ),
-            NestedScrollView(
-              headerSliverBuilder: (context, value) {
-                return [];
-              },
-              body: GridView.builder(
-                controller: scrollController,
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
-                  mainAxisSpacing: 10.0,
-                  crossAxisSpacing: 10.0,
-                  childAspectRatio: 3 / 2,
-                ),
-                itemBuilder: (context, index) {
-                  final generation = Generation.values[index];
-
-                  Color? color =
-                      pokeApiStore.pokemonFilter.generationFilter == generation
-                          ? AppTheme.colors.selectedGenerationFilter
-                          : Colors.white;
-
-                  return GenerationItemWidget(
-                    generation: generation,
-                    color: color,
-                    onClick: () {
-                      if (pokeApiStore.pokemonFilter.generationFilter != null &&
-                          pokeApiStore.pokemonFilter.generationFilter ==
-                              generation) {
-                        pokeApiStore.clearGenerationFilter();
-                      } else {
-                        pokeApiStore.addGenerationFilter(generation);
-                      }
-
-                      homeStore.closeFilter();
-                    },
-                  );
+            Padding(
+              padding: const EdgeInsets.only(top: kIsWeb ? 68 : 40),
+              child: NestedScrollView(
+                headerSliverBuilder: (context, value) {
+                  return [];
                 },
-                itemCount: Generation.values.length,
+                body: GridView.builder(
+                  controller: scrollController,
+                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 200,
+                    mainAxisSpacing: 10.0,
+                    crossAxisSpacing: 10.0,
+                    childAspectRatio: 3 / 2,
+                  ),
+                  itemBuilder: (context, index) {
+                    final generation = Generation.values[index];
+
+                    Color? color =
+                        pokeApiStore.pokemonFilter.generationFilter ==
+                                generation
+                            ? AppTheme.colors.selectedGenerationFilter
+                            : Colors.white;
+
+                    return GenerationItemWidget(
+                      generation: generation,
+                      color: color,
+                      onClick: () {
+                        if (pokeApiStore.pokemonFilter.generationFilter !=
+                                null &&
+                            pokeApiStore.pokemonFilter.generationFilter ==
+                                generation) {
+                          pokeApiStore.clearGenerationFilter();
+                        } else {
+                          pokeApiStore.addGenerationFilter(generation);
+                        }
+
+                        homeStore.closeFilter();
+                      },
+                    );
+                  },
+                  itemCount: Generation.values.length,
+                ),
               ),
             ),
             if (pokeApiStore.pokemonFilter.generationFilter != null)

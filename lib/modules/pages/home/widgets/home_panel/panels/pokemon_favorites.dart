@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:lottie/lottie.dart';
@@ -50,7 +51,7 @@ class PokemonFavorites extends StatelessWidget {
       child: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 12),
+            padding: const EdgeInsets.only(top: kIsWeb ? 68 : 40),
             child: NestedScrollView(
               headerSliverBuilder: (context, value) {
                 return [];
