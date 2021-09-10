@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:mobx/mobx.dart';
 import 'package:pokedex/modules/pages/home/widgets/poke_item.dart';
 import 'package:pokedex/modules/pages/pokemon_details/pokemon_details.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
@@ -19,13 +20,27 @@ class _PokemonGridWidgetState extends State<PokemonGridWidget> {
   final PagingController<int, Widget> _pagingController =
       PagingController(firstPageKey: 0);
 
+  late ReactionDisposer filterReactionDisposer;
+
   @override
   void initState() {
     _pagingController.addPageRequestListener((pageKey) {
       _fetchPage(pageKey);
     });
 
+    filterReactionDisposer =
+        reaction((_) => widget.pokeApiStore.pokemonFilter, (_) {
+      _pagingController.refresh();
+    });
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    filterReactionDisposer();
+
+    super.dispose();
   }
 
   void _fetchPage(int pageKey) async {
