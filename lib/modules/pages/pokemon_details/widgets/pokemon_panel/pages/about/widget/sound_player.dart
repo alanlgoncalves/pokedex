@@ -4,6 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/about/about_page_store.dart';
+import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pokemon_mobile_panel.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
@@ -25,6 +26,8 @@ class SoundPlayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
+    final horizontalPadding = getDetailsPanelsPadding(size);
 
     return Padding(
       padding: const EdgeInsets.only(top: 15),
@@ -69,7 +72,7 @@ class SoundPlayer extends StatelessWidget {
                   },
                 ),
               ),
-              width: size.width * 0.65,
+              width: size.width * 0.65 - horizontalPadding,
             )
           ],
         ),
