@@ -1,10 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/shared/ui/widgets/image_dialog.dart';
 import 'package:pokedex/shared/utils/hero_dialog_route.dart';
+import 'package:pokedex/shared/utils/image_utils.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 import '../../../pokemon_mobile_panel.dart';
@@ -109,10 +109,10 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
                                 child: Container(
                                   width: 230,
                                   height: 280,
-                                  child: CachedNetworkImage(
+                                  child: ImageUtils.networkImage(
                                     width: 225,
                                     height: 342,
-                                    imageUrl: card.imageUrl,
+                                    url: card.imageUrl,
                                   ),
                                 ),
                               ),

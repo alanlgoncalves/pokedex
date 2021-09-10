@@ -1,10 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pokedex/modules/pages/pokemon_details/pokemon_details_store.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/utils/image_utils.dart';
 
 class PokemonPagerWidget extends StatefulWidget {
   final PokemonDetailsStore pokemonDetailStore;
@@ -76,8 +76,8 @@ class _PokemonPagerState extends State<PokemonPagerWidget> {
                               tag: widget.isFavorite
                                   ? "favorite-pokemon-image-${listPokemon.number}"
                                   : "pokemon-image-${listPokemon.number}",
-                              child: CachedNetworkImage(
-                                imageUrl: listPokemon.imageUrl,
+                              child: ImageUtils.networkImage(
+                                url: listPokemon.imageUrl,
                                 height: 300,
                                 color: _pokeApiStore.pokemonSummary!.number ==
                                         listPokemon.number
@@ -85,8 +85,8 @@ class _PokemonPagerState extends State<PokemonPagerWidget> {
                                     : Colors.black.withOpacity(0.2),
                               ),
                             )
-                          : CachedNetworkImage(
-                              imageUrl: listPokemon.imageUrl,
+                          : ImageUtils.networkImage(
+                              url: listPokemon.imageUrl,
                               height: 300,
                               color: _pokeApiStore.pokemonSummary!.number ==
                                       listPokemon.number

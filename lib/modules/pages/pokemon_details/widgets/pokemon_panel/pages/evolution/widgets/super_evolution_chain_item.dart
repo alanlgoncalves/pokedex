@@ -1,9 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
 import 'package:pokedex/shared/ui/canvas/white_pokeball_canvas.dart';
 import 'package:pokedex/shared/ui/widgets/image_dialog.dart';
 import 'package:pokedex/shared/utils/hero_dialog_route.dart';
+import 'package:pokedex/shared/utils/image_utils.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class SuperEvolutionChainItemWidget extends StatelessWidget {
@@ -59,8 +59,8 @@ class SuperEvolutionChainItemWidget extends StatelessWidget {
                         child: Center(
                           child: Hero(
                             tag: pokemonHeroTag,
-                            child: CachedNetworkImage(
-                              imageUrl: pokemon.imageUrl,
+                            child: ImageUtils.networkImage(
+                              url: pokemon.imageUrl,
                               width: 76,
                               height: 71,
                             ),
@@ -120,8 +120,8 @@ class SuperEvolutionChainItemWidget extends StatelessWidget {
                         child: Center(
                           child: Hero(
                             tag: superEvolutionHeroTag,
-                            child: CachedNetworkImage(
-                              imageUrl: superEvolution.imageUrl,
+                            child: ImageUtils.networkImage(
+                              url: superEvolution.imageUrl,
                               width: 76,
                               height: 71,
                             ),

@@ -1,7 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/utils/image_utils.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class AppBarNavigationWidget extends StatelessWidget {
@@ -24,10 +24,10 @@ class AppBarNavigationWidget extends StatelessWidget {
           ),
         Padding(
           padding: const EdgeInsets.only(bottom: 6, right: 5),
-          child: CachedNetworkImage(
+          child: ImageUtils.networkImage(
               height: 35,
               width: 35,
-              imageUrl: _pokeApiStore.pokemon!.sprites.mainSpriteUrl),
+              url: _pokeApiStore.pokemon!.sprites.mainSpriteUrl),
         ),
         Text(
           _pokeApiStore.pokemon!.name,

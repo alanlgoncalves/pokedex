@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/shared/models/pokemon_summary.dart';
 import 'package:pokedex/shared/ui/canvas/white_pokeball_canvas.dart';
+import 'package:pokedex/shared/utils/image_utils.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class PokeItemWidget extends StatelessWidget {
@@ -46,8 +46,8 @@ class PokeItemWidget extends StatelessWidget {
                   tag: isFavorite
                       ? "favorite-pokemon-image-${pokemon.number}"
                       : "pokemon-image-${pokemon.number}",
-                  child: CachedNetworkImage(
-                    imageUrl: pokemon.imageUrl,
+                  child: ImageUtils.networkImage(
+                    url: pokemon.imageUrl,
                   ),
                 ),
                 height: 76,

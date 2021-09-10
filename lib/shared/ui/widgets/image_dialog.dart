@@ -1,5 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:pokedex/shared/utils/image_utils.dart';
 
 class ImageDialogWidget extends StatelessWidget {
   final String imageUrl;
@@ -15,8 +15,8 @@ class ImageDialogWidget extends StatelessWidget {
         child: Hero(
           tag: tag,
           child: Container(
-            child: CachedNetworkImage(
-              imageUrl: imageUrl,
+            child: ImageUtils.networkImage(
+              url: imageUrl,
             ),
           ),
         ),

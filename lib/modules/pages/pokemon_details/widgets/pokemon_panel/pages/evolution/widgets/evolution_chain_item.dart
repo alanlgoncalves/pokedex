@@ -1,9 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
 import 'package:pokedex/shared/ui/canvas/white_pokeball_canvas.dart';
 import 'package:pokedex/shared/ui/widgets/image_dialog.dart';
 import 'package:pokedex/shared/utils/hero_dialog_route.dart';
+import 'package:pokedex/shared/utils/image_utils.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class EvolutionChainItemWidget extends StatelessWidget {
@@ -59,8 +59,8 @@ class EvolutionChainItemWidget extends StatelessWidget {
                           child: Hero(
                             tag:
                                 "prev-${previousEvolution.number}-${previousEvolution.name}",
-                            child: CachedNetworkImage(
-                              imageUrl: previousEvolution.imageUrl,
+                            child: ImageUtils.networkImage(
+                              url: previousEvolution.imageUrl,
                               width: 76,
                               height: 71,
                             ),
@@ -136,8 +136,8 @@ class EvolutionChainItemWidget extends StatelessWidget {
                           child: Hero(
                             tag:
                                 "next-${nextEvolution.number}-${nextEvolution.name}",
-                            child: CachedNetworkImage(
-                              imageUrl: nextEvolution.imageUrl,
+                            child: ImageUtils.networkImage(
+                              url: nextEvolution.imageUrl,
                               width: 76,
                               height: 71,
                             ),

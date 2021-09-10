@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/utils/image_utils.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class AnimatedSpritesWidget extends StatelessWidget {
@@ -39,8 +39,11 @@ class AnimatedSpritesWidget extends StatelessWidget {
           Column(
             children: [
               Observer(
-                builder: (_) => CachedNetworkImage(
-                    height: 65, width: 65, imageUrl: frontUrl),
+                builder: (_) => ImageUtils.networkImage(
+                  height: 65,
+                  width: 65,
+                  url: frontUrl,
+                ),
               ),
               Text(
                 frontTitle,
@@ -52,8 +55,11 @@ class AnimatedSpritesWidget extends StatelessWidget {
           Column(
             children: [
               Observer(
-                builder: (_) => CachedNetworkImage(
-                    height: 65, width: 65, imageUrl: backUrl),
+                builder: (_) => ImageUtils.networkImage(
+                  height: 65,
+                  width: 65,
+                  url: backUrl,
+                ),
               ),
               Text(
                 backTitle,
