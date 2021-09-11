@@ -58,6 +58,7 @@ class _PokemonPagerState extends State<PokemonPagerWidget> {
         controller: _pageController,
         itemCount: _pokeApiStore.pokemonsSummary!.length,
         onPageChanged: _pokeApiStore.setPokemon,
+        allowImplicitScrolling: true,
         itemBuilder: (context, index) {
           final listPokemon = _pokeApiStore.pokemonsSummary![index];
 

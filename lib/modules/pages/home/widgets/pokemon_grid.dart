@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -28,9 +27,7 @@ class _PokemonGridWidgetState extends State<PokemonGridWidget> {
   void initState() {
     for (var pokemon in widget.pokeApiStore.pokemonsSummary!) {
       if (kIsWeb) {
-        precacheImage(Image.network(pokemon.imageUrl).image, context);
-      } else {
-        precacheImage(CachedNetworkImageProvider(pokemon.imageUrl), context);
+        precacheImage(Image.network(pokemon.thumbnailUrl).image, context);
       }
     }
 

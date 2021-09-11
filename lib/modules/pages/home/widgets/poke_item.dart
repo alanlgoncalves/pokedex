@@ -47,7 +47,7 @@ class PokeItemWidget extends StatelessWidget {
                       ? "favorite-pokemon-image-${pokemon.number}"
                       : "pokemon-image-${pokemon.number}",
                   child: ImageUtils.networkImage(
-                    url: pokemon.imageUrl,
+                    url: pokemon.thumbnailUrl,
                   ),
                 ),
                 height: 76,
