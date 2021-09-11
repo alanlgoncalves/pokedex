@@ -14,7 +14,8 @@
   <a href="#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-prerequisites">Prerequisites</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-how-to-run">How to Run</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-special-thanks-">Special Thanks</a>
+  <a href="#-special-thanks-">Special Thanks</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-disclaimer">Disclaimer</a>
 </p>
 
 <table align="center" border="0">
@@ -111,3 +112,7 @@ $ flutter run
 - [Pikachu](https://lottiefiles.com/22892-pikachu) Lottie by [Ben Kuhlmann](https://lottiefiles.com/user/309694)
 - [YouTube classes for Pokedex](https://www.youtube.com/watch?v=3xUsD0XRa04&list=PLHAtJbrQ17AVj0LJEc955109XpX925Pt1) by [Renato Mota](https://www.youtube.com/channel/UCd-vLa_qcKve3CsDFlYiygA)
 - [YouTube classes for animations](https://www.youtube.com/watch?v=S7KG4prI7A4) by [RetroPortal Studio](https://www.youtube.com/channel/UCW2ATgwtNrsBrE-piE2TIrA)
+
+<h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_3/2.png?raw=true" width="24" height="24"/> Disclaimer</h3>
+
+This repo is for educational use only. All Pokémons assets content found within this repo is the property of The Pokemon Company. Please respect the original source material.
