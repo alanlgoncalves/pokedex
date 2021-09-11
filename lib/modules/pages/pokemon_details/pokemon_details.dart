@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:just_audio/just_audio.dart';
@@ -13,6 +14,7 @@ import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_title_info
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/shared/ui/canvas/background_dots.dart';
 import 'package:pokedex/shared/ui/canvas/white_pokeball_canvas.dart';
+import 'package:pokedex/shared/ui/enums/device_screen_type.dart';
 import 'package:pokedex/shared/utils/converters.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
@@ -55,6 +57,13 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
 
   @override
   Widget build(BuildContext context) {
+    if (getDeviceScreenType(context) == DeviceScreenType.CELLPHONE) {
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ]);
+    }
+
     final size = MediaQuery.of(context).size;
     final padding = MediaQuery.of(context).padding;
 
