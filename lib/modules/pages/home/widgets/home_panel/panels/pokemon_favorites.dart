@@ -19,6 +19,14 @@ class PokemonFavorites extends StatelessWidget {
       {Key? key, required this.homeStore, required this.scrollController})
       : super(key: key);
 
+  double get topPadding {
+    if (pokeApiStore.favoritesPokemonsSummary.isNotEmpty) {
+      return kIsWeb ? 68 : 10;
+    } else {
+      return 0;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -53,7 +61,7 @@ class PokemonFavorites extends StatelessWidget {
       child: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: kIsWeb ? 68 : 40),
+            padding: EdgeInsets.only(top: topPadding),
             child: NestedScrollView(
               headerSliverBuilder: (context, value) {
                 return [];

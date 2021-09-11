@@ -18,6 +18,14 @@ class PokemonGenerationFilter extends StatelessWidget {
       {Key? key, required this.homeStore, required this.scrollController})
       : super(key: key);
 
+  double get topPadding {
+    if (pokeApiStore.pokemonFilter.generationFilter != null) {
+      return kIsWeb ? 68 : 10;
+    } else {
+      return 0;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -35,7 +43,7 @@ class PokemonGenerationFilter extends StatelessWidget {
                 height: 40,
               ),
             Padding(
-              padding: const EdgeInsets.only(top: kIsWeb ? 68 : 40),
+              padding: EdgeInsets.only(top: topPadding),
               child: NestedScrollView(
                 headerSliverBuilder: (context, value) {
                   return [];
