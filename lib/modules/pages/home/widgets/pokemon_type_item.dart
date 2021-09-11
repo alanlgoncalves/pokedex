@@ -30,8 +30,8 @@ class PokemonTypeItemWidget extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Color(0xFF000000).withOpacity(0.08),
-              blurRadius: 4.0,
-              spreadRadius: 3.0,
+              blurRadius: 1.0,
+              spreadRadius: 1.0,
               offset: Offset(
                 0.0,
                 4.0,
@@ -39,52 +39,55 @@ class PokemonTypeItemWidget extends StatelessWidget {
             ),
           ],
         ),
-        child: Stack(
-          children: [
-            Positioned(
-              bottom: -15,
-              right: -15,
-              child: Container(
-                child: CustomPaint(
-                  size: Size(83, (83 * 1.0040160642570282).toDouble()),
-                  painter: PokeballLogoPainter(
-                    color: AppTheme.colors.pokeballLogoGray,
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              top: -45,
-              left: -45,
-              child: Container(
-                child: CustomPaint(
-                  size: Size(83, (83 * 1.0040160642570282).toDouble()),
-                  painter: PokeballLogoPainter(
-                    color: AppTheme.colors.pokeballLogoGray,
-                  ),
-                ),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      type,
-                      style: AppTheme.texts.pokemonTabTitle,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(15),
+          child: Stack(
+            children: [
+              Positioned(
+                bottom: -15,
+                right: -15,
+                child: Container(
+                  child: CustomPaint(
+                    size: Size(83, (83 * 1.0040160642570282).toDouble()),
+                    painter: PokeballLogoPainter(
+                      color: AppTheme.colors.pokeballLogoGray,
                     ),
-                    Image.asset(
-                      AppConstants.pokemonTypeLogo(type),
-                      width: 60,
-                      height: 60,
-                    )
-                  ],
+                  ),
                 ),
-              ],
-            ),
-          ],
+              ),
+              Positioned(
+                top: -45,
+                left: -45,
+                child: Container(
+                  child: CustomPaint(
+                    size: Size(83, (83 * 1.0040160642570282).toDouble()),
+                    painter: PokeballLogoPainter(
+                      color: AppTheme.colors.pokeballLogoGray,
+                    ),
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        type,
+                        style: AppTheme.texts.pokemonTabTitle,
+                      ),
+                      Image.asset(
+                        AppConstants.pokemonTypeLogo(type),
+                        width: 60,
+                        height: 60,
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

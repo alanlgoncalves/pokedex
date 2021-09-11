@@ -38,54 +38,57 @@ class GenerationItemWidget extends StatelessWidget {
                 ),
               ),
             ]),
-        child: Stack(
-          children: [
-            Positioned(
-              bottom: -15,
-              right: -3,
-              child: Container(
-                child: CustomPaint(
-                  size: Size(83, (83 * 1.0040160642570282).toDouble()),
-                  painter: PokeballLogoPainter(
-                    color: AppTheme.colors.pokeballLogoGray,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(15),
+          child: Stack(
+            children: [
+              Positioned(
+                bottom: -15,
+                right: -3,
+                child: Container(
+                  child: CustomPaint(
+                    size: Size(83, (83 * 1.0040160642570282).toDouble()),
+                    painter: PokeballLogoPainter(
+                      color: AppTheme.colors.pokeballLogoGray,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      generation.description,
-                      style: AppTheme.texts.pokemonTabTitle,
-                    ),
-                    Row(
-                      children: [
-                        Image.asset(
-                          "assets/images/pokemons_generations/generation_${generation.number}/1.png",
-                          width: 46,
-                          height: 46,
-                        ),
-                        Image.asset(
-                          "assets/images/pokemons_generations/generation_${generation.number}/2.png",
-                          width: 46,
-                          height: 46,
-                        ),
-                        Image.asset(
-                          "assets/images/pokemons_generations/generation_${generation.number}/3.png",
-                          width: 46,
-                          height: 46,
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ],
-            ),
-          ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        generation.description,
+                        style: AppTheme.texts.pokemonTabTitle,
+                      ),
+                      Row(
+                        children: [
+                          Image.asset(
+                            "assets/images/pokemons_generations/generation_${generation.number}/1.png",
+                            width: 46,
+                            height: 46,
+                          ),
+                          Image.asset(
+                            "assets/images/pokemons_generations/generation_${generation.number}/2.png",
+                            width: 46,
+                            height: 46,
+                          ),
+                          Image.asset(
+                            "assets/images/pokemons_generations/generation_${generation.number}/3.png",
+                            width: 46,
+                            height: 46,
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
