@@ -8,10 +8,14 @@ class PokemonNameNumberFilterPage extends StatelessWidget {
   static final PokeApiStore pokeApiStore = GetIt.instance<PokeApiStore>();
 
   final ValueChanged<String> onChanged;
+  final VoidCallback onClose;
   final HomeStore homeStore;
 
   const PokemonNameNumberFilterPage(
-      {Key? key, required this.homeStore, required this.onChanged})
+      {Key? key,
+      required this.homeStore,
+      required this.onChanged,
+      required this.onClose})
       : super(key: key);
 
   @override
@@ -28,6 +32,13 @@ class PokemonNameNumberFilterPage extends StatelessWidget {
             style: AppTheme.texts.pokemonText,
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.search),
+              suffixIcon: IconButton(
+                icon: Icon(
+                  Icons.close,
+                  color: Colors.red,
+                ),
+                onPressed: onClose,
+              ),
               hintText: "Ex: Charizard or 006",
               fillColor: Color(0xFFE1E1E1),
               filled: true,

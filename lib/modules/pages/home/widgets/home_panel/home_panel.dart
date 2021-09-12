@@ -86,6 +86,9 @@ class HomePanelWidget extends StatelessWidget {
                     onChanged: (value) {
                       pokeApiStore.setNameNumberFilter(value);
                     },
+                    onClose: () {
+                      panelController.close();
+                    },
                   ),
                 if (homeStore.panelType == PanelType.FAVORITES_POKEMONS)
                   PokemonFavorites(
