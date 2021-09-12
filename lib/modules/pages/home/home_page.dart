@@ -117,8 +117,22 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     super.dispose();
   }
 
+  double getHomePadding(Size size) {
+    double horizontalPadding = 0;
+
+    if (size.width > 1200) {
+      horizontalPadding = size.width * 0.15;
+    } else {
+      horizontalPadding = 10;
+    }
+
+    return horizontalPadding;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: AppTheme.colors.background,
       body: Stack(
@@ -127,7 +141,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             bottom: false,
             child: CustomScrollView(
               slivers: [
-                AppBarWidget(),
+                SliverPadding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: getHomePadding(size),
+                  ),
+                  sliver: AppBarWidget(),
+                ),
                 Observer(
                   builder: (_) {
                     if (_pokeApiStore.pokemonsSummary == null) {
@@ -171,7 +190,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       }
 
                       return SliverPadding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: getHomePadding(size)),
                         sliver: PokemonGridWidget(pokeApiStore: _pokeApiStore),
                       );
                     }
