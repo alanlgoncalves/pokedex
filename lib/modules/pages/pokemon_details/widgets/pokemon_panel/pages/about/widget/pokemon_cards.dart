@@ -81,6 +81,7 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
                 child: Observer(
                   builder: (_) => PageView.builder(
                     controller: _pageController,
+                    allowImplicitScrolling: true,
                     itemCount: _pokeApiStore.pokemon!.cards.length,
                     itemBuilder: (context, index) {
                       final card = _pokeApiStore.pokemon!.cards[index];
@@ -107,13 +108,28 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
                                     "${card.number}- " +
                                     "${card.expansionName}",
                                 child: Container(
-                                  width: 230,
-                                  height: 280,
+                                  margin: const EdgeInsets.all(10),
                                   child: ImageUtils.networkImage(
-                                    width: 225,
-                                    height: 342,
                                     url: card.imageUrl,
                                   ),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      border: Border.fromBorderSide(
+                                        BorderSide(
+                                            color: AppTheme.colors.tabDivisor),
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Color(0xFF000000)
+                                              .withOpacity(0.08),
+                                          blurRadius: 4.0,
+                                          spreadRadius: 3.0,
+                                          offset: Offset(
+                                            0.0,
+                                            4.0,
+                                          ),
+                                        ),
+                                      ]),
                                 ),
                               ),
                               Text(
