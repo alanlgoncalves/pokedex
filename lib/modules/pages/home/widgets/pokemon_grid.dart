@@ -1,9 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pokedex/modules/pages/home/widgets/poke_item.dart';
 import 'package:pokedex/modules/pages/pokemon_details/pokemon_details.dart';
+import 'package:pokedex/shared/models/pokemon_summary.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 
 class PokemonGridWidget extends StatefulWidget {
@@ -59,8 +61,12 @@ class _PokemonGridWidgetState extends State<PokemonGridWidget> {
 
     List<Widget> items = [];
 
-    for (int i = initialRange; i < finalRange; i++) {
-      items.add(_buildPokemonItem(i));
+    for (int index = initialRange; index < finalRange; index++) {
+      final _pokemon = widget.pokeApiStore.getPokemon(index);
+
+      items.add(_buildPokemonItem(index: index, pokemon: _pokemon));
+
+      _preCachePokemonImage(pokemon: _pokemon);
     }
 
     if (maxRange == finalRange) {
@@ -70,9 +76,16 @@ class _PokemonGridWidgetState extends State<PokemonGridWidget> {
     }
   }
 
-  Widget _buildPokemonItem(int index) {
-    final _pokemon = widget.pokeApiStore.getPokemon(index);
+  void _preCachePokemonImage({required PokemonSummary pokemon}) async {
+    if (kIsWeb) {
+      precacheImage(Image.network(pokemon.thumbnailUrl).image, context);
+    } else {
+      precacheImage(CachedNetworkImageProvider(pokemon.thumbnailUrl), context);
+    }
+  }
 
+  Widget _buildPokemonItem(
+      {required int index, required PokemonSummary pokemon}) {
     return InkWell(
       onTap: () async {
         await widget.pokeApiStore.setPokemon(index);
@@ -86,7 +99,7 @@ class _PokemonGridWidgetState extends State<PokemonGridWidget> {
       },
       child: Ink(
         child: PokeItemWidget(
-          pokemon: _pokemon,
+          pokemon: pokemon,
         ),
       ),
     );
