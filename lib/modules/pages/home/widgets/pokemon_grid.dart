@@ -36,18 +36,13 @@ class _PokemonGridWidgetState extends State<PokemonGridWidget> {
       _pagingController.refresh();
     });
 
-    super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
     for (var pokemon in widget.pokeApiStore.pokemonsSummary!) {
       if (kIsWeb) {
         precacheImage(Image.network(pokemon.thumbnailUrl).image, context);
       }
     }
 
-    super.didChangeDependencies();
+    super.initState();
   }
 
   @override
