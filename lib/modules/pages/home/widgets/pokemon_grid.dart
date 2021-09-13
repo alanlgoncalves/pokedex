@@ -29,18 +29,13 @@ class _PokemonGridWidgetState extends State<PokemonGridWidget> {
   void initState() {
     _pagingController.addPageRequestListener((pageKey) {
       _fetchPage(pageKey);
+      _cacheNextPageImages(pageKey);
     });
 
     filterReactionDisposer =
         reaction((_) => widget.pokeApiStore.pokemonFilter, (_) {
       _pagingController.refresh();
     });
-
-    for (var pokemon in widget.pokeApiStore.pokemonsSummary!) {
-      if (kIsWeb) {
-        precacheImage(Image.network(pokemon.thumbnailUrl).image, context);
-      }
-    }
 
     super.initState();
   }
@@ -73,6 +68,26 @@ class _PokemonGridWidgetState extends State<PokemonGridWidget> {
       _pagingController.appendLastPage(items);
     } else {
       _pagingController.appendPage(items, pageKey + 1);
+    }
+  }
+
+  void _cacheNextPageImages(int nextPage) async {
+    final maxPage = widget.pokeApiStore.pokemonsSummary!.length ~/ _pageSize;
+
+    if (maxPage <= nextPage) {
+      return;
+    }
+
+    final maxRange = widget.pokeApiStore.pokemonsSummary!.length;
+    final initialRange = nextPage * _pageSize;
+    final finalRange = (nextPage * _pageSize) + _pageSize > maxRange
+        ? maxRange
+        : (nextPage * _pageSize) + _pageSize;
+
+    for (int index = initialRange; index < finalRange; index++) {
+      final _pokemon = widget.pokeApiStore.getPokemon(index);
+
+      precacheImage(Image.network(_pokemon.thumbnailUrl).image, context);
     }
   }
 
