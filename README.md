@@ -21,7 +21,7 @@
 <table align="center" border="0">
  <tr>
     <td>
-        <h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_1/1.png?raw=true" width="24" height="24"/> Functionalities</h3>
+        <h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/144.png" width="24" height="24"/> Functionalities</h3>
 
 - List of all 898 Pokémons
 - All generations (I, II, III, IV, V, VI, VII, VIII)
@@ -48,7 +48,15 @@
 
 ![Screen Shot 2021-09-07 at 15 53 03](https://user-images.githubusercontent.com/8467311/132396453-3de6e399-66bc-45cb-bb2b-7d256477dc23.png)
 
-<h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_1/2.png?raw=true" width="24" height="24"/> Future Updates</h3>
+<h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/145.png" width="24" height="24"/> Actual Release</h3>
+
+| Version | Platform                                                                             | Download                                                                                                                                       | Performance                                                    |
+|---------|--------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| 1.0.2   | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) | [![](https://img.shields.io/badge/-Download_APK-blue?&logo=Apple)](https://github.com/alanlgoncalves/pokedex/releases)                         | ![](https://img.shields.io/badge/-Very%20Good-brightgreen)     |
+| 1.0.2   | ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat)           |                                                                                                                                                | ![](https://img.shields.io/badge/-Very%20Good-brightgreen)     |
+| 1.0.2   | ![Web](https://img.shields.io/badge/WEB-Alpha-000?&logo=Google-Chrome&style=flat)    | [![](https://img.shields.io/badge/-Access_Now-blue?&logo=Google-Chrome&logoColor=white)]((https://pokedex.alansantos.dev/))                    | ![](https://img.shields.io/badge/-Performance%20Issues-orange) |
+
+<h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/146.png" width="24" height="24"/> Future Release</h3>
 
 | Version | New Functionalities  | Supported Platforms                  |
 |---------|----------------------|--------------------------------------|
@@ -58,9 +66,8 @@
 | 1.4.0   | - Pokémon News       | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat) ![Web](https://img.shields.io/badge/WEB-Beta-000?&logo=Google-Chrome&style=flat) |
 | 1.5.0   | - MacOS App          | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat) ![Web](https://img.shields.io/badge/WEB-Stable-000?&logo=Google-Chrome&style=flat) ![MacOS](https://img.shields.io/badge/MacOs-Stable-000?&logo=Apple&style=flat) |
 | 1.6.0   | - Windows App        | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat) ![Web](https://img.shields.io/badge/WEB-Stable-000?&logo=Google-Chrome&style=flat) ![MacOS](https://img.shields.io/badge/MacOs-Stable-000?&logo=Apple&style=flat) ![Windows](https://img.shields.io/badge/Windows-Stable-000?&logo=Windows&style=flat) |
-    
 
-<h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_1/3.png?raw=true" width="24" height="24"/> Technologies</h3>
+<h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/249.png" width="24" height="24"/> Technologies</h3>
 
 - [Flutter](https://flutter.dev/)
 - [MobX](https://pub.dev/packages/mobx)
@@ -77,14 +84,14 @@
 - [Flutter Native Splash](https://pub.dev/packages/flutter_native_splash)
 - [Shared Preferences](https://pub.dev/packages/shared_preferences)
 
-<h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_2/1.png?raw=true" width="24" height="24"/> Prerequisites</h3>
+<h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/150.png" width="24" height="24"/> Prerequisites</h3>
 
-Befor start, yout will need to install Flutter on your machine:
+Befor start, you will need to install Flutter on your machine:
 [Git](https://git-scm.com), [Flutter](https://flutter.dev/docs/get-started/install). Besides, it's nice to have an
 editor to work with code like [VSCode](https://code.visualstudio.com/)
 or [IntelliJ IDEA](https://www.jetbrains.com/pt-br/idea/).
 
-<h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_2/2.png?raw=true" width="24" height="24"/> How to Run</h3>
+<h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/151.png" width="24" height="24"/> How to Run</h3>
 
 ```bash
 # Clone this repository
@@ -100,12 +107,12 @@ $ flutter pub get
 $ flutter run
 ```
 
-<h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_2/3.png?raw=true" width="24" height="24"/> Find this repository useful? ❤</h3>
+<h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/384.png" width="24" height="24"/> Find this repository useful? ❤</h3>
 
 - Support it by joining [stargazers](https://github.com/alanlgoncalves/pokedex/stargazers) for this repository. ⭐
 - Follow me for my next creations! 💪🏾
 
-<h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_3/1.png?raw=true" width="24" height="24"/> Special Thanks ❤</h3>
+<h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/894.png" width="24" height="24"/> Special Thanks ❤</h3>
 
 - Application [Figma](https://www.uplabs.com/posts/pokedex-app) by [Saepul Nahwan](https://www.uplabs.com/saepulnahwan)
 - [Squartle Lottie](https://lottiefiles.com/67858-pokemon) by [Kevin Correa](https://lottiefiles.com/avgyhsbmgz)
@@ -113,6 +120,6 @@ $ flutter run
 - [YouTube classes for Pokedex](https://www.youtube.com/watch?v=3xUsD0XRa04&list=PLHAtJbrQ17AVj0LJEc955109XpX925Pt1) by [Renato Mota](https://www.youtube.com/channel/UCd-vLa_qcKve3CsDFlYiygA)
 - [YouTube classes for animations](https://www.youtube.com/watch?v=S7KG4prI7A4) by [RetroPortal Studio](https://www.youtube.com/channel/UCW2ATgwtNrsBrE-piE2TIrA)
 
-<h3><img src="https://github.com/alanlgoncalves/pokedex/blob/master/assets/images/pokemons_generations/generation_3/2.png?raw=true" width="24" height="24"/> Disclaimer</h3>
+<h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/895.png" width="24" height="24"/> Disclaimer</h3>
 
 This repo is for educational use only. All Pokémons assets content found within this repo is the property of The Pokemon Company. Please respect the original source material.
