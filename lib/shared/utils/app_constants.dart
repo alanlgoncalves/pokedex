@@ -1,8 +1,6 @@
 class AppConstants {
   static String get pikachuLottie => "assets/lotties/pikachu.json";
   static String get squirtleLottie => "assets/lotties/squirtle.json";
-  static String get pikachuGifLottie => "assets/lotties/pikachu.gif";
-  static String get squirtleGifLottie => "assets/lotties/squirtle.gif";
   static String get fabIcon => "assets/images/icons/fab.png";
 
   static List<String> types = [
@@ -26,44 +24,46 @@ class AppConstants {
     "Fairy",
   ];
 
-  static String pokemonTypeLogo(String type) {
+  static String pokemonTypeLogo(String type, {int? size}) {
+    final sizePath = size != null ? "/$size" : "";
+
     switch (type.toLowerCase()) {
       case "dark":
-        return "assets/images/pokemons_types/dark.png";
+        return "assets/images/pokemons_types$sizePath/dark.png";
       case "bug":
-        return "assets/images/pokemons_types/bug.png";
+        return "assets/images/pokemons_types$sizePath/bug.png";
       case "dragon":
-        return "assets/images/pokemons_types/dragon.png";
+        return "assets/images/pokemons_types$sizePath/dragon.png";
       case "electric":
-        return "assets/images/pokemons_types/electric.png";
+        return "assets/images/pokemons_types$sizePath/electric.png";
       case "fairy":
-        return "assets/images/pokemons_types/fairy.png";
+        return "assets/images/pokemons_types$sizePath/fairy.png";
       case "fighting":
-        return "assets/images/pokemons_types/fighting.png";
+        return "assets/images/pokemons_types$sizePath/fighting.png";
       case "fire":
-        return "assets/images/pokemons_types/fire.png";
+        return "assets/images/pokemons_types$sizePath/fire.png";
       case "flying":
-        return "assets/images/pokemons_types/flying.png";
+        return "assets/images/pokemons_types$sizePath/flying.png";
       case "ghost":
-        return "assets/images/pokemons_types/ghost.png";
+        return "assets/images/pokemons_types$sizePath/ghost.png";
       case "grass":
-        return "assets/images/pokemons_types/grass.png";
+        return "assets/images/pokemons_types$sizePath/grass.png";
       case "ground":
-        return "assets/images/pokemons_types/ground.png";
+        return "assets/images/pokemons_types$sizePath/ground.png";
       case "ice":
-        return "assets/images/pokemons_types/ice.png";
+        return "assets/images/pokemons_types$sizePath/ice.png";
       case "normal":
-        return "assets/images/pokemons_types/normal.png";
+        return "assets/images/pokemons_types$sizePath/normal.png";
       case "poison":
-        return "assets/images/pokemons_types/poison.png";
+        return "assets/images/pokemons_types$sizePath/poison.png";
       case "psychic":
-        return "assets/images/pokemons_types/psychic.png";
+        return "assets/images/pokemons_types$sizePath/psychic.png";
       case "rock":
-        return "assets/images/pokemons_types/rock.png";
+        return "assets/images/pokemons_types$sizePath/rock.png";
       case "steel":
-        return "assets/images/pokemons_types/steel.png";
+        return "assets/images/pokemons_types$sizePath/steel.png";
       case "water":
-        return "assets/images/pokemons_types/water.png";
+        return "assets/images/pokemons_types$sizePath/water.png";
       default:
         return "";
     }

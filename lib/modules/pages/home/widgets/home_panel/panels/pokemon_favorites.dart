@@ -43,12 +43,10 @@ class PokemonFavorites extends StatelessWidget {
               style: AppTheme.texts.pokemonText,
             ),
             Center(
-              child: kIsWeb
-                  ? Image.asset(AppConstants.pikachuGifLottie)
-                  : Lottie.asset(
-                      AppConstants.pikachuLottie,
-                      width: 400,
-                    ),
+              child: Lottie.asset(
+                AppConstants.pikachuLottie,
+                width: 400,
+              ),
             )
           ],
         ),

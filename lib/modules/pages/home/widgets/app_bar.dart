@@ -48,13 +48,9 @@ class _AppBarWidgetState extends State<AppBarWidget>
         FlexibleSpaceBar(
           centerTitle: false,
           background: Align(
-                  alignment: Alignment.bottomRight,
-                  child: kIsWeb
-                      ? Image.asset(AppConstants.squirtleGifLottie,
-                          height: 140.0)
-                      : Lottie.asset(AppConstants.squirtleLottie,
-                          height: 140.0),
-                ),
+            alignment: Alignment.bottomRight,
+            child: Lottie.asset(AppConstants.squirtleLottie, height: 140.0),
+          ),
           titlePadding: EdgeInsets.only(left: 15, bottom: 10),
           title: Row(
             children: [

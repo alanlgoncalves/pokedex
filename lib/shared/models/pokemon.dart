@@ -302,6 +302,7 @@ class EvolutionChain {
   late String number;
   late String name;
   late String imageUrl;
+  late String thumbUrl;
   late EvolutionType type;
   late String? requirement;
 
@@ -309,6 +310,7 @@ class EvolutionChain {
       {required this.number,
       required this.name,
       required this.imageUrl,
+      required this.thumbUrl,
       required this.type,
       this.requirement});
 
@@ -316,6 +318,7 @@ class EvolutionChain {
     number = json['number'];
     name = json['name'];
     imageUrl = json['imageUrl'];
+    thumbUrl = json['thumbUrl'];
     type = EvolutionType.values
         .where((it) => it.toString().endsWith(json['type']))
         .first;
@@ -328,14 +331,19 @@ enum SuperEvolutionType { MEGA, GIGANTAMAX }
 class SuperEvolution {
   late String name;
   late String imageUrl;
+  late String thumbUrl;
   late SuperEvolutionType type;
 
   SuperEvolution(
-      {required this.name, required this.imageUrl, required this.type});
+      {required this.name,
+      required this.imageUrl,
+      required this.thumbUrl,
+      required this.type});
 
   SuperEvolution.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     imageUrl = json['imageUrl'];
+    thumbUrl = json['thumbUrl'];
     type = SuperEvolutionType.values
         .where((it) => it.toString().endsWith(json['type']))
         .first;

@@ -166,12 +166,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             child: Stack(
                               children: [
                                 Center(
-                                  child: kIsWeb
-                                      ? Image.asset(
-                                          AppConstants.pikachuGifLottie)
-                                      : Lottie.asset(
-                                          AppConstants.pikachuLottie,
-                                        ),
+                                  child: Lottie.asset(
+                                    AppConstants.pikachuLottie,
+                                  ),
                                 ),
                                 Align(
                                   alignment: Alignment.bottomCenter,

@@ -78,7 +78,7 @@ class PokemonTypeItemWidget extends StatelessWidget {
                         style: AppTheme.texts.pokemonTabTitle,
                       ),
                       Image.asset(
-                        AppConstants.pokemonTypeLogo(type),
+                        AppConstants.pokemonTypeLogo(type, size: 60),
                         width: 60,
                         height: 60,
                       )

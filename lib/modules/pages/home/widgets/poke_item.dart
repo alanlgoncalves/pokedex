@@ -92,11 +92,8 @@ class PokeItemWidget extends StatelessWidget {
                               padding: const EdgeInsets.only(top: 4),
                               child: Container(
                                 child: Padding(
-                                  padding: kIsWeb
-                                      ? const EdgeInsets.only(
-                                          left: 15, right: 15, bottom: 10)
-                                      : const EdgeInsets.symmetric(
-                                          horizontal: 15, vertical: 5),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15, vertical: 5),
                                   child: Text(
                                     type,
                                     style: AppTheme.texts.pokemonItemType,

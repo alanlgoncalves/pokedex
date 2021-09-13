@@ -28,7 +28,7 @@ class PokemonTypeBadge extends StatelessWidget {
           width: width,
           height: height,
           child: Image.asset(
-            AppConstants.pokemonTypeLogo(type),
+            AppConstants.pokemonTypeLogo(type, size: width.toInt()),
             width: width,
             height: height,
           ),

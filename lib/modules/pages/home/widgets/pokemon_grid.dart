@@ -27,12 +27,6 @@ class _PokemonGridWidgetState extends State<PokemonGridWidget> {
 
   @override
   void initState() {
-    for (var pokemon in widget.pokeApiStore.pokemonsSummary!) {
-      if (kIsWeb) {
-        precacheImage(Image.network(pokemon.thumbnailUrl).image, context);
-      }
-    }
-
     _pagingController.addPageRequestListener((pageKey) {
       _fetchPage(pageKey);
     });
@@ -45,16 +39,16 @@ class _PokemonGridWidgetState extends State<PokemonGridWidget> {
     super.initState();
   }
 
-  // @override
-  // void didChangeDependencies() {
-  //   for (var pokemon in widget.pokeApiStore.pokemonsSummary!) {
-  //     if (kIsWeb) {
-  //       precacheImage(Image.network(pokemon.thumbnailUrl).image, context);
-  //     }
-  //   }
-  //
-  //   super.didChangeDependencies();
-  // }
+  @override
+  void didChangeDependencies() {
+    for (var pokemon in widget.pokeApiStore.pokemonsSummary!) {
+      if (kIsWeb) {
+        precacheImage(Image.network(pokemon.thumbnailUrl).image, context);
+      }
+    }
+
+    super.didChangeDependencies();
+  }
 
   @override
   void dispose() {

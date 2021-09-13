@@ -19,12 +19,10 @@ class EmptyEvolutionChainWidget extends StatelessWidget {
           child: Container(
             height: 250,
             width: 250,
-            child: kIsWeb
-                ? Image.asset(AppConstants.pikachuGifLottie)
-                : Lottie.asset(
-                    AppConstants.pikachuLottie,
-                    width: 400,
-                  ),
+            child: Lottie.asset(
+              AppConstants.pikachuLottie,
+              width: 400,
+            ),
           ),
         ),
         Text(

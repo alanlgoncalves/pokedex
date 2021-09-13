@@ -60,7 +60,7 @@ class EvolutionChainItemWidget extends StatelessWidget {
                             tag:
                                 "prev-${previousEvolution.number}-${previousEvolution.name}",
                             child: ImageUtils.networkImage(
-                              url: previousEvolution.imageUrl,
+                              url: previousEvolution.thumbUrl,
                               width: 76,
                               height: 71,
                             ),
@@ -137,7 +137,7 @@ class EvolutionChainItemWidget extends StatelessWidget {
                             tag:
                                 "next-${nextEvolution.number}-${nextEvolution.name}",
                             child: ImageUtils.networkImage(
-                              url: nextEvolution.imageUrl,
+                              url: nextEvolution.thumbUrl,
                               width: 76,
                               height: 71,
                             ),

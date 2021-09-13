@@ -36,7 +36,7 @@ jobs:
           mv build/app/outputs/apk/release/app-x86_64-release.apk build/app/outputs/apk/release/pokedex-x86_64-release.apk
       - name: ＠ Build WEB
         run: |
-          flutter build web --web-renderer html --release
+          flutter build web --web-renderer canvaskit --release
           zip -r pokedex-web.zip build/web/
       - name: 🚀 Create Github Release
         uses: ncipollo/release-action@v1
