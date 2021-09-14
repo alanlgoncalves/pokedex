@@ -44,6 +44,20 @@ class _AppBarWidgetState extends State<AppBarWidget>
       collapsedHeight: 70,
       elevation: 0,
       backgroundColor: AppTheme.colors.background,
+      actions: [
+        Padding(
+          padding: EdgeInsets.only(top: 20),
+          child: IconButton(
+            onPressed: () {
+              Scaffold.of(context).openEndDrawer();
+            },
+            icon: Icon(
+              Icons.menu,
+              color: Colors.black,
+            ),
+          ),
+        )
+      ],
       flexibleSpace: Stack(children: [
         FlexibleSpaceBar(
           centerTitle: false,

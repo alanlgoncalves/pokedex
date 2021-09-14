@@ -23,6 +23,8 @@ abstract class AppTextStyles {
   TextStyle get pokemonEvolutionChainRequirement;
   TextStyle get pokemonText;
   TextStyle get pokemonTypeBadge;
+
+  TextStyle get drawerMenuItem;
 }
 
 class AppTextStylesDefault extends AppTextStyles {
@@ -160,5 +162,13 @@ class AppTextStylesDefault extends AppTextStyles {
         fontSize: 8,
         fontWeight: FontWeight.normal,
         color: Color(0xFF303943),
+      );
+
+  @override
+  TextStyle get drawerMenuItem => TextStyle(
+        fontFamily: "CircularStd-Book",
+        fontSize: 14,
+        fontWeight: FontWeight.normal,
+        color: Colors.white,
       );
 }

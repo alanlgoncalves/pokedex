@@ -8,6 +8,7 @@ import 'package:mobx/mobx.dart';
 import 'package:pokedex/modules/pages/home/home_store.dart';
 import 'package:pokedex/modules/pages/home/widgets/animated_float_action_button.dart';
 import 'package:pokedex/modules/pages/home/widgets/app_bar.dart';
+import 'package:pokedex/modules/pages/home/widgets/drawer_menu/drawer_menu.dart';
 import 'package:pokedex/modules/pages/home/widgets/home_panel/home_panel.dart';
 import 'package:pokedex/modules/pages/home/widgets/pokemon_grid.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
@@ -135,6 +136,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
     return Scaffold(
       backgroundColor: AppTheme.colors.background,
+      endDrawer: Drawer(
+        child: DrawerMenuWidget(),
+      ),
       body: Stack(
         children: [
           SafeArea(

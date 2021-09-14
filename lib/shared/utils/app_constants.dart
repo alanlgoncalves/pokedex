@@ -1,6 +1,7 @@
 class AppConstants {
   static String get pikachuLottie => "assets/lotties/pikachu.json";
   static String get squirtleLottie => "assets/lotties/squirtle.json";
+  static String get diglettLottie => "assets/lotties/diglett.json";
   static String get fabIcon => "assets/images/icons/fab.png";
 
   static List<String> types = [
