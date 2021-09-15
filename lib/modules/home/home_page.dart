@@ -8,10 +8,10 @@ import 'package:mobx/mobx.dart';
 import 'package:pokedex/modules/home/home_store.dart';
 import 'package:pokedex/modules/home/widgets/animated_float_action_button.dart';
 import 'package:pokedex/modules/home/widgets/app_bar.dart';
-import 'package:pokedex/modules/home/widgets/drawer_menu/drawer_menu.dart';
 import 'package:pokedex/modules/home/widgets/home_panel/home_panel.dart';
 import 'package:pokedex/modules/home/widgets/pokemon_grid.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/ui/widgets/drawer_menu/drawer_menu.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/shared/utils/converters.dart';
 import 'package:pokedex/theme/app_theme.dart';
@@ -149,7 +149,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   padding: EdgeInsets.symmetric(
                     horizontal: getHomePadding(size),
                   ),
-                  sliver: AppBarWidget(),
+                  sliver: AppBarWidget(
+                    title: "Pokedex",
+                    showAnimatedPokeball: true,
+                    lottiePath: AppConstants.squirtleLottie,
+                  ),
                 ),
                 Observer(
                   builder: (_) {

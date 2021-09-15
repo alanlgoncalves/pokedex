@@ -2,8 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:pokedex/modules/home/widgets/drawer_menu/widgets/menu_item.dart';
+import 'package:pokedex/shared/routes/router.dart' as router;
 import 'package:pokedex/shared/ui/canvas/white_pokeball_canvas.dart';
+import 'package:pokedex/shared/ui/widgets/drawer_menu/widgets/menu_item.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
@@ -76,13 +77,31 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget>
                       crossAxisCount: 2, mainAxisExtent: 70),
                   children: [
                     DrawerMenuItemWidget(
-                        color: Color(0xFF50C1A6), text: "Pokedex"),
+                      color: Color(0xFF50C1A6),
+                      text: "Pokedex",
+                      onTap: () {
+                        Navigator.pop(context);
+
+                        Navigator.pushReplacementNamed(
+                            context, router.Router.home);
+                      },
+                    ),
                     DrawerMenuItemWidget(
                         color: Color(0xFFFF8D82), text: "Moves"),
                     DrawerMenuItemWidget(
                         color: Color(0xFF59ABF6), text: "Abilities"),
                     DrawerMenuItemWidget(
-                        color: Color(0xFFFFCE4B), text: "Items"),
+                      color: Color(0xFFFFCE4B),
+                      text: "Items",
+                      onTap: () {
+                        Navigator.pop(context);
+
+                        Navigator.pushReplacementNamed(
+                          context,
+                          router.Router.items,
+                        );
+                      },
+                    ),
                     DrawerMenuItemWidget(
                         color: Color(0xFF7C538C), text: "Locations"),
                     DrawerMenuItemWidget(

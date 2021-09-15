@@ -1,7 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex/modules/home/home_page.dart';
+import 'package:pokedex/shared/routes/router.dart' as router;
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 
 void main() {
@@ -32,7 +32,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      routes: router.Router.getRoutes(context),
+      initialRoute: "/",
     );
   }
 }

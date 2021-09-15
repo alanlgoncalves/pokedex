@@ -4,11 +4,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pokedex/shared/ui/canvas/white_pokeball_canvas.dart';
-import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class AppBarWidget extends StatefulWidget {
-  const AppBarWidget({Key? key}) : super(key: key);
+  final String title;
+  final bool showAnimatedPokeball;
+  final String? lottiePath;
+
+  const AppBarWidget(
+      {Key? key,
+      required this.title,
+      required this.showAnimatedPokeball,
+      this.lottiePath})
+      : super(key: key);
 
   @override
   _AppBarWidgetState createState() => _AppBarWidgetState();
@@ -61,34 +69,37 @@ class _AppBarWidgetState extends State<AppBarWidget>
       flexibleSpace: Stack(children: [
         FlexibleSpaceBar(
           centerTitle: false,
-          background: Align(
-            alignment: Alignment.bottomRight,
-            child: Lottie.asset(AppConstants.squirtleLottie, height: 140.0),
-          ),
+          background: widget.lottiePath != null
+              ? Align(
+                  alignment: Alignment.bottomRight,
+                  child: Lottie.asset(widget.lottiePath!, height: 140.0),
+                )
+              : Container(),
           titlePadding: EdgeInsets.only(left: 15, bottom: 10),
           title: Row(
             children: [
-              AnimatedBuilder(
-                animation: _controller,
-                builder: (_, child) {
-                  return Transform.rotate(
-                    angle: _controller.value * 2 * pi,
-                    child: child,
-                  );
-                },
-                child: CustomPaint(
-                  size: Size(
-                      24,
-                      (24 * 1.0040160642570282)
-                          .toDouble()), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
-                  painter: PokeballLogoPainter(
-                      color: AppTheme.colors.pokeballLogoBlack),
+              if (widget.showAnimatedPokeball)
+                AnimatedBuilder(
+                  animation: _controller,
+                  builder: (_, child) {
+                    return Transform.rotate(
+                      angle: _controller.value * 2 * pi,
+                      child: child,
+                    );
+                  },
+                  child: CustomPaint(
+                    size: Size(
+                        24,
+                        (24 * 1.0040160642570282)
+                            .toDouble()), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+                    painter: PokeballLogoPainter(
+                        color: AppTheme.colors.pokeballLogoBlack),
+                  ),
                 ),
-              ),
               SizedBox(
                 width: 5,
               ),
-              Text("Pokedex", style: AppTheme.texts.homePageTitle),
+              Text(widget.title, style: AppTheme.texts.homePageTitle),
             ],
           ),
         ),
