@@ -8,7 +8,7 @@ import 'package:pokedex/modules/home/home_page_store.dart';
 import 'package:pokedex/modules/items/items_page.dart';
 import 'package:pokedex/modules/pokemon_grid/pokemon_grid_page.dart';
 import 'package:pokedex/modules/pokemon_grid/widgets/animated_float_action_button.dart';
-import 'package:pokedex/modules/pokemon_grid/widgets/home_panel/pokemon_grid_panel.dart';
+import 'package:pokedex/modules/pokemon_grid/widgets/pokemon_grid_panels/pokemon_grid_panel.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/shared/ui/widgets/app_bar.dart';
 import 'package:pokedex/shared/ui/widgets/drawer_menu/drawer_menu.dart';
