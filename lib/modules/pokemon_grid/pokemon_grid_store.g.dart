@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_store.dart';
+part of 'pokemon_grid_store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,37 +8,37 @@ part of 'home_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$HomeStore on _HomeStoreBase, Store {
+mixin _$PokemonGridStore on _PokemonGridStoreBase, Store {
   Computed<bool>? _$isFilterOpenComputed;
 
   @override
   bool get isFilterOpen =>
       (_$isFilterOpenComputed ??= Computed<bool>(() => super.isFilterOpen,
-              name: '_HomeStoreBase.isFilterOpen'))
+              name: '_PokemonGridStoreBase.isFilterOpen'))
           .value;
   Computed<PanelType?>? _$panelTypeComputed;
 
   @override
   PanelType? get panelType =>
       (_$panelTypeComputed ??= Computed<PanelType?>(() => super.panelType,
-              name: '_HomeStoreBase.panelType'))
+              name: '_PokemonGridStoreBase.panelType'))
           .value;
   Computed<bool>? _$isBackgroundBlackComputed;
 
   @override
   bool get isBackgroundBlack => (_$isBackgroundBlackComputed ??= Computed<bool>(
           () => super.isBackgroundBlack,
-          name: '_HomeStoreBase.isBackgroundBlack'))
+          name: '_PokemonGridStoreBase.isBackgroundBlack'))
       .value;
   Computed<bool>? _$isFabVisibleComputed;
 
   @override
   bool get isFabVisible =>
       (_$isFabVisibleComputed ??= Computed<bool>(() => super.isFabVisible,
-              name: '_HomeStoreBase.isFabVisible'))
+              name: '_PokemonGridStoreBase.isFabVisible'))
           .value;
 
-  final _$_isFilterOpenAtom = Atom(name: '_HomeStoreBase._isFilterOpen');
+  final _$_isFilterOpenAtom = Atom(name: '_PokemonGridStoreBase._isFilterOpen');
 
   @override
   bool get _isFilterOpen {
@@ -54,7 +54,7 @@ mixin _$HomeStore on _HomeStoreBase, Store {
   }
 
   final _$_isBackgroundBlackAtom =
-      Atom(name: '_HomeStoreBase._isBackgroundBlack');
+      Atom(name: '_PokemonGridStoreBase._isBackgroundBlack');
 
   @override
   bool get _isBackgroundBlack {
@@ -69,7 +69,7 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     });
   }
 
-  final _$_isFabVisibleAtom = Atom(name: '_HomeStoreBase._isFabVisible');
+  final _$_isFabVisibleAtom = Atom(name: '_PokemonGridStoreBase._isFabVisible');
 
   @override
   bool get _isFabVisible {
@@ -84,7 +84,7 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     });
   }
 
-  final _$_panelTypeAtom = Atom(name: '_HomeStoreBase._panelType');
+  final _$_panelTypeAtom = Atom(name: '_PokemonGridStoreBase._panelType');
 
   @override
   PanelType? get _panelType {
@@ -99,83 +99,83 @@ mixin _$HomeStore on _HomeStoreBase, Store {
     });
   }
 
-  final _$_HomeStoreBaseActionController =
-      ActionController(name: '_HomeStoreBase');
+  final _$_PokemonGridStoreBaseActionController =
+      ActionController(name: '_PokemonGridStoreBase');
 
   @override
   void openFilter() {
-    final _$actionInfo = _$_HomeStoreBaseActionController.startAction(
-        name: '_HomeStoreBase.openFilter');
+    final _$actionInfo = _$_PokemonGridStoreBaseActionController.startAction(
+        name: '_PokemonGridStoreBase.openFilter');
     try {
       return super.openFilter();
     } finally {
-      _$_HomeStoreBaseActionController.endAction(_$actionInfo);
+      _$_PokemonGridStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void closeFilter() {
-    final _$actionInfo = _$_HomeStoreBaseActionController.startAction(
-        name: '_HomeStoreBase.closeFilter');
+    final _$actionInfo = _$_PokemonGridStoreBaseActionController.startAction(
+        name: '_PokemonGridStoreBase.closeFilter');
     try {
       return super.closeFilter();
     } finally {
-      _$_HomeStoreBaseActionController.endAction(_$actionInfo);
+      _$_PokemonGridStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void showBackgroundBlack() {
-    final _$actionInfo = _$_HomeStoreBaseActionController.startAction(
-        name: '_HomeStoreBase.showBackgroundBlack');
+    final _$actionInfo = _$_PokemonGridStoreBaseActionController.startAction(
+        name: '_PokemonGridStoreBase.showBackgroundBlack');
     try {
       return super.showBackgroundBlack();
     } finally {
-      _$_HomeStoreBaseActionController.endAction(_$actionInfo);
+      _$_PokemonGridStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void hideBackgroundBlack() {
-    final _$actionInfo = _$_HomeStoreBaseActionController.startAction(
-        name: '_HomeStoreBase.hideBackgroundBlack');
+    final _$actionInfo = _$_PokemonGridStoreBaseActionController.startAction(
+        name: '_PokemonGridStoreBase.hideBackgroundBlack');
     try {
       return super.hideBackgroundBlack();
     } finally {
-      _$_HomeStoreBaseActionController.endAction(_$actionInfo);
+      _$_PokemonGridStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void showFloatActionButton() {
-    final _$actionInfo = _$_HomeStoreBaseActionController.startAction(
-        name: '_HomeStoreBase.showFloatActionButton');
+    final _$actionInfo = _$_PokemonGridStoreBaseActionController.startAction(
+        name: '_PokemonGridStoreBase.showFloatActionButton');
     try {
       return super.showFloatActionButton();
     } finally {
-      _$_HomeStoreBaseActionController.endAction(_$actionInfo);
+      _$_PokemonGridStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void hideFloatActionButton() {
-    final _$actionInfo = _$_HomeStoreBaseActionController.startAction(
-        name: '_HomeStoreBase.hideFloatActionButton');
+    final _$actionInfo = _$_PokemonGridStoreBaseActionController.startAction(
+        name: '_PokemonGridStoreBase.hideFloatActionButton');
     try {
       return super.hideFloatActionButton();
     } finally {
-      _$_HomeStoreBaseActionController.endAction(_$actionInfo);
+      _$_PokemonGridStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setPanelType(PanelType panelType) {
-    final _$actionInfo = _$_HomeStoreBaseActionController.startAction(
-        name: '_HomeStoreBase.setPanelType');
+    final _$actionInfo = _$_PokemonGridStoreBaseActionController.startAction(
+        name: '_PokemonGridStoreBase.setPanelType');
     try {
       return super.setPanelType(panelType);
     } finally {
-      _$_HomeStoreBaseActionController.endAction(_$actionInfo);
+      _$_PokemonGridStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 

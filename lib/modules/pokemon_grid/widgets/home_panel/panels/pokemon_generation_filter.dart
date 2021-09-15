@@ -2,9 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex/modules/home/home_store.dart';
-import 'package:pokedex/modules/home/widgets/generation_item.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pokemon_mobile_panel.dart';
+import 'package:pokedex/modules/pokemon_grid/pokemon_grid_store.dart';
+import 'package:pokedex/modules/pokemon_grid/widgets/generation_item.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
@@ -12,10 +12,12 @@ import 'package:pokedex/theme/app_theme.dart';
 class PokemonGenerationFilter extends StatelessWidget {
   static final PokeApiStore pokeApiStore = GetIt.instance<PokeApiStore>();
   final ScrollController scrollController;
-  final HomeStore homeStore;
+  final PokemonGridStore pokemonGridStore;
 
   const PokemonGenerationFilter(
-      {Key? key, required this.homeStore, required this.scrollController})
+      {Key? key,
+      required this.pokemonGridStore,
+      required this.scrollController})
       : super(key: key);
 
   double get topPadding {
@@ -78,7 +80,7 @@ class PokemonGenerationFilter extends StatelessWidget {
                           pokeApiStore.addGenerationFilter(generation);
                         }
 
-                        homeStore.closeFilter();
+                        pokemonGridStore.closeFilter();
                       },
                     );
                   },

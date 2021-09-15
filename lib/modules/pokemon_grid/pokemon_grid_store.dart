@@ -1,8 +1,8 @@
 import 'package:mobx/mobx.dart';
 
-part 'home_store.g.dart';
+part 'pokemon_grid_store.g.dart';
 
-class HomeStore = _HomeStoreBase with _$HomeStore;
+class PokemonGridStore = _PokemonGridStoreBase with _$PokemonGridStore;
 
 enum PanelType {
   FILTER_POKEMON_GENERATION,
@@ -11,7 +11,7 @@ enum PanelType {
   FAVORITES_POKEMONS
 }
 
-abstract class _HomeStoreBase with Store {
+abstract class _PokemonGridStoreBase with Store {
   @observable
   bool _isFilterOpen = false;
 

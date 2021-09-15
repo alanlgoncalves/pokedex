@@ -3,8 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:mobx/mobx.dart';
-import 'package:pokedex/modules/home/widgets/poke_item.dart';
 import 'package:pokedex/modules/pokemon_details/pokemon_details.dart';
+import 'package:pokedex/modules/pokemon_grid/widgets/poke_item.dart';
 import 'package:pokedex/shared/models/pokemon_summary.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 
