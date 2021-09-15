@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pokedex/modules/home/home_page_store.dart';
-import 'package:pokedex/shared/routes/router.dart' as router;
 import 'package:pokedex/shared/ui/canvas/white_pokeball_canvas.dart';
 import 'package:pokedex/shared/ui/widgets/drawer_menu/widgets/menu_item.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
@@ -80,7 +79,7 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget>
                       crossAxisCount: 2, mainAxisExtent: 70),
                   children: [
                     DrawerMenuItemWidget(
-                      color: Color(0xFF50C1A6),
+                      color: AppTheme.colors.drawerPokedex,
                       text: "Pokedex",
                       onTap: () {
                         Navigator.pop(context);
@@ -89,11 +88,7 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget>
                       },
                     ),
                     DrawerMenuItemWidget(
-                        color: Color(0xFFFF8D82), text: "Moves"),
-                    DrawerMenuItemWidget(
-                        color: Color(0xFF59ABF6), text: "Abilities"),
-                    DrawerMenuItemWidget(
-                      color: Color(0xFFFFCE4B),
+                      color: AppTheme.colors.drawerItems,
                       text: "Items",
                       onTap: () {
                         Navigator.pop(context);
@@ -102,9 +97,16 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget>
                       },
                     ),
                     DrawerMenuItemWidget(
-                        color: Color(0xFF7C538C), text: "Locations"),
+                        color: AppTheme.colors.drawerMoves, text: "Moves"),
                     DrawerMenuItemWidget(
-                        color: Color(0xFFB1736C), text: "Type Charts"),
+                        color: AppTheme.colors.drawerAbilities,
+                        text: "Abilities"),
+                    DrawerMenuItemWidget(
+                        color: AppTheme.colors.drawerTypeCharts,
+                        text: "Type Charts"),
+                    DrawerMenuItemWidget(
+                        color: AppTheme.colors.drawerLocations,
+                        text: "Locations"),
                   ],
                 ),
               ],

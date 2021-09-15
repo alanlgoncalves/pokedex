@@ -22,6 +22,14 @@ abstract class AppColors {
   Color get unknownIcon;
 
   Color get selectedGenerationFilter;
+
+  Color get drawerPokedex;
+  Color get drawerItems;
+  Color get drawerMoves;
+  Color get drawerAbilities;
+  Color get drawerTypeCharts;
+  Color get drawerLocations;
+  Color get drawerDisabled;
 }
 
 class AppColorsDefault extends AppColors {
@@ -122,4 +130,25 @@ class AppColorsDefault extends AppColors {
 
   @override
   Color get pokeballLogoGray => Color(0xFF303943).withOpacity(0.1);
+
+  @override
+  Color get drawerAbilities => Color(0xFF59ABF6);
+
+  @override
+  Color get drawerItems => Color(0xFFFFCE4B);
+
+  @override
+  Color get drawerLocations => Color(0xFF7C538C);
+
+  @override
+  Color get drawerMoves => Color(0xFFFF8D82);
+
+  @override
+  Color get drawerPokedex => Color(0xFF50C1A6);
+
+  @override
+  Color get drawerTypeCharts => Color(0xFFB1736C);
+
+  @override
+  Color get drawerDisabled => Color(0xFF999999);
 }

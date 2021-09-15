@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/shared/ui/canvas/white_pokeball_canvas.dart';
 import 'package:pokedex/theme/app_theme.dart';
@@ -23,10 +24,12 @@ class DrawerMenuItemWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(5),
       child: InkWell(
-        onTap: onTap,
+        onTap: onTap != null  ? onTap : (){
+          BotToast.showText(text: "Not implemented yet");
+        },
         child: Container(
           decoration: BoxDecoration(
-            color: color,
+            color: onTap != null ? color : AppTheme.colors.drawerDisabled,
             borderRadius: BorderRadius.circular(15),
           ),
           child: ClipRRect(
