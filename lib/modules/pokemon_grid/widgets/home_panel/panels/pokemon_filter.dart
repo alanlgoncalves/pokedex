@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex/modules/pokemon_grid/pokemon_grid_store.dart';
+import 'package:pokedex/modules/home/home_page_store.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
@@ -9,7 +9,7 @@ class PokemonNameNumberFilterPage extends StatelessWidget {
 
   final ValueChanged<String> onChanged;
   final VoidCallback onClose;
-  final PokemonGridStore pokemonGridStore;
+  final HomePageStore pokemonGridStore;
 
   const PokemonNameNumberFilterPage(
       {Key? key,

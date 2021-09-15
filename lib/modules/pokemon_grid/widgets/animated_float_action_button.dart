@@ -9,10 +9,10 @@ import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/shared/utils/converters.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
-import '../pokemon_grid_store.dart';
+import '../../home/home_page_store.dart';
 
 class AnimatedFloatActionButtonWidget extends StatefulWidget {
-  final PokemonGridStore homeStore;
+  final HomePageStore homeStore;
   final AnimationController backgroundAnimationController;
 
   const AnimatedFloatActionButtonWidget({

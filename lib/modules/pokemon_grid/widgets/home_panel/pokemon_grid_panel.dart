@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:pokedex/modules/pokemon_grid/pokemon_grid_store.dart';
+import 'package:pokedex/modules/home/home_page_store.dart';
 import 'package:pokedex/modules/pokemon_grid/widgets/home_panel/panels/pokemon_favorites.dart';
 import 'package:pokedex/modules/pokemon_grid/widgets/home_panel/panels/pokemon_filter.dart';
 import 'package:pokedex/modules/pokemon_grid/widgets/home_panel/panels/pokemon_generation_filter.dart';
@@ -10,7 +10,7 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class PokemonGridPanelWidget extends StatelessWidget {
   final PanelController panelController;
-  final PokemonGridStore pokemonGridStore;
+  final HomePageStore pokemonGridStore;
   final PokeApiStore pokeApiStore;
 
   const PokemonGridPanelWidget(

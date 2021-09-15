@@ -1,21 +1,12 @@
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:lottie/lottie.dart';
-import 'package:mobx/mobx.dart';
-import 'package:pokedex/modules/pokemon_grid/pokemon_grid_store.dart';
-import 'package:pokedex/modules/pokemon_grid/widgets/animated_float_action_button.dart';
-import 'package:pokedex/modules/pokemon_grid/widgets/home_panel/pokemon_grid_panel.dart';
-import 'package:pokedex/shared/ui/widgets/app_bar.dart';
 import 'package:pokedex/modules/pokemon_grid/widgets/pokemon_grid.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
-import 'package:pokedex/shared/ui/widgets/drawer_menu/drawer_menu.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
-import 'package:pokedex/shared/utils/converters.dart';
 import 'package:pokedex/theme/app_theme.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class PokemonGridPage extends StatefulWidget {
   PokemonGridPage({Key? key}) : super(key: key);
@@ -24,99 +15,14 @@ class PokemonGridPage extends StatefulWidget {
   _PokemonGridPageState createState() => _PokemonGridPageState();
 }
 
-class _PokemonGridPageState extends State<PokemonGridPage>
-    with TickerProviderStateMixin {
-  late AnimationController _backgroundAnimationController;
-  late Animation<double> _blackBackgroundOpacityAnimation;
-
-  late AnimationController _fabAnimationController;
-  late Animation<double> _fabRotateAnimation;
-  late Animation<double> _fabSizeAnimation;
-
+class _PokemonGridPageState extends State<PokemonGridPage> {
   late PokeApiStore _pokeApiStore;
-  late PokemonGridStore _pokemonGridStore;
-  late PanelController _panelController;
-
-  late List<ReactionDisposer> reactionDisposer = [];
 
   @override
   void initState() {
     super.initState();
 
     _pokeApiStore = GetIt.instance<PokeApiStore>();
-    _pokemonGridStore = PokemonGridStore();
-    _panelController = PanelController();
-
-    _backgroundAnimationController = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 250),
-    );
-    _blackBackgroundOpacityAnimation =
-        Tween(begin: 0.0, end: 1.0).animate(_backgroundAnimationController);
-
-    _fabAnimationController = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 400),
-    );
-
-    _fabRotateAnimation = Tween(begin: 180.0, end: 0.0).animate(CurvedAnimation(
-        curve: Curves.easeOut, parent: _fabAnimationController));
-
-    _fabSizeAnimation = TweenSequence([
-      TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.4), weight: 80.0),
-      TweenSequenceItem(tween: Tween(begin: 1.4, end: 1.0), weight: 20.0),
-    ]).animate(_fabAnimationController);
-
-    reactionDisposer.add(
-      reaction((_) => _pokemonGridStore.isFilterOpen, (_) {
-        if (_pokemonGridStore.isFilterOpen) {
-          _panelController.open();
-          _pokemonGridStore.showBackgroundBlack();
-          _pokemonGridStore.hideFloatActionButton();
-        } else {
-          _panelController.close();
-          _pokemonGridStore.hideBackgroundBlack();
-          _pokemonGridStore.showFloatActionButton();
-        }
-      }),
-    );
-
-    reactionDisposer.add(
-      reaction((_) => _pokemonGridStore.isBackgroundBlack, (_) {
-        if (_pokemonGridStore.isBackgroundBlack) {
-          _backgroundAnimationController.forward();
-        } else {
-          _backgroundAnimationController.reverse();
-        }
-      }),
-    );
-
-    reactionDisposer.add(
-      reaction((_) => _pokemonGridStore.isFabVisible, (_) {
-        if (_pokemonGridStore.isFabVisible) {
-          _fabAnimationController.forward();
-        } else {
-          _fabAnimationController.reverse();
-        }
-      }),
-    );
-
-    reactionDisposer.add(
-      reaction((_) => _pokeApiStore.pokemonFilter.pokemonNameNumberFilter, (_) {
-        if (_pokeApiStore.pokemonFilter.pokemonNameNumberFilter == null) {
-          BotToast.showText(text: "The search by name/number has been cleared");
-        }
-      }),
-    );
-
-    _fabAnimationController.forward();
-  }
-
-  @override
-  void dispose() {
-    reactionDisposer.forEach((disposer) => disposer());
-
-    super.dispose();
   }
 
   double getHomePadding(Size size) {
@@ -135,124 +41,51 @@ class _PokemonGridPageState extends State<PokemonGridPage>
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Scaffold(
-      backgroundColor: AppTheme.colors.background,
-      endDrawer: Drawer(
-        child: DrawerMenuWidget(),
-      ),
-      body: Stack(
-        children: [
-          SafeArea(
-            bottom: false,
-            child: CustomScrollView(
-              slivers: [
-                SliverPadding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: getHomePadding(size),
-                  ),
-                  sliver: AppBarWidget(
-                    title: "Pokedex",
-                    showAnimatedPokeball: true,
-                    lottiePath: AppConstants.squirtleLottie,
-                  ),
-                ),
-                Observer(
-                  builder: (_) {
-                    if (_pokeApiStore.pokemonsSummary == null) {
-                      return SliverFillRemaining(
-                          child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [CircularProgressIndicator()],
-                      ));
-                    } else {
-                      if (_pokeApiStore.pokemonFilter.pokemonNameNumberFilter !=
-                              null &&
-                          _pokeApiStore.pokemonsSummary!.isEmpty) {
-                        return SliverToBoxAdapter(
-                          child: Container(
-                            height: 250,
-                            width: 250,
-                            child: Stack(
-                              children: [
-                                Center(
-                                  child: Lottie.asset(
-                                    AppConstants.pikachuLottie,
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.bottomCenter,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(bottom: 30),
-                                    child: Text(
-                                      "${_pokeApiStore.pokemonFilter.pokemonNameNumberFilter} was not found",
-                                      style: AppTheme.texts.pokemonText,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      }
-
-                      return SliverPadding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: getHomePadding(size)),
-                        sliver: PokemonGridWidget(pokeApiStore: _pokeApiStore),
-                      );
-                    }
-                  },
-                ),
-                SliverToBoxAdapter(
-                  child: SizedBox(
-                    height: 100,
-                  ),
-                )
-              ],
+    return Observer(
+      builder: (_) {
+        if (_pokeApiStore.pokemonsSummary == null) {
+          return SliverFillRemaining(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [CircularProgressIndicator()],
             ),
-          ),
-          Stack(
-            children: [
-              Observer(builder: (_) {
-                if (_pokemonGridStore.isBackgroundBlack) {
-                  return AnimatedBuilder(
-                    animation: _fabAnimationController,
-                    builder: (_, child) => FadeTransition(
-                        opacity: _blackBackgroundOpacityAnimation,
-                        child: child),
-                    child: Container(
-                      height: MediaQuery.of(context).size.height,
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.black87,
+          );
+        } else {
+          if (_pokeApiStore.pokemonFilter.pokemonNameNumberFilter != null &&
+              _pokeApiStore.pokemonsSummary!.isEmpty) {
+            return SliverToBoxAdapter(
+              child: Container(
+                height: 250,
+                width: 250,
+                child: Stack(
+                  children: [
+                    Center(
+                      child: Lottie.asset(
+                        AppConstants.pikachuLottie,
+                      ),
                     ),
-                  );
-                } else {
-                  return Container();
-                }
-              }),
-              PokemonGridPanelWidget(
-                panelController: _panelController,
-                pokemonGridStore: _pokemonGridStore,
-                pokeApiStore: _pokeApiStore,
-              )
-            ],
-          ),
-          AnimatedBuilder(
-            animation: _fabAnimationController,
-            builder: (_, child) => Transform(
-              alignment: Alignment.bottomRight,
-              transform: Matrix4.rotationZ(
-                  getRadiansFromDegree(_fabRotateAnimation.value))
-                ..scale(_fabSizeAnimation.value),
-              child: child,
-            ),
-            child: AnimatedFloatActionButtonWidget(
-              homeStore: _pokemonGridStore,
-              backgroundAnimationController: _backgroundAnimationController,
-            ),
-          ),
-        ],
-      ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 30),
+                        child: Text(
+                          "${_pokeApiStore.pokemonFilter.pokemonNameNumberFilter} was not found",
+                          style: AppTheme.texts.pokemonText,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            );
+          }
+
+          return SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: getHomePadding(size)),
+            sliver: PokemonGridWidget(pokeApiStore: _pokeApiStore),
+          );
+        }
+      },
     );
   }
 }

@@ -1,14 +1,29 @@
 import 'package:mobx/mobx.dart';
 
-part 'pokemon_grid_store.g.dart';
+part 'home_page_store.g.dart';
 
-class PokemonGridStore = _PokemonGridStoreBase with _$PokemonGridStore;
+class HomePageStore = _PokemonGridStoreBase with _$HomePageStore;
 
 enum PanelType {
   FILTER_POKEMON_GENERATION,
   FILTER_POKEMON_TYPE,
   FILTER_POKEMON_NAME_NUMBER,
   FAVORITES_POKEMONS
+}
+
+enum HomePageType { POKEMON_GRID, ITENS }
+
+extension HomePageTypeExtension on HomePageType {
+  String get description {
+    switch (this) {
+      case HomePageType.POKEMON_GRID:
+        return "Pokemons";
+      case HomePageType.ITENS:
+        return "Items";
+      default:
+        throw "Home Page Type not found";
+    }
+  }
 }
 
 abstract class _PokemonGridStoreBase with Store {
@@ -24,6 +39,9 @@ abstract class _PokemonGridStoreBase with Store {
   @observable
   PanelType? _panelType;
 
+  @observable
+  HomePageType _page = HomePageType.POKEMON_GRID;
+
   @computed
   bool get isFilterOpen => _isFilterOpen;
 
@@ -35,6 +53,9 @@ abstract class _PokemonGridStoreBase with Store {
 
   @computed
   bool get isFabVisible => _isFabVisible;
+
+  @computed
+  HomePageType get page => _page;
 
   @action
   void openFilter() {
@@ -70,5 +91,10 @@ abstract class _PokemonGridStoreBase with Store {
   @action
   void setPanelType(PanelType panelType) {
     _panelType = panelType;
+  }
+
+  @action
+  void setPage(HomePageType page) {
+    _page = page;
   }
 }

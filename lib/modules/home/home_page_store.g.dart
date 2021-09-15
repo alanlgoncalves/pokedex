@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'pokemon_grid_store.dart';
+part of 'home_page_store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,7 +8,7 @@ part of 'pokemon_grid_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$PokemonGridStore on _PokemonGridStoreBase, Store {
+mixin _$HomePageStore on _PokemonGridStoreBase, Store {
   Computed<bool>? _$isFilterOpenComputed;
 
   @override
@@ -36,6 +36,13 @@ mixin _$PokemonGridStore on _PokemonGridStoreBase, Store {
   bool get isFabVisible =>
       (_$isFabVisibleComputed ??= Computed<bool>(() => super.isFabVisible,
               name: '_PokemonGridStoreBase.isFabVisible'))
+          .value;
+  Computed<HomePageType>? _$pageComputed;
+
+  @override
+  HomePageType get page =>
+      (_$pageComputed ??= Computed<HomePageType>(() => super.page,
+              name: '_PokemonGridStoreBase.page'))
           .value;
 
   final _$_isFilterOpenAtom = Atom(name: '_PokemonGridStoreBase._isFilterOpen');
@@ -96,6 +103,21 @@ mixin _$PokemonGridStore on _PokemonGridStoreBase, Store {
   set _panelType(PanelType? value) {
     _$_panelTypeAtom.reportWrite(value, super._panelType, () {
       super._panelType = value;
+    });
+  }
+
+  final _$_pageAtom = Atom(name: '_PokemonGridStoreBase._page');
+
+  @override
+  HomePageType get _page {
+    _$_pageAtom.reportRead();
+    return super._page;
+  }
+
+  @override
+  set _page(HomePageType value) {
+    _$_pageAtom.reportWrite(value, super._page, () {
+      super._page = value;
     });
   }
 
@@ -180,12 +202,24 @@ mixin _$PokemonGridStore on _PokemonGridStoreBase, Store {
   }
 
   @override
+  void setPage(HomePageType page) {
+    final _$actionInfo = _$_PokemonGridStoreBaseActionController.startAction(
+        name: '_PokemonGridStoreBase.setPage');
+    try {
+      return super.setPage(page);
+    } finally {
+      _$_PokemonGridStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 isFilterOpen: ${isFilterOpen},
 panelType: ${panelType},
 isBackgroundBlack: ${isBackgroundBlack},
-isFabVisible: ${isFabVisible}
+isFabVisible: ${isFabVisible},
+page: ${page}
     ''';
   }
 }

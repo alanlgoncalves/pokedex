@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:pokedex/modules/home/home_page_store.dart';
 import 'package:pokedex/shared/routes/router.dart' as router;
 import 'package:pokedex/shared/ui/canvas/white_pokeball_canvas.dart';
 import 'package:pokedex/shared/ui/widgets/drawer_menu/widgets/menu_item.dart';
@@ -9,7 +10,9 @@ import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class DrawerMenuWidget extends StatefulWidget {
-  const DrawerMenuWidget({Key? key}) : super(key: key);
+  final HomePageStore homeStore;
+
+  const DrawerMenuWidget({Key? key, required this.homeStore}) : super(key: key);
 
   @override
   State<DrawerMenuWidget> createState() => _DrawerMenuWidgetState();
@@ -82,8 +85,7 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget>
                       onTap: () {
                         Navigator.pop(context);
 
-                        Navigator.pushReplacementNamed(
-                            context, router.Router.home);
+                        widget.homeStore.setPage(HomePageType.POKEMON_GRID);
                       },
                     ),
                     DrawerMenuItemWidget(
@@ -96,10 +98,7 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget>
                       onTap: () {
                         Navigator.pop(context);
 
-                        Navigator.pushReplacementNamed(
-                          context,
-                          router.Router.items,
-                        );
+                        widget.homeStore.setPage(HomePageType.ITENS);
                       },
                     ),
                     DrawerMenuItemWidget(
