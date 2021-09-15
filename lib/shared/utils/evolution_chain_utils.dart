@@ -1,5 +1,5 @@
-import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution/widgets/evolution_chain_item.dart';
-import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/evolution/widgets/super_evolution_chain_item.dart';
+import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/evolution/widgets/evolution_chain_item.dart';
+import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/evolution/widgets/super_evolution_chain_item.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
 
 class EvolutionChainUtils {

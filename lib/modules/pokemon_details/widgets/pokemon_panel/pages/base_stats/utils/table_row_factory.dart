@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/modules/pages/pokemon_details/widgets/pokemon_panel/pages/base_stats/widgets/type_effectiveness_badge.dart';
+import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/base_stats/widgets/type_effectiveness_badge.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class TableRowFactory {

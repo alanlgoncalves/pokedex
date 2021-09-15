@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
-import 'package:pokedex/modules/pages/pokemon_details/pokemon_details_store.dart';
+import 'package:pokedex/modules/pokemon_details/pokemon_details_store.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:pokedex/shared/utils/image_utils.dart';
 

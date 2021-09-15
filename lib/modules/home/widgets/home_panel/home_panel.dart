@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:pokedex/modules/pages/home/home_store.dart';
-import 'package:pokedex/modules/pages/home/widgets/home_panel/panels/pokemon_favorites.dart';
-import 'package:pokedex/modules/pages/home/widgets/home_panel/panels/pokemon_filter.dart';
-import 'package:pokedex/modules/pages/home/widgets/home_panel/panels/pokemon_generation_filter.dart';
-import 'package:pokedex/modules/pages/home/widgets/home_panel/panels/pokemon_type_filter.dart';
+import 'package:pokedex/modules/home/home_store.dart';
+import 'package:pokedex/modules/home/widgets/home_panel/panels/pokemon_favorites.dart';
+import 'package:pokedex/modules/home/widgets/home_panel/panels/pokemon_filter.dart';
+import 'package:pokedex/modules/home/widgets/home_panel/panels/pokemon_generation_filter.dart';
+import 'package:pokedex/modules/home/widgets/home_panel/panels/pokemon_type_filter.dart';
 import 'package:pokedex/shared/stores/pokeapi_store.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
