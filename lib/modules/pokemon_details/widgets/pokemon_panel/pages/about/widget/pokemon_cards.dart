@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/shared/ui/widgets/image_dialog.dart';
 import 'package:pokedex/shared/utils/hero_dialog_route.dart';
 import 'package:pokedex/shared/utils/image_utils.dart';
@@ -17,7 +17,7 @@ class PokemonCardsWidget extends StatefulWidget {
 }
 
 class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
-  static final _pokeApiStore = GetIt.instance<PokeApiStore>();
+  static final _pokemonStore = GetIt.instance<PokemonStore>();
   late PageController _pageController;
 
   @override
@@ -69,7 +69,7 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
                 builder: (_) => Padding(
                   padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
                   child: Text(
-                    "${_pokeApiStore.pokemon!.name} Cards",
+                    "${_pokemonStore.pokemon!.name} Cards",
                     style: AppTheme.texts.pokemonTabViewTitle,
                   ),
                 ),
@@ -82,9 +82,9 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
                   builder: (_) => PageView.builder(
                     controller: _pageController,
                     allowImplicitScrolling: true,
-                    itemCount: _pokeApiStore.pokemon!.cards.length,
+                    itemCount: _pokemonStore.pokemon!.cards.length,
                     itemBuilder: (context, index) {
-                      final card = _pokeApiStore.pokemon!.cards[index];
+                      final card = _pokemonStore.pokemon!.cards[index];
 
                       return InkWell(
                           onTap: () {

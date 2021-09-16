@@ -6,11 +6,11 @@ import 'package:pokedex/modules/home/home_page_store.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pokemon_mobile_panel.dart';
 import 'package:pokedex/modules/pokemon_grid/widgets/generation_item.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class PokemonGenerationFilter extends StatelessWidget {
-  static final PokeApiStore pokeApiStore = GetIt.instance<PokeApiStore>();
+  static final PokemonStore pokemonStore = GetIt.instance<PokemonStore>();
   final ScrollController scrollController;
   final HomePageStore pokemonGridStore;
 
@@ -21,7 +21,7 @@ class PokemonGenerationFilter extends StatelessWidget {
       : super(key: key);
 
   double get topPadding {
-    if (pokeApiStore.pokemonFilter.generationFilter != null) {
+    if (pokemonStore.pokemonFilter.generationFilter != null) {
       return kIsWeb ? 68 : 10;
     } else {
       return 0;
@@ -40,7 +40,7 @@ class PokemonGenerationFilter extends StatelessWidget {
             left: horizontalPadding, right: horizontalPadding, top: 28),
         child: Stack(
           children: [
-            if (pokeApiStore.pokemonFilter.generationFilter != null)
+            if (pokemonStore.pokemonFilter.generationFilter != null)
               SizedBox(
                 height: 40,
               ),
@@ -62,7 +62,7 @@ class PokemonGenerationFilter extends StatelessWidget {
                     final generation = Generation.values[index];
 
                     Color? color =
-                        pokeApiStore.pokemonFilter.generationFilter ==
+                        pokemonStore.pokemonFilter.generationFilter ==
                                 generation
                             ? AppTheme.colors.selectedGenerationFilter
                             : Colors.white;
@@ -71,13 +71,13 @@ class PokemonGenerationFilter extends StatelessWidget {
                       generation: generation,
                       color: color,
                       onClick: () {
-                        if (pokeApiStore.pokemonFilter.generationFilter !=
+                        if (pokemonStore.pokemonFilter.generationFilter !=
                                 null &&
-                            pokeApiStore.pokemonFilter.generationFilter ==
+                            pokemonStore.pokemonFilter.generationFilter ==
                                 generation) {
-                          pokeApiStore.clearGenerationFilter();
+                          pokemonStore.clearGenerationFilter();
                         } else {
-                          pokeApiStore.addGenerationFilter(generation);
+                          pokemonStore.addGenerationFilter(generation);
                         }
 
                         pokemonGridStore.closeFilter();
@@ -88,7 +88,7 @@ class PokemonGenerationFilter extends StatelessWidget {
                 ),
               ),
             ),
-            if (pokeApiStore.pokemonFilter.generationFilter != null)
+            if (pokemonStore.pokemonFilter.generationFilter != null)
               Container(
                 height: 40,
                 color: Colors.white,

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class TrainingInfoWidget extends StatelessWidget {
-  static final _pokeApiStore = GetIt.instance<PokeApiStore>();
+  static final _pokemonStore = GetIt.instance<PokemonStore>();
 
   const TrainingInfoWidget({Key? key}) : super(key: key);
 
@@ -46,7 +46,7 @@ class TrainingInfoWidget extends StatelessWidget {
                             ),
                             Observer(
                               builder: (_) => Text(
-                                "${_pokeApiStore.pokemon!.training.evYield}",
+                                "${_pokemonStore.pokemon!.training.evYield}",
                                 style: AppTheme.texts.pokemonText,
                               ),
                             ),
@@ -66,7 +66,7 @@ class TrainingInfoWidget extends StatelessWidget {
                             ),
                             Observer(
                               builder: (_) => Text(
-                                "${_pokeApiStore.pokemon!.training.catchRate}",
+                                "${_pokemonStore.pokemon!.training.catchRate}",
                                 style: AppTheme.texts.pokemonText,
                               ),
                             ),
@@ -86,7 +86,7 @@ class TrainingInfoWidget extends StatelessWidget {
                             ),
                             Observer(
                               builder: (_) => Text(
-                                "${_pokeApiStore.pokemon!.training.baseFriendship}",
+                                "${_pokemonStore.pokemon!.training.baseFriendship}",
                                 style: AppTheme.texts.pokemonText,
                               ),
                             ),
@@ -106,7 +106,7 @@ class TrainingInfoWidget extends StatelessWidget {
                             ),
                             Observer(
                               builder: (_) => Text(
-                                "${_pokeApiStore.pokemon!.training.baseExp}",
+                                "${_pokemonStore.pokemon!.training.baseExp}",
                                 style: AppTheme.texts.pokemonText,
                               ),
                             ),
@@ -126,7 +126,7 @@ class TrainingInfoWidget extends StatelessWidget {
                             ),
                             Observer(
                               builder: (_) => Text(
-                                "${_pokeApiStore.pokemon!.training.growthRate}",
+                                "${_pokemonStore.pokemon!.training.growthRate}",
                                 style: AppTheme.texts.pokemonText,
                               ),
                             ),

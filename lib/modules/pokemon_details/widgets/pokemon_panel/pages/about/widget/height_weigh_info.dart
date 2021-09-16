@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class HeightWeightInfoWidget extends StatelessWidget {
-  static final _pokeApiStore = GetIt.instance<PokeApiStore>();
+  static final _pokemonStore = GetIt.instance<PokemonStore>();
 
   const HeightWeightInfoWidget({Key? key}) : super(key: key);
 
@@ -41,7 +41,7 @@ class HeightWeightInfoWidget extends StatelessWidget {
               ),
               Observer(
                 builder: (_) => Text(
-                  _pokeApiStore.pokemon!.height,
+                  _pokemonStore.pokemon!.height,
                   style: AppTheme.texts.pokemonText,
                 ),
               )
@@ -60,7 +60,7 @@ class HeightWeightInfoWidget extends StatelessWidget {
               ),
               Observer(
                 builder: (_) => Text(
-                  _pokeApiStore.pokemon!.weight,
+                  _pokemonStore.pokemon!.weight,
                   style: AppTheme.texts.pokemonText,
                 ),
               )

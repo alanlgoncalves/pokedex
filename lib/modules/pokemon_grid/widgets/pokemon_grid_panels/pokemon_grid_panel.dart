@@ -5,19 +5,19 @@ import 'package:pokedex/modules/pokemon_grid/widgets/pokemon_grid_panels/panels/
 import 'package:pokedex/modules/pokemon_grid/widgets/pokemon_grid_panels/panels/pokemon_filter.dart';
 import 'package:pokedex/modules/pokemon_grid/widgets/pokemon_grid_panels/panels/pokemon_generation_filter.dart';
 import 'package:pokedex/modules/pokemon_grid/widgets/pokemon_grid_panels/panels/pokemon_type_filter.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class PokemonGridPanelWidget extends StatelessWidget {
   final PanelController panelController;
   final HomePageStore pokemonGridStore;
-  final PokeApiStore pokeApiStore;
+  final PokemonStore pokemonStore;
 
   const PokemonGridPanelWidget(
       {Key? key,
       required this.panelController,
       required this.pokemonGridStore,
-      required this.pokeApiStore})
+      required this.pokemonStore})
       : super(key: key);
 
   @override
@@ -48,7 +48,7 @@ class PokemonGridPanelWidget extends StatelessWidget {
           ],
           onPanelClosed: () {
             pokemonGridStore.closeFilter();
-            pokeApiStore.clearNameNumberFilter();
+            pokemonStore.clearNameNumberFilter();
           },
           onPanelOpened: () {
             pokemonGridStore.openFilter();
@@ -86,7 +86,7 @@ class PokemonGridPanelWidget extends StatelessWidget {
                   PokemonNameNumberFilterPage(
                     pokemonGridStore: pokemonGridStore,
                     onChanged: (value) {
-                      pokeApiStore.setNameNumberFilter(value);
+                      pokemonStore.setNameNumberFilter(value);
                     },
                     onClose: () {
                       panelController.close();

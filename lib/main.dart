@@ -2,7 +2,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/shared/routes/router.dart' as router;
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     GetIt getIt = GetIt.instance;
 
-    if (!GetIt.I.isRegistered<PokeApiStore>()) {
-      getIt.registerSingleton<PokeApiStore>(PokeApiStore());
+    if (!GetIt.I.isRegistered<PokemonStore>()) {
+      getIt.registerSingleton<PokemonStore>(PokemonStore());
     }
 
     final botToastBuilder = BotToastInit();

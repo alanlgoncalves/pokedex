@@ -2,12 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:lottie/lottie.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class EmptyEvolutionChainWidget extends StatelessWidget {
-  final PokeApiStore _pokeApiStore = GetIt.instance<PokeApiStore>();
+  final PokemonStore _pokemonStore = GetIt.instance<PokemonStore>();
 
   EmptyEvolutionChainWidget({Key? key}) : super(key: key);
 
@@ -26,7 +26,7 @@ class EmptyEvolutionChainWidget extends StatelessWidget {
           ),
         ),
         Text(
-          "${_pokeApiStore.pokemon!.name} does not have any evolution chain",
+          "${_pokemonStore.pokemon!.name} does not have any evolution chain",
           style: AppTheme.texts.pokemonEvolutionChainName,
         )
       ],

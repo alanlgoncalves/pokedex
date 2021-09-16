@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/shared/ui/widgets/image_dialog.dart';
 import 'package:pokedex/shared/utils/evolution_chain_utils.dart';
 import 'package:pokedex/shared/utils/hero_dialog_route.dart';
@@ -8,7 +8,7 @@ import 'package:pokedex/shared/utils/image_utils.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class SuperEvolutionChainWidget extends StatelessWidget {
-  final PokeApiStore _pokeApiStore = GetIt.instance<PokeApiStore>();
+  final PokemonStore _pokemonStore = GetIt.instance<PokemonStore>();
 
   SuperEvolutionChainWidget({
     Key? key,
@@ -17,33 +17,33 @@ class SuperEvolutionChainWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final megaEvolutionChain =
-        EvolutionChainUtils.buildSuperEvolutionChain(_pokeApiStore.pokemon!);
+        EvolutionChainUtils.buildSuperEvolutionChain(_pokemonStore.pokemon!);
 
     return Column(
       children: [
-        if (_pokeApiStore.pokemon!.megaEvolutions.isNotEmpty)
+        if (_pokemonStore.pokemon!.megaEvolutions.isNotEmpty)
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
                 Text(
-                  "Mega Evolution${_pokeApiStore.pokemon!.megaEvolutions.length > 1 ? "s" : ""}",
+                  "Mega Evolution${_pokemonStore.pokemon!.megaEvolutions.length > 1 ? "s" : ""}",
                   style: AppTheme.texts.pokemonTabViewTitle,
                 ),
                 ...megaEvolutionChain
               ],
             ),
           ),
-        if (_pokeApiStore.pokemon!.gigantamaxEvolutions.isNotEmpty)
+        if (_pokemonStore.pokemon!.gigantamaxEvolutions.isNotEmpty)
           Padding(
             padding: const EdgeInsets.only(top: 20),
             child: Column(
               children: [
                 Text(
-                  "Gigantamax Evolution${_pokeApiStore.pokemon!.megaEvolutions.length > 1 ? "s" : ""}",
+                  "Gigantamax Evolution${_pokemonStore.pokemon!.megaEvolutions.length > 1 ? "s" : ""}",
                   style: AppTheme.texts.pokemonTabViewTitle,
                 ),
-                ..._pokeApiStore.pokemon!.gigantamaxEvolutions.map(
+                ..._pokemonStore.pokemon!.gigantamaxEvolutions.map(
                   (gigantamax) => Center(
                     child: Column(
                       children: [

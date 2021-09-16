@@ -6,12 +6,12 @@ import 'package:mobx/mobx.dart';
 import 'package:pokedex/modules/pokemon_details/pokemon_details.dart';
 import 'package:pokedex/modules/pokemon_grid/widgets/poke_item.dart';
 import 'package:pokedex/shared/models/pokemon_summary.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 
 class PokemonGridWidget extends StatefulWidget {
-  final PokeApiStore pokeApiStore;
+  final PokemonStore pokemonStore;
 
-  PokemonGridWidget({Key? key, required this.pokeApiStore}) : super(key: key);
+  PokemonGridWidget({Key? key, required this.pokemonStore}) : super(key: key);
 
   @override
   _PokemonGridWidgetState createState() => _PokemonGridWidgetState();
@@ -33,7 +33,7 @@ class _PokemonGridWidgetState extends State<PokemonGridWidget> {
     });
 
     filterReactionDisposer =
-        reaction((_) => widget.pokeApiStore.pokemonFilter, (_) {
+        reaction((_) => widget.pokemonStore.pokemonFilter, (_) {
       _pagingController.refresh();
     });
 
@@ -48,7 +48,7 @@ class _PokemonGridWidgetState extends State<PokemonGridWidget> {
   }
 
   void _fetchPage(int pageKey) async {
-    final maxRange = widget.pokeApiStore.pokemonsSummary!.length;
+    final maxRange = widget.pokemonStore.pokemonsSummary!.length;
     final initialRange = pageKey * _pageSize;
     final finalRange = (pageKey * _pageSize) + _pageSize > maxRange
         ? maxRange
@@ -57,7 +57,7 @@ class _PokemonGridWidgetState extends State<PokemonGridWidget> {
     List<Widget> items = [];
 
     for (int index = initialRange; index < finalRange; index++) {
-      final _pokemon = widget.pokeApiStore.getPokemon(index);
+      final _pokemon = widget.pokemonStore.getPokemon(index);
 
       items.add(_buildPokemonItem(index: index, pokemon: _pokemon));
 
@@ -72,20 +72,20 @@ class _PokemonGridWidgetState extends State<PokemonGridWidget> {
   }
 
   void _cacheNextPageImages(int nextPage) async {
-    final maxPage = widget.pokeApiStore.pokemonsSummary!.length ~/ _pageSize;
+    final maxPage = widget.pokemonStore.pokemonsSummary!.length ~/ _pageSize;
 
     if (maxPage <= nextPage) {
       return;
     }
 
-    final maxRange = widget.pokeApiStore.pokemonsSummary!.length;
+    final maxRange = widget.pokemonStore.pokemonsSummary!.length;
     final initialRange = nextPage * _pageSize;
     final finalRange = (nextPage * _pageSize) + _pageSize > maxRange
         ? maxRange
         : (nextPage * _pageSize) + _pageSize;
 
     for (int index = initialRange; index < finalRange; index++) {
-      final _pokemon = widget.pokeApiStore.getPokemon(index);
+      final _pokemon = widget.pokemonStore.getPokemon(index);
 
       precacheImage(Image.network(_pokemon.thumbnailUrl).image, context);
     }
@@ -103,7 +103,7 @@ class _PokemonGridWidgetState extends State<PokemonGridWidget> {
       {required int index, required PokemonSummary pokemon}) {
     return InkWell(
       onTap: () async {
-        await widget.pokeApiStore.setPokemon(index);
+        await widget.pokemonStore.setPokemon(index);
 
         Navigator.push(
           context,

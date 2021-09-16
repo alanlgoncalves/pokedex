@@ -6,12 +6,12 @@ import 'package:pokedex/modules/home/home_page_store.dart';
 import 'package:pokedex/modules/pokemon_details/pokemon_details.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pokemon_mobile_panel.dart';
 import 'package:pokedex/modules/pokemon_grid/widgets/poke_item.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class PokemonFavorites extends StatelessWidget {
-  static final PokeApiStore pokeApiStore = GetIt.instance<PokeApiStore>();
+  static final PokemonStore pokemonStore = GetIt.instance<PokemonStore>();
   final ScrollController scrollController;
   final HomePageStore pokemonGridStore;
 
@@ -22,7 +22,7 @@ class PokemonFavorites extends StatelessWidget {
       : super(key: key);
 
   double get topPadding {
-    if (pokeApiStore.favoritesPokemonsSummary.isNotEmpty) {
+    if (pokemonStore.favoritesPokemonsSummary.isNotEmpty) {
       return kIsWeb ? 68 : 10;
     } else {
       return 0;
@@ -35,7 +35,7 @@ class PokemonFavorites extends StatelessWidget {
 
     final horizontalPadding = getDetailsPanelsPadding(size);
 
-    if (pokeApiStore.favoritesPokemonsSummary.isEmpty) {
+    if (pokemonStore.favoritesPokemonsSummary.isEmpty) {
       return Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -75,13 +75,13 @@ class PokemonFavorites extends StatelessWidget {
                   childAspectRatio: 3 / 2,
                 ),
                 itemBuilder: (context, index) {
-                  final _pokemon = pokeApiStore.favoritesPokemonsSummary[index];
-                  final _index = pokeApiStore.pokemonsSummary!
+                  final _pokemon = pokemonStore.favoritesPokemonsSummary[index];
+                  final _index = pokemonStore.pokemonsSummary!
                       .indexWhere((it) => it.number == _pokemon.number);
 
                   return InkWell(
                     onTap: () async {
-                      await pokeApiStore.setPokemon(_index);
+                      await pokemonStore.setPokemon(_index);
 
                       Navigator.push(
                         context,
@@ -100,7 +100,7 @@ class PokemonFavorites extends StatelessWidget {
                     ),
                   );
                 },
-                itemCount: pokeApiStore.favoritesPokemonsSummary.length,
+                itemCount: pokemonStore.favoritesPokemonsSummary.length,
               ),
             ),
           ),

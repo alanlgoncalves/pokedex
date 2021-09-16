@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class BaseStatsItemWidget extends StatelessWidget {
   final String title;
   final int maxValue;
 
-  static final _pokeApiStore = GetIt.instance<PokeApiStore>();
+  static final _pokemonStore = GetIt.instance<PokemonStore>();
 
   const BaseStatsItemWidget(
       {Key? key, required this.title, this.maxValue = 200})
@@ -19,19 +19,19 @@ class BaseStatsItemWidget extends StatelessWidget {
   int value() {
     switch (title.toUpperCase()) {
       case "HP":
-        return _pokeApiStore.pokemon!.baseStats.hp;
+        return _pokemonStore.pokemon!.baseStats.hp;
       case "ATTACK":
-        return _pokeApiStore.pokemon!.baseStats.attack;
+        return _pokemonStore.pokemon!.baseStats.attack;
       case "DEFENSE":
-        return _pokeApiStore.pokemon!.baseStats.defense;
+        return _pokemonStore.pokemon!.baseStats.defense;
       case "SP. ATK":
-        return _pokeApiStore.pokemon!.baseStats.spAtk;
+        return _pokemonStore.pokemon!.baseStats.spAtk;
       case "SP. DEF":
-        return _pokeApiStore.pokemon!.baseStats.spDef;
+        return _pokemonStore.pokemon!.baseStats.spDef;
       case "SPEED":
-        return _pokeApiStore.pokemon!.baseStats.speed;
+        return _pokemonStore.pokemon!.baseStats.speed;
       case "TOTAL":
-        return _pokeApiStore.pokemon!.baseStats.total;
+        return _pokemonStore.pokemon!.baseStats.total;
       default:
         return 0;
     }

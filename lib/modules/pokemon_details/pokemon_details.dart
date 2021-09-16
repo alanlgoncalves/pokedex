@@ -11,7 +11,7 @@ import 'package:pokedex/modules/pokemon_details/widgets/app_bar_navigation.dart'
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_pager.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pokemon_mobile_panel.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_title_info.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/shared/ui/canvas/background_dots.dart';
 import 'package:pokedex/shared/ui/canvas/white_pokeball_canvas.dart';
 import 'package:pokedex/shared/ui/enums/device_screen_type.dart';
@@ -30,7 +30,7 @@ class PokemonDetailsPage extends StatefulWidget {
 
 class _PokemonDetailsPageState extends State<PokemonDetailsPage>
     with SingleTickerProviderStateMixin {
-  late PokeApiStore _pokeApiStore;
+  late PokemonStore _pokemonStore;
   late PokemonDetailsStore _pokemonDetailsStore;
   late AnimationController _animationController;
   late AudioPlayer player;
@@ -38,7 +38,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
   @override
   void initState() {
     super.initState();
-    _pokeApiStore = GetIt.instance<PokeApiStore>();
+    _pokemonStore = GetIt.instance<PokemonStore>();
     _pokemonDetailsStore = PokemonDetailsStore();
 
     player = AudioPlayer();
@@ -78,7 +78,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                   height: size.height,
                   width: size.width,
                   color: AppTheme.colors
-                      .pokemonItem(_pokeApiStore.pokemon!.types[0]),
+                      .pokemonItem(_pokemonStore.pokemon!.types[0]),
                 );
               },
             ),
@@ -126,27 +126,27 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                   },
                 ),
                 actions: [
-                  if (_pokeApiStore.isFavorite(_pokeApiStore.pokemon!.number))
+                  if (_pokemonStore.isFavorite(_pokemonStore.pokemon!.number))
                     IconButton(
                       icon: Icon(Icons.favorite),
                       onPressed: () {
-                        _pokeApiStore.removeFavoritePokemon(
-                            _pokeApiStore.pokemon!.number);
+                        _pokemonStore.removeFavoritePokemon(
+                            _pokemonStore.pokemon!.number);
 
                         BotToast.showText(
                             text:
-                                "${_pokeApiStore.pokemon!.name} was removed from favorites");
+                                "${_pokemonStore.pokemon!.name} was removed from favorites");
                       },
                     ),
-                  if (!_pokeApiStore.isFavorite(_pokeApiStore.pokemon!.number))
+                  if (!_pokemonStore.isFavorite(_pokemonStore.pokemon!.number))
                     IconButton(
                       icon: Icon(Icons.favorite_border),
                       onPressed: () {
-                        _pokeApiStore
-                            .addFavoritePokemon(_pokeApiStore.pokemon!.number);
+                        _pokemonStore
+                            .addFavoritePokemon(_pokemonStore.pokemon!.number);
                         BotToast.showText(
                             text:
-                                "${_pokeApiStore.pokemon!.name} was favorited");
+                                "${_pokemonStore.pokemon!.name} was favorited");
                       },
                     ),
                 ],
@@ -171,7 +171,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                           Observer(builder: (_) {
                             return Container(
                               color: AppTheme.colors
-                                  .pokemonItem(_pokeApiStore.pokemon!.types[0]),
+                                  .pokemonItem(_pokemonStore.pokemon!.types[0]),
                             );
                           }),
                           Align(

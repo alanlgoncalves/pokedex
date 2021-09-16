@@ -6,12 +6,12 @@ import 'package:just_audio/just_audio.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/about/about_page_store.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pokemon_mobile_panel.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class SoundPlayer extends StatelessWidget {
   final AboutPageStore aboutPageStore;
-  final PokeApiStore pokeApiStore;
+  final PokemonStore pokemonStore;
   final AudioPlayer player;
   final Pokemon pokemon;
 
@@ -20,7 +20,7 @@ class SoundPlayer extends StatelessWidget {
       required this.aboutPageStore,
       required this.player,
       required this.pokemon,
-      required this.pokeApiStore})
+      required this.pokemonStore})
       : super(key: key);
 
   @override
@@ -57,15 +57,15 @@ class SoundPlayer extends StatelessWidget {
                   buffered: aboutPageStore.audioBuffered,
                   total: aboutPageStore.audioTotal,
                   progressBarColor: AppTheme.colors
-                      .pokemonItem(pokeApiStore.pokemon!.types[0]),
+                      .pokemonItem(pokemonStore.pokemon!.types[0]),
                   baseBarColor: AppTheme.colors
-                      .pokemonItem(pokeApiStore.pokemon!.types[0])
+                      .pokemonItem(pokemonStore.pokemon!.types[0])
                       .withOpacity(0.1),
                   bufferedBarColor: AppTheme.colors
-                      .pokemonItem(pokeApiStore.pokemon!.types[0])
+                      .pokemonItem(pokemonStore.pokemon!.types[0])
                       .withOpacity(0.1),
                   thumbColor: AppTheme.colors
-                      .pokemonItem(pokeApiStore.pokemon!.types[0]),
+                      .pokemonItem(pokemonStore.pokemon!.types[0]),
                   timeLabelLocation: TimeLabelLocation.sides,
                   onSeek: (duration) {
                     player.seek(duration);

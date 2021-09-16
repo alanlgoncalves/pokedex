@@ -4,12 +4,12 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/modules/home/home_page_store.dart';
 import 'package:pokedex/modules/pokemon_grid/widgets/pokemon_type_item.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class PokemonTypeFilter extends StatelessWidget {
-  static final PokeApiStore pokeApiStore = GetIt.instance<PokeApiStore>();
+  static final PokemonStore pokemonStore = GetIt.instance<PokemonStore>();
 
   final ScrollController scrollController;
   final HomePageStore pokemonGridStore;
@@ -21,7 +21,7 @@ class PokemonTypeFilter extends StatelessWidget {
       : super(key: key);
 
   double get topPadding {
-    if (pokeApiStore.pokemonFilter.typeFilter != null) {
+    if (pokemonStore.pokemonFilter.typeFilter != null) {
       return kIsWeb ? 68 : 10;
     } else {
       return 0;
@@ -35,7 +35,7 @@ class PokemonTypeFilter extends StatelessWidget {
         padding: const EdgeInsets.only(left: 28, right: 28, top: 28),
         child: Stack(
           children: [
-            if (pokeApiStore.pokemonFilter.typeFilter != null)
+            if (pokemonStore.pokemonFilter.typeFilter != null)
               SizedBox(
                 height: 40,
               ),
@@ -58,10 +58,10 @@ class PokemonTypeFilter extends StatelessWidget {
 
                     Color? color;
 
-                    if (pokeApiStore.pokemonFilter.typeFilter == null) {
+                    if (pokemonStore.pokemonFilter.typeFilter == null) {
                       color = AppTheme.colors.pokemonItem(type);
                     } else {
-                      color = pokeApiStore.pokemonFilter.typeFilter == type
+                      color = pokemonStore.pokemonFilter.typeFilter == type
                           ? AppTheme.colors.pokemonItem(type)
                           : Colors.grey[400];
                     }
@@ -70,11 +70,11 @@ class PokemonTypeFilter extends StatelessWidget {
                       type: type,
                       color: color,
                       onClick: () {
-                        if (pokeApiStore.pokemonFilter.typeFilter != null &&
-                            pokeApiStore.pokemonFilter.typeFilter == type) {
-                          pokeApiStore.clearTypeFilter();
+                        if (pokemonStore.pokemonFilter.typeFilter != null &&
+                            pokemonStore.pokemonFilter.typeFilter == type) {
+                          pokemonStore.clearTypeFilter();
                         } else {
-                          pokeApiStore.addTypeFilter(type);
+                          pokemonStore.addTypeFilter(type);
                         }
 
                         pokemonGridStore.closeFilter();
@@ -85,7 +85,7 @@ class PokemonTypeFilter extends StatelessWidget {
                 ),
               ),
             ),
-            if (pokeApiStore.pokemonFilter.typeFilter != null)
+            if (pokemonStore.pokemonFilter.typeFilter != null)
               Container(
                 height: 40,
                 color: Colors.white,

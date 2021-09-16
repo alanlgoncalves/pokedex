@@ -9,7 +9,7 @@ import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/abou
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/about/widget/pokemon_cards.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/about/widget/sound_player.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/about/widget/training_info.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 import '../../pokemon_mobile_panel.dart';
@@ -22,7 +22,7 @@ class AboutPage extends StatefulWidget {
 }
 
 class _AboutPageState extends State<AboutPage> {
-  static final _pokeApiStore = GetIt.instance<PokeApiStore>();
+  static final _pokemonStore = GetIt.instance<PokemonStore>();
   late AboutPageStore _aboutPageStoreStore;
   late AudioPlayer _player;
 
@@ -65,13 +65,13 @@ class _AboutPageState extends State<AboutPage> {
           child: Column(
             children: [
               Observer(builder: (_) {
-                if (_pokeApiStore.pokemon!.soundUrl != null) {
-                  _player.setUrl(_pokeApiStore.pokemon!.soundUrl!);
+                if (_pokemonStore.pokemon!.soundUrl != null) {
+                  _player.setUrl(_pokemonStore.pokemon!.soundUrl!);
                   _player.pause();
                 }
 
                 return Column(
-                  children: _pokeApiStore.pokemon!.descriptions
+                  children: _pokemonStore.pokemon!.descriptions
                       .map((it) => Padding(
                             padding: const EdgeInsets.symmetric(vertical: 4),
                             child: Text(
@@ -83,13 +83,13 @@ class _AboutPageState extends State<AboutPage> {
                 );
               }),
               Observer(builder: (_) {
-                if (_pokeApiStore.pokemon!.soundUrl != null)
+                if (_pokemonStore.pokemon!.soundUrl != null)
                   return Padding(
                     padding: const EdgeInsets.only(top: 15),
                     child: SoundPlayer(
-                      pokemon: _pokeApiStore.pokemon!,
+                      pokemon: _pokemonStore.pokemon!,
                       player: _player,
-                      pokeApiStore: _pokeApiStore,
+                      pokemonStore: _pokemonStore,
                       aboutPageStore: _aboutPageStoreStore,
                     ),
                   );
@@ -97,7 +97,7 @@ class _AboutPageState extends State<AboutPage> {
                   return Container();
               }),
               Observer(builder: (_) {
-                if (_pokeApiStore.pokemon!.hasAnimatedSprites)
+                if (_pokemonStore.pokemon!.hasAnimatedSprites)
                   return const AnimatedSpritesWidget(
                     isShiny: false,
                   );
@@ -105,7 +105,7 @@ class _AboutPageState extends State<AboutPage> {
                   return Container();
               }),
               Observer(builder: (_) {
-                if (_pokeApiStore.pokemon!.hasAnimatedShinySprites)
+                if (_pokemonStore.pokemon!.hasAnimatedShinySprites)
                   return const AnimatedSpritesWidget(
                     isShiny: true,
                   );
@@ -122,7 +122,7 @@ class _AboutPageState extends State<AboutPage> {
           ),
         ),
         Observer(builder: (_) {
-          if (_pokeApiStore.pokemon!.cards.isNotEmpty) {
+          if (_pokemonStore.pokemon!.cards.isNotEmpty) {
             return const PokemonCardsWidget();
           } else {
             return Container();

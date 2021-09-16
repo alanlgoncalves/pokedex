@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/shared/ui/canvas/white_pokeball_canvas.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/shared/utils/converters.dart';
@@ -29,7 +29,7 @@ class AnimatedFloatActionButtonWidget extends StatefulWidget {
 class _AnimatedFloatActionButtonWidgetState
     extends State<AnimatedFloatActionButtonWidget>
     with SingleTickerProviderStateMixin {
-  static final PokeApiStore pokeApiStore = GetIt.instance<PokeApiStore>();
+  static final PokemonStore pokemonStore = GetIt.instance<PokemonStore>();
 
   late bool isOpen;
   late bool showFadeBackground;
@@ -141,9 +141,9 @@ class _AnimatedFloatActionButtonWidgetState
                 ),
                 child: _CircularTextButton(
                   isOpened: isOpen,
-                  text: pokeApiStore.pokemonFilter.generationFilter == null
+                  text: pokemonStore.pokemonFilter.generationFilter == null
                       ? "All Generations"
-                      : pokeApiStore
+                      : pokemonStore
                           .pokemonFilter.generationFilter!.description,
                   icon: CustomPaint(
                     size: Size(20, (20 * 1.0040160642570282).toDouble()),
@@ -179,9 +179,9 @@ class _AnimatedFloatActionButtonWidgetState
                 ),
                 child: _CircularTextButton(
                   isOpened: isOpen,
-                  text: pokeApiStore.pokemonFilter.typeFilter == null
+                  text: pokemonStore.pokemonFilter.typeFilter == null
                       ? "All Types"
-                      : pokeApiStore.pokemonFilter.typeFilter!,
+                      : pokemonStore.pokemonFilter.typeFilter!,
                   icon: CustomPaint(
                     size: Size(20, (20 * 1.0040160642570282).toDouble()),
                     painter: PokeballLogoPainter(

@@ -9,7 +9,7 @@ import 'package:pokedex/modules/items/items_page.dart';
 import 'package:pokedex/modules/pokemon_grid/pokemon_grid_page.dart';
 import 'package:pokedex/modules/pokemon_grid/widgets/animated_float_action_button.dart';
 import 'package:pokedex/modules/pokemon_grid/widgets/pokemon_grid_panels/pokemon_grid_panel.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/shared/ui/widgets/app_bar.dart';
 import 'package:pokedex/shared/ui/widgets/drawer_menu/drawer_menu.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late Animation<double> _fabRotateAnimation;
   late Animation<double> _fabSizeAnimation;
 
-  late PokeApiStore _pokeApiStore;
+  late PokemonStore _pokemonStore;
   late HomePageStore _homeController;
   late PanelController _panelController;
 
@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
 
-    _pokeApiStore = GetIt.instance<PokeApiStore>();
+    _pokemonStore = GetIt.instance<PokemonStore>();
     _homeController = HomePageStore();
     _panelController = PanelController();
 
@@ -101,8 +101,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
 
     reactionDisposer.add(
-      reaction((_) => _pokeApiStore.pokemonFilter.pokemonNameNumberFilter, (_) {
-        if (_pokeApiStore.pokemonFilter.pokemonNameNumberFilter == null) {
+      reaction((_) => _pokemonStore.pokemonFilter.pokemonNameNumberFilter, (_) {
+        if (_pokemonStore.pokemonFilter.pokemonNameNumberFilter == null) {
           BotToast.showText(text: "The search by name/number has been cleared");
         }
       }),
@@ -194,7 +194,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               PokemonGridPanelWidget(
                 panelController: _panelController,
                 pokemonGridStore: _homeController,
-                pokeApiStore: _pokeApiStore,
+                pokemonStore: _pokemonStore,
               )
             ],
           ),

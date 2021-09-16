@@ -4,14 +4,14 @@ import 'package:pokedex/shared/models/pokemon_filter.dart';
 import 'package:pokedex/shared/models/pokemon_summary.dart';
 import 'package:pokedex/shared/repositories/poke_api_repository.dart';
 
-part 'pokeapi_store.g.dart';
+part 'pokemon_store.g.dart';
 
-class PokeApiStore = _PokeApiStoreBase with _$PokeApiStore;
+class PokemonStore = _PokemonStoreBase with _$PokemonStore;
 
-abstract class _PokeApiStoreBase with Store {
+abstract class _PokemonStoreBase with Store {
   PokeApiRepository _pokeApiRepository = PokeApiRepository();
 
-  _PokeApiStoreBase() {
+  _PokemonStoreBase() {
     this._fetchPokemonData();
   }
 

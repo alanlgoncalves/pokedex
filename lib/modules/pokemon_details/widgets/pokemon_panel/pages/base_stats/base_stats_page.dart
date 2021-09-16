@@ -3,13 +3,13 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/base_stats/utils/table_row_factory.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/base_stats/widgets/base_stats_item.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 import '../../pokemon_mobile_panel.dart';
 
 class BaseStatsPage extends StatelessWidget {
-  static final _pokeApiStore = GetIt.instance<PokeApiStore>();
+  static final _pokemonStore = GetIt.instance<PokemonStore>();
 
   const BaseStatsPage({Key? key}) : super(key: key);
 
@@ -62,19 +62,19 @@ class BaseStatsPage extends StatelessWidget {
               children: [
                 TableRowFactory.build(
                     title: "Damaged normally by",
-                    types: _pokeApiStore.pokemon!.typesEffectiveness.entries
+                    types: _pokemonStore.pokemon!.typesEffectiveness.entries
                         .where((it) => it.value == "1")),
                 TableRowFactory.build(
                     title: "Weak to",
-                    types: _pokeApiStore.pokemon!.typesEffectiveness.entries
+                    types: _pokemonStore.pokemon!.typesEffectiveness.entries
                         .where((it) => it.value == "2")),
                 TableRowFactory.build(
                     title: "Resistant to",
-                    types: _pokeApiStore.pokemon!.typesEffectiveness.entries
+                    types: _pokemonStore.pokemon!.typesEffectiveness.entries
                         .where((it) => it.value == "½" || it.value == "¼")),
                 TableRowFactory.build(
                     title: "Immune to",
-                    types: _pokeApiStore.pokemon!.typesEffectiveness.entries
+                    types: _pokemonStore.pokemon!.typesEffectiveness.entries
                         .where((it) => it.value == "0")),
               ],
             ),

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'pokeapi_store.dart';
+part of 'pokemon_store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,40 +8,40 @@ part of 'pokeapi_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$PokeApiStore on _PokeApiStoreBase, Store {
+mixin _$PokemonStore on _PokemonStoreBase, Store {
   Computed<PokemonSummary?>? _$pokemonSummaryComputed;
 
   @override
   PokemonSummary? get pokemonSummary => (_$pokemonSummaryComputed ??=
           Computed<PokemonSummary?>(() => super.pokemonSummary,
-              name: '_PokeApiStoreBase.pokemonSummary'))
+              name: '_PokemonStoreBase.pokemonSummary'))
       .value;
   Computed<Pokemon?>? _$pokemonComputed;
 
   @override
   Pokemon? get pokemon =>
       (_$pokemonComputed ??= Computed<Pokemon?>(() => super.pokemon,
-              name: '_PokeApiStoreBase.pokemon'))
+              name: '_PokemonStoreBase.pokemon'))
           .value;
   Computed<List<PokemonSummary>?>? _$pokemonsSummaryComputed;
 
   @override
   List<PokemonSummary>? get pokemonsSummary => (_$pokemonsSummaryComputed ??=
           Computed<List<PokemonSummary>?>(() => super.pokemonsSummary,
-              name: '_PokeApiStoreBase.pokemonsSummary'))
+              name: '_PokemonStoreBase.pokemonsSummary'))
       .value;
   Computed<int>? _$indexComputed;
 
   @override
   int get index => (_$indexComputed ??=
-          Computed<int>(() => super.index, name: '_PokeApiStoreBase.index'))
+          Computed<int>(() => super.index, name: '_PokemonStoreBase.index'))
       .value;
   Computed<PokemonFilter>? _$pokemonFilterComputed;
 
   @override
   PokemonFilter get pokemonFilter => (_$pokemonFilterComputed ??=
           Computed<PokemonFilter>(() => super.pokemonFilter,
-              name: '_PokeApiStoreBase.pokemonFilter'))
+              name: '_PokemonStoreBase.pokemonFilter'))
       .value;
   Computed<List<PokemonSummary>>? _$favoritesPokemonsSummaryComputed;
 
@@ -49,10 +49,10 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   List<PokemonSummary> get favoritesPokemonsSummary =>
       (_$favoritesPokemonsSummaryComputed ??= Computed<List<PokemonSummary>>(
               () => super.favoritesPokemonsSummary,
-              name: '_PokeApiStoreBase.favoritesPokemonsSummary'))
+              name: '_PokemonStoreBase.favoritesPokemonsSummary'))
           .value;
 
-  final _$_pokemonFilterAtom = Atom(name: '_PokeApiStoreBase._pokemonFilter');
+  final _$_pokemonFilterAtom = Atom(name: '_PokemonStoreBase._pokemonFilter');
 
   @override
   PokemonFilter get _pokemonFilter {
@@ -68,7 +68,7 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   }
 
   final _$_pokemonsSummaryAtom =
-      Atom(name: '_PokeApiStoreBase._pokemonsSummary');
+      Atom(name: '_PokemonStoreBase._pokemonsSummary');
 
   @override
   List<PokemonSummary>? get _pokemonsSummary {
@@ -84,7 +84,7 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
   }
 
   final _$_favoritesPokemonsSummaryAtom =
-      Atom(name: '_PokeApiStoreBase._favoritesPokemonsSummary');
+      Atom(name: '_PokemonStoreBase._favoritesPokemonsSummary');
 
   @override
   ObservableList<PokemonSummary> get _favoritesPokemonsSummary {
@@ -100,7 +100,7 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
     });
   }
 
-  final _$_pokemonSummaryAtom = Atom(name: '_PokeApiStoreBase._pokemonSummary');
+  final _$_pokemonSummaryAtom = Atom(name: '_PokemonStoreBase._pokemonSummary');
 
   @override
   PokemonSummary? get _pokemonSummary {
@@ -115,7 +115,7 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
     });
   }
 
-  final _$_pokemonsAtom = Atom(name: '_PokeApiStoreBase._pokemons');
+  final _$_pokemonsAtom = Atom(name: '_PokemonStoreBase._pokemons');
 
   @override
   List<Pokemon> get _pokemons {
@@ -130,7 +130,7 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
     });
   }
 
-  final _$_pokemonAtom = Atom(name: '_PokeApiStoreBase._pokemon');
+  final _$_pokemonAtom = Atom(name: '_PokemonStoreBase._pokemon');
 
   @override
   Pokemon? get _pokemon {
@@ -145,101 +145,101 @@ mixin _$PokeApiStore on _PokeApiStoreBase, Store {
     });
   }
 
-  final _$setPokemonAsyncAction = AsyncAction('_PokeApiStoreBase.setPokemon');
+  final _$setPokemonAsyncAction = AsyncAction('_PokemonStoreBase.setPokemon');
 
   @override
   Future<void> setPokemon(int index) {
     return _$setPokemonAsyncAction.run(() => super.setPokemon(index));
   }
 
-  final _$_PokeApiStoreBaseActionController =
-      ActionController(name: '_PokeApiStoreBase');
+  final _$_PokemonStoreBaseActionController =
+      ActionController(name: '_PokemonStoreBase');
 
   @override
   void addFavoritePokemon(String number) {
-    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
-        name: '_PokeApiStoreBase.addFavoritePokemon');
+    final _$actionInfo = _$_PokemonStoreBaseActionController.startAction(
+        name: '_PokemonStoreBase.addFavoritePokemon');
     try {
       return super.addFavoritePokemon(number);
     } finally {
-      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
+      _$_PokemonStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void removeFavoritePokemon(String number) {
-    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
-        name: '_PokeApiStoreBase.removeFavoritePokemon');
+    final _$actionInfo = _$_PokemonStoreBaseActionController.startAction(
+        name: '_PokemonStoreBase.removeFavoritePokemon');
     try {
       return super.removeFavoritePokemon(number);
     } finally {
-      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
+      _$_PokemonStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void addGenerationFilter(Generation generationFilter) {
-    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
-        name: '_PokeApiStoreBase.addGenerationFilter');
+    final _$actionInfo = _$_PokemonStoreBaseActionController.startAction(
+        name: '_PokemonStoreBase.addGenerationFilter');
     try {
       return super.addGenerationFilter(generationFilter);
     } finally {
-      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
+      _$_PokemonStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void clearGenerationFilter() {
-    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
-        name: '_PokeApiStoreBase.clearGenerationFilter');
+    final _$actionInfo = _$_PokemonStoreBaseActionController.startAction(
+        name: '_PokemonStoreBase.clearGenerationFilter');
     try {
       return super.clearGenerationFilter();
     } finally {
-      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
+      _$_PokemonStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void addTypeFilter(String type) {
-    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
-        name: '_PokeApiStoreBase.addTypeFilter');
+    final _$actionInfo = _$_PokemonStoreBaseActionController.startAction(
+        name: '_PokemonStoreBase.addTypeFilter');
     try {
       return super.addTypeFilter(type);
     } finally {
-      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
+      _$_PokemonStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void clearTypeFilter() {
-    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
-        name: '_PokeApiStoreBase.clearTypeFilter');
+    final _$actionInfo = _$_PokemonStoreBaseActionController.startAction(
+        name: '_PokemonStoreBase.clearTypeFilter');
     try {
       return super.clearTypeFilter();
     } finally {
-      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
+      _$_PokemonStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setNameNumberFilter(String nameNumberFilter) {
-    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
-        name: '_PokeApiStoreBase.setNameNumberFilter');
+    final _$actionInfo = _$_PokemonStoreBaseActionController.startAction(
+        name: '_PokemonStoreBase.setNameNumberFilter');
     try {
       return super.setNameNumberFilter(nameNumberFilter);
     } finally {
-      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
+      _$_PokemonStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void clearNameNumberFilter() {
-    final _$actionInfo = _$_PokeApiStoreBaseActionController.startAction(
-        name: '_PokeApiStoreBase.clearNameNumberFilter');
+    final _$actionInfo = _$_PokemonStoreBaseActionController.startAction(
+        name: '_PokemonStoreBase.clearNameNumberFilter');
     try {
       return super.clearNameNumberFilter();
     } finally {
-      _$_PokeApiStoreBaseActionController.endAction(_$actionInfo);
+      _$_PokemonStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 

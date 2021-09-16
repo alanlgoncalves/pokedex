@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/shared/utils/image_utils.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class AnimatedSpritesWidget extends StatelessWidget {
-  static final _pokeApiStore = GetIt.instance<PokeApiStore>();
+  static final _pokemonStore = GetIt.instance<PokemonStore>();
 
   final bool isShiny;
 
@@ -22,12 +22,12 @@ class AnimatedSpritesWidget extends StatelessWidget {
       isShiny ? "Back animated \n shiny sprite" : "Back animated \n sprite";
 
   String get frontUrl => isShiny
-      ? _pokeApiStore.pokemon!.sprites.frontShinyAnimatedSpriteUrl!
-      : _pokeApiStore.pokemon!.sprites.frontAnimatedSpriteUrl!;
+      ? _pokemonStore.pokemon!.sprites.frontShinyAnimatedSpriteUrl!
+      : _pokemonStore.pokemon!.sprites.frontAnimatedSpriteUrl!;
 
   String get backUrl => isShiny
-      ? _pokeApiStore.pokemon!.sprites.backShinyAnimatedSpriteUrl!
-      : _pokeApiStore.pokemon!.sprites.backAnimatedSpriteUrl!;
+      ? _pokemonStore.pokemon!.sprites.backShinyAnimatedSpriteUrl!
+      : _pokemonStore.pokemon!.sprites.backAnimatedSpriteUrl!;
 
   @override
   Widget build(BuildContext context) {

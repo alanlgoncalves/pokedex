@@ -5,13 +5,13 @@ import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/evol
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/evolution/widgets/next_evolution_chain.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/evolution/widgets/previous_evolution_chain.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/evolution/widgets/super_evolution_chain.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/shared/utils/evolution_chain_utils.dart';
 
 import '../../pokemon_mobile_panel.dart';
 
 class EvolutionPage extends StatelessWidget {
-  static final _pokeApiStore = GetIt.instance<PokeApiStore>();
+  static final _pokemonStore = GetIt.instance<PokemonStore>();
 
   const EvolutionPage({Key? key}) : super(key: key);
 
@@ -25,18 +25,18 @@ class EvolutionPage extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
       child: Observer(builder: (_) {
         final evolutionChain =
-            EvolutionChainUtils.buildEvolutionChain(_pokeApiStore.pokemon!);
+            EvolutionChainUtils.buildEvolutionChain(_pokemonStore.pokemon!);
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (_pokeApiStore.pokemon!.previousEvolutions.isNotEmpty)
+            if (_pokemonStore.pokemon!.previousEvolutions.isNotEmpty)
               PreviousEvolutionChainWidget(evolutionChain: evolutionChain),
-            if (_pokeApiStore.pokemon!.nextEvolutions.isNotEmpty)
+            if (_pokemonStore.pokemon!.nextEvolutions.isNotEmpty)
               NextEvolutionChainWidget(evolutionChain: evolutionChain),
-            if (_pokeApiStore.pokemon!.superEvolutions.isNotEmpty)
+            if (_pokemonStore.pokemon!.superEvolutions.isNotEmpty)
               SuperEvolutionChainWidget(),
-            if (!_pokeApiStore.pokemon!.hasEvolutions)
+            if (!_pokemonStore.pokemon!.hasEvolutions)
               EmptyEvolutionChainWidget(),
             SizedBox(
               height: 100,

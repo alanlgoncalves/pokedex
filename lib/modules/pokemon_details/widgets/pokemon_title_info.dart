@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class PokemonTitleInfoWidget extends StatelessWidget {
-  final _pokeApiStore = GetIt.instance<PokeApiStore>();
+  final _pokemonStore = GetIt.instance<PokemonStore>();
 
   PokemonTitleInfoWidget({Key? key}) : super(key: key);
 
@@ -20,12 +20,12 @@ class PokemonTitleInfoWidget extends StatelessWidget {
             children: [
               Observer(builder: (_) {
                 return Text(
-                  _pokeApiStore.pokemon!.name,
+                  _pokemonStore.pokemon!.name,
                   style: AppTheme.texts.pokemonDetailName,
                 );
               }),
               Observer(builder: (_) {
-                return Text("#${_pokeApiStore.pokemon!.number}",
+                return Text("#${_pokemonStore.pokemon!.number}",
                     style: AppTheme.texts.pokemonDetailNumber);
               }),
             ],
@@ -39,7 +39,7 @@ class PokemonTitleInfoWidget extends StatelessWidget {
               Observer(builder: (_) {
                 return Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: _pokeApiStore.pokemon!.types
+                  children: _pokemonStore.pokemon!.types
                       .map((type) => Padding(
                             padding: const EdgeInsets.only(right: 8),
                             child: Container(
@@ -61,7 +61,7 @@ class PokemonTitleInfoWidget extends StatelessWidget {
               }),
               Observer(
                 builder: (_) {
-                  return Text("${_pokeApiStore.pokemon!.specie} Pokemon",
+                  return Text("${_pokemonStore.pokemon!.specie} Pokemon",
                       style: AppTheme.texts.pokemonDetailSpecie);
                 },
               ),

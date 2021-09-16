@@ -4,7 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pokedex/modules/pokemon_grid/widgets/pokemon_grid.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
@@ -16,13 +16,13 @@ class PokemonGridPage extends StatefulWidget {
 }
 
 class _PokemonGridPageState extends State<PokemonGridPage> {
-  late PokeApiStore _pokeApiStore;
+  late PokemonStore _pokemonStore;
 
   @override
   void initState() {
     super.initState();
 
-    _pokeApiStore = GetIt.instance<PokeApiStore>();
+    _pokemonStore = GetIt.instance<PokemonStore>();
   }
 
   double getHomePadding(Size size) {
@@ -43,7 +43,7 @@ class _PokemonGridPageState extends State<PokemonGridPage> {
 
     return Observer(
       builder: (_) {
-        if (_pokeApiStore.pokemonsSummary == null) {
+        if (_pokemonStore.pokemonsSummary == null) {
           return SliverFillRemaining(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -51,8 +51,8 @@ class _PokemonGridPageState extends State<PokemonGridPage> {
             ),
           );
         } else {
-          if (_pokeApiStore.pokemonFilter.pokemonNameNumberFilter != null &&
-              _pokeApiStore.pokemonsSummary!.isEmpty) {
+          if (_pokemonStore.pokemonFilter.pokemonNameNumberFilter != null &&
+              _pokemonStore.pokemonsSummary!.isEmpty) {
             return SliverToBoxAdapter(
               child: Container(
                 height: 250,
@@ -69,7 +69,7 @@ class _PokemonGridPageState extends State<PokemonGridPage> {
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 30),
                         child: Text(
-                          "${_pokeApiStore.pokemonFilter.pokemonNameNumberFilter} was not found",
+                          "${_pokemonStore.pokemonFilter.pokemonNameNumberFilter} was not found",
                           style: AppTheme.texts.pokemonText,
                         ),
                       ),
@@ -82,7 +82,7 @@ class _PokemonGridPageState extends State<PokemonGridPage> {
 
           return SliverPadding(
             padding: EdgeInsets.symmetric(horizontal: getHomePadding(size)),
-            sliver: PokemonGridWidget(pokeApiStore: _pokeApiStore),
+            sliver: PokemonGridWidget(pokemonStore: _pokemonStore),
           );
         }
       },

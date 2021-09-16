@@ -3,11 +3,11 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class BreedingInfoWidget extends StatelessWidget {
-  static final _pokeApiStore = GetIt.instance<PokeApiStore>();
+  static final _pokemonStore = GetIt.instance<PokemonStore>();
 
   const BreedingInfoWidget({Key? key}) : super(key: key);
 
@@ -47,7 +47,7 @@ class BreedingInfoWidget extends StatelessWidget {
                                   style: AppTheme.texts.pokemonTabViewSubTitle,
                                 ),
                               ),
-                              ..._pokeApiStore.pokemon!.breeding.genders
+                              ..._pokemonStore.pokemon!.breeding.genders
                                   .map((gender) {
                                 return Padding(
                                   padding: const EdgeInsets.only(right: 20),
@@ -109,7 +109,7 @@ class BreedingInfoWidget extends StatelessWidget {
                             ),
                             Observer(
                               builder: (_) => Text(
-                                "${_pokeApiStore.pokemon!.breeding.egg!.groups.join(", ")}",
+                                "${_pokemonStore.pokemon!.breeding.egg!.groups.join(", ")}",
                                 style: AppTheme.texts.pokemonText,
                               ),
                             ),
@@ -129,7 +129,7 @@ class BreedingInfoWidget extends StatelessWidget {
                             ),
                             Observer(
                               builder: (_) => Text(
-                                "${_pokeApiStore.pokemon!.breeding.egg!.cycle}",
+                                "${_pokemonStore.pokemon!.breeding.egg!.cycle}",
                                 style: AppTheme.texts.pokemonText,
                               ),
                             ),

@@ -8,7 +8,7 @@ import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/move
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/moves/widgets/tables/technical_machines_moves_table.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/moves/widgets/tables/technical_records_moves_table.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/moves/widgets/tables/tutor_moves_table.dart';
-import 'package:pokedex/shared/stores/pokeapi_store.dart';
+import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 import '../../pokemon_mobile_panel.dart';
@@ -22,7 +22,7 @@ class MovesPage extends StatefulWidget {
 
 class _MovesPageState extends State<MovesPage>
     with AutomaticKeepAliveClientMixin<MovesPage> {
-  static final PokeApiStore _pokeApiStore = GetIt.instance<PokeApiStore>();
+  static final PokemonStore _pokemonStore = GetIt.instance<PokemonStore>();
   late MovesStore _movesStore;
 
   @override
@@ -62,7 +62,7 @@ class _MovesPageState extends State<MovesPage>
                 elevation: 0,
                 expandedHeaderPadding: EdgeInsets.zero,
                 children: [
-                  if (_pokeApiStore.pokemon!.moves.levelUp.isNotEmpty)
+                  if (_pokemonStore.pokemon!.moves.levelUp.isNotEmpty)
                     ExpansionPanel(
                       isExpanded: _movesStore.panels[getCounter()],
                       headerBuilder: (context, opened) => Center(
@@ -79,7 +79,7 @@ class _MovesPageState extends State<MovesPage>
                         ),
                       ),
                     ),
-                  if (_pokeApiStore.pokemon!.moves.technicalMachine.isNotEmpty)
+                  if (_pokemonStore.pokemon!.moves.technicalMachine.isNotEmpty)
                     ExpansionPanel(
                       isExpanded: _movesStore.panels[getCounter()],
                       headerBuilder: (context, opened) => Center(
@@ -96,7 +96,7 @@ class _MovesPageState extends State<MovesPage>
                         ),
                       ),
                     ),
-                  if (_pokeApiStore.pokemon!.moves.technicalRecords.isNotEmpty)
+                  if (_pokemonStore.pokemon!.moves.technicalRecords.isNotEmpty)
                     ExpansionPanel(
                       isExpanded: _movesStore.panels[getCounter()],
                       headerBuilder: (context, opened) => Center(
@@ -113,7 +113,7 @@ class _MovesPageState extends State<MovesPage>
                         ),
                       ),
                     ),
-                  if (_pokeApiStore.pokemon!.moves.evolution.isNotEmpty)
+                  if (_pokemonStore.pokemon!.moves.evolution.isNotEmpty)
                     ExpansionPanel(
                       isExpanded: _movesStore.panels[getCounter()],
                       headerBuilder: (context, opened) => Center(
@@ -130,7 +130,7 @@ class _MovesPageState extends State<MovesPage>
                         ),
                       ),
                     ),
-                  if (_pokeApiStore.pokemon!.moves.egg.isNotEmpty)
+                  if (_pokemonStore.pokemon!.moves.egg.isNotEmpty)
                     ExpansionPanel(
                       isExpanded: _movesStore.panels[getCounter()],
                       headerBuilder: (context, opened) => Center(
@@ -147,7 +147,7 @@ class _MovesPageState extends State<MovesPage>
                         ),
                       ),
                     ),
-                  if (_pokeApiStore.pokemon!.moves.tutor.isNotEmpty)
+                  if (_pokemonStore.pokemon!.moves.tutor.isNotEmpty)
                     ExpansionPanel(
                       isExpanded: _movesStore.panels[getCounter()],
                       headerBuilder: (context, opened) => Center(
