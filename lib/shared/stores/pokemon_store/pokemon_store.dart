@@ -2,14 +2,14 @@ import 'package:mobx/mobx.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
 import 'package:pokedex/shared/models/pokemon_filter.dart';
 import 'package:pokedex/shared/models/pokemon_summary.dart';
-import 'package:pokedex/shared/repositories/poke_api_repository.dart';
+import 'package:pokedex/shared/repositories/pokemon_repository.dart';
 
 part 'pokemon_store.g.dart';
 
 class PokemonStore = _PokemonStoreBase with _$PokemonStore;
 
 abstract class _PokemonStoreBase with Store {
-  PokeApiRepository _pokeApiRepository = PokeApiRepository();
+  PokemonRepository _pokemonRepository = PokemonRepository();
 
   _PokemonStoreBase() {
     this._fetchPokemonData();
@@ -64,7 +64,7 @@ abstract class _PokemonStoreBase with Store {
 
     if (pokemonDetailsIndex < 0) {
       final fetchedPokemon =
-          await _pokeApiRepository.fetchPokemon(_pokemonSummary!.number);
+          await _pokemonRepository.fetchPokemon(_pokemonSummary!.number);
 
       final sortedPokemonList = [..._pokemons, fetchedPokemon];
       sortedPokemonList.sort((a, b) => a.number.compareTo(b.number));
@@ -89,7 +89,7 @@ abstract class _PokemonStoreBase with Store {
 
     _favoritesPokemonsSummary.sort((a, b) => a.number.compareTo(b.number));
 
-    _pokeApiRepository.saveFavoritePokemonSummary(
+    _pokemonRepository.saveFavoritePokemonSummary(
         _favoritesPokemonsSummary.map((it) => it.number).toList());
   }
 
@@ -102,7 +102,7 @@ abstract class _PokemonStoreBase with Store {
       _favoritesPokemonsSummary.removeAt(index);
     }
 
-    _pokeApiRepository.saveFavoritePokemonSummary(
+    _pokemonRepository.saveFavoritePokemonSummary(
         _favoritesPokemonsSummary.map((it) => it.number).toList());
   }
 
@@ -168,13 +168,13 @@ abstract class _PokemonStoreBase with Store {
   }
 
   _fetchPokemonData() async {
-    _pokemonsSummary = await _pokeApiRepository.fetchPokemonsSummary();
+    _pokemonsSummary = await _pokemonRepository.fetchPokemonsSummary();
 
     await _fetchFavoritesPokemons();
   }
 
   Future<void> _fetchFavoritesPokemons() async {
-    final favorites = await _pokeApiRepository.fetchFavoritesPokemonsSummary();
+    final favorites = await _pokemonRepository.fetchFavoritesPokemonsSummary();
 
     _favoritesPokemonsSummary = ObservableList.of(_pokemonsSummary!
         .where((it) => favorites.contains(it.number))

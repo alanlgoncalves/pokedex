@@ -6,7 +6,7 @@ import 'package:pokedex/shared/models/pokemon_summary.dart';
 import 'package:pokedex/shared/utils/api_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class PokeApiRepository {
+class PokemonRepository {
   Future<List<PokemonSummary>> fetchPokemonsSummary() async {
     try {
       final response =
