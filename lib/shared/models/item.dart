@@ -2,15 +2,15 @@ import 'dart:convert';
 
 class Item {
   final String name;
-  final String imageUrl;
+  final String? imageUrl;
   final String category;
-  final String? effect;
+  final String effect;
 
   Item({
     required this.name,
-    required this.imageUrl,
+    this.imageUrl,
     required this.category,
-    this.effect,
+    required this.effect,
   });
 
   Item copyWith({
