@@ -120,20 +120,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     super.dispose();
   }
 
-  double getHomePadding(Size size) {
-    double horizontalPadding = 0;
-
-    if (size.width > 1200) {
-      horizontalPadding = size.width * 0.15;
-    } else {
-      horizontalPadding = 10;
-    }
-
-    return horizontalPadding;
-  }
-
   String _getSearchFabButtonText(String? filter) {
-    if (filter != null && filter!.trim().isNotEmpty) {
+    if (filter != null && filter.trim().isNotEmpty) {
       return "Search: $filter";
     } else {
       return "Search";
@@ -157,7 +145,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               slivers: [
                 SliverPadding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: getHomePadding(size),
+                    horizontal: 10,
                   ),
                   sliver: Observer(
                     builder: (_) => AppBarWidget(

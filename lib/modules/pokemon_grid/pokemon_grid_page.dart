@@ -25,18 +25,6 @@ class _PokemonGridPageState extends State<PokemonGridPage> {
     _pokemonStore = GetIt.instance<PokemonStore>();
   }
 
-  double getHomePadding(Size size) {
-    double horizontalPadding = 0;
-
-    if (size.width > 1200) {
-      horizontalPadding = size.width * 0.15;
-    } else {
-      horizontalPadding = 10;
-    }
-
-    return horizontalPadding;
-  }
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -81,7 +69,7 @@ class _PokemonGridPageState extends State<PokemonGridPage> {
           }
 
           return SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: getHomePadding(size)),
+            padding: EdgeInsets.symmetric(horizontal: 10),
             sliver: PokemonGridWidget(pokemonStore: _pokemonStore),
           );
         }

@@ -82,7 +82,7 @@ class _ItemsPageState extends State<ItemsPage> {
             )
           : Icon(
               Icons.image_not_supported,
-              color: Colors.black,
+              color: Colors.grey,
               size: 20,
             ),
       title: Text(
@@ -115,18 +115,19 @@ class _ItemsPageState extends State<ItemsPage> {
         );
       } else {
         return SliverPadding(
-            padding: EdgeInsets.symmetric(
-              horizontal: getItemsPagePadding(size),
+          padding: EdgeInsets.symmetric(
+            horizontal: getItemsPagePadding(size),
+          ),
+          sliver: PagedSliverList.separated(
+            pagingController: _pagingController,
+            builderDelegate: PagedChildBuilderDelegate<Widget>(
+              itemBuilder: (context, item, index) => item,
             ),
-            sliver: PagedSliverList.separated(
-              pagingController: _pagingController,
-              builderDelegate: PagedChildBuilderDelegate<Widget>(
-                itemBuilder: (context, item, index) => item,
-              ),
-              separatorBuilder: (context, index) {
-                return Divider();
-              },
-            ));
+            separatorBuilder: (context, index) {
+              return Divider();
+            },
+          ),
+        );
       }
     });
   }
