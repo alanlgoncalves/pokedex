@@ -9,7 +9,7 @@ import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/shared/utils/converters.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
-import '../../home/home_page_store.dart';
+import '../home_page_store.dart';
 
 class AnimatedFloatActionButtonWidget extends StatefulWidget {
   final HomePageStore homeStore;

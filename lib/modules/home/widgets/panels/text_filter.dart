@@ -4,16 +4,18 @@ import 'package:pokedex/modules/home/home_page_store.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
-class PokemonNameNumberFilterPage extends StatelessWidget {
+class TextFilterWidget extends StatelessWidget {
   static final PokemonStore pokemonStore = GetIt.instance<PokemonStore>();
 
+  final String hintText;
   final ValueChanged<String> onChanged;
   final VoidCallback onClose;
-  final HomePageStore pokemonGridStore;
+  final HomePageStore homePageStore;
 
-  const PokemonNameNumberFilterPage(
+  const TextFilterWidget(
       {Key? key,
-      required this.pokemonGridStore,
+      required this.hintText,
+      required this.homePageStore,
       required this.onChanged,
       required this.onClose})
       : super(key: key);
@@ -39,7 +41,7 @@ class PokemonNameNumberFilterPage extends StatelessWidget {
                 ),
                 onPressed: onClose,
               ),
-              hintText: "Ex: Charizard or 006",
+              hintText: hintText,
               fillColor: Color(0xFFE1E1E1),
               filled: true,
               //hintStyle: AppTheme.textStyles.stepperHintTextField,

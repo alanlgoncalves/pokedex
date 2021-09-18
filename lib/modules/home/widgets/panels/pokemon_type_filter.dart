@@ -12,12 +12,10 @@ class PokemonTypeFilter extends StatelessWidget {
   static final PokemonStore pokemonStore = GetIt.instance<PokemonStore>();
 
   final ScrollController scrollController;
-  final HomePageStore pokemonGridStore;
+  final HomePageStore homePageStore;
 
   const PokemonTypeFilter(
-      {Key? key,
-      required this.pokemonGridStore,
-      required this.scrollController})
+      {Key? key, required this.homePageStore, required this.scrollController})
       : super(key: key);
 
   double get topPadding {
@@ -77,7 +75,7 @@ class PokemonTypeFilter extends StatelessWidget {
                           pokemonStore.addTypeFilter(type);
                         }
 
-                        pokemonGridStore.closeFilter();
+                        homePageStore.closeFilter();
                       },
                     );
                   },

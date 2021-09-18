@@ -12,12 +12,10 @@ import 'package:pokedex/theme/app_theme.dart';
 class PokemonGenerationFilter extends StatelessWidget {
   static final PokemonStore pokemonStore = GetIt.instance<PokemonStore>();
   final ScrollController scrollController;
-  final HomePageStore pokemonGridStore;
+  final HomePageStore homePageStore;
 
   const PokemonGenerationFilter(
-      {Key? key,
-      required this.pokemonGridStore,
-      required this.scrollController})
+      {Key? key, required this.homePageStore, required this.scrollController})
       : super(key: key);
 
   double get topPadding {
@@ -80,7 +78,7 @@ class PokemonGenerationFilter extends StatelessWidget {
                           pokemonStore.addGenerationFilter(generation);
                         }
 
-                        pokemonGridStore.closeFilter();
+                        homePageStore.closeFilter();
                       },
                     );
                   },

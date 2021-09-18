@@ -13,12 +13,10 @@ import 'package:pokedex/theme/app_theme.dart';
 class PokemonFavorites extends StatelessWidget {
   static final PokemonStore pokemonStore = GetIt.instance<PokemonStore>();
   final ScrollController scrollController;
-  final HomePageStore pokemonGridStore;
+  final HomePageStore homePageStore;
 
   const PokemonFavorites(
-      {Key? key,
-      required this.pokemonGridStore,
-      required this.scrollController})
+      {Key? key, required this.homePageStore, required this.scrollController})
       : super(key: key);
 
   double get topPadding {

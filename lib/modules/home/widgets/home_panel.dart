@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pokedex/modules/home/home_page_store.dart';
-import 'package:pokedex/modules/pokemon_grid/widgets/pokemon_grid_panels/panels/pokemon_favorites.dart';
-import 'package:pokedex/modules/pokemon_grid/widgets/pokemon_grid_panels/panels/pokemon_filter.dart';
-import 'package:pokedex/modules/pokemon_grid/widgets/pokemon_grid_panels/panels/pokemon_generation_filter.dart';
-import 'package:pokedex/modules/pokemon_grid/widgets/pokemon_grid_panels/panels/pokemon_type_filter.dart';
+import 'package:pokedex/modules/home/widgets/panels/pokemon_favorites.dart';
+import 'package:pokedex/modules/home/widgets/panels/text_filter.dart';
+import 'package:pokedex/modules/home/widgets/panels/pokemon_generation_filter.dart';
+import 'package:pokedex/modules/home/widgets/panels/pokemon_type_filter.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-class PokemonGridPanelWidget extends StatelessWidget {
+class HomePanelWidget extends StatelessWidget {
   final PanelController panelController;
-  final HomePageStore pokemonGridStore;
+  final HomePageStore homePageStore;
   final PokemonStore pokemonStore;
 
-  const PokemonGridPanelWidget(
+  const HomePanelWidget(
       {Key? key,
       required this.panelController,
-      required this.pokemonGridStore,
+      required this.homePageStore,
       required this.pokemonStore})
       : super(key: key);
 
@@ -25,7 +25,7 @@ class PokemonGridPanelWidget extends StatelessWidget {
     return Observer(builder: (_) {
       late double maxHeight;
 
-      if (pokemonGridStore.panelType == PanelType.FILTER_POKEMON_NAME_NUMBER) {
+      if (homePageStore.panelType == PanelType.FILTER_POKEMON_NAME_NUMBER) {
         maxHeight = 100;
       } else {
         maxHeight = MediaQuery.of(context).size.height * 0.75;
@@ -47,11 +47,11 @@ class PokemonGridPanelWidget extends StatelessWidget {
             ),
           ],
           onPanelClosed: () {
-            pokemonGridStore.closeFilter();
+            homePageStore.closeFilter();
             pokemonStore.clearNameNumberFilter();
           },
           onPanelOpened: () {
-            pokemonGridStore.openFilter();
+            homePageStore.openFilter();
           },
           controller: panelController,
           panelBuilder: (scrollController) {
@@ -70,21 +70,22 @@ class PokemonGridPanelWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                if (pokemonGridStore.panelType == PanelType.FILTER_POKEMON_TYPE)
+                if (homePageStore.panelType == PanelType.FILTER_POKEMON_TYPE)
                   PokemonTypeFilter(
-                    pokemonGridStore: pokemonGridStore,
+                    homePageStore: homePageStore,
                     scrollController: scrollController,
                   ),
-                if (pokemonGridStore.panelType ==
+                if (homePageStore.panelType ==
                     PanelType.FILTER_POKEMON_GENERATION)
                   PokemonGenerationFilter(
-                    pokemonGridStore: pokemonGridStore,
+                    homePageStore: homePageStore,
                     scrollController: scrollController,
                   ),
-                if (pokemonGridStore.panelType ==
+                if (homePageStore.panelType ==
                     PanelType.FILTER_POKEMON_NAME_NUMBER)
-                  PokemonNameNumberFilterPage(
-                    pokemonGridStore: pokemonGridStore,
+                  TextFilterWidget(
+                    hintText: "Ex: Charizard or 006",
+                    homePageStore: homePageStore,
                     onChanged: (value) {
                       pokemonStore.setNameNumberFilter(value);
                     },
@@ -92,9 +93,9 @@ class PokemonGridPanelWidget extends StatelessWidget {
                       panelController.close();
                     },
                   ),
-                if (pokemonGridStore.panelType == PanelType.FAVORITES_POKEMONS)
+                if (homePageStore.panelType == PanelType.FAVORITES_POKEMONS)
                   PokemonFavorites(
-                    pokemonGridStore: pokemonGridStore,
+                    homePageStore: homePageStore,
                     scrollController: scrollController,
                   ),
               ],

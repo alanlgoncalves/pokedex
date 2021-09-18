@@ -7,8 +7,8 @@ import 'package:mobx/mobx.dart';
 import 'package:pokedex/modules/home/home_page_store.dart';
 import 'package:pokedex/modules/items/items_page.dart';
 import 'package:pokedex/modules/pokemon_grid/pokemon_grid_page.dart';
-import 'package:pokedex/modules/pokemon_grid/widgets/animated_float_action_button.dart';
-import 'package:pokedex/modules/pokemon_grid/widgets/pokemon_grid_panels/pokemon_grid_panel.dart';
+import 'package:pokedex/modules/home/widgets/animated_float_action_button.dart';
+import 'package:pokedex/modules/home/widgets/home_panel.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/shared/ui/widgets/app_bar.dart';
 import 'package:pokedex/shared/ui/widgets/drawer_menu/drawer_menu.dart';
@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late Animation<double> _fabSizeAnimation;
 
   late PokemonStore _pokemonStore;
-  late HomePageStore _homeController;
+  late HomePageStore _homeStore;
   late PanelController _panelController;
 
   late List<ReactionDisposer> reactionDisposer = [];
@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     super.initState();
 
     _pokemonStore = GetIt.instance<PokemonStore>();
-    _homeController = HomePageStore();
+    _homeStore = HomePageStore();
     _panelController = PanelController();
 
     _backgroundAnimationController = AnimationController(
@@ -67,22 +67,22 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     ]).animate(_fabAnimationController);
 
     reactionDisposer.add(
-      reaction((_) => _homeController.isFilterOpen, (_) {
-        if (_homeController.isFilterOpen) {
+      reaction((_) => _homeStore.isFilterOpen, (_) {
+        if (_homeStore.isFilterOpen) {
           _panelController.open();
-          _homeController.showBackgroundBlack();
-          _homeController.hideFloatActionButton();
+          _homeStore.showBackgroundBlack();
+          _homeStore.hideFloatActionButton();
         } else {
           _panelController.close();
-          _homeController.hideBackgroundBlack();
-          _homeController.showFloatActionButton();
+          _homeStore.hideBackgroundBlack();
+          _homeStore.showFloatActionButton();
         }
       }),
     );
 
     reactionDisposer.add(
-      reaction((_) => _homeController.isBackgroundBlack, (_) {
-        if (_homeController.isBackgroundBlack) {
+      reaction((_) => _homeStore.isBackgroundBlack, (_) {
+        if (_homeStore.isBackgroundBlack) {
           _backgroundAnimationController.forward();
         } else {
           _backgroundAnimationController.reverse();
@@ -91,8 +91,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
 
     reactionDisposer.add(
-      reaction((_) => _homeController.isFabVisible, (_) {
-        if (_homeController.isFabVisible) {
+      reaction((_) => _homeStore.isFabVisible, (_) {
+        if (_homeStore.isFabVisible) {
           _fabAnimationController.forward();
         } else {
           _fabAnimationController.reverse();
@@ -137,7 +137,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     return Scaffold(
       backgroundColor: AppTheme.colors.background,
       endDrawer: Drawer(
-        child: DrawerMenuWidget(homeStore: _homeController),
+        child: DrawerMenuWidget(homeStore: _homeStore),
       ),
       body: Stack(
         children: [
@@ -151,7 +151,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   ),
                   sliver: Observer(
                     builder: (_) => AppBarWidget(
-                      title: _homeController.page.description,
+                      title: _homeStore.page.description,
                       showAnimatedPokeball: true,
                       lottiePath: AppConstants.squirtleLottie,
                     ),
@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ),
                 Observer(
                   builder: (_) {
-                    switch (_homeController.page) {
+                    switch (_homeStore.page) {
                       case HomePageType.POKEMON_GRID:
                         return PokemonGridPage();
                       case HomePageType.ITENS:
@@ -175,7 +175,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           Stack(
             children: [
               Observer(builder: (_) {
-                if (_homeController.isBackgroundBlack) {
+                if (_homeStore.isBackgroundBlack) {
                   return AnimatedBuilder(
                     animation: _fabAnimationController,
                     builder: (_, child) => FadeTransition(
@@ -191,9 +191,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   return Container();
                 }
               }),
-              PokemonGridPanelWidget(
+              HomePanelWidget(
                 panelController: _panelController,
-                pokemonGridStore: _homeController,
+                homePageStore: _homeStore,
                 pokemonStore: _pokemonStore,
               )
             ],
@@ -208,7 +208,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               child: child,
             ),
             child: AnimatedFloatActionButtonWidget(
-              homeStore: _homeController,
+              homeStore: _homeStore,
               backgroundAnimationController: _backgroundAnimationController,
             ),
           ),
