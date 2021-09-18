@@ -43,8 +43,13 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget>
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Stack(
+            Column(
               children: [
+                Image.asset(
+                  "assets/images/icons/pikachu.png",
+                  width: 100,
+                  height: 100,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -72,43 +77,41 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget>
                     Text("Pokedex", style: AppTheme.texts.homePageTitle),
                   ],
                 ),
-                GridView(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, mainAxisExtent: 70),
-                  children: [
-                    DrawerMenuItemWidget(
-                      color: AppTheme.colors.drawerPokedex,
-                      text: "Pokedex",
-                      onTap: () {
-                        Navigator.pop(context);
+              ],
+            ),
+            GridView(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2, mainAxisExtent: 70),
+              children: [
+                DrawerMenuItemWidget(
+                  color: AppTheme.colors.drawerPokedex,
+                  text: "Pokedex",
+                  onTap: () {
+                    Navigator.pop(context);
 
-                        widget.homeStore.setPage(HomePageType.POKEMON_GRID);
-                      },
-                    ),
-                    DrawerMenuItemWidget(
-                      color: AppTheme.colors.drawerItems,
-                      text: "Items",
-                      onTap: () {
-                        Navigator.pop(context);
-
-                        widget.homeStore.setPage(HomePageType.ITENS);
-                      },
-                    ),
-                    DrawerMenuItemWidget(
-                        color: AppTheme.colors.drawerMoves, text: "Moves"),
-                    DrawerMenuItemWidget(
-                        color: AppTheme.colors.drawerAbilities,
-                        text: "Abilities"),
-                    DrawerMenuItemWidget(
-                        color: AppTheme.colors.drawerTypeCharts,
-                        text: "Type Charts"),
-                    DrawerMenuItemWidget(
-                        color: AppTheme.colors.drawerLocations,
-                        text: "Locations"),
-                  ],
+                    widget.homeStore.setPage(HomePageType.POKEMON_GRID);
+                  },
                 ),
+                DrawerMenuItemWidget(
+                  color: AppTheme.colors.drawerItems,
+                  text: "Items",
+                  onTap: () {
+                    Navigator.pop(context);
+
+                    widget.homeStore.setPage(HomePageType.ITENS);
+                  },
+                ),
+                DrawerMenuItemWidget(
+                    color: AppTheme.colors.drawerMoves, text: "Moves"),
+                DrawerMenuItemWidget(
+                    color: AppTheme.colors.drawerAbilities, text: "Abilities"),
+                DrawerMenuItemWidget(
+                    color: AppTheme.colors.drawerTypeCharts,
+                    text: "Type Charts"),
+                DrawerMenuItemWidget(
+                    color: AppTheme.colors.drawerLocations, text: "Locations"),
               ],
             ),
           ],
