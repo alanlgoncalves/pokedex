@@ -41,7 +41,8 @@ class PokemonFilter {
           pokemons!.where((it) => it.types[0] == this.typeFilter).toList();
     }
 
-    if (this.pokemonNameNumberFilter != null) {
+    if (this.pokemonNameNumberFilter != null &&
+        this.pokemonNameNumberFilter!.trim().isNotEmpty) {
       pokemons = pokemons!
           .where((it) =>
               it.name

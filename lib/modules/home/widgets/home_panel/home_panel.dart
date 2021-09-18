@@ -52,7 +52,6 @@ class HomePanelWidget extends StatelessWidget {
           ],
           onPanelClosed: () {
             homePageStore.closeFilter();
-            pokemonStore.clearNameNumberFilter();
           },
           onPanelOpened: () {
             homePageStore.openFilter();
@@ -89,23 +88,27 @@ class HomePanelWidget extends StatelessWidget {
                     PanelType.FILTER_POKEMON_NAME_NUMBER)
                   TextFilterWidget(
                     hintText: "Ex: Charizard or 006",
+                    text: pokemonStore.pokemonFilter.pokemonNameNumberFilter,
                     homePageStore: homePageStore,
                     onChanged: (value) {
                       pokemonStore.setNameNumberFilter(value);
                     },
                     onClose: () {
                       panelController.close();
+                      pokemonStore.clearNameNumberFilter();
                     },
                   ),
                 if (homePageStore.panelType == PanelType.FILTER_ITEMS)
                   TextFilterWidget(
                     hintText: "Ex: Ultraball",
+                    text: itemStore.filter,
                     homePageStore: homePageStore,
                     onChanged: (value) {
-                      // TODO - Adicionar filtro no ItemStore
+                      itemStore.setFilter(value);
                     },
                     onClose: () {
                       panelController.close();
+                      itemStore.clearFilter();
                     },
                   ),
                 if (homePageStore.panelType == PanelType.FAVORITES_POKEMONS)

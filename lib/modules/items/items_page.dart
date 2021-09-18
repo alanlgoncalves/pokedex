@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:mobx/mobx.dart';
 import 'package:pokedex/shared/models/item.dart';
 import 'package:pokedex/shared/stores/item_store/item_store.dart';
 import 'package:pokedex/shared/utils/image_utils.dart';
@@ -22,10 +23,16 @@ class _ItemsPageState extends State<ItemsPage> {
   final PagingController<int, Widget> _pagingController =
       PagingController(firstPageKey: 0);
 
+  late ReactionDisposer filterReactionDisposer;
+
   @override
   void initState() {
     _pagingController.addPageRequestListener((pageKey) {
       _fetchPage(pageKey);
+    });
+
+    filterReactionDisposer = reaction((_) => _itemStore.filter, (_) {
+      _pagingController.refresh();
     });
 
     super.initState();

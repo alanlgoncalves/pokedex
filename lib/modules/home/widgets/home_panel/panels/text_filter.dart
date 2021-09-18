@@ -11,9 +11,11 @@ class TextFilterWidget extends StatelessWidget {
   final ValueChanged<String> onChanged;
   final VoidCallback onClose;
   final HomePageStore homePageStore;
+  final String? text;
 
   const TextFilterWidget(
       {Key? key,
+      this.text,
       required this.hintText,
       required this.homePageStore,
       required this.onChanged,
@@ -27,6 +29,7 @@ class TextFilterWidget extends StatelessWidget {
       child: Column(
         children: [
           TextFormField(
+            initialValue: text,
             onChanged: onChanged,
             autofocus: true,
             minLines: 1,

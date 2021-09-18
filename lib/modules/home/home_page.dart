@@ -1,4 +1,3 @@
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -111,14 +110,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       }),
     );
 
-    reactionDisposer.add(
-      reaction((_) => _pokemonStore.pokemonFilter.pokemonNameNumberFilter, (_) {
-        if (_pokemonStore.pokemonFilter.pokemonNameNumberFilter == null) {
-          BotToast.showText(text: "The search by name/number has been cleared");
-        }
-      }),
-    );
-
     _fabAnimationRotationController.forward();
   }
 
@@ -139,6 +130,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     }
 
     return horizontalPadding;
+  }
+
+  String _getSearchFabButtonText(String? filter) {
+    if (filter != null && filter!.trim().isNotEmpty) {
+      return "Search: $filter";
+    } else {
+      return "Search";
+    }
   }
 
   @override
@@ -225,7 +224,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 buttons: [
                   if (_homeStore.page == HomePageType.POKEMON_GRID)
                     CircularFabTextButton(
-                      text: "Search",
+                      text: _getSearchFabButtonText(
+                          _pokemonStore.pokemonFilter.pokemonNameNumberFilter),
                       icon: SizedBox(
                         child: Icon(
                           Icons.search,
@@ -243,7 +243,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     ),
                   if (_homeStore.page == HomePageType.ITENS)
                     CircularFabTextButton(
-                      text: "Search",
+                      text: _getSearchFabButtonText(_itemStore.filter),
                       icon: SizedBox(
                         child: Icon(
                           Icons.search,
