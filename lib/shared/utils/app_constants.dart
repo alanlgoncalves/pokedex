@@ -3,6 +3,7 @@ class AppConstants {
   static String get squirtleLottie => "assets/lotties/squirtle.json";
   static String get diglettLottie => "assets/lotties/diglett.json";
   static String get fabIcon => "assets/images/icons/fab.png";
+  static String get pokedexIcon => "assets/images/icons/pokedex_icon.png";
 
   static List<String> types = [
     "Normal",

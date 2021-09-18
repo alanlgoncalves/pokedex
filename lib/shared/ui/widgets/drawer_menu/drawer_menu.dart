@@ -46,7 +46,7 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget>
             Column(
               children: [
                 Image.asset(
-                  "assets/images/icons/pikachu.png",
+                  AppConstants.pokedexIcon,
                   width: 100,
                   height: 100,
                 ),
