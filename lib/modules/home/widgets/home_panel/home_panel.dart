@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pokedex/modules/home/home_page_store.dart';
-import 'package:pokedex/modules/home/widgets/panels/pokemon_favorites.dart';
-import 'package:pokedex/modules/home/widgets/panels/text_filter.dart';
-import 'package:pokedex/modules/home/widgets/panels/pokemon_generation_filter.dart';
-import 'package:pokedex/modules/home/widgets/panels/pokemon_type_filter.dart';
+import 'package:pokedex/modules/home/widgets/home_panel/panels/pokemon_favorites.dart';
+import 'package:pokedex/modules/home/widgets/home_panel/panels/pokemon_generation_filter.dart';
+import 'package:pokedex/modules/home/widgets/home_panel/panels/pokemon_type_filter.dart';
+import 'package:pokedex/modules/home/widgets/home_panel/panels/text_filter.dart';
+import 'package:pokedex/shared/stores/item_store/item_store.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -12,12 +13,14 @@ class HomePanelWidget extends StatelessWidget {
   final PanelController panelController;
   final HomePageStore homePageStore;
   final PokemonStore pokemonStore;
+  final ItemStore itemStore;
 
   const HomePanelWidget(
       {Key? key,
       required this.panelController,
       required this.homePageStore,
-      required this.pokemonStore})
+      required this.pokemonStore,
+      required this.itemStore})
       : super(key: key);
 
   @override
@@ -25,7 +28,8 @@ class HomePanelWidget extends StatelessWidget {
     return Observer(builder: (_) {
       late double maxHeight;
 
-      if (homePageStore.panelType == PanelType.FILTER_POKEMON_NAME_NUMBER) {
+      if (homePageStore.panelType != null &&
+          homePageStore.panelType!.isTextFilter) {
         maxHeight = 100;
       } else {
         maxHeight = MediaQuery.of(context).size.height * 0.75;
@@ -88,6 +92,17 @@ class HomePanelWidget extends StatelessWidget {
                     homePageStore: homePageStore,
                     onChanged: (value) {
                       pokemonStore.setNameNumberFilter(value);
+                    },
+                    onClose: () {
+                      panelController.close();
+                    },
+                  ),
+                if (homePageStore.panelType == PanelType.FILTER_ITEMS)
+                  TextFilterWidget(
+                    hintText: "Ex: Ultraball",
+                    homePageStore: homePageStore,
+                    onChanged: (value) {
+                      // TODO - Adicionar filtro no ItemStore
                     },
                     onClose: () {
                       panelController.close();

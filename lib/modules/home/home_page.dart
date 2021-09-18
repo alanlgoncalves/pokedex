@@ -5,11 +5,14 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pokedex/modules/home/home_page_store.dart';
+import 'package:pokedex/modules/home/widgets/animated_fab/animated_float_action_button.dart';
+import 'package:pokedex/modules/home/widgets/home_panel/home_panel.dart';
 import 'package:pokedex/modules/items/items_page.dart';
 import 'package:pokedex/modules/pokemon_grid/pokemon_grid_page.dart';
-import 'package:pokedex/modules/home/widgets/animated_float_action_button.dart';
-import 'package:pokedex/modules/home/widgets/home_panel.dart';
+import 'package:pokedex/shared/models/pokemon.dart';
+import 'package:pokedex/shared/stores/item_store/item_store.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
+import 'package:pokedex/shared/ui/canvas/white_pokeball_canvas.dart';
 import 'package:pokedex/shared/ui/widgets/app_bar.dart';
 import 'package:pokedex/shared/ui/widgets/drawer_menu/drawer_menu.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
@@ -28,11 +31,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late AnimationController _backgroundAnimationController;
   late Animation<double> _blackBackgroundOpacityAnimation;
 
-  late AnimationController _fabAnimationController;
+  late AnimationController _fabAnimationRotationController;
+  late AnimationController _fabAnimationOpenController;
   late Animation<double> _fabRotateAnimation;
   late Animation<double> _fabSizeAnimation;
 
   late PokemonStore _pokemonStore;
+  late ItemStore _itemStore;
   late HomePageStore _homeStore;
   late PanelController _panelController;
 
@@ -43,6 +48,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     super.initState();
 
     _pokemonStore = GetIt.instance<PokemonStore>();
+    _itemStore = GetIt.instance<ItemStore>();
     _homeStore = HomePageStore();
     _panelController = PanelController();
 
@@ -53,18 +59,23 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     _blackBackgroundOpacityAnimation =
         Tween(begin: 0.0, end: 1.0).animate(_backgroundAnimationController);
 
-    _fabAnimationController = AnimationController(
+    _fabAnimationRotationController = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 400),
     );
 
+    _fabAnimationOpenController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 250),
+    );
+
     _fabRotateAnimation = Tween(begin: 180.0, end: 0.0).animate(CurvedAnimation(
-        curve: Curves.easeOut, parent: _fabAnimationController));
+        curve: Curves.easeOut, parent: _fabAnimationRotationController));
 
     _fabSizeAnimation = TweenSequence([
       TweenSequenceItem(tween: Tween(begin: 0.0, end: 1.4), weight: 80.0),
       TweenSequenceItem(tween: Tween(begin: 1.4, end: 1.0), weight: 20.0),
-    ]).animate(_fabAnimationController);
+    ]).animate(_fabAnimationRotationController);
 
     reactionDisposer.add(
       reaction((_) => _homeStore.isFilterOpen, (_) {
@@ -93,9 +104,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     reactionDisposer.add(
       reaction((_) => _homeStore.isFabVisible, (_) {
         if (_homeStore.isFabVisible) {
-          _fabAnimationController.forward();
+          _fabAnimationRotationController.forward();
         } else {
-          _fabAnimationController.reverse();
+          _fabAnimationRotationController.reverse();
         }
       }),
     );
@@ -108,7 +119,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       }),
     );
 
-    _fabAnimationController.forward();
+    _fabAnimationRotationController.forward();
   }
 
   @override
@@ -177,7 +188,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               Observer(builder: (_) {
                 if (_homeStore.isBackgroundBlack) {
                   return AnimatedBuilder(
-                    animation: _fabAnimationController,
+                    animation: _fabAnimationRotationController,
                     builder: (_, child) => FadeTransition(
                         opacity: _blackBackgroundOpacityAnimation,
                         child: child),
@@ -192,26 +203,119 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 }
               }),
               HomePanelWidget(
-                panelController: _panelController,
-                homePageStore: _homeStore,
-                pokemonStore: _pokemonStore,
-              )
+                  panelController: _panelController,
+                  homePageStore: _homeStore,
+                  pokemonStore: _pokemonStore,
+                  itemStore: _itemStore)
             ],
           ),
-          AnimatedBuilder(
-            animation: _fabAnimationController,
-            builder: (_, child) => Transform(
-              alignment: Alignment.bottomRight,
-              transform: Matrix4.rotationZ(
-                  getRadiansFromDegree(_fabRotateAnimation.value))
-                ..scale(_fabSizeAnimation.value),
-              child: child,
-            ),
-            child: AnimatedFloatActionButtonWidget(
-              homeStore: _homeStore,
-              backgroundAnimationController: _backgroundAnimationController,
-            ),
-          ),
+          Observer(builder: (_) {
+            return AnimatedBuilder(
+              animation: _fabAnimationRotationController,
+              builder: (_, child) => Transform(
+                alignment: Alignment.bottomRight,
+                transform: Matrix4.rotationZ(
+                    getRadiansFromDegree(_fabRotateAnimation.value))
+                  ..scale(_fabSizeAnimation.value),
+                child: child,
+              ),
+              child: AnimatedFloatActionButtonWidget(
+                homeStore: _homeStore,
+                openAnimationController: _fabAnimationOpenController,
+                buttons: [
+                  if (_homeStore.page == HomePageType.POKEMON_GRID)
+                    CircularFabTextButton(
+                      text: "Search",
+                      icon: SizedBox(
+                        child: Icon(
+                          Icons.search,
+                          color: AppTheme.colors.floatActionButton,
+                        ),
+                      ),
+                      color: Colors.white,
+                      onClick: () {
+                        _fabAnimationOpenController.reverse();
+                        _homeStore
+                            .setPanelType(PanelType.FILTER_POKEMON_NAME_NUMBER);
+                        _homeStore.openFilter();
+                        _homeStore.hideBackgroundBlack();
+                      },
+                    ),
+                  if (_homeStore.page == HomePageType.ITENS)
+                    CircularFabTextButton(
+                      text: "Search",
+                      icon: SizedBox(
+                        child: Icon(
+                          Icons.search,
+                          color: AppTheme.colors.floatActionButton,
+                        ),
+                      ),
+                      color: Colors.white,
+                      onClick: () {
+                        _fabAnimationOpenController.reverse();
+                        _homeStore.setPanelType(PanelType.FILTER_ITEMS);
+                        _homeStore.openFilter();
+                        _homeStore.hideBackgroundBlack();
+                      },
+                    ),
+                  if (_homeStore.page == HomePageType.POKEMON_GRID)
+                    CircularFabTextButton(
+                      text: _pokemonStore.pokemonFilter.generationFilter == null
+                          ? "All Generations"
+                          : Generation
+                              .values[_pokemonStore
+                                  .pokemonFilter.generationFilter!.index]
+                              .description,
+                      icon: CustomPaint(
+                        size: Size(20, (20 * 1.0040160642570282).toDouble()),
+                        painter: PokeballLogoPainter(
+                          color: AppTheme.colors.floatActionButton,
+                        ),
+                      ),
+                      color: Colors.white,
+                      onClick: () {
+                        _fabAnimationOpenController.reverse();
+                        _homeStore
+                            .setPanelType(PanelType.FILTER_POKEMON_GENERATION);
+                        _homeStore.openFilter();
+                      },
+                    ),
+                  if (_homeStore.page == HomePageType.POKEMON_GRID)
+                    CircularFabTextButton(
+                      text: _pokemonStore.pokemonFilter.typeFilter == null
+                          ? "All Types"
+                          : _pokemonStore.pokemonFilter.typeFilter!,
+                      icon: CustomPaint(
+                        size: Size(20, (20 * 1.0040160642570282).toDouble()),
+                        painter: PokeballLogoPainter(
+                          color: AppTheme.colors.floatActionButton,
+                        ),
+                      ),
+                      color: Colors.white,
+                      onClick: () {
+                        _fabAnimationOpenController.reverse();
+                        _homeStore.setPanelType(PanelType.FILTER_POKEMON_TYPE);
+                        _homeStore.openFilter();
+                      },
+                    ),
+                  if (_homeStore.page == HomePageType.POKEMON_GRID)
+                    CircularFabTextButton(
+                      text: "Favorite Pokemons",
+                      icon: Icon(
+                        Icons.favorite,
+                        color: AppTheme.colors.floatActionButton,
+                      ),
+                      color: Colors.white,
+                      onClick: () {
+                        _fabAnimationOpenController.reverse();
+                        _homeStore.setPanelType(PanelType.FAVORITES_POKEMONS);
+                        _homeStore.openFilter();
+                      },
+                    ),
+                ],
+              ),
+            );
+          }),
         ],
       ),
     );

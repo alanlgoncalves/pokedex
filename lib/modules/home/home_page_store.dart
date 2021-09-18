@@ -8,7 +8,15 @@ enum PanelType {
   FILTER_POKEMON_GENERATION,
   FILTER_POKEMON_TYPE,
   FILTER_POKEMON_NAME_NUMBER,
+  FILTER_ITEMS,
   FAVORITES_POKEMONS
+}
+
+extension PanelTypeExtension on PanelType {
+  bool get isTextFilter {
+    return this == PanelType.FILTER_POKEMON_NAME_NUMBER ||
+        this == PanelType.FILTER_ITEMS;
+  }
 }
 
 enum HomePageType { POKEMON_GRID, ITENS }
