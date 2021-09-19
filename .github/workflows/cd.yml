@@ -16,10 +16,12 @@ jobs:
           channel: 'stable'
       - name: 🚚 Get latest code
         uses: actions/checkout@v2
-      - name: 🧹 Flutter clean
+      - name: 🧹 Clean
         run: flutter clean
       - name: ⬇️ Get dependencies
         run: flutter pub get
+      - name: 🧪 Test
+        run: flutter test --coverage
       - name: 🔨 Build WEB
         run: flutter build web --web-renderer canvaskit --release
       - name: 📂 Sync files

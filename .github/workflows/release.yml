@@ -20,10 +20,12 @@ jobs:
           channel: 'stable'
       - name: 🚚 Get latest code
         uses: actions/checkout@v2
-      - name: 🧹 Flutter clean
+      - name: 🧹 Clean
         run: flutter clean
       - name: ⬇️ Get dependencies
         run: flutter pub get
+      - name: 🧪 Test
+        run: flutter test --coverage
       - name: 🤖 Build Android (AAB)
         run: |
           flutter build appbundle --release
