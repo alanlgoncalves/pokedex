@@ -17,7 +17,7 @@ jobs:
       - name: 📱️Setup Flutter
         uses: subosito/flutter-action@v1
         with:
-          flutter-version: '2.2.3'
+          channel: 'stable'
       - name: 🚚 Get latest code
         uses: actions/checkout@v2
       - name: 🧹 Flutter clean
