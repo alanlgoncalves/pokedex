@@ -11,7 +11,7 @@ import 'package:pokedex/theme/app_theme.dart';
 import '../mocks/home_page_store_mock.dart';
 
 void main() {
-  group("When the drawer menu is rendered without onTap event", () {
+  group("When the drawer menu is rendered", () {
     final homePageStoreMock = HomePageStoreMock();
 
     setUp(() {
