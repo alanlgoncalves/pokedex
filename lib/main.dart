@@ -1,9 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
+import 'package:pokedex/shared/getit/getit.dart';
 import 'package:pokedex/shared/routes/router.dart' as router;
-import 'package:pokedex/shared/stores/item_store/item_store.dart';
-import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,12 +11,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    GetIt getIt = GetIt.instance;
-
-    if (!GetIt.I.isRegistered<PokemonStore>()) {
-      getIt.registerSingleton<PokemonStore>(PokemonStore());
-      getIt.registerSingleton<ItemStore>(ItemStore());
-    }
+    registerOnGetIt();
 
     final botToastBuilder = BotToastInit();
 

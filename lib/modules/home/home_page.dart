@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
     _pokemonStore = GetIt.instance<PokemonStore>();
     _itemStore = GetIt.instance<ItemStore>();
-    _homeStore = HomePageStore();
+    _homeStore = GetIt.instance<HomePageStore>();
     _panelController = PanelController();
 
     _backgroundAnimationController = AnimationController(
@@ -130,12 +130,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: AppTheme.colors.background,
       endDrawer: Drawer(
-        child: DrawerMenuWidget(homeStore: _homeStore),
+        child: DrawerMenuWidget(),
       ),
       body: Stack(
         children: [
