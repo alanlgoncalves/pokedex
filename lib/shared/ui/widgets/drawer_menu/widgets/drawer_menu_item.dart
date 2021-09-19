@@ -1,6 +1,6 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
-import 'package:pokedex/shared/ui/canvas/white_pokeball_canvas.dart';
+import 'package:pokedex/shared/ui/widgets/pokeball.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 class DrawerMenuItemWidget extends StatelessWidget {
@@ -24,9 +24,11 @@ class DrawerMenuItemWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(5),
       child: InkWell(
-        onTap: onTap != null  ? onTap : (){
-          BotToast.showText(text: "Not implemented yet");
-        },
+        onTap: onTap != null
+            ? onTap
+            : () {
+                BotToast.showText(text: "Not implemented yet");
+              },
         child: Container(
           decoration: BoxDecoration(
             color: onTap != null ? color : AppTheme.colors.drawerDisabled,
@@ -39,21 +41,17 @@ class DrawerMenuItemWidget extends StatelessWidget {
                 Positioned(
                   top: -12,
                   right: -14,
-                  child: CustomPaint(
-                    size: Size(83, (83 * 1.0040160642570282).toDouble()),
-                    painter: PokeballLogoPainter(
-                      color: Colors.white.withOpacity(0.2),
-                    ),
+                  child: PokeballWidget(
+                    size: 83,
+                    color: Colors.white.withOpacity(0.2),
                   ),
                 ),
                 Positioned(
                   top: -60,
                   left: -50,
-                  child: CustomPaint(
-                    size: Size(83, (83 * 1.0040160642570282).toDouble()),
-                    painter: PokeballLogoPainter(
-                      color: Colors.white.withOpacity(0.2),
-                    ),
+                  child: PokeballWidget(
+                    size: 83,
+                    color: Colors.white.withOpacity(0.2),
                   ),
                 ),
                 Column(

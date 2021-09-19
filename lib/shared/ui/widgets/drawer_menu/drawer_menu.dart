@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pokedex/modules/home/home_page_store.dart';
 import 'package:pokedex/shared/ui/canvas/white_pokeball_canvas.dart';
-import 'package:pokedex/shared/ui/widgets/drawer_menu/widgets/menu_item.dart';
+import 'package:pokedex/shared/ui/widgets/drawer_menu/widgets/drawer_menu_item.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
