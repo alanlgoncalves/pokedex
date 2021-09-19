@@ -1,4 +1,4 @@
-name: Continuous Deployment (CD) 🚀
+name: CI/CD 🚀
 
 on:
   push:
