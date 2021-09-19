@@ -7,7 +7,7 @@ on:
 
 jobs:
   build_app:
-    name: Deploy on WEB 🎉
+    name: CI/CD 🚀
     runs-on: ubuntu-latest
     steps:
       - name: 📱️Setup Flutter
@@ -24,7 +24,7 @@ jobs:
         run: flutter test --coverage
       - name: 🔨 Build WEB
         run: flutter build web --web-renderer canvaskit --release
-      - name: 📂 Sync files
+      - name: Deploy on WEB 🎉
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
           server: ${{ secrets.FTP_HOST }}
