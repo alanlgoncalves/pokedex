@@ -46,12 +46,7 @@ class PokemonTypeBadge extends StatelessWidget {
             child: Text(
               type,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: "CircularStd-Book",
-                fontSize: 8,
-                fontWeight: FontWeight.normal,
-                color: Color(0xFF303943),
-              ),
+              style: AppTheme.texts.pokemonTypeBadge,
             ),
           )
       ],
