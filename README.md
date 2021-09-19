@@ -1,7 +1,7 @@
 <h1 align="center"><img src="https://user-images.githubusercontent.com/8467311/132367198-86750e1d-96ce-4bb3-8c60-7f85fe90fc8d.png" width="30" height="30"/> Pokedex</h1>
 
 <p align="center">
-    <img src="https://github.com/alanlgoncalves/pokedex/actions/workflows/ci-cd.yml/badge.svg" />
+    <a href="https://github.com/alanlgoncalves/pokedex/actions/workflows/ci-cd.yml"><img src="https://github.com/alanlgoncalves/pokedex/actions/workflows/ci-cd.yml/badge.svg" /></a>
     <img src="https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat" />
     <img src="https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat" />
     <img src="https://img.shields.io/badge/WEB-Alpha-000?&logo=Google-Chrome&style=flat" />
