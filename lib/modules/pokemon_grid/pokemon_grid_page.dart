@@ -27,8 +27,6 @@ class _PokemonGridPageState extends State<PokemonGridPage> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Observer(
       builder: (_) {
         if (_pokemonStore.pokemonsSummary == null) {
