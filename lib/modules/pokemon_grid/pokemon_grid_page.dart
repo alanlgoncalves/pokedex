@@ -23,6 +23,12 @@ class _PokemonGridPageState extends State<PokemonGridPage> {
     super.initState();
 
     _pokemonStore = GetIt.instance<PokemonStore>();
+
+    _fetchPokemonData();
+  }
+
+  Future<void> _fetchPokemonData() async {
+    await _pokemonStore.fetchPokemonData();
   }
 
   @override

@@ -152,6 +152,14 @@ mixin _$PokemonStore on _PokemonStoreBase, Store {
     return _$setPokemonAsyncAction.run(() => super.setPokemon(index));
   }
 
+  final _$fetchPokemonDataAsyncAction =
+      AsyncAction('_PokemonStoreBase.fetchPokemonData');
+
+  @override
+  Future<void> fetchPokemonData() {
+    return _$fetchPokemonDataAsyncAction.run(() => super.fetchPokemonData());
+  }
+
   final _$_PokemonStoreBaseActionController =
       ActionController(name: '_PokemonStoreBase');
 

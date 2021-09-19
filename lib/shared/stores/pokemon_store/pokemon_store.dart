@@ -11,10 +11,6 @@ class PokemonStore = _PokemonStoreBase with _$PokemonStore;
 abstract class _PokemonStoreBase with Store {
   PokemonRepository _pokemonRepository = PokemonRepository();
 
-  _PokemonStoreBase() {
-    this._fetchPokemonData();
-  }
-
   @observable
   PokemonFilter _pokemonFilter = PokemonFilter();
 
@@ -144,6 +140,13 @@ abstract class _PokemonStoreBase with Store {
         typeFilter: _pokemonFilter.typeFilter);
   }
 
+  @action
+  Future<void> fetchPokemonData() async {
+    _pokemonsSummary = await _pokemonRepository.fetchPokemonsSummary();
+
+    await _fetchFavoritesPokemons();
+  }
+
   Future<void> previousPokemon() async {
     final pokemonIndex =
         pokemonsSummary!.indexWhere((it) => it.number == _pokemon!.number);
@@ -165,12 +168,6 @@ abstract class _PokemonStoreBase with Store {
         _favoritesPokemonsSummary.indexWhere((it) => it.number == number);
 
     return index >= 0;
-  }
-
-  _fetchPokemonData() async {
-    _pokemonsSummary = await _pokemonRepository.fetchPokemonsSummary();
-
-    await _fetchFavoritesPokemons();
   }
 
   Future<void> _fetchFavoritesPokemons() async {
