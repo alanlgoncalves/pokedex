@@ -1,4 +1,4 @@
-name: CI/CD 🚀
+name: CI/CD
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   build_app:
-    name: CI/CD 🚀
+    name: CI/CD
     runs-on: ubuntu-latest
     steps:
       - name: 📱️Setup Flutter
