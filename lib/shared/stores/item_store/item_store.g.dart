@@ -52,19 +52,11 @@ mixin _$ItemStore on _ItemStoreBase, Store {
     });
   }
 
-  final _$_panelsAtom = Atom(name: '_ItemStoreBase._panels');
+  final _$fetchItemsAsyncAction = AsyncAction('_ItemStoreBase.fetchItems');
 
   @override
-  ObservableList<bool> get _panels {
-    _$_panelsAtom.reportRead();
-    return super._panels;
-  }
-
-  @override
-  set _panels(ObservableList<bool> value) {
-    _$_panelsAtom.reportWrite(value, super._panels, () {
-      super._panels = value;
-    });
+  Future<void> fetchItems() {
+    return _$fetchItemsAsyncAction.run(() => super.fetchItems());
   }
 
   final _$_ItemStoreBaseActionController =

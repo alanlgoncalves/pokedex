@@ -27,6 +27,8 @@ class _ItemsPageState extends State<ItemsPage> {
 
   @override
   void initState() {
+    _fetchItems();
+
     _pagingController.addPageRequestListener((pageKey) {
       _fetchPage(pageKey);
     });
@@ -36,6 +38,10 @@ class _ItemsPageState extends State<ItemsPage> {
     });
 
     super.initState();
+  }
+
+  Future<void> _fetchItems() async {
+    await _itemStore.fetchItems();
   }
 
   double getItemsPagePadding(Size size) {

@@ -1,3 +1,4 @@
+import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pokedex/shared/models/item.dart';
 import 'package:pokedex/shared/repositories/item_repository.dart';
@@ -7,20 +8,13 @@ part 'item_store.g.dart';
 class ItemStore = _ItemStoreBase with _$ItemStore;
 
 abstract class _ItemStoreBase with Store {
-  final ItemRepository _itemRepository = ItemRepository();
-
-  _ItemStoreBase() {
-    this.fetchItems();
-  }
+  final ItemRepository _itemRepository = GetIt.instance<ItemRepository>();
 
   @observable
   List<Item> _items = [];
 
   @observable
   String? _filter;
-
-  @observable
-  ObservableList<bool> _panels = ObservableList<bool>();
 
   @computed
   String? get filter => _filter;
@@ -46,7 +40,8 @@ abstract class _ItemStoreBase with Store {
     this._filter = null;
   }
 
-  void fetchItems() async {
+  @action
+  Future<void> fetchItems() async {
     _items = await _itemRepository.fetchItems();
   }
 }
