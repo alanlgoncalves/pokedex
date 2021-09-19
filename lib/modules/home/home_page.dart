@@ -150,7 +150,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   sliver: Observer(
                     builder: (_) => AppBarWidget(
                       title: _homeStore.page.description,
-                      showAnimatedPokeball: true,
                       lottiePath: AppConstants.squirtleLottie,
                     ),
                   ),
