@@ -7,17 +7,17 @@ DeviceScreenType getDeviceScreenType(BuildContext context) {
   final size = MediaQuery.of(context).size;
 
   if (Orientation.portrait == orientation) {
-    if (size.width > 950) {
+    if (size.width >= 900) {
       return DeviceScreenType.DESKTOP;
-    } else if (size.width > 600) {
+    } else if (size.width >= 600) {
       return DeviceScreenType.TABLET;
     } else {
       return DeviceScreenType.CELLPHONE;
     }
   } else {
-    if (size.height > 950) {
+    if (size.height >= 900) {
       return DeviceScreenType.DESKTOP;
-    } else if (size.height > 600) {
+    } else if (size.height >= 600) {
       return DeviceScreenType.TABLET;
     } else {
       return DeviceScreenType.CELLPHONE;
