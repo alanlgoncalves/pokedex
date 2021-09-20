@@ -127,6 +127,43 @@ class Pokemon {
         .where((it) => it.toString().endsWith(json['generation']))
         .first;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Pokemon &&
+          runtimeType == other.runtimeType &&
+          number == other.number;
+
+  @override
+  int get hashCode => number.hashCode;
+
+  @override
+  String toString() {
+    return 'Pokemon{number: $number, '
+        'name: $name, '
+        'imageUrl: $imageUrl, '
+        'sprites: $sprites, '
+        'types: $types, '
+        'weaknesses: $weaknesses, '
+        'descriptions: $descriptions, '
+        'specie: $specie, '
+        'height: $height, '
+        'weight: $weight, '
+        'breeding: $breeding, '
+        'training: $training, '
+        'typesEffectiveness: $typesEffectiveness, '
+        'abilities: $abilities, '
+        'evolutionChain: $evolutionChain, '
+        'previousEvolutions: $previousEvolutions, '
+        'nextEvolutions: $nextEvolutions, '
+        'superEvolutions: $superEvolutions, '
+        'baseStats: $baseStats, '
+        'cards: $cards, '
+        'soundUrl: $soundUrl, '
+        'moves: $moves, '
+        'generation: $generation}';
+  }
 }
 
 enum Generation {

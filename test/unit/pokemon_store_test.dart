@@ -10,6 +10,7 @@ import 'package:pokedex/shared/models/pokemon_summary.dart';
 import 'package:pokedex/shared/repositories/pokemon_repository.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 
+import '../mocks/pokemons_mock.dart';
 import 'pokemon_store_test.mocks.dart';
 
 @GenerateMocks([PokemonRepository])
@@ -276,118 +277,77 @@ void main() {
 
     expect(pokemonStore.isFavorite("001"), false);
   });
-}
 
-const pokemonsSummaryJson = """
-    [
-      {
-          "number":"001",
-          "name":"Bulbasaur",
-          "imageUrl":"https://pokedex.alansantos.dev/assets/pokemons/images/001.png",
-          "thumbnailUrl":"https://pokedex.alansantos.dev/assets/pokemons/thumbs/001.png",
-          "sprites":{
-            "mainSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/001/001_main.png",
-            "frontAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/001/001_front_animated.gif",
-            "backAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/001/001_back_animated.gif",
-            "frontShinyAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/001/001_front_shiny_animated.gif",
-            "backShinyAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/001/001_back_shiny_animated.gif"
-          },
-          "types":[
-            "Grass",
-            "Poison"
-          ],
-          "specie":"Seed",
-          "generation":"GENERATION_I"
-      },
-      {
-          "number":"004",
-          "name":"Charmander",
-          "imageUrl":"https://pokedex.alansantos.dev/assets/pokemons/images/004.png",
-          "thumbnailUrl":"https://pokedex.alansantos.dev/assets/pokemons/thumbs/004.png",
-          "sprites":{
-            "mainSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/004/004_main.png",
-            "frontAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/004/004_front_animated.gif",
-            "backAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/004/004_back_animated.gif",
-            "frontShinyAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/004/004_front_shiny_animated.gif",
-            "backShinyAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/004/004_back_shiny_animated.gif"
-          },
-          "types":[
-            "Fire"
-          ],
-          "specie":"Lizard",
-          "generation":"GENERATION_I"
-      },
-      {
-          "number":"007",
-          "name":"Squirtle",
-          "imageUrl":"https://pokedex.alansantos.dev/assets/pokemons/images/007.png",
-          "thumbnailUrl":"https://pokedex.alansantos.dev/assets/pokemons/thumbs/007.png",
-          "sprites":{
-            "mainSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/007/007_main.png",
-            "frontAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/007/007_front_animated.gif",
-            "backAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/007/007_back_animated.gif",
-            "frontShinyAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/007/007_front_shiny_animated.gif",
-            "backShinyAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/007/007_back_shiny_animated.gif"
-          },
-          "types":[
-            "Water"
-          ],
-          "specie":"Tiny Turtle",
-          "generation":"GENERATION_I"
-      },
-      {
-         "number":"152",
-         "name":"Chikorita",
-         "imageUrl":"https://pokedex.alansantos.dev/assets/pokemons/images/152.png",
-         "thumbnailUrl":"https://pokedex.alansantos.dev/assets/pokemons/thumbs/152.png",
-         "sprites":{
-            "mainSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/152/152_main.png",
-            "frontAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/152/152_front_animated.gif",
-            "backAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/152/152_back_animated.gif",
-            "frontShinyAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/152/152_front_shiny_animated.gif",
-            "backShinyAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/152/152_back_shiny_animated.gif"
-         },
-         "types":[
-            "Grass"
-         ],
-         "specie":"Leaf",
-         "generation":"GENERATION_II"
-      },
-      {
-         "number":"155",
-         "name":"Cyndaquil",
-         "imageUrl":"https://pokedex.alansantos.dev/assets/pokemons/images/155.png",
-         "thumbnailUrl":"https://pokedex.alansantos.dev/assets/pokemons/thumbs/155.png",
-         "sprites":{
-            "mainSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/155/155_main.png",
-            "frontAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/155/155_front_animated.gif",
-            "backAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/155/155_back_animated.gif",
-            "frontShinyAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/155/155_front_shiny_animated.gif",
-            "backShinyAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/155/155_back_shiny_animated.gif"
-         },
-         "types":[
-            "Fire"
-         ],
-         "specie":"Fire Mouse",
-         "generation":"GENERATION_II"
-      },
-      {
-         "number":"158",
-         "name":"Totodile",
-         "imageUrl":"https://pokedex.alansantos.dev/assets/pokemons/images/158.png",
-         "thumbnailUrl":"https://pokedex.alansantos.dev/assets/pokemons/thumbs/158.png",
-         "sprites":{
-            "mainSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/158/158_main.png",
-            "frontAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/158/158_front_animated.gif",
-            "backAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/158/158_back_animated.gif",
-            "frontShinyAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/158/158_front_shiny_animated.gif",
-            "backShinyAnimatedSpriteUrl":"https://pokedex.alansantos.dev/assets/pokemons/sprites/158/158_back_shiny_animated.gif"
-         },
-         "types":[
-            "Water"
-         ],
-         "specie":"Big Jaw",
-         "generation":"GENERATION_II"
-      }
-    ]
-  """;
+  test("Should fetch all data from choose Pokemon", () async {
+    when(pokemonRepositoryMock.fetchFavoritesPokemonsSummary())
+        .thenAnswer((_) async => []);
+
+    PokemonStore pokemonStore = PokemonStore();
+    await pokemonStore.fetchPokemonData();
+
+    expect(pokemonStore.pokemonsSummary!.length, 6);
+    expect(pokemonStore.favoritesPokemonsSummary.length, 0);
+
+    final charmander = Pokemon.fromJson(jsonDecode(charmanderJson));
+    when(pokemonRepositoryMock.fetchPokemon("004"))
+        .thenAnswer((realInvocation) async => charmander);
+
+    await pokemonStore.setPokemon(1);
+
+    expect(pokemonStore.pokemon, equals(charmander));
+  });
+
+  test("Should fetch all data from previous Pokemon", () async {
+    when(pokemonRepositoryMock.fetchFavoritesPokemonsSummary())
+        .thenAnswer((_) async => []);
+
+    PokemonStore pokemonStore = PokemonStore();
+    await pokemonStore.fetchPokemonData();
+
+    expect(pokemonStore.pokemonsSummary!.length, 6);
+    expect(pokemonStore.favoritesPokemonsSummary.length, 0);
+
+    final charmander = Pokemon.fromJson(jsonDecode(charmanderJson));
+    when(pokemonRepositoryMock.fetchPokemon("004"))
+        .thenAnswer((realInvocation) async => charmander);
+
+    await pokemonStore.setPokemon(1);
+
+    expect(pokemonStore.pokemon, equals(charmander));
+
+    final bulbasaur = Pokemon.fromJson(jsonDecode(bulbasaurJson));
+    when(pokemonRepositoryMock.fetchPokemon("001"))
+        .thenAnswer((realInvocation) async => bulbasaur);
+
+    await pokemonStore.previousPokemon();
+
+    expect(pokemonStore.pokemon, equals(bulbasaur));
+  });
+
+  test("Should fetch all data from next Pokemon", () async {
+    when(pokemonRepositoryMock.fetchFavoritesPokemonsSummary())
+        .thenAnswer((_) async => []);
+
+    PokemonStore pokemonStore = PokemonStore();
+    await pokemonStore.fetchPokemonData();
+
+    expect(pokemonStore.pokemonsSummary!.length, 6);
+    expect(pokemonStore.favoritesPokemonsSummary.length, 0);
+
+    final charmander = Pokemon.fromJson(jsonDecode(charmanderJson));
+    when(pokemonRepositoryMock.fetchPokemon("004"))
+        .thenAnswer((realInvocation) async => charmander);
+
+    await pokemonStore.setPokemon(1);
+
+    expect(pokemonStore.pokemon, equals(charmander));
+
+    final squirtle = Pokemon.fromJson(jsonDecode(squirtleJson));
+    when(pokemonRepositoryMock.fetchPokemon("007"))
+        .thenAnswer((realInvocation) async => squirtle);
+
+    await pokemonStore.nextPokemon();
+
+    expect(pokemonStore.pokemon, equals(squirtle));
+  });
+}
