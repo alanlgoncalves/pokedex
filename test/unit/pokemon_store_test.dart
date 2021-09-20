@@ -295,6 +295,35 @@ void main() {
     await pokemonStore.setPokemon(1);
 
     expect(pokemonStore.pokemon, equals(charmander));
+    expect(pokemonStore.pokemonSummary!.number, charmander.number);
+    expect(pokemonStore.index, 1);
+  });
+
+  test("Should fetch all data from choose Pokemon twice times", () async {
+    when(pokemonRepositoryMock.fetchFavoritesPokemonsSummary())
+        .thenAnswer((_) async => []);
+
+    PokemonStore pokemonStore = PokemonStore();
+    await pokemonStore.fetchPokemonData();
+
+    expect(pokemonStore.pokemonsSummary!.length, 6);
+    expect(pokemonStore.favoritesPokemonsSummary.length, 0);
+
+    final charmander = Pokemon.fromJson(jsonDecode(charmanderJson));
+    when(pokemonRepositoryMock.fetchPokemon("004"))
+        .thenAnswer((realInvocation) async => charmander);
+
+    await pokemonStore.setPokemon(1);
+
+    expect(pokemonStore.pokemon, equals(charmander));
+    expect(pokemonStore.pokemonSummary!.number, charmander.number);
+    expect(pokemonStore.index, 1);
+
+    await pokemonStore.setPokemon(1);
+
+    expect(pokemonStore.pokemon, equals(charmander));
+    expect(pokemonStore.pokemonSummary!.number, charmander.number);
+    expect(pokemonStore.index, 1);
   });
 
   test("Should fetch all data from previous Pokemon", () async {
@@ -314,6 +343,8 @@ void main() {
     await pokemonStore.setPokemon(1);
 
     expect(pokemonStore.pokemon, equals(charmander));
+    expect(pokemonStore.pokemonSummary!.number, charmander.number);
+    expect(pokemonStore.index, 1);
 
     final bulbasaur = Pokemon.fromJson(jsonDecode(bulbasaurJson));
     when(pokemonRepositoryMock.fetchPokemon("001"))
@@ -322,6 +353,8 @@ void main() {
     await pokemonStore.previousPokemon();
 
     expect(pokemonStore.pokemon, equals(bulbasaur));
+    expect(pokemonStore.pokemonSummary!.number, bulbasaur.number);
+    expect(pokemonStore.index, 0);
   });
 
   test("Should fetch all data from next Pokemon", () async {
@@ -341,6 +374,8 @@ void main() {
     await pokemonStore.setPokemon(1);
 
     expect(pokemonStore.pokemon, equals(charmander));
+    expect(pokemonStore.pokemonSummary!.number, charmander.number);
+    expect(pokemonStore.index, 1);
 
     final squirtle = Pokemon.fromJson(jsonDecode(squirtleJson));
     when(pokemonRepositoryMock.fetchPokemon("007"))
@@ -349,5 +384,27 @@ void main() {
     await pokemonStore.nextPokemon();
 
     expect(pokemonStore.pokemon, equals(squirtle));
+    expect(pokemonStore.pokemonSummary!.number, squirtle.number);
+    expect(pokemonStore.index, 2);
+  });
+
+  test("Should return Pokemon summary data from specific index", () async {
+    when(pokemonRepositoryMock.fetchFavoritesPokemonsSummary())
+        .thenAnswer((_) async => []);
+
+    PokemonStore pokemonStore = PokemonStore();
+    await pokemonStore.fetchPokemonData();
+
+    expect(pokemonStore.pokemonsSummary!.length, 6);
+    expect(pokemonStore.favoritesPokemonsSummary.length, 0);
+
+    final firstPokemon = pokemonStore.getPokemon(0);
+    expect(firstPokemon.number, "001");
+
+    final secondsPokemon = pokemonStore.getPokemon(1);
+    expect(secondsPokemon.number, "004");
+
+    final thirdPokemon = pokemonStore.getPokemon(2);
+    expect(thirdPokemon.number, "007");
   });
 }
