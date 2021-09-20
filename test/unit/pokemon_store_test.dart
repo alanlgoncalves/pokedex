@@ -206,6 +206,76 @@ void main() {
 
     expect(filteredPokemons.length, 6);
   });
+
+  test("Should save pokemon as favorite with success", () async {
+    when(pokemonRepositoryMock.fetchFavoritesPokemonsSummary())
+        .thenAnswer((_) async => []);
+
+    PokemonStore pokemonStore = PokemonStore();
+    await pokemonStore.fetchPokemonData();
+
+    expect(pokemonStore.pokemonsSummary!.length, 6);
+    expect(pokemonStore.favoritesPokemonsSummary.length, 0);
+
+    List<PokemonSummary> favoritesPokemons = [];
+    mobx.reaction((_) => pokemonStore.favoritesPokemonsSummary, (_) {
+      favoritesPokemons = pokemonStore.favoritesPokemonsSummary;
+    });
+
+    pokemonStore.addFavoritePokemon("004");
+
+    verify(pokemonRepositoryMock.saveFavoritePokemonSummary(["004"])).called(1);
+
+    expect(favoritesPokemons.length, 1);
+  });
+
+  test("Should remove pokemon as favorite with success", () async {
+    when(pokemonRepositoryMock.fetchFavoritesPokemonsSummary())
+        .thenAnswer((_) async => ["004"]);
+
+    PokemonStore pokemonStore = PokemonStore();
+    await pokemonStore.fetchPokemonData();
+
+    expect(pokemonStore.pokemonsSummary!.length, 6);
+    expect(pokemonStore.favoritesPokemonsSummary.length, 1);
+
+    List<PokemonSummary> favoritesPokemons = [pokemonStore.pokemonsSummary![1]];
+    mobx.reaction((_) => pokemonStore.favoritesPokemonsSummary, (_) {
+      favoritesPokemons = pokemonStore.favoritesPokemonsSummary;
+    });
+
+    pokemonStore.removeFavoritePokemon("004");
+
+    verify(pokemonRepositoryMock.saveFavoritePokemonSummary([])).called(1);
+
+    expect(favoritesPokemons.length, 0);
+  });
+
+  test("Should return true to favorite Pokemon", () async {
+    when(pokemonRepositoryMock.fetchFavoritesPokemonsSummary())
+        .thenAnswer((_) async => ["004"]);
+
+    PokemonStore pokemonStore = PokemonStore();
+    await pokemonStore.fetchPokemonData();
+
+    expect(pokemonStore.pokemonsSummary!.length, 6);
+    expect(pokemonStore.favoritesPokemonsSummary.length, 1);
+
+    expect(pokemonStore.isFavorite("004"), true);
+  });
+
+  test("Should return false to not favorite Pokemon", () async {
+    when(pokemonRepositoryMock.fetchFavoritesPokemonsSummary())
+        .thenAnswer((_) async => ["004"]);
+
+    PokemonStore pokemonStore = PokemonStore();
+    await pokemonStore.fetchPokemonData();
+
+    expect(pokemonStore.pokemonsSummary!.length, 6);
+    expect(pokemonStore.favoritesPokemonsSummary.length, 1);
+
+    expect(pokemonStore.isFavorite("001"), false);
+  });
 }
 
 const pokemonsSummaryJson = """

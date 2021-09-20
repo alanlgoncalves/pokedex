@@ -81,7 +81,8 @@ abstract class _PokemonStoreBase with Store {
     final indexAll = _pokemonsSummary!.indexWhere((it) => it.number == number);
 
     if (indexFavorite < 0 && indexAll >= 0) {
-      _favoritesPokemonsSummary.add(_pokemonsSummary![indexAll]);
+      _favoritesPokemonsSummary = ObservableList.of(
+          [..._favoritesPokemonsSummary, _pokemonsSummary![indexAll]]);
     }
 
     _favoritesPokemonsSummary.sort((a, b) => a.number.compareTo(b.number));
@@ -97,6 +98,8 @@ abstract class _PokemonStoreBase with Store {
 
     if (index >= 0) {
       _favoritesPokemonsSummary.removeAt(index);
+      _favoritesPokemonsSummary =
+          ObservableList.of([..._favoritesPokemonsSummary]);
     }
 
     _pokemonRepository.saveFavoritePokemonSummary(
