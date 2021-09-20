@@ -1,3 +1,4 @@
+import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
 import 'package:pokedex/shared/models/pokemon_filter.dart';
@@ -9,7 +10,7 @@ part 'pokemon_store.g.dart';
 class PokemonStore = _PokemonStoreBase with _$PokemonStore;
 
 abstract class _PokemonStoreBase with Store {
-  PokemonRepository _pokemonRepository = PokemonRepository();
+  PokemonRepository _pokemonRepository = GetIt.instance<PokemonRepository>();
 
   @observable
   PokemonFilter _pokemonFilter = PokemonFilter();
