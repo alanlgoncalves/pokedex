@@ -22,6 +22,11 @@ jobs:
         run: flutter pub get
       - name: 🧪 Test
         run: flutter test --coverage
+      - name: ☂️ Code coverage
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/lcov.info
       - name: 🔨 Build WEB
         run: flutter build web --web-renderer canvaskit --release
       - name: Deploy on WEB 🎉
