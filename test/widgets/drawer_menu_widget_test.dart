@@ -8,7 +8,7 @@ import 'package:pokedex/shared/ui/widgets/drawer_menu/drawer_menu.dart';
 import 'package:pokedex/shared/ui/widgets/drawer_menu/widgets/drawer_menu_item.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
-import '../mocks/home_page_store_mock.dart';
+class HomePageStoreMock extends Mock implements HomePageStore {}
 
 void main() {
   group("When the drawer menu is rendered", () {

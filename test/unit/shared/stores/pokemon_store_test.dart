@@ -10,7 +10,7 @@ import 'package:pokedex/shared/models/pokemon_summary.dart';
 import 'package:pokedex/shared/repositories/pokemon_repository.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 
-import '../mocks/pokemons_mock.dart';
+import '../../../mocks/pokemons_mock.dart';
 import 'pokemon_store_test.mocks.dart';
 
 @GenerateMocks([PokemonRepository])
