@@ -1,0 +1,5 @@
+ignore:
+  - "**/theme/**"
+  - "**/*.g.*"
+  - "**/*._canvas.*"
+  - "**/*._constants.*"
