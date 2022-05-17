@@ -12,17 +12,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📱️Setup Flutter
-        uses: subosito/flutter-action@v1
+        uses: subosito/flutter-action@v2
         with:
+          flutter-version: '3.0.0'
           channel: 'stable'
       - name: 🚚 Get latest code
         uses: actions/checkout@v2
       - name: 🧹 Clean
         run: flutter clean
       - name: ⬇️ Get dependencies
-        run: |
-          flutter pub get
-          flutter pub run build_runner build
+        run: flutter pub get
       - name: 🧪 Test
         run: flutter test --coverage
       - name: ☂️ Code coverage
