@@ -6,7 +6,7 @@ part of 'pokemon_details_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$PokemonDetailsStore on _PokemonDetailsStoreBase, Store {
   Computed<double>? _$progressComputed;
@@ -31,7 +31,8 @@ mixin _$PokemonDetailsStore on _PokemonDetailsStoreBase, Store {
               name: '_PokemonDetailsStoreBase.opacityPokemon'))
           .value;
 
-  final _$_progressAtom = Atom(name: '_PokemonDetailsStoreBase._progress');
+  late final _$_progressAtom =
+      Atom(name: '_PokemonDetailsStoreBase._progress', context: context);
 
   @override
   double get _progress {
@@ -46,8 +47,8 @@ mixin _$PokemonDetailsStore on _PokemonDetailsStoreBase, Store {
     });
   }
 
-  final _$_opacityTitleAppbarAtom =
-      Atom(name: '_PokemonDetailsStoreBase._opacityTitleAppbar');
+  late final _$_opacityTitleAppbarAtom = Atom(
+      name: '_PokemonDetailsStoreBase._opacityTitleAppbar', context: context);
 
   @override
   double get _opacityTitleAppbar {
@@ -62,8 +63,8 @@ mixin _$PokemonDetailsStore on _PokemonDetailsStoreBase, Store {
     });
   }
 
-  final _$_opacityPokemonAtom =
-      Atom(name: '_PokemonDetailsStoreBase._opacityPokemon');
+  late final _$_opacityPokemonAtom =
+      Atom(name: '_PokemonDetailsStoreBase._opacityPokemon', context: context);
 
   @override
   double get _opacityPokemon {
@@ -78,8 +79,8 @@ mixin _$PokemonDetailsStore on _PokemonDetailsStoreBase, Store {
     });
   }
 
-  final _$_PokemonDetailsStoreBaseActionController =
-      ActionController(name: '_PokemonDetailsStoreBase');
+  late final _$_PokemonDetailsStoreBaseActionController =
+      ActionController(name: '_PokemonDetailsStoreBase', context: context);
 
   @override
   void setProgress(double progress, double lower, double upper) {

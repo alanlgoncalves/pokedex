@@ -24,7 +24,9 @@ jobs:
       - name: 🧹 Clean
         run: flutter clean
       - name: ⬇️ Get dependencies
-        run: flutter pub get
+        run: |
+          flutter pub get
+          flutter pub run build_runner build
       - name: 🧪 Test
         run: flutter test --coverage
       - name: 🤖 Build Android (AAB)

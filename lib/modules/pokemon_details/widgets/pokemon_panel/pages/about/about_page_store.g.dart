@@ -6,7 +6,7 @@ part of 'about_page_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$AboutPageStore on _AboutPageStoreBase, Store {
   Computed<Duration>? _$audioProgressComputed;
@@ -31,7 +31,8 @@ mixin _$AboutPageStore on _AboutPageStoreBase, Store {
               name: '_AboutPageStoreBase.audioTotal'))
           .value;
 
-  final _$_audioProgressAtom = Atom(name: '_AboutPageStoreBase._audioProgress');
+  late final _$_audioProgressAtom =
+      Atom(name: '_AboutPageStoreBase._audioProgress', context: context);
 
   @override
   Duration get _audioProgress {
@@ -46,7 +47,8 @@ mixin _$AboutPageStore on _AboutPageStoreBase, Store {
     });
   }
 
-  final _$_audioBufferedAtom = Atom(name: '_AboutPageStoreBase._audioBuffered');
+  late final _$_audioBufferedAtom =
+      Atom(name: '_AboutPageStoreBase._audioBuffered', context: context);
 
   @override
   Duration get _audioBuffered {
@@ -61,7 +63,8 @@ mixin _$AboutPageStore on _AboutPageStoreBase, Store {
     });
   }
 
-  final _$_audioTotalAtom = Atom(name: '_AboutPageStoreBase._audioTotal');
+  late final _$_audioTotalAtom =
+      Atom(name: '_AboutPageStoreBase._audioTotal', context: context);
 
   @override
   Duration get _audioTotal {
@@ -76,8 +79,8 @@ mixin _$AboutPageStore on _AboutPageStoreBase, Store {
     });
   }
 
-  final _$_AboutPageStoreBaseActionController =
-      ActionController(name: '_AboutPageStoreBase');
+  late final _$_AboutPageStoreBaseActionController =
+      ActionController(name: '_AboutPageStoreBase', context: context);
 
   @override
   void setAudioProgress(Duration audioProgress) {

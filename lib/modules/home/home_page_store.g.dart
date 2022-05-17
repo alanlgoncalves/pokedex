@@ -6,7 +6,7 @@ part of 'home_page_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$HomePageStore on _PokemonGridStoreBase, Store {
   Computed<bool>? _$isFilterOpenComputed;
@@ -45,7 +45,8 @@ mixin _$HomePageStore on _PokemonGridStoreBase, Store {
               name: '_PokemonGridStoreBase.page'))
           .value;
 
-  final _$_isFilterOpenAtom = Atom(name: '_PokemonGridStoreBase._isFilterOpen');
+  late final _$_isFilterOpenAtom =
+      Atom(name: '_PokemonGridStoreBase._isFilterOpen', context: context);
 
   @override
   bool get _isFilterOpen {
@@ -60,8 +61,8 @@ mixin _$HomePageStore on _PokemonGridStoreBase, Store {
     });
   }
 
-  final _$_isBackgroundBlackAtom =
-      Atom(name: '_PokemonGridStoreBase._isBackgroundBlack');
+  late final _$_isBackgroundBlackAtom =
+      Atom(name: '_PokemonGridStoreBase._isBackgroundBlack', context: context);
 
   @override
   bool get _isBackgroundBlack {
@@ -76,7 +77,8 @@ mixin _$HomePageStore on _PokemonGridStoreBase, Store {
     });
   }
 
-  final _$_isFabVisibleAtom = Atom(name: '_PokemonGridStoreBase._isFabVisible');
+  late final _$_isFabVisibleAtom =
+      Atom(name: '_PokemonGridStoreBase._isFabVisible', context: context);
 
   @override
   bool get _isFabVisible {
@@ -91,7 +93,8 @@ mixin _$HomePageStore on _PokemonGridStoreBase, Store {
     });
   }
 
-  final _$_panelTypeAtom = Atom(name: '_PokemonGridStoreBase._panelType');
+  late final _$_panelTypeAtom =
+      Atom(name: '_PokemonGridStoreBase._panelType', context: context);
 
   @override
   PanelType? get _panelType {
@@ -106,7 +109,8 @@ mixin _$HomePageStore on _PokemonGridStoreBase, Store {
     });
   }
 
-  final _$_pageAtom = Atom(name: '_PokemonGridStoreBase._page');
+  late final _$_pageAtom =
+      Atom(name: '_PokemonGridStoreBase._page', context: context);
 
   @override
   HomePageType get _page {
@@ -121,8 +125,8 @@ mixin _$HomePageStore on _PokemonGridStoreBase, Store {
     });
   }
 
-  final _$_PokemonGridStoreBaseActionController =
-      ActionController(name: '_PokemonGridStoreBase');
+  late final _$_PokemonGridStoreBaseActionController =
+      ActionController(name: '_PokemonGridStoreBase', context: context);
 
   @override
   void openFilter() {

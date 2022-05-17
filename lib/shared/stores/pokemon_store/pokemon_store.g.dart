@@ -6,7 +6,7 @@ part of 'pokemon_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$PokemonStore on _PokemonStoreBase, Store {
   Computed<PokemonSummary?>? _$pokemonSummaryComputed;
@@ -52,7 +52,8 @@ mixin _$PokemonStore on _PokemonStoreBase, Store {
               name: '_PokemonStoreBase.favoritesPokemonsSummary'))
           .value;
 
-  final _$_pokemonFilterAtom = Atom(name: '_PokemonStoreBase._pokemonFilter');
+  late final _$_pokemonFilterAtom =
+      Atom(name: '_PokemonStoreBase._pokemonFilter', context: context);
 
   @override
   PokemonFilter get _pokemonFilter {
@@ -67,8 +68,8 @@ mixin _$PokemonStore on _PokemonStoreBase, Store {
     });
   }
 
-  final _$_pokemonsSummaryAtom =
-      Atom(name: '_PokemonStoreBase._pokemonsSummary');
+  late final _$_pokemonsSummaryAtom =
+      Atom(name: '_PokemonStoreBase._pokemonsSummary', context: context);
 
   @override
   List<PokemonSummary>? get _pokemonsSummary {
@@ -83,8 +84,8 @@ mixin _$PokemonStore on _PokemonStoreBase, Store {
     });
   }
 
-  final _$_favoritesPokemonsSummaryAtom =
-      Atom(name: '_PokemonStoreBase._favoritesPokemonsSummary');
+  late final _$_favoritesPokemonsSummaryAtom = Atom(
+      name: '_PokemonStoreBase._favoritesPokemonsSummary', context: context);
 
   @override
   ObservableList<PokemonSummary> get _favoritesPokemonsSummary {
@@ -100,7 +101,8 @@ mixin _$PokemonStore on _PokemonStoreBase, Store {
     });
   }
 
-  final _$_pokemonSummaryAtom = Atom(name: '_PokemonStoreBase._pokemonSummary');
+  late final _$_pokemonSummaryAtom =
+      Atom(name: '_PokemonStoreBase._pokemonSummary', context: context);
 
   @override
   PokemonSummary? get _pokemonSummary {
@@ -115,7 +117,8 @@ mixin _$PokemonStore on _PokemonStoreBase, Store {
     });
   }
 
-  final _$_pokemonsAtom = Atom(name: '_PokemonStoreBase._pokemons');
+  late final _$_pokemonsAtom =
+      Atom(name: '_PokemonStoreBase._pokemons', context: context);
 
   @override
   List<Pokemon> get _pokemons {
@@ -130,7 +133,8 @@ mixin _$PokemonStore on _PokemonStoreBase, Store {
     });
   }
 
-  final _$_pokemonAtom = Atom(name: '_PokemonStoreBase._pokemon');
+  late final _$_pokemonAtom =
+      Atom(name: '_PokemonStoreBase._pokemon', context: context);
 
   @override
   Pokemon? get _pokemon {
@@ -145,23 +149,24 @@ mixin _$PokemonStore on _PokemonStoreBase, Store {
     });
   }
 
-  final _$setPokemonAsyncAction = AsyncAction('_PokemonStoreBase.setPokemon');
+  late final _$setPokemonAsyncAction =
+      AsyncAction('_PokemonStoreBase.setPokemon', context: context);
 
   @override
   Future<void> setPokemon(int index) {
     return _$setPokemonAsyncAction.run(() => super.setPokemon(index));
   }
 
-  final _$fetchPokemonDataAsyncAction =
-      AsyncAction('_PokemonStoreBase.fetchPokemonData');
+  late final _$fetchPokemonDataAsyncAction =
+      AsyncAction('_PokemonStoreBase.fetchPokemonData', context: context);
 
   @override
   Future<void> fetchPokemonData() {
     return _$fetchPokemonDataAsyncAction.run(() => super.fetchPokemonData());
   }
 
-  final _$_PokemonStoreBaseActionController =
-      ActionController(name: '_PokemonStoreBase');
+  late final _$_PokemonStoreBaseActionController =
+      ActionController(name: '_PokemonStoreBase', context: context);
 
   @override
   void addFavoritePokemon(String number) {
