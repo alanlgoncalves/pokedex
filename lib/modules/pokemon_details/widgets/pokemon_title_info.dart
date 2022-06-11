@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
-import 'package:pokedex/theme/app_theme.dart';
 
 class PokemonTitleInfoWidget extends StatelessWidget {
   final _pokemonStore = GetIt.instance<PokemonStore>();
@@ -11,6 +10,8 @@ class PokemonTitleInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 26),
       child: Column(
@@ -21,12 +22,18 @@ class PokemonTitleInfoWidget extends StatelessWidget {
               Observer(builder: (_) {
                 return Text(
                   _pokemonStore.pokemon!.name,
-                  style: AppTheme.texts.pokemonDetailName,
+                  style: textTheme.headline1?.copyWith(
+                    fontSize: 36,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white,
+                  ),
                 );
               }),
               Observer(builder: (_) {
                 return Text("#${_pokemonStore.pokemon!.number}",
-                    style: AppTheme.texts.pokemonDetailNumber);
+                    style: textTheme.headline4?.copyWith(
+                      color: Colors.white,
+                    ));
               }),
             ],
           ),
@@ -46,10 +53,11 @@ class PokemonTitleInfoWidget extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 15, vertical: 5),
-                                child: Text(
-                                  type,
-                                  style: AppTheme.texts.pokemonDetailType,
-                                ),
+                                child: Text(type,
+                                    style: textTheme.bodyText1?.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    )),
                               ),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(38),
@@ -62,7 +70,9 @@ class PokemonTitleInfoWidget extends StatelessWidget {
               Observer(
                 builder: (_) {
                   return Text("${_pokemonStore.pokemon!.specie} Pokemon",
-                      style: AppTheme.texts.pokemonDetailSpecie);
+                      style: textTheme.bodyText1?.copyWith(
+                        color: Colors.white,
+                      ));
                 },
               ),
             ],

@@ -17,6 +17,8 @@ class GenerationItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return InkWell(
       onTap: onClick,
       enableFeedback: true,
@@ -62,7 +64,7 @@ class GenerationItemWidget extends StatelessWidget {
                     children: [
                       Text(
                         generation.description,
-                        style: AppTheme.texts.pokemonTabTitle,
+                        style: textTheme.bodyText1,
                       ),
                       Row(
                         children: [

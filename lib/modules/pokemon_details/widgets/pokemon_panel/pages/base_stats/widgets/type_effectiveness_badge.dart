@@ -63,7 +63,7 @@ class TypeEffectivenessWidget extends StatelessWidget {
         ),
         Text(
           hasNone! ? "NONE" : type!,
-          style: AppTheme.texts.pokemonTypeBadge,
+          style: textTheme.bodyText1?.copyWith(fontSize: 8),
         )
       ],
     );

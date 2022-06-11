@@ -26,7 +26,8 @@ class BreedingInfoWidget extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 9),
               child: Text(
                 "Breeding",
-                style: AppTheme.texts.pokemonTabViewTitle,
+                style:
+                    textTheme.bodyText1?.copyWith(fontWeight: FontWeight.bold),
               ),
             ),
             SingleChildScrollView(
@@ -46,7 +47,9 @@ class BreedingInfoWidget extends StatelessWidget {
                                 width: 88,
                                 child: Text(
                                   "Gender",
-                                  style: AppTheme.texts.pokemonTabViewSubTitle,
+                                  style: textTheme.bodyText1?.copyWith(
+                                    color: Color(0xFF303943).withOpacity(0.4),
+                                  ),
                                 ),
                               ),
                               ..._pokemonStore.pokemon!.breeding.genders
@@ -106,7 +109,8 @@ class BreedingInfoWidget extends StatelessWidget {
                               width: 88,
                               child: Text(
                                 "Egg Groups",
-                                style: AppTheme.texts.pokemonTabViewSubTitle,
+                                style: textTheme.bodyText1?.copyWith(
+                                    color: Color(0xFF303943).withOpacity(0.4)),
                               ),
                             ),
                             Observer(
@@ -126,7 +130,8 @@ class BreedingInfoWidget extends StatelessWidget {
                               width: 88,
                               child: Text(
                                 "Egg Cycle",
-                                style: AppTheme.texts.pokemonTabViewSubTitle,
+                                style: textTheme.bodyText1?.copyWith(
+                                    color: Color(0xFF303943).withOpacity(0.4)),
                               ),
                             ),
                             Observer(

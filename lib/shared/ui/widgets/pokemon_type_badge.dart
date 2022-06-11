@@ -20,6 +20,8 @@ class PokemonTypeBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,7 +48,7 @@ class PokemonTypeBadge extends StatelessWidget {
             child: Text(
               type,
               textAlign: TextAlign.center,
-              style: AppTheme.texts.pokemonTypeBadge,
+              style: textTheme.bodyText1?.copyWith(fontSize: 8),
             ),
           )
       ],

@@ -19,6 +19,8 @@ class SuperEvolutionChainItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Row(
@@ -72,7 +74,7 @@ class SuperEvolutionChainItemWidget extends StatelessWidget {
                 ),
                 Text(
                   pokemon.name,
-                  style: AppTheme.texts.pokemonEvolutionChainName,
+                  style: textTheme.bodyText1,
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -133,7 +135,7 @@ class SuperEvolutionChainItemWidget extends StatelessWidget {
                 ),
                 Text(
                   superEvolution.name,
-                  style: AppTheme.texts.pokemonEvolutionChainName,
+                  style: textTheme.bodyText1,
                   textAlign: TextAlign.center,
                 ),
               ],

@@ -72,7 +72,8 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
                   padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
                   child: Text(
                     "${_pokemonStore.pokemon!.name} Cards",
-                    style: AppTheme.texts.pokemonTabViewTitle,
+                    style: textTheme.bodyText1
+                        ?.copyWith(fontWeight: FontWeight.bold),
                   ),
                 ),
               ),

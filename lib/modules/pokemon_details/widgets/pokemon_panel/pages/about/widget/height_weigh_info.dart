@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
-import 'package:pokedex/theme/app_theme.dart';
 
 class HeightWeightInfoWidget extends StatelessWidget {
   static final _pokemonStore = GetIt.instance<PokemonStore>();
@@ -36,7 +35,8 @@ class HeightWeightInfoWidget extends StatelessWidget {
             children: [
               Text(
                 "Height",
-                style: AppTheme.texts.pokemonTabViewSubTitle,
+                style: textTheme.bodyText1
+                    ?.copyWith(color: Color(0xFF303943).withOpacity(0.4)),
               ),
               SizedBox(
                 height: 11,
@@ -55,7 +55,8 @@ class HeightWeightInfoWidget extends StatelessWidget {
             children: [
               Text(
                 "Weight",
-                style: AppTheme.texts.pokemonTabViewSubTitle,
+                style: textTheme.bodyText1
+                    ?.copyWith(color: Color(0xFF303943).withOpacity(0.4)),
               ),
               SizedBox(
                 height: 11,

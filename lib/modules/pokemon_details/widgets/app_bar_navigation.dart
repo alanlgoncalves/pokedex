@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/shared/utils/image_utils.dart';
-import 'package:pokedex/theme/app_theme.dart';
 
 class AppBarNavigationWidget extends StatelessWidget {
   final _pokemonStore = GetIt.instance<PokemonStore>();
@@ -11,6 +10,8 @@ class AppBarNavigationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme themeData = Theme.of(context).textTheme;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -31,7 +32,7 @@ class AppBarNavigationWidget extends StatelessWidget {
         ),
         Text(
           _pokemonStore.pokemon!.name,
-          style: AppTheme.texts.pokemonDetailNumber,
+          style: themeData.headline5?.copyWith(color: Colors.white),
         ),
         SizedBox(
           width: 15,

@@ -17,6 +17,8 @@ class PokemonTypeItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return InkWell(
       onTap: onClick,
       enableFeedback: true,
@@ -75,7 +77,7 @@ class PokemonTypeItemWidget extends StatelessWidget {
                     children: [
                       Text(
                         type,
-                        style: AppTheme.texts.pokemonTabTitle,
+                        style: textTheme.bodyText1,
                       ),
                       Image.asset(
                         AppConstants.pokemonTypeLogo(type, size: 60),

@@ -37,6 +37,8 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget>
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Stack(
       children: [
         Column(
@@ -57,7 +59,7 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget>
                     SizedBox(
                       width: 5,
                     ),
-                    Text("Pokedex", style: AppTheme.texts.homePageTitle),
+                    Text("Pokedex", style: textTheme.headline1),
                   ],
                 ),
               ],

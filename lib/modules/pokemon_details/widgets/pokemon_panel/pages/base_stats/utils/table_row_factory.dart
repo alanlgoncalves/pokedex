@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/base_stats/widgets/type_effectiveness_badge.dart';
-import 'package:pokedex/theme/app_theme.dart';
 
 class TableRowFactory {
-  static TableRow build(
+  static TableRow build(BuildContext context,
       {required String title,
       required Iterable<MapEntry<String, String>> types}) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return TableRow(children: [
       Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Text(
           title,
-          style: AppTheme.texts.pokemonTabViewSubTitle,
+          style: textTheme.bodyText1
+              ?.copyWith(color: Color(0xFF303943).withOpacity(0.4)),
         ),
       ),
       if (types.isNotEmpty)

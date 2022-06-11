@@ -62,6 +62,8 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
   Widget build(BuildContext context) {
     super.build(context);
 
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return SlidingUpPanel(
       maxHeight: MediaQuery.of(context).size.height * 1,
       minHeight: MediaQuery.of(context).size.height * 0.50,
@@ -102,19 +104,19 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
                             unselectedLabelColor:
                                 AppTheme.colors.pokemonTabTitle,
                             labelColor: AppTheme.colors.selectPokemonTabTitle,
-                            unselectedLabelStyle:
-                                AppTheme.texts.pokemonTabTitle,
-                            labelStyle: AppTheme.texts.selectPokemonTabTitle,
+                            unselectedLabelStyle: textTheme.bodyText1
+                                ?.copyWith(fontWeight: FontWeight.bold),
+                            labelStyle: textTheme.bodyText1?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: null,
+                            ),
                             indicatorColor: AppTheme.colors.tabIndicator,
                             controller: _tabController,
                             tabs: [
                               Tab(
                                 child: FittedBox(
                                   fit: BoxFit.fitWidth,
-                                  child: Text(
-                                    "About",
-                                    style: AppTheme.texts.pokemonTabTitle,
-                                  ),
+                                  child: Text("About"),
                                 ),
                               ),
                               Tab(
@@ -122,7 +124,6 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
                                   fit: BoxFit.fitWidth,
                                   child: Text(
                                     "Base Stats",
-                                    style: AppTheme.texts.pokemonTabTitle,
                                   ),
                                 ),
                               ),
@@ -131,7 +132,6 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
                                   fit: BoxFit.fitWidth,
                                   child: Text(
                                     "Evolution",
-                                    style: AppTheme.texts.pokemonTabTitle,
                                   ),
                                 ),
                               ),
@@ -140,7 +140,6 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
                                   fit: BoxFit.fitWidth,
                                   child: Text(
                                     "Moves",
-                                    style: AppTheme.texts.pokemonTabTitle,
                                   ),
                                 ),
                               ),

@@ -50,7 +50,8 @@ class BaseStatsItemWidget extends StatelessWidget {
             width: 87,
             child: Text(
               title,
-              style: AppTheme.texts.pokemonTabViewSubTitle,
+              style: textTheme.bodyText1
+                  ?.copyWith(color: Color(0xFF303943).withOpacity(0.4)),
             ),
           ),
           Observer(

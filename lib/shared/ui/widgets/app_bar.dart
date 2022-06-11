@@ -18,6 +18,8 @@ class AppBarWidget extends StatefulWidget {
 class _AppBarWidgetState extends State<AppBarWidget> {
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return SliverAppBar(
       pinned: true,
       snap: false,
@@ -59,7 +61,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
               SizedBox(
                 width: 5,
               ),
-              Text(widget.title, style: AppTheme.texts.homePageTitle),
+              Text(widget.title, style: textTheme.headline1),
             ],
           ),
         ),

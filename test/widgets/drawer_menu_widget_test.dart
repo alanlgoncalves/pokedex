@@ -47,8 +47,7 @@ void main() {
 
       final title = find.byWidgetPredicate((widget) {
         if (widget is Text) {
-          return widget.data == "Pokedex" &&
-              widget.style == AppTheme.texts.homePageTitle;
+          return widget.data == "Pokedex";
         }
         return false;
       });

@@ -36,7 +36,7 @@ class AppColorsDefault extends AppColors {
   const AppColorsDefault();
 
   @override
-  Color get background => Color(0xFFFFFFFF);
+  Color get background => Colors.white;
 
   Color pokemonItem(String type) {
     switch (type) {

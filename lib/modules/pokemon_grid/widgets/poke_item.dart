@@ -15,6 +15,8 @@ class PokeItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Container(
       decoration: BoxDecoration(
         color: AppTheme.colors.pokemonItem(pokemon.types[0]),
@@ -80,7 +82,10 @@ class PokeItemWidget extends StatelessWidget {
                 children: [
                   Text(
                     pokemon.name,
-                    style: AppTheme.texts.pokemonItemName,
+                    style: textTheme.bodyText1?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                   SizedBox(
                     height: 10,
@@ -96,7 +101,10 @@ class PokeItemWidget extends StatelessWidget {
                                       horizontal: 15, vertical: 5),
                                   child: Text(
                                     type,
-                                    style: AppTheme.texts.pokemonItemType,
+                                    style: textTheme.bodyText1?.copyWith(
+                                      fontSize: 8,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                                 decoration: BoxDecoration(

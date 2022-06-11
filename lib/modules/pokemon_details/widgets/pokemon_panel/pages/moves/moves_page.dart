@@ -9,7 +9,6 @@ import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/move
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/moves/widgets/tables/technical_records_moves_table.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/moves/widgets/tables/tutor_moves_table.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
-import 'package:pokedex/theme/app_theme.dart';
 
 import '../../pokemon_mobile_panel.dart';
 
@@ -37,6 +36,8 @@ class _MovesPageState extends State<MovesPage>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+
+    final TextTheme textTheme = Theme.of(context).textTheme;
 
     final size = MediaQuery.of(context).size;
 
@@ -68,7 +69,8 @@ class _MovesPageState extends State<MovesPage>
                       headerBuilder: (context, opened) => Center(
                         child: Text(
                           "Moves learnt by level up",
-                          style: AppTheme.texts.pokemonTabViewTitle,
+                          style: textTheme.bodyText1
+                              ?.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
                       body: SingleChildScrollView(
@@ -85,7 +87,8 @@ class _MovesPageState extends State<MovesPage>
                       headerBuilder: (context, opened) => Center(
                         child: Text(
                           "Moves learnt by Technical Machines",
-                          style: AppTheme.texts.pokemonTabViewTitle,
+                          style: textTheme.bodyText1
+                              ?.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
                       body: SingleChildScrollView(
@@ -102,7 +105,8 @@ class _MovesPageState extends State<MovesPage>
                       headerBuilder: (context, opened) => Center(
                         child: Text(
                           "Moves learnt by Technical Records",
-                          style: AppTheme.texts.pokemonTabViewTitle,
+                          style: textTheme.bodyText1
+                              ?.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
                       body: SingleChildScrollView(
@@ -119,7 +123,8 @@ class _MovesPageState extends State<MovesPage>
                       headerBuilder: (context, opened) => Center(
                         child: Text(
                           "Moves learnt on evolution",
-                          style: AppTheme.texts.pokemonTabViewTitle,
+                          style: textTheme.bodyText1
+                              ?.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
                       body: SingleChildScrollView(
@@ -136,7 +141,8 @@ class _MovesPageState extends State<MovesPage>
                       headerBuilder: (context, opened) => Center(
                         child: Text(
                           "Egg moves",
-                          style: AppTheme.texts.pokemonTabViewTitle,
+                          style: textTheme.bodyText1
+                              ?.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
                       body: SingleChildScrollView(
@@ -153,7 +159,8 @@ class _MovesPageState extends State<MovesPage>
                       headerBuilder: (context, opened) => Center(
                         child: Text(
                           "Tutor moves",
-                          style: AppTheme.texts.pokemonTabViewTitle,
+                          style: textTheme.bodyText1
+                              ?.copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
                       body: SingleChildScrollView(

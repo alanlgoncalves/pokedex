@@ -4,7 +4,6 @@ import 'package:get_it/get_it.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/moves/widgets/table_moves.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/shared/ui/widgets/pokemon_type_badge.dart';
-import 'package:pokedex/theme/app_theme.dart';
 
 import '../../moves_store.dart';
 
@@ -25,12 +24,24 @@ class LevelUpMovesTableWidget extends StatelessWidget {
       if (movesStore.panels[index]) {
         return TableMovesWidget(
           columns: [
-            Text("Lv.", style: AppTheme.texts.pokemonTabViewTitle),
-            Text("Move", style: AppTheme.texts.pokemonTabViewTitle),
-            Text("Type", style: AppTheme.texts.pokemonTabViewTitle),
-            Text("Cat.", style: AppTheme.texts.pokemonTabViewTitle),
-            Text("Power", style: AppTheme.texts.pokemonTabViewTitle),
-            Text("Acc.", style: AppTheme.texts.pokemonTabViewTitle),
+            Text("Lv.",
+                style:
+                    textTheme.bodyText1?.copyWith(fontWeight: FontWeight.bold)),
+            Text("Move",
+                style:
+                    textTheme.bodyText1?.copyWith(fontWeight: FontWeight.bold)),
+            Text("Type",
+                style:
+                    textTheme.bodyText1?.copyWith(fontWeight: FontWeight.bold)),
+            Text("Cat.",
+                style:
+                    textTheme.bodyText1?.copyWith(fontWeight: FontWeight.bold)),
+            Text("Power",
+                style:
+                    textTheme.bodyText1?.copyWith(fontWeight: FontWeight.bold)),
+            Text("Acc.",
+                style:
+                    textTheme.bodyText1?.copyWith(fontWeight: FontWeight.bold)),
           ],
           rows: _pokemonStore.pokemon!.moves.levelUp
               .map((move) => [
