@@ -21,7 +21,6 @@ abstract class AppTextStyles {
   TextStyle get pokemonEvolutionChainName;
   TextStyle get pokemonEvolutionChainNumber;
   TextStyle get pokemonEvolutionChainRequirement;
-  TextStyle get pokemonText;
   TextStyle get pokemonSubtitle;
   TextStyle get pokemonTypeBadge;
 

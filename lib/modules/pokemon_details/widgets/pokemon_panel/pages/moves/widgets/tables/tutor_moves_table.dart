@@ -19,6 +19,8 @@ class TutorMovesTableWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Observer(builder: (_) {
       if (movesStore.panels[index]) {
         return TableMovesWidget(
@@ -31,11 +33,11 @@ class TutorMovesTableWidget extends StatelessWidget {
           ],
           rows: _pokemonStore.pokemon!.moves.tutor
               .map((move) => [
-                    Text(move.move, style: AppTheme.texts.pokemonText),
+                    Text(move.move, style: textTheme.bodyText1),
                     PokemonTypeBadge(type: move.type, height: 16, width: 16),
-                    Text(move.category, style: AppTheme.texts.pokemonText),
-                    Text(move.power, style: AppTheme.texts.pokemonText),
-                    Text(move.accuracy, style: AppTheme.texts.pokemonText)
+                    Text(move.category, style: textTheme.bodyText1),
+                    Text(move.power, style: textTheme.bodyText1),
+                    Text(move.accuracy, style: textTheme.bodyText1)
                   ])
               .toList(),
         );

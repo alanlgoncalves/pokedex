@@ -29,6 +29,8 @@ class PokemonFavorites extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     final size = MediaQuery.of(context).size;
 
     final horizontalPadding = getDetailsPanelsPadding(size);
@@ -40,7 +42,7 @@ class PokemonFavorites extends StatelessWidget {
           children: [
             Text(
               "You do not have any favorited Pokemon yet",
-              style: AppTheme.texts.pokemonText,
+              style: textTheme.bodyText1,
             ),
             Center(
               child: Lottie.asset(
@@ -110,7 +112,7 @@ class PokemonFavorites extends StatelessWidget {
               children: [
                 Text(
                   "Favotires Pokemons",
-                  style: AppTheme.texts.pokemonText,
+                  style: textTheme.bodyText1,
                 ),
               ],
             ),

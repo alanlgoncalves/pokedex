@@ -49,6 +49,8 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     final size = MediaQuery.of(context).size;
 
     double? viewportFraction = getViewportFraction(size);
@@ -134,13 +136,13 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
                               ),
                               Text(
                                 "${card.number} - ${card.name}",
-                                style: AppTheme.texts.pokemonText,
+                                style: textTheme.bodyText1,
                               ),
                               FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: Text(
                                   "${card.expansionName}",
-                                  style: AppTheme.texts.pokemonText,
+                                  style: textTheme.bodyText1,
                                 ),
                               ),
                             ],

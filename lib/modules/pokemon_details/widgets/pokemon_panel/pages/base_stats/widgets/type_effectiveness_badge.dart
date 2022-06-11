@@ -13,6 +13,8 @@ class TypeEffectivenessWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Column(
       children: [
         Container(
@@ -44,7 +46,7 @@ class TypeEffectivenessWidget extends StatelessWidget {
                   ),
                   child: Text(
                     value!,
-                    style: AppTheme.texts.pokemonText,
+                    style: textTheme.bodyText1,
                     textAlign: TextAlign.center,
                   ),
                 ),

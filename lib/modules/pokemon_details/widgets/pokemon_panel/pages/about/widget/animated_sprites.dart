@@ -31,6 +31,9 @@ class AnimatedSpritesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    TextTheme textTheme = Theme.of(context).textTheme;
+
     return Padding(
       padding: const EdgeInsets.only(top: 15),
       child: Row(
@@ -47,7 +50,7 @@ class AnimatedSpritesWidget extends StatelessWidget {
               ),
               Text(
                 frontTitle,
-                style: AppTheme.texts.pokemonText,
+                style: textTheme.bodyText1,
                 textAlign: TextAlign.center,
               ),
             ],
@@ -63,7 +66,7 @@ class AnimatedSpritesWidget extends StatelessWidget {
               ),
               Text(
                 backTitle,
-                style: AppTheme.texts.pokemonText,
+                style: textTheme.bodyText1,
                 textAlign: TextAlign.center,
               ),
             ],

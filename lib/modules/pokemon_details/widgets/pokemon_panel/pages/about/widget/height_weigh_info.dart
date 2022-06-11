@@ -11,6 +11,8 @@ class HeightWeightInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Container(
       height: 72,
       decoration: BoxDecoration(
@@ -42,7 +44,7 @@ class HeightWeightInfoWidget extends StatelessWidget {
               Observer(
                 builder: (_) => Text(
                   _pokemonStore.pokemon!.height,
-                  style: AppTheme.texts.pokemonText,
+                  style: textTheme.bodyText1,
                 ),
               )
             ],
@@ -61,7 +63,7 @@ class HeightWeightInfoWidget extends StatelessWidget {
               Observer(
                 builder: (_) => Text(
                   _pokemonStore.pokemon!.weight,
-                  style: AppTheme.texts.pokemonText,
+                  style: textTheme.bodyText1,
                 ),
               )
             ],

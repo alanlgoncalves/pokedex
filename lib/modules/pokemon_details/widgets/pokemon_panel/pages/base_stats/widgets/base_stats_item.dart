@@ -39,6 +39,8 @@ class BaseStatsItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: Row(
@@ -56,7 +58,7 @@ class BaseStatsItemWidget extends StatelessWidget {
               width: 40,
               child: Text(
                 value().toString(),
-                style: AppTheme.texts.pokemonText,
+                style: textTheme.bodyText1,
               ),
             ),
           ),

@@ -6,7 +6,6 @@ import 'package:mobx/mobx.dart';
 import 'package:pokedex/shared/models/item.dart';
 import 'package:pokedex/shared/stores/item_store/item_store.dart';
 import 'package:pokedex/shared/utils/image_utils.dart';
-import 'package:pokedex/theme/app_theme.dart';
 
 class ItemsPage extends StatefulWidget {
   const ItemsPage({Key? key}) : super(key: key);
@@ -68,7 +67,7 @@ class _ItemsPageState extends State<ItemsPage> {
     for (int index = initialRange; index < finalRange; index++) {
       final _item = _itemStore.items[index];
 
-      items.add(_buildItemWidget(item: _item));
+      items.add(await _buildItemWidget(item: _item));
     }
 
     if (maxRange == finalRange) {
@@ -78,34 +77,38 @@ class _ItemsPageState extends State<ItemsPage> {
     }
   }
 
-  Widget _buildItemWidget({required Item item}) {
-    return ListTile(
-      leading: item.imageUrl != null
-          ? ImageUtils.networkImage(
-              url: item.imageUrl!,
-              height: 25,
-              width: 25,
-            )
-          : Icon(
-              Icons.image_not_supported,
-              color: Colors.grey,
-              size: 20,
-            ),
-      title: Text(
-        item.name,
-        style: AppTheme.texts.pokemonText,
-      ),
-      trailing: Text(
-        item.category,
-        style: AppTheme.texts.pokemonText,
-      ),
-      subtitle: item.effect.trim().length > 0
-          ? Text(
-              item.effect,
-              style: AppTheme.texts.pokemonSubtitle,
-            )
-          : null,
-    );
+  Future<ListTile> _buildItemWidget({required Item item}) {
+    return Future.delayed(Duration.zero, () {
+      final TextTheme textTheme = Theme.of(context).textTheme;
+
+      return ListTile(
+        leading: item.imageUrl != null
+            ? ImageUtils.networkImage(
+                url: item.imageUrl!,
+                height: 25,
+                width: 25,
+              )
+            : Icon(
+                Icons.image_not_supported,
+                color: Colors.grey,
+                size: 20,
+              ),
+        title: Text(
+          item.name,
+          style: textTheme.bodyText1,
+        ),
+        trailing: Text(
+          item.category,
+          style: textTheme.bodyText1,
+        ),
+        subtitle: item.effect.trim().length > 0
+            ? Text(
+                item.effect,
+                style: textTheme.subtitle1,
+              )
+            : null,
+      );
+    });
   }
 
   @override

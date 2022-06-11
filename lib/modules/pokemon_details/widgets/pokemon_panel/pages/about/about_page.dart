@@ -10,7 +10,6 @@ import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/abou
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/about/widget/sound_player.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/about/widget/training_info.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
-import 'package:pokedex/theme/app_theme.dart';
 
 import '../../pokemon_mobile_panel.dart';
 
@@ -54,6 +53,8 @@ class _AboutPageState extends State<AboutPage> {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     final size = MediaQuery.of(context).size;
 
     final horizontalPadding = getDetailsPanelsPadding(size);
@@ -76,7 +77,7 @@ class _AboutPageState extends State<AboutPage> {
                             padding: const EdgeInsets.symmetric(vertical: 4),
                             child: Text(
                               it,
-                              style: AppTheme.texts.pokemonText,
+                              style: textTheme.bodyText1,
                             ),
                           ))
                       .toList(),

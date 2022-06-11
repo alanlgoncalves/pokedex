@@ -28,6 +28,8 @@ class PokemonGenerationFilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     final size = MediaQuery.of(context).size;
 
     final horizontalPadding = getDetailsPanelsPadding(size);
@@ -95,7 +97,7 @@ class PokemonGenerationFilter extends StatelessWidget {
                   children: [
                     Text(
                       "Click on the selected item to clear the filter",
-                      style: AppTheme.texts.pokemonText,
+                      style: textTheme.bodyText1,
                     ),
                   ],
                 ),

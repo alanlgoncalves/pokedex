@@ -2,6 +2,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/shared/getit/getit.dart';
 import 'package:pokedex/shared/routes/router.dart' as router;
+import 'package:pokedex/theme/light/light_theme.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,9 +25,7 @@ class MyApp extends StatelessWidget {
       },
       navigatorObservers: [BotToastNavigatorObserver()],
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: lightTheme,
       routes: router.Router.getRoutes(context),
       initialRoute: "/",
     );

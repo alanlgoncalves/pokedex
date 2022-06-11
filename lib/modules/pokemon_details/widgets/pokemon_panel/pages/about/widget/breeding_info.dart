@@ -13,6 +13,8 @@ class BreedingInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Container(
       width: MediaQuery.of(context).size.width,
       child: Padding(
@@ -79,14 +81,14 @@ class BreedingInfoWidget extends StatelessWidget {
                                               horizontal: 5),
                                           child: Text(
                                             "???",
-                                            style: AppTheme.texts.pokemonText,
+                                            style: textTheme.bodyText1,
                                           ),
                                         ),
                                       Text(
                                         gender.type == GenderType.UNKNOWN
                                             ? "--%"
                                             : "${gender.percentage}",
-                                        style: AppTheme.texts.pokemonText,
+                                        style: textTheme.bodyText1,
                                       ),
                                     ],
                                   ),
@@ -110,7 +112,7 @@ class BreedingInfoWidget extends StatelessWidget {
                             Observer(
                               builder: (_) => Text(
                                 "${_pokemonStore.pokemon!.breeding.egg!.groups.join(", ")}",
-                                style: AppTheme.texts.pokemonText,
+                                style: textTheme.bodyText1,
                               ),
                             ),
                           ],
@@ -130,7 +132,7 @@ class BreedingInfoWidget extends StatelessWidget {
                             Observer(
                               builder: (_) => Text(
                                 "${_pokemonStore.pokemon!.breeding.egg!.cycle}",
-                                style: AppTheme.texts.pokemonText,
+                                style: textTheme.bodyText1,
                               ),
                             ),
                           ],

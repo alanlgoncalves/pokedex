@@ -28,6 +28,8 @@ class PokemonTypeFilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Observer(builder: (_) {
       return Padding(
         padding: const EdgeInsets.only(left: 28, right: 28, top: 28),
@@ -92,7 +94,7 @@ class PokemonTypeFilter extends StatelessWidget {
                   children: [
                     Text(
                       "Click on the selected item to clear the filter",
-                      style: AppTheme.texts.pokemonText,
+                      style: textTheme.bodyText1,
                     ),
                   ],
                 ),

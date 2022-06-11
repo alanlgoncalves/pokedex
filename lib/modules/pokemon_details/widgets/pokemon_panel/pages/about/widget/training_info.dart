@@ -11,6 +11,8 @@ class TrainingInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Container(
       width: MediaQuery.of(context).size.width,
       child: Padding(
@@ -47,7 +49,7 @@ class TrainingInfoWidget extends StatelessWidget {
                             Observer(
                               builder: (_) => Text(
                                 "${_pokemonStore.pokemon!.training.evYield}",
-                                style: AppTheme.texts.pokemonText,
+                                style: textTheme.bodyText1,
                               ),
                             ),
                           ],
@@ -67,7 +69,7 @@ class TrainingInfoWidget extends StatelessWidget {
                             Observer(
                               builder: (_) => Text(
                                 "${_pokemonStore.pokemon!.training.catchRate}",
-                                style: AppTheme.texts.pokemonText,
+                                style: textTheme.bodyText1,
                               ),
                             ),
                           ],
@@ -87,7 +89,7 @@ class TrainingInfoWidget extends StatelessWidget {
                             Observer(
                               builder: (_) => Text(
                                 "${_pokemonStore.pokemon!.training.baseFriendship}",
-                                style: AppTheme.texts.pokemonText,
+                                style: textTheme.bodyText1,
                               ),
                             ),
                           ],
@@ -107,7 +109,7 @@ class TrainingInfoWidget extends StatelessWidget {
                             Observer(
                               builder: (_) => Text(
                                 "${_pokemonStore.pokemon!.training.baseExp}",
-                                style: AppTheme.texts.pokemonText,
+                                style: textTheme.bodyText1,
                               ),
                             ),
                           ],
@@ -127,7 +129,7 @@ class TrainingInfoWidget extends StatelessWidget {
                             Observer(
                               builder: (_) => Text(
                                 "${_pokemonStore.pokemon!.training.growthRate}",
-                                style: AppTheme.texts.pokemonText,
+                                style: textTheme.bodyText1,
                               ),
                             ),
                           ],

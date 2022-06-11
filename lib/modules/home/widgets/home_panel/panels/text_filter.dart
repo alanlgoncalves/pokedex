@@ -24,6 +24,9 @@ class TextFilterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    TextTheme textTheme = Theme.of(context).textTheme;
+
     return Padding(
       padding: const EdgeInsets.only(left: 28, right: 28, top: 30),
       child: Column(
@@ -34,7 +37,7 @@ class TextFilterWidget extends StatelessWidget {
             autofocus: true,
             minLines: 1,
             textAlign: TextAlign.center,
-            style: AppTheme.texts.pokemonText,
+            style: textTheme.bodyText1,
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.search),
               suffixIcon: IconButton(
