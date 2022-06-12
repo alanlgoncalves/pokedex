@@ -69,7 +69,7 @@
 - Filter by Pokémons name or number
 - Items 
 
-<h3 align="center"><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/791.png" width="24" height="24"/> Sun Theme</h3>
+<h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/791.png" width="24" height="24"/> Sun Theme</h3>
 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/8467311/133906121-dbacd422-c185-4e74-b951-dbec68819ae0.png" width="200" />
@@ -82,7 +82,7 @@
     <img src="https://user-images.githubusercontent.com/8467311/132415854-e2dd533f-f495-472b-b1ac-1de27ae0fd4f.gif" width="200" />
 </p>
 
-<h3 align="center"> <img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/792.png" width="24" height="24"/> Moon Theme</h3>
+<h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/792.png" width="24" height="24"/> Moon Theme</h3>
 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/8467311/173213901-f9797757-ca40-4d3c-a1f5-195b68429edf.png" width="200" />
