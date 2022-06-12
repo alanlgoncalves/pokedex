@@ -18,21 +18,20 @@ class MyApp extends StatelessWidget {
     final botToastBuilder = BotToastInit();
 
     return ThemeProvider(
-        initTheme: lightTheme,
-        builder: (context, theme) {
-          return MaterialApp(
-            title: 'Pokedex',
-            builder: (context, child) {
-              child = botToastBuilder(context, child);
+      initTheme: lightTheme,
+      child: MaterialApp(
+        title: 'Pokedex',
+        builder: (context, child) {
+          child = botToastBuilder(context, child);
 
-              return child;
-            },
-            theme: theme,
-            navigatorObservers: [BotToastNavigatorObserver()],
-            debugShowCheckedModeBanner: false,
-            routes: router.Router.getRoutes(context),
-            initialRoute: "/",
-          );
-        });
+          return child;
+        },
+        theme: lightTheme,
+        navigatorObservers: [BotToastNavigatorObserver()],
+        debugShowCheckedModeBanner: false,
+        routes: router.Router.getRoutes(context),
+        initialRoute: "/",
+      ),
+    );
   }
 }
