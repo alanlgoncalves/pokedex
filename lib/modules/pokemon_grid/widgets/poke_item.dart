@@ -69,7 +69,9 @@ class PokeItemWidget extends StatelessWidget {
                     fontFamily: "CircularStd-Book",
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
-                    color: Color(0x99FFFFFF),
+                    color: AppTheme.getColors(context)
+                        .pokemonDetailsTitleColor
+                        .withOpacity(0.6),
                   ),
                 ),
               ),
@@ -83,9 +85,9 @@ class PokeItemWidget extends StatelessWidget {
                   Text(
                     pokemon.name,
                     style: textTheme.bodyText1?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                        fontWeight: FontWeight.bold,
+                        color: AppTheme.getColors(context)
+                            .pokemonDetailsTitleColor),
                   ),
                   SizedBox(
                     height: 10,
@@ -103,13 +105,16 @@ class PokeItemWidget extends StatelessWidget {
                                     type,
                                     style: textTheme.bodyText1?.copyWith(
                                       fontSize: 8,
-                                      color: Colors.white,
+                                      color: AppTheme.getColors(context)
+                                          .pokemonDetailsTitleColor,
                                     ),
                                   ),
                                 ),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(38),
-                                    color: Colors.white.withOpacity(0.4)),
+                                    color: AppTheme.getColors(context)
+                                        .pokemonDetailsTitleColor
+                                        .withOpacity(0.4)),
                               ),
                             ))
                         .toList(),
