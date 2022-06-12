@@ -67,6 +67,8 @@ class _AnimatedFloatActionButtonWidgetState
     widget.openAnimationController.addListener(() {
       isOpen = widget.openAnimationController.isCompleted;
 
+      if (!mounted) return;
+
       setState(() {});
     });
   }
