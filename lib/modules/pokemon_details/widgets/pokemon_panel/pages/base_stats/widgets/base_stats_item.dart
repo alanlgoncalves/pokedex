@@ -48,10 +48,9 @@ class BaseStatsItemWidget extends StatelessWidget {
         children: [
           Container(
             width: 87,
-            child: Text(
-              title,
-              style: textTheme.bodyText1
-                  ?.copyWith(color: Color(0xFF303943).withOpacity(0.4)),
+            child: Opacity(
+              opacity: 0.4,
+              child: Text(title, style: textTheme.bodyText1),
             ),
           ),
           Observer(
@@ -82,7 +81,8 @@ class BaseStatsItemWidget extends StatelessWidget {
                       duration: Duration(seconds: 3),
                       height: 10,
                       decoration: BoxDecoration(
-                        color: AppTheme.colors.baseStatsBar(barPercentage),
+                        color: AppTheme.getColors(context)
+                            .baseStatsBar(barPercentage),
                         borderRadius: BorderRadius.circular(5),
                       ),
                     ),

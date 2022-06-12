@@ -34,7 +34,7 @@ class SoundPlayer extends StatelessWidget {
       child: Container(
         height: 40,
         decoration: BoxDecoration(
-          color: Color(0xFFE9E9E9),
+          color: AppTheme.getColors(context).panelBackground,
           borderRadius: BorderRadius.circular(50),
         ),
         child: Row(
@@ -43,7 +43,8 @@ class SoundPlayer extends StatelessWidget {
             IconButton(
               icon: FaIcon(
                 FontAwesomeIcons.play,
-                color: AppTheme.colors.pokemonItem(pokemon.types[0]),
+                color:
+                    AppTheme.getColors(context).pokemonItem(pokemon.types[0]),
               ),
               onPressed: () async {
                 player.seek(Duration.zero);

@@ -119,7 +119,8 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
                                       borderRadius: BorderRadius.circular(15),
                                       border: Border.fromBorderSide(
                                         BorderSide(
-                                            color: AppTheme.colors.tabDivisor),
+                                            color: AppTheme.getColors(context)
+                                                .tabDivisor),
                                       ),
                                       boxShadow: [
                                         BoxShadow(

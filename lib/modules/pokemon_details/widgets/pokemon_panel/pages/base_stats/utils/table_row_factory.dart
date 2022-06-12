@@ -10,10 +10,9 @@ class TableRowFactory {
     return TableRow(children: [
       Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
-        child: Text(
-          title,
-          style: textTheme.bodyText1
-              ?.copyWith(color: Color(0xFF303943).withOpacity(0.4)),
+        child: Opacity(
+          opacity: 0.4,
+          child: Text(title, style: textTheme.bodyText1),
         ),
       ),
       if (types.isNotEmpty)

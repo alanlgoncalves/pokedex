@@ -45,10 +45,11 @@ class BreedingInfoWidget extends StatelessWidget {
                             children: [
                               Container(
                                 width: 88,
-                                child: Text(
-                                  "Gender",
-                                  style: textTheme.bodyText1?.copyWith(
-                                    color: Color(0xFF303943).withOpacity(0.4),
+                                child: Opacity(
+                                  opacity: 0.4,
+                                  child: Text(
+                                    "Gender",
+                                    style: textTheme.bodyText1,
                                   ),
                                 ),
                               ),
@@ -65,7 +66,8 @@ class BreedingInfoWidget extends StatelessWidget {
                                           ),
                                           child: FaIcon(
                                             FontAwesomeIcons.mars,
-                                            color: AppTheme.colors.marsIcon,
+                                            color: AppTheme.getColors(context)
+                                                .marsIcon,
                                           ),
                                         ),
                                       if (gender.type == GenderType.FEMALE)
@@ -75,7 +77,8 @@ class BreedingInfoWidget extends StatelessWidget {
                                           ),
                                           child: FaIcon(
                                             FontAwesomeIcons.venus,
-                                            color: AppTheme.colors.venusIcon,
+                                            color: AppTheme.getColors(context)
+                                                .venusIcon,
                                           ),
                                         ),
                                       if (gender.type == GenderType.UNKNOWN)
@@ -107,10 +110,10 @@ class BreedingInfoWidget extends StatelessWidget {
                           children: [
                             Container(
                               width: 88,
-                              child: Text(
-                                "Egg Groups",
-                                style: textTheme.bodyText1?.copyWith(
-                                    color: Color(0xFF303943).withOpacity(0.4)),
+                              child: Opacity(
+                                opacity: 0.4,
+                                child: Text("Egg Groups",
+                                    style: textTheme.bodyText1),
                               ),
                             ),
                             Observer(
@@ -128,10 +131,12 @@ class BreedingInfoWidget extends StatelessWidget {
                           children: [
                             Container(
                               width: 88,
-                              child: Text(
-                                "Egg Cycle",
-                                style: textTheme.bodyText1?.copyWith(
-                                    color: Color(0xFF303943).withOpacity(0.4)),
+                              child: Opacity(
+                                opacity: 0.4,
+                                child: Text(
+                                  "Egg Cycle",
+                                  style: textTheme.bodyText1,
+                                ),
                               ),
                             ),
                             Observer(

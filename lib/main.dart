@@ -1,3 +1,4 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/shared/getit/getit.dart';
@@ -16,18 +17,22 @@ class MyApp extends StatelessWidget {
 
     final botToastBuilder = BotToastInit();
 
-    return MaterialApp(
-      title: 'Pokedex',
-      builder: (context, child) {
-        child = botToastBuilder(context, child);
+    return ThemeProvider(
+        initTheme: lightTheme,
+        builder: (context, theme) {
+          return MaterialApp(
+            title: 'Pokedex',
+            builder: (context, child) {
+              child = botToastBuilder(context, child);
 
-        return child;
-      },
-      navigatorObservers: [BotToastNavigatorObserver()],
-      debugShowCheckedModeBanner: false,
-      theme: lightTheme,
-      routes: router.Router.getRoutes(context),
-      initialRoute: "/",
-    );
+              return child;
+            },
+            theme: theme,
+            navigatorObservers: [BotToastNavigatorObserver()],
+            debugShowCheckedModeBanner: false,
+            routes: router.Router.getRoutes(context),
+            initialRoute: "/",
+          );
+        });
   }
 }

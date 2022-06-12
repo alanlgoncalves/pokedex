@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
+import 'package:pokedex/theme/app_theme.dart';
 
 class HeightWeightInfoWidget extends StatelessWidget {
   static final _pokemonStore = GetIt.instance<PokemonStore>();
@@ -15,11 +16,15 @@ class HeightWeightInfoWidget extends StatelessWidget {
     return Container(
       height: 72,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).brightness == Brightness.light
+            ? Theme.of(context).backgroundColor
+            : AppTheme.getColors(context).panelBackground,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
+            color: Theme.of(context).brightness == Brightness.light
+                ? Colors.grey.withOpacity(0.3)
+                : Colors.black.withOpacity(0.3),
             spreadRadius: 3,
             blurRadius: 15,
             offset: Offset(0, 8),
@@ -33,10 +38,12 @@ class HeightWeightInfoWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Height",
-                style: textTheme.bodyText1
-                    ?.copyWith(color: Color(0xFF303943).withOpacity(0.4)),
+              Opacity(
+                opacity: 0.4,
+                child: Text(
+                  "Height",
+                  style: textTheme.bodyText1,
+                ),
               ),
               SizedBox(
                 height: 11,
@@ -53,10 +60,12 @@ class HeightWeightInfoWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Weight",
-                style: textTheme.bodyText1
-                    ?.copyWith(color: Color(0xFF303943).withOpacity(0.4)),
+              Opacity(
+                opacity: 0.4,
+                child: Text(
+                  "Weight",
+                  style: textTheme.bodyText1,
+                ),
               ),
               SizedBox(
                 height: 11,

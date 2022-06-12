@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/shared/utils/image_utils.dart';
+import 'package:pokedex/theme/app_theme.dart';
 
 class AppBarNavigationWidget extends StatelessWidget {
   final _pokemonStore = GetIt.instance<PokemonStore>();
@@ -18,7 +19,10 @@ class AppBarNavigationWidget extends StatelessWidget {
       children: [
         if (_pokemonStore.index > 0)
           InkWell(
-            child: Icon(Icons.arrow_back_ios),
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: AppTheme.getColors(context).pokemonDetailsTitleColor,
+            ),
             onTap: () async {
               _pokemonStore.previousPokemon();
             },
@@ -32,17 +36,23 @@ class AppBarNavigationWidget extends StatelessWidget {
         ),
         Text(
           _pokemonStore.pokemon!.name,
-          style: themeData.headline5?.copyWith(color: Colors.white),
+          style: themeData.headline5?.copyWith(
+            color: AppTheme.getColors(context).pokemonDetailsTitleColor,
+          ),
         ),
         SizedBox(
           width: 15,
         ),
         if (_pokemonStore.index < _pokemonStore.pokemonsSummary!.length - 1)
           InkWell(
-              onTap: () async {
-                _pokemonStore.nextPokemon();
-              },
-              child: Icon(Icons.arrow_forward_ios)),
+            onTap: () async {
+              _pokemonStore.nextPokemon();
+            },
+            child: Icon(
+              Icons.arrow_forward_ios,
+              color: AppTheme.getColors(context).pokemonDetailsTitleColor,
+            ),
+          ),
       ],
     );
   }

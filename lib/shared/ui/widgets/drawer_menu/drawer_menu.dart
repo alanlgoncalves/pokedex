@@ -39,76 +39,83 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget>
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
 
-    return Stack(
-      children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Column(
-              children: [
-                Image.asset(
-                  AppConstants.pokedexIcon,
-                  width: 100,
-                  height: 100,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AnimatedPokeballWidget(
-                        color: AppTheme.colors.pokeballLogoBlack, size: 24),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text("Pokedex", style: textTheme.headline1),
-                  ],
-                ),
-              ],
-            ),
-            GridView(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, mainAxisExtent: 70),
-              children: [
-                DrawerMenuItemWidget(
-                  color: AppTheme.colors.drawerPokedex,
-                  text: "Pokedex",
-                  onTap: () {
-                    Navigator.pop(context);
+    return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
+      body: Stack(
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                children: [
+                  Image.asset(
+                    AppConstants.pokedexIcon,
+                    width: 100,
+                    height: 100,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      AnimatedPokeballWidget(
+                          color: AppTheme.getColors(context).pokeballLogoBlack,
+                          size: 24),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text("Pokedex", style: textTheme.headline1),
+                    ],
+                  ),
+                ],
+              ),
+              GridView(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, mainAxisExtent: 70),
+                children: [
+                  DrawerMenuItemWidget(
+                    color: AppTheme.getColors(context).drawerPokedex,
+                    text: "Pokedex",
+                    onTap: () {
+                      Navigator.pop(context);
 
-                    _homeStore.setPage(HomePageType.POKEMON_GRID);
-                  },
-                ),
-                DrawerMenuItemWidget(
-                  color: AppTheme.colors.drawerItems,
-                  text: "Items",
-                  onTap: () {
-                    Navigator.pop(context);
+                      _homeStore.setPage(HomePageType.POKEMON_GRID);
+                    },
+                  ),
+                  DrawerMenuItemWidget(
+                    color: AppTheme.getColors(context).drawerItems,
+                    text: "Items",
+                    onTap: () {
+                      Navigator.pop(context);
 
-                    _homeStore.setPage(HomePageType.ITENS);
-                  },
-                ),
-                DrawerMenuItemWidget(
-                    color: AppTheme.colors.drawerMoves, text: "Moves"),
-                DrawerMenuItemWidget(
-                    color: AppTheme.colors.drawerAbilities, text: "Abilities"),
-                DrawerMenuItemWidget(
-                    color: AppTheme.colors.drawerTypeCharts,
-                    text: "Type Charts"),
-                DrawerMenuItemWidget(
-                    color: AppTheme.colors.drawerLocations, text: "Locations"),
-              ],
-            ),
-          ],
-        ),
-        Align(
-          alignment: Alignment.bottomRight,
-          child: Lottie.asset(
-            AppConstants.diglettLottie,
-            height: 200.0,
+                      _homeStore.setPage(HomePageType.ITENS);
+                    },
+                  ),
+                  DrawerMenuItemWidget(
+                      color: AppTheme.getColors(context).drawerMoves,
+                      text: "Moves"),
+                  DrawerMenuItemWidget(
+                      color: AppTheme.getColors(context).drawerAbilities,
+                      text: "Abilities"),
+                  DrawerMenuItemWidget(
+                      color: AppTheme.getColors(context).drawerTypeCharts,
+                      text: "Type Charts"),
+                  DrawerMenuItemWidget(
+                      color: AppTheme.getColors(context).drawerLocations,
+                      text: "Locations"),
+                ],
+              ),
+            ],
           ),
-        ),
-      ],
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Lottie.asset(
+              AppConstants.diglettLottie,
+              height: 200.0,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

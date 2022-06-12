@@ -50,7 +50,8 @@ class SuperEvolutionChainItemWidget extends StatelessWidget {
                         child: CustomPaint(
                           size: Size(83, (83 * 1.0040160642570282).toDouble()),
                           painter: PokeballLogoPainter(
-                            color: AppTheme.colors.pokeballLogoGray
+                            color: AppTheme.getColors(context)
+                                .pokeballLogoGray
                                 .withOpacity(0.2),
                           ),
                         ),
@@ -111,7 +112,8 @@ class SuperEvolutionChainItemWidget extends StatelessWidget {
                         child: CustomPaint(
                           size: Size(83, (83 * 1.0040160642570282).toDouble()),
                           painter: PokeballLogoPainter(
-                            color: AppTheme.colors.pokeballLogoGray
+                            color: AppTheme.getColors(context)
+                                .pokeballLogoGray
                                 .withOpacity(0.2),
                           ),
                         ),

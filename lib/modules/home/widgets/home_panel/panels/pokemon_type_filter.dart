@@ -59,10 +59,10 @@ class PokemonTypeFilter extends StatelessWidget {
                     Color? color;
 
                     if (pokemonStore.pokemonFilter.typeFilter == null) {
-                      color = AppTheme.colors.pokemonItem(type);
+                      color = AppTheme.getColors(context).pokemonItem(type);
                     } else {
                       color = pokemonStore.pokemonFilter.typeFilter == type
-                          ? AppTheme.colors.pokemonItem(type)
+                          ? AppTheme.getColors(context).pokemonItem(type)
                           : Colors.grey[400];
                     }
 

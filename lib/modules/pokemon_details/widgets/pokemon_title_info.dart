@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
+import 'package:pokedex/theme/app_theme.dart';
 
 class PokemonTitleInfoWidget extends StatelessWidget {
   final _pokemonStore = GetIt.instance<PokemonStore>();
@@ -25,14 +26,15 @@ class PokemonTitleInfoWidget extends StatelessWidget {
                   style: textTheme.headline1?.copyWith(
                     fontSize: 36,
                     fontWeight: FontWeight.w900,
-                    color: Colors.white,
+                    color: AppTheme.getColors(context).pokemonDetailsTitleColor,
                   ),
                 );
               }),
               Observer(builder: (_) {
                 return Text("#${_pokemonStore.pokemon!.number}",
                     style: textTheme.headline4?.copyWith(
-                      color: Colors.white,
+                      color:
+                          AppTheme.getColors(context).pokemonDetailsTitleColor,
                     ));
               }),
             ],
@@ -56,12 +58,15 @@ class PokemonTitleInfoWidget extends StatelessWidget {
                                 child: Text(type,
                                     style: textTheme.bodyText1?.copyWith(
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.white,
+                                      color: AppTheme.getColors(context)
+                                          .pokemonDetailsTitleColor,
                                     )),
                               ),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(38),
-                                  color: Colors.white.withOpacity(0.4)),
+                                  color: AppTheme.getColors(context)
+                                      .pokemonDetailsTitleColor
+                                      .withOpacity(0.4)),
                             ),
                           ))
                       .toList(),
@@ -71,7 +76,8 @@ class PokemonTitleInfoWidget extends StatelessWidget {
                 builder: (_) {
                   return Text("${_pokemonStore.pokemon!.specie} Pokemon",
                       style: textTheme.bodyText1?.copyWith(
-                        color: Colors.white,
+                        color: AppTheme.getColors(context)
+                            .pokemonDetailsTitleColor,
                       ));
                 },
               ),

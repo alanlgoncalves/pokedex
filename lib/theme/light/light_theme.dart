@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
+  backgroundColor: Colors.white,
   textTheme: TextTheme(
     bodyText1: TextStyle(
       fontFamily: "CircularStd-Book",

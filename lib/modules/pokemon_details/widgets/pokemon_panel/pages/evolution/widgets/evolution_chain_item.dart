@@ -49,9 +49,8 @@ class EvolutionChainItemWidget extends StatelessWidget {
                         child: CustomPaint(
                           size: Size(83, (83 * 1.0040160642570282).toDouble()),
                           painter: PokeballLogoPainter(
-                            color: AppTheme.colors.pokeballLogoGray
-                                .withOpacity(0.2),
-                          ),
+                              color:
+                                  AppTheme.getColors(context).pokeballLogoGray),
                         ),
                       ),
                       Container(
@@ -126,9 +125,8 @@ class EvolutionChainItemWidget extends StatelessWidget {
                         child: CustomPaint(
                           size: Size(83, (83 * 1.0040160642570282).toDouble()),
                           painter: PokeballLogoPainter(
-                            color: AppTheme.colors.pokeballLogoGray
-                                .withOpacity(0.2),
-                          ),
+                              color:
+                                  AppTheme.getColors(context).pokeballLogoGray),
                         ),
                       ),
                       Container(

@@ -41,10 +41,12 @@ class TrainingInfoWidget extends StatelessWidget {
                           children: [
                             Container(
                               width: 88,
-                              child: Text(
-                                "EV yield",
-                                style: textTheme.bodyText1?.copyWith(
-                                    color: Color(0xFF303943).withOpacity(0.4)),
+                              child: Opacity(
+                                opacity: 0.4,
+                                child: Text(
+                                  "EV yield",
+                                  style: textTheme.bodyText1,
+                                ),
                               ),
                             ),
                             Observer(
@@ -62,10 +64,12 @@ class TrainingInfoWidget extends StatelessWidget {
                           children: [
                             Container(
                               width: 88,
-                              child: Text(
-                                "Catch rate",
-                                style: textTheme.bodyText1?.copyWith(
-                                    color: Color(0xFF303943).withOpacity(0.4)),
+                              child: Opacity(
+                                opacity: 0.4,
+                                child: Text(
+                                  "Catch rate",
+                                  style: textTheme.bodyText1,
+                                ),
                               ),
                             ),
                             Observer(
@@ -83,10 +87,12 @@ class TrainingInfoWidget extends StatelessWidget {
                           children: [
                             Container(
                               width: 88,
-                              child: Text(
-                                "Base Friendship",
-                                style: textTheme.bodyText1?.copyWith(
-                                    color: Color(0xFF303943).withOpacity(0.4)),
+                              child: Opacity(
+                                opacity: 0.4,
+                                child: Text(
+                                  "Base Friendship",
+                                  style: textTheme.bodyText1,
+                                ),
                               ),
                             ),
                             Observer(
@@ -104,10 +110,12 @@ class TrainingInfoWidget extends StatelessWidget {
                           children: [
                             Container(
                               width: 88,
-                              child: Text(
-                                "Base Exp.",
-                                style: textTheme.bodyText1?.copyWith(
-                                    color: Color(0xFF303943).withOpacity(0.4)),
+                              child: Opacity(
+                                opacity: 0.4,
+                                child: Text(
+                                  "Base Exp.",
+                                  style: textTheme.bodyText1,
+                                ),
                               ),
                             ),
                             Observer(
@@ -125,10 +133,12 @@ class TrainingInfoWidget extends StatelessWidget {
                           children: [
                             Container(
                               width: 88,
-                              child: Text(
-                                "Growth Rate	",
-                                style: textTheme.bodyText1?.copyWith(
-                                    color: Color(0xFF303943).withOpacity(0.4)),
+                              child: Opacity(
+                                opacity: 0.4,
+                                child: Text(
+                                  "Growth Rate",
+                                  style: textTheme.bodyText1,
+                                ),
                               ),
                             ),
                             Observer(

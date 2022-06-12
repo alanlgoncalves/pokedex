@@ -19,7 +19,7 @@ class PokeItemWidget extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: AppTheme.colors.pokemonItem(pokemon.types[0]),
+        color: AppTheme.getColors(context).pokemonItem(pokemon.types[0]),
         borderRadius: BorderRadius.circular(15),
       ),
       child: ClipRRect(

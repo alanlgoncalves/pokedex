@@ -59,121 +59,127 @@ class _MovesPageState extends State<MovesPage>
                 return counter++;
               }
 
-              return ExpansionPanelList(
-                elevation: 0,
-                expandedHeaderPadding: EdgeInsets.zero,
-                children: [
-                  if (_pokemonStore.pokemon!.moves.levelUp.isNotEmpty)
-                    ExpansionPanel(
-                      isExpanded: _movesStore.panels[getCounter()],
-                      headerBuilder: (context, opened) => Center(
-                        child: Text(
-                          "Moves learnt by level up",
-                          style: textTheme.bodyText1
-                              ?.copyWith(fontWeight: FontWeight.bold),
+              return Theme(
+                data: Theme.of(context)
+                    .copyWith(cardColor: Theme.of(context).backgroundColor),
+                child: ExpansionPanelList(
+                  elevation: 0,
+                  expandedHeaderPadding: EdgeInsets.zero,
+                  children: [
+                    if (_pokemonStore.pokemon!.moves.levelUp.isNotEmpty)
+                      ExpansionPanel(
+                        isExpanded: _movesStore.panels[getCounter()],
+                        headerBuilder: (context, opened) => Center(
+                          child: Text(
+                            "Moves learnt by level up",
+                            style: textTheme.bodyText1
+                                ?.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        body: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: LevelUpMovesTableWidget(
+                            movesStore: _movesStore,
+                            index: getCounterAndAdd(),
+                          ),
                         ),
                       ),
-                      body: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: LevelUpMovesTableWidget(
-                          movesStore: _movesStore,
-                          index: getCounterAndAdd(),
+                    if (_pokemonStore
+                        .pokemon!.moves.technicalMachine.isNotEmpty)
+                      ExpansionPanel(
+                        isExpanded: _movesStore.panels[getCounter()],
+                        headerBuilder: (context, opened) => Center(
+                          child: Text(
+                            "Moves learnt by Technical Machines",
+                            style: textTheme.bodyText1
+                                ?.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        body: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: TechnicalMachinesMovesTableWidget(
+                            movesStore: _movesStore,
+                            index: getCounterAndAdd(),
+                          ),
                         ),
                       ),
-                    ),
-                  if (_pokemonStore.pokemon!.moves.technicalMachine.isNotEmpty)
-                    ExpansionPanel(
-                      isExpanded: _movesStore.panels[getCounter()],
-                      headerBuilder: (context, opened) => Center(
-                        child: Text(
-                          "Moves learnt by Technical Machines",
-                          style: textTheme.bodyText1
-                              ?.copyWith(fontWeight: FontWeight.bold),
+                    if (_pokemonStore
+                        .pokemon!.moves.technicalRecords.isNotEmpty)
+                      ExpansionPanel(
+                        isExpanded: _movesStore.panels[getCounter()],
+                        headerBuilder: (context, opened) => Center(
+                          child: Text(
+                            "Moves learnt by Technical Records",
+                            style: textTheme.bodyText1
+                                ?.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        body: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: TechnicalRecordsMovesTableWidget(
+                            movesStore: _movesStore,
+                            index: getCounterAndAdd(),
+                          ),
                         ),
                       ),
-                      body: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: TechnicalMachinesMovesTableWidget(
-                          movesStore: _movesStore,
-                          index: getCounterAndAdd(),
+                    if (_pokemonStore.pokemon!.moves.evolution.isNotEmpty)
+                      ExpansionPanel(
+                        isExpanded: _movesStore.panels[getCounter()],
+                        headerBuilder: (context, opened) => Center(
+                          child: Text(
+                            "Moves learnt on evolution",
+                            style: textTheme.bodyText1
+                                ?.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        body: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: EvolutionMovesTableWidget(
+                            movesStore: _movesStore,
+                            index: getCounterAndAdd(),
+                          ),
                         ),
                       ),
-                    ),
-                  if (_pokemonStore.pokemon!.moves.technicalRecords.isNotEmpty)
-                    ExpansionPanel(
-                      isExpanded: _movesStore.panels[getCounter()],
-                      headerBuilder: (context, opened) => Center(
-                        child: Text(
-                          "Moves learnt by Technical Records",
-                          style: textTheme.bodyText1
-                              ?.copyWith(fontWeight: FontWeight.bold),
+                    if (_pokemonStore.pokemon!.moves.egg.isNotEmpty)
+                      ExpansionPanel(
+                        isExpanded: _movesStore.panels[getCounter()],
+                        headerBuilder: (context, opened) => Center(
+                          child: Text(
+                            "Egg moves",
+                            style: textTheme.bodyText1
+                                ?.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        body: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: EggMovesTableWidget(
+                            movesStore: _movesStore,
+                            index: getCounterAndAdd(),
+                          ),
                         ),
                       ),
-                      body: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: TechnicalRecordsMovesTableWidget(
-                          movesStore: _movesStore,
-                          index: getCounterAndAdd(),
+                    if (_pokemonStore.pokemon!.moves.tutor.isNotEmpty)
+                      ExpansionPanel(
+                        isExpanded: _movesStore.panels[getCounter()],
+                        headerBuilder: (context, opened) => Center(
+                          child: Text(
+                            "Tutor moves",
+                            style: textTheme.bodyText1
+                                ?.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        body: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: TutorMovesTableWidget(
+                            movesStore: _movesStore,
+                            index: getCounterAndAdd(),
+                          ),
                         ),
                       ),
-                    ),
-                  if (_pokemonStore.pokemon!.moves.evolution.isNotEmpty)
-                    ExpansionPanel(
-                      isExpanded: _movesStore.panels[getCounter()],
-                      headerBuilder: (context, opened) => Center(
-                        child: Text(
-                          "Moves learnt on evolution",
-                          style: textTheme.bodyText1
-                              ?.copyWith(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      body: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: EvolutionMovesTableWidget(
-                          movesStore: _movesStore,
-                          index: getCounterAndAdd(),
-                        ),
-                      ),
-                    ),
-                  if (_pokemonStore.pokemon!.moves.egg.isNotEmpty)
-                    ExpansionPanel(
-                      isExpanded: _movesStore.panels[getCounter()],
-                      headerBuilder: (context, opened) => Center(
-                        child: Text(
-                          "Egg moves",
-                          style: textTheme.bodyText1
-                              ?.copyWith(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      body: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: EggMovesTableWidget(
-                          movesStore: _movesStore,
-                          index: getCounterAndAdd(),
-                        ),
-                      ),
-                    ),
-                  if (_pokemonStore.pokemon!.moves.tutor.isNotEmpty)
-                    ExpansionPanel(
-                      isExpanded: _movesStore.panels[getCounter()],
-                      headerBuilder: (context, opened) => Center(
-                        child: Text(
-                          "Tutor moves",
-                          style: textTheme.bodyText1
-                              ?.copyWith(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      body: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: TutorMovesTableWidget(
-                          movesStore: _movesStore,
-                          index: getCounterAndAdd(),
-                        ),
-                      ),
-                    ),
-                ],
-                expansionCallback: (index, isOpen) =>
-                    _movesStore.setOpen(index),
+                  ],
+                  expansionCallback: (index, isOpen) =>
+                      _movesStore.setOpen(index),
+                ),
               );
             },
           ),

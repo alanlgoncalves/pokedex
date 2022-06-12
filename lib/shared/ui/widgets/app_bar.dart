@@ -27,7 +27,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
       expandedHeight: 170.0,
       collapsedHeight: 70,
       elevation: 0,
-      backgroundColor: AppTheme.colors.background,
+      backgroundColor: Theme.of(context).backgroundColor,
       actions: [
         Padding(
           padding: EdgeInsets.only(top: 20),
@@ -35,10 +35,8 @@ class _AppBarWidgetState extends State<AppBarWidget> {
             onPressed: () {
               Scaffold.of(context).openEndDrawer();
             },
-            icon: Icon(
-              Icons.menu,
-              color: Colors.black,
-            ),
+            icon: Icon(Icons.menu,
+                color: AppTheme.getColors(context).appBarButtons),
           ),
         )
       ],
@@ -56,7 +54,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
             children: [
               AnimatedPokeballWidget(
                 size: 24,
-                color: AppTheme.colors.pokeballLogoBlack,
+                color: AppTheme.getColors(context).pokeballLogoBlack,
               ),
               SizedBox(
                 width: 5,

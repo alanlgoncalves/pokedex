@@ -8,7 +8,6 @@ import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pokemon_mo
 import 'package:pokedex/modules/pokemon_grid/widgets/poke_item.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
-import 'package:pokedex/theme/app_theme.dart';
 
 class PokemonFavorites extends StatelessWidget {
   static final PokemonStore pokemonStore = GetIt.instance<PokemonStore>();
@@ -106,12 +105,11 @@ class PokemonFavorites extends StatelessWidget {
           ),
           Container(
             height: 40,
-            color: Colors.white,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Favotires Pokemons",
+                  "Favorites Pokemons",
                   style: textTheme.bodyText1,
                 ),
               ],

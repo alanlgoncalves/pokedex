@@ -23,8 +23,8 @@ class TypeEffectivenessWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: hasNone!
-                ? AppTheme.colors.unknownIcon
-                : AppTheme.colors.pokemonItem(type!),
+                ? AppTheme.getColors(context).unknownIcon
+                : AppTheme.getColors(context).pokemonItem(type!),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

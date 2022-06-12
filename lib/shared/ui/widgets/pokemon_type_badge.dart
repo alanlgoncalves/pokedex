@@ -35,9 +35,9 @@ class PokemonTypeBadge extends StatelessWidget {
             height: height,
           ),
           decoration: BoxDecoration(
-            color: AppTheme.colors.pokemonItem(type),
+            color: AppTheme.getColors(context).pokemonItem(type),
             border: showBorder!
-                ? Border.all(color: AppTheme.colors.pokemonTabTitle)
+                ? Border.all(color: AppTheme.getColors(context).pokemonTabTitle)
                 : null,
             borderRadius: BorderRadius.circular(50),
           ),
