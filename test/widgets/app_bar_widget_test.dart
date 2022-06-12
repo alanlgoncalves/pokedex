@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pokedex/shared/ui/widgets/animated_pokeball.dart';
 import 'package:pokedex/shared/ui/widgets/app_bar.dart';
+import 'package:pokedex/theme/light/light_theme.dart';
 
 void main() {
   testWidgets("Should render app bar without Lottie animation",
@@ -11,6 +12,7 @@ void main() {
       new MediaQuery(
         data: new MediaQueryData(),
         child: new MaterialApp(
+          theme: lightTheme,
           home: CustomScrollView(
             slivers: [
               AppBarWidget(title: "AppBar Title"),
@@ -32,6 +34,7 @@ void main() {
       new MediaQuery(
         data: new MediaQueryData(),
         child: new MaterialApp(
+          theme: lightTheme,
           home: CustomScrollView(
             slivers: [
               AppBarWidget(

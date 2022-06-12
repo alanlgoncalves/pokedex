@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/evolution/widgets/evolution_chain_item.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
-import 'package:pokedex/theme/app_theme.dart';
 
 class PreviousEvolutionChainWidget extends StatelessWidget {
   final PokemonStore _pokemonStore = GetIt.instance<PokemonStore>();
@@ -14,11 +13,13 @@ class PreviousEvolutionChainWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Column(
       children: [
         Text(
           "Previous Evolution${_pokemonStore.pokemon!.previousEvolutions.length > 1 ? "s" : ""}",
-          style: AppTheme.texts.pokemonTabViewTitle,
+          style: textTheme.bodyText1?.copyWith(fontWeight: FontWeight.bold),
         ),
         ...evolutionChain
             .where((element) =>

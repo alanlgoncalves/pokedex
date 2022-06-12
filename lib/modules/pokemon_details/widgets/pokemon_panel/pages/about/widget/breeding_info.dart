@@ -13,6 +13,8 @@ class BreedingInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Container(
       width: MediaQuery.of(context).size.width,
       child: Padding(
@@ -24,7 +26,8 @@ class BreedingInfoWidget extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 9),
               child: Text(
                 "Breeding",
-                style: AppTheme.texts.pokemonTabViewTitle,
+                style:
+                    textTheme.bodyText1?.copyWith(fontWeight: FontWeight.bold),
               ),
             ),
             SingleChildScrollView(
@@ -42,9 +45,12 @@ class BreedingInfoWidget extends StatelessWidget {
                             children: [
                               Container(
                                 width: 88,
-                                child: Text(
-                                  "Gender",
-                                  style: AppTheme.texts.pokemonTabViewSubTitle,
+                                child: Opacity(
+                                  opacity: 0.4,
+                                  child: Text(
+                                    "Gender",
+                                    style: textTheme.bodyText1,
+                                  ),
                                 ),
                               ),
                               ..._pokemonStore.pokemon!.breeding.genders
@@ -60,7 +66,8 @@ class BreedingInfoWidget extends StatelessWidget {
                                           ),
                                           child: FaIcon(
                                             FontAwesomeIcons.mars,
-                                            color: AppTheme.colors.marsIcon,
+                                            color: AppTheme.getColors(context)
+                                                .marsIcon,
                                           ),
                                         ),
                                       if (gender.type == GenderType.FEMALE)
@@ -70,7 +77,8 @@ class BreedingInfoWidget extends StatelessWidget {
                                           ),
                                           child: FaIcon(
                                             FontAwesomeIcons.venus,
-                                            color: AppTheme.colors.venusIcon,
+                                            color: AppTheme.getColors(context)
+                                                .venusIcon,
                                           ),
                                         ),
                                       if (gender.type == GenderType.UNKNOWN)
@@ -79,14 +87,14 @@ class BreedingInfoWidget extends StatelessWidget {
                                               horizontal: 5),
                                           child: Text(
                                             "???",
-                                            style: AppTheme.texts.pokemonText,
+                                            style: textTheme.bodyText1,
                                           ),
                                         ),
                                       Text(
                                         gender.type == GenderType.UNKNOWN
                                             ? "--%"
                                             : "${gender.percentage}",
-                                        style: AppTheme.texts.pokemonText,
+                                        style: textTheme.bodyText1,
                                       ),
                                     ],
                                   ),
@@ -102,15 +110,16 @@ class BreedingInfoWidget extends StatelessWidget {
                           children: [
                             Container(
                               width: 88,
-                              child: Text(
-                                "Egg Groups",
-                                style: AppTheme.texts.pokemonTabViewSubTitle,
+                              child: Opacity(
+                                opacity: 0.4,
+                                child: Text("Egg Groups",
+                                    style: textTheme.bodyText1),
                               ),
                             ),
                             Observer(
                               builder: (_) => Text(
                                 "${_pokemonStore.pokemon!.breeding.egg!.groups.join(", ")}",
-                                style: AppTheme.texts.pokemonText,
+                                style: textTheme.bodyText1,
                               ),
                             ),
                           ],
@@ -122,15 +131,18 @@ class BreedingInfoWidget extends StatelessWidget {
                           children: [
                             Container(
                               width: 88,
-                              child: Text(
-                                "Egg Cycle",
-                                style: AppTheme.texts.pokemonTabViewSubTitle,
+                              child: Opacity(
+                                opacity: 0.4,
+                                child: Text(
+                                  "Egg Cycle",
+                                  style: textTheme.bodyText1,
+                                ),
                               ),
                             ),
                             Observer(
                               builder: (_) => Text(
                                 "${_pokemonStore.pokemon!.breeding.egg!.cycle}",
-                                style: AppTheme.texts.pokemonText,
+                                style: textTheme.bodyText1,
                               ),
                             ),
                           ],

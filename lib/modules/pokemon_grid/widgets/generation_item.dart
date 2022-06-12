@@ -17,6 +17,8 @@ class GenerationItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return InkWell(
       onTap: onClick,
       enableFeedback: true,
@@ -25,7 +27,7 @@ class GenerationItemWidget extends StatelessWidget {
             color: color,
             borderRadius: BorderRadius.circular(15),
             border: Border.fromBorderSide(
-              BorderSide(color: AppTheme.colors.tabDivisor),
+              BorderSide(color: AppTheme.getColors(context).tabDivisor),
             ),
             boxShadow: [
               BoxShadow(
@@ -49,7 +51,7 @@ class GenerationItemWidget extends StatelessWidget {
                   child: CustomPaint(
                     size: Size(83, (83 * 1.0040160642570282).toDouble()),
                     painter: PokeballLogoPainter(
-                      color: AppTheme.colors.pokeballLogoGray,
+                      color: AppTheme.getColors(context).pokeballLogoGray,
                     ),
                   ),
                 ),
@@ -62,7 +64,7 @@ class GenerationItemWidget extends StatelessWidget {
                     children: [
                       Text(
                         generation.description,
-                        style: AppTheme.texts.pokemonTabTitle,
+                        style: textTheme.bodyText1,
                       ),
                       Row(
                         children: [

@@ -16,6 +16,8 @@ class EvolutionChainItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Row(
@@ -47,9 +49,8 @@ class EvolutionChainItemWidget extends StatelessWidget {
                         child: CustomPaint(
                           size: Size(83, (83 * 1.0040160642570282).toDouble()),
                           painter: PokeballLogoPainter(
-                            color: AppTheme.colors.pokeballLogoGray
-                                .withOpacity(0.2),
-                          ),
+                              color:
+                                  AppTheme.getColors(context).pokeballLogoGray),
                         ),
                       ),
                       Container(
@@ -72,12 +73,12 @@ class EvolutionChainItemWidget extends StatelessWidget {
                 ),
                 Text(
                   previousEvolution.name,
-                  style: AppTheme.texts.pokemonEvolutionChainName,
+                  style: textTheme.bodyText1,
                   textAlign: TextAlign.center,
                 ),
                 Text(
                   "#${previousEvolution.number}",
-                  style: AppTheme.texts.pokemonEvolutionChainNumber,
+                  style: textTheme.bodyText1?.copyWith(fontSize: 12),
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -92,7 +93,7 @@ class EvolutionChainItemWidget extends StatelessWidget {
                 width: 100,
                 child: Text(
                   nextEvolution.requirement!,
-                  style: AppTheme.texts.pokemonEvolutionChainRequirement,
+                  style: textTheme.bodyText1?.copyWith(fontSize: 12),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -124,9 +125,8 @@ class EvolutionChainItemWidget extends StatelessWidget {
                         child: CustomPaint(
                           size: Size(83, (83 * 1.0040160642570282).toDouble()),
                           painter: PokeballLogoPainter(
-                            color: AppTheme.colors.pokeballLogoGray
-                                .withOpacity(0.2),
-                          ),
+                              color:
+                                  AppTheme.getColors(context).pokeballLogoGray),
                         ),
                       ),
                       Container(
@@ -149,12 +149,12 @@ class EvolutionChainItemWidget extends StatelessWidget {
                 ),
                 Text(
                   nextEvolution.name,
-                  style: AppTheme.texts.pokemonEvolutionChainName,
+                  style: textTheme.bodyText1,
                   textAlign: TextAlign.center,
                 ),
                 Text(
                   "#${nextEvolution.number}",
-                  style: AppTheme.texts.pokemonEvolutionChainNumber,
+                  style: textTheme.bodyText1?.copyWith(fontSize: 12),
                   textAlign: TextAlign.center,
                 ),
               ],

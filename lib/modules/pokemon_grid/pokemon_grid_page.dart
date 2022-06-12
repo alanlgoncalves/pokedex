@@ -6,7 +6,6 @@ import 'package:lottie/lottie.dart';
 import 'package:pokedex/modules/pokemon_grid/widgets/pokemon_grid.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
-import 'package:pokedex/theme/app_theme.dart';
 
 class PokemonGridPage extends StatefulWidget {
   PokemonGridPage({Key? key}) : super(key: key);
@@ -33,6 +32,8 @@ class _PokemonGridPageState extends State<PokemonGridPage> {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Observer(
       builder: (_) {
         if (_pokemonStore.pokemonsSummary == null) {
@@ -62,7 +63,7 @@ class _PokemonGridPageState extends State<PokemonGridPage> {
                         padding: const EdgeInsets.only(bottom: 30),
                         child: Text(
                           "${_pokemonStore.pokemonFilter.pokemonNameNumberFilter} was not found",
-                          style: AppTheme.texts.pokemonText,
+                          style: textTheme.bodyText1,
                         ),
                       ),
                     )

@@ -39,6 +39,8 @@ class BaseStatsItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: Row(
@@ -46,9 +48,9 @@ class BaseStatsItemWidget extends StatelessWidget {
         children: [
           Container(
             width: 87,
-            child: Text(
-              title,
-              style: AppTheme.texts.pokemonTabViewSubTitle,
+            child: Opacity(
+              opacity: 0.4,
+              child: Text(title, style: textTheme.bodyText1),
             ),
           ),
           Observer(
@@ -56,7 +58,7 @@ class BaseStatsItemWidget extends StatelessWidget {
               width: 40,
               child: Text(
                 value().toString(),
-                style: AppTheme.texts.pokemonText,
+                style: textTheme.bodyText1,
               ),
             ),
           ),
@@ -79,7 +81,8 @@ class BaseStatsItemWidget extends StatelessWidget {
                       duration: Duration(seconds: 3),
                       height: 10,
                       decoration: BoxDecoration(
-                        color: AppTheme.colors.baseStatsBar(barPercentage),
+                        color: AppTheme.getColors(context)
+                            .baseStatsBar(barPercentage),
                         borderRadius: BorderRadius.circular(5),
                       ),
                     ),

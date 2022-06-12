@@ -7,6 +7,7 @@ import 'package:pokedex/shared/ui/widgets/animated_pokeball.dart';
 import 'package:pokedex/shared/ui/widgets/drawer_menu/drawer_menu.dart';
 import 'package:pokedex/shared/ui/widgets/drawer_menu/widgets/drawer_menu_item.dart';
 import 'package:pokedex/theme/app_theme.dart';
+import 'package:pokedex/theme/light/light_theme.dart';
 
 class HomePageStoreMock extends Mock implements HomePageStore {}
 
@@ -23,6 +24,7 @@ void main() {
     });
 
     final drawerMenu = MaterialApp(
+      theme: lightTheme,
       home: Scaffold(
         body: DrawerMenuWidget(),
       ),
@@ -48,7 +50,10 @@ void main() {
       final title = find.byWidgetPredicate((widget) {
         if (widget is Text) {
           return widget.data == "Pokedex" &&
-              widget.style == AppTheme.texts.homePageTitle;
+              widget.style?.fontSize ==
+                  lightTheme.textTheme.headline1?.fontSize &&
+              widget.style?.fontFamily ==
+                  lightTheme.textTheme.headline1?.fontFamily;
         }
         return false;
       });

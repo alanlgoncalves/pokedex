@@ -17,15 +17,19 @@ class PokemonTypeItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return InkWell(
       onTap: onClick,
       enableFeedback: true,
       child: Container(
         decoration: BoxDecoration(
-          color: color,
+          color: Theme.of(context).brightness == Brightness.light
+              ? color
+              : Theme.of(context).backgroundColor,
           borderRadius: BorderRadius.circular(15),
           border: Border.fromBorderSide(
-            BorderSide(color: AppTheme.colors.tabDivisor),
+            BorderSide(color: AppTheme.getColors(context).tabDivisor),
           ),
           boxShadow: [
             BoxShadow(
@@ -50,7 +54,9 @@ class PokemonTypeItemWidget extends StatelessWidget {
                   child: CustomPaint(
                     size: Size(83, (83 * 1.0040160642570282).toDouble()),
                     painter: PokeballLogoPainter(
-                      color: AppTheme.colors.pokeballLogoGray,
+                      color: AppTheme.getColors(context)
+                          .pokeballLogoGray
+                          .withOpacity(0.1),
                     ),
                   ),
                 ),
@@ -62,7 +68,9 @@ class PokemonTypeItemWidget extends StatelessWidget {
                   child: CustomPaint(
                     size: Size(83, (83 * 1.0040160642570282).toDouble()),
                     painter: PokeballLogoPainter(
-                      color: AppTheme.colors.pokeballLogoGray,
+                      color: AppTheme.getColors(context)
+                          .pokeballLogoGray
+                          .withOpacity(0.1),
                     ),
                   ),
                 ),
@@ -75,7 +83,7 @@ class PokemonTypeItemWidget extends StatelessWidget {
                     children: [
                       Text(
                         type,
-                        style: AppTheme.texts.pokemonTabTitle,
+                        style: textTheme.bodyText1,
                       ),
                       Image.asset(
                         AppConstants.pokemonTypeLogo(type, size: 60),

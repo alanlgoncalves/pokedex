@@ -4,7 +4,6 @@ import 'package:get_it/get_it.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/base_stats/utils/table_row_factory.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/base_stats/widgets/base_stats_item.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
-import 'package:pokedex/theme/app_theme.dart';
 
 import '../../pokemon_mobile_panel.dart';
 
@@ -15,6 +14,8 @@ class BaseStatsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     final size = MediaQuery.of(context).size;
 
     final horizontalPadding = getDetailsPanelsPadding(size);
@@ -53,26 +54,26 @@ class BaseStatsPage extends StatelessWidget {
           SizedBox(height: 40),
           Text(
             "Type Effectiveness",
-            style: AppTheme.texts.pokemonTabViewTitle,
+            style: textTheme.bodyText1?.copyWith(fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 20),
           Observer(
             builder: (_) => Table(
               columnWidths: {0: const FixedColumnWidth(100)},
               children: [
-                TableRowFactory.build(
+                TableRowFactory.build(context,
                     title: "Damaged normally by",
                     types: _pokemonStore.pokemon!.typesEffectiveness.entries
                         .where((it) => it.value == "1")),
-                TableRowFactory.build(
+                TableRowFactory.build(context,
                     title: "Weak to",
                     types: _pokemonStore.pokemon!.typesEffectiveness.entries
                         .where((it) => it.value == "2")),
-                TableRowFactory.build(
+                TableRowFactory.build(context,
                     title: "Resistant to",
                     types: _pokemonStore.pokemon!.typesEffectiveness.entries
                         .where((it) => it.value == "½" || it.value == "¼")),
-                TableRowFactory.build(
+                TableRowFactory.build(context,
                     title: "Immune to",
                     types: _pokemonStore.pokemon!.typesEffectiveness.entries
                         .where((it) => it.value == "0")),

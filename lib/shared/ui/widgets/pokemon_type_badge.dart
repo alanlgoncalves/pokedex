@@ -20,6 +20,8 @@ class PokemonTypeBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -33,9 +35,9 @@ class PokemonTypeBadge extends StatelessWidget {
             height: height,
           ),
           decoration: BoxDecoration(
-            color: AppTheme.colors.pokemonItem(type),
+            color: AppTheme.getColors(context).pokemonItem(type),
             border: showBorder!
-                ? Border.all(color: AppTheme.colors.pokemonTabTitle)
+                ? Border.all(color: AppTheme.getColors(context).pokemonTabTitle)
                 : null,
             borderRadius: BorderRadius.circular(50),
           ),
@@ -46,7 +48,7 @@ class PokemonTypeBadge extends StatelessWidget {
             child: Text(
               type,
               textAlign: TextAlign.center,
-              style: AppTheme.texts.pokemonTypeBadge,
+              style: textTheme.bodyText1?.copyWith(fontSize: 8),
             ),
           )
       ],

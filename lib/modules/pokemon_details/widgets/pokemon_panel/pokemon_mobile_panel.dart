@@ -62,11 +62,14 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
   Widget build(BuildContext context) {
     super.build(context);
 
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return SlidingUpPanel(
       maxHeight: MediaQuery.of(context).size.height * 1,
       minHeight: MediaQuery.of(context).size.height * 0.50,
       parallaxEnabled: true,
       parallaxOffset: 0.5,
+      color: Theme.of(context).backgroundColor,
       panelBuilder: (scrollController) {
         return Padding(
           padding: const EdgeInsets.only(top: 10),
@@ -76,7 +79,7 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
                 topLeft: Radius.circular(30),
                 topRight: Radius.circular(30),
               ),
-              color: Colors.white,
+              color: Theme.of(context).backgroundColor,
             ),
             child: NestedScrollView(
               controller: scrollController,
@@ -92,7 +95,7 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Theme.of(context).backgroundColor,
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(30),
                               topRight: Radius.circular(30),
@@ -100,48 +103,45 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
                           ),
                           child: TabBar(
                             unselectedLabelColor:
-                                AppTheme.colors.pokemonTabTitle,
-                            labelColor: AppTheme.colors.selectPokemonTabTitle,
-                            unselectedLabelStyle:
-                                AppTheme.texts.pokemonTabTitle,
-                            labelStyle: AppTheme.texts.selectPokemonTabTitle,
-                            indicatorColor: AppTheme.colors.tabIndicator,
+                                AppTheme.getColors(context).pokemonTabTitle,
+                            labelColor: AppTheme.getColors(context)
+                                .selectPokemonTabTitle,
+                            unselectedLabelStyle: textTheme.bodyText1
+                                ?.copyWith(fontWeight: FontWeight.bold),
+                            labelStyle: textTheme.bodyText1?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: null,
+                            ),
+                            indicatorColor:
+                                AppTheme.getColors(context).tabIndicator,
                             controller: _tabController,
                             tabs: [
                               Tab(
                                 child: FittedBox(
                                   fit: BoxFit.fitWidth,
-                                  child: Text(
-                                    "About",
-                                    style: AppTheme.texts.pokemonTabTitle,
-                                  ),
+                                  child:
+                                      Text("About", style: textTheme.bodyText1),
                                 ),
                               ),
                               Tab(
                                 child: FittedBox(
                                   fit: BoxFit.fitWidth,
-                                  child: Text(
-                                    "Base Stats",
-                                    style: AppTheme.texts.pokemonTabTitle,
-                                  ),
+                                  child: Text("Base Stats",
+                                      style: textTheme.bodyText1),
                                 ),
                               ),
                               Tab(
                                 child: FittedBox(
                                   fit: BoxFit.fitWidth,
-                                  child: Text(
-                                    "Evolution",
-                                    style: AppTheme.texts.pokemonTabTitle,
-                                  ),
+                                  child: Text("Evolution",
+                                      style: textTheme.bodyText1),
                                 ),
                               ),
                               Tab(
                                 child: FittedBox(
                                   fit: BoxFit.fitWidth,
-                                  child: Text(
-                                    "Moves",
-                                    style: AppTheme.texts.pokemonTabTitle,
-                                  ),
+                                  child:
+                                      Text("Moves", style: textTheme.bodyText1),
                                 ),
                               ),
                             ],

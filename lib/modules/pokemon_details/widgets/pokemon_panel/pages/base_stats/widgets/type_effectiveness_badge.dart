@@ -13,6 +13,8 @@ class TypeEffectivenessWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Column(
       children: [
         Container(
@@ -21,8 +23,8 @@ class TypeEffectivenessWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: hasNone!
-                ? AppTheme.colors.unknownIcon
-                : AppTheme.colors.pokemonItem(type!),
+                ? AppTheme.getColors(context).unknownIcon
+                : AppTheme.getColors(context).pokemonItem(type!),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -44,7 +46,7 @@ class TypeEffectivenessWidget extends StatelessWidget {
                   ),
                   child: Text(
                     value!,
-                    style: AppTheme.texts.pokemonText,
+                    style: textTheme.bodyText1,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -61,7 +63,7 @@ class TypeEffectivenessWidget extends StatelessWidget {
         ),
         Text(
           hasNone! ? "NONE" : type!,
-          style: AppTheme.texts.pokemonTypeBadge,
+          style: textTheme.bodyText1?.copyWith(fontSize: 8),
         )
       ],
     );

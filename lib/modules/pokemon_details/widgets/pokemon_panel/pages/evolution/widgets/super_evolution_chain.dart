@@ -5,7 +5,6 @@ import 'package:pokedex/shared/ui/widgets/image_dialog.dart';
 import 'package:pokedex/shared/utils/evolution_chain_utils.dart';
 import 'package:pokedex/shared/utils/hero_dialog_route.dart';
 import 'package:pokedex/shared/utils/image_utils.dart';
-import 'package:pokedex/theme/app_theme.dart';
 
 class SuperEvolutionChainWidget extends StatelessWidget {
   final PokemonStore _pokemonStore = GetIt.instance<PokemonStore>();
@@ -16,6 +15,8 @@ class SuperEvolutionChainWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     final megaEvolutionChain =
         EvolutionChainUtils.buildSuperEvolutionChain(_pokemonStore.pokemon!);
 
@@ -28,7 +29,8 @@ class SuperEvolutionChainWidget extends StatelessWidget {
               children: [
                 Text(
                   "Mega Evolution${_pokemonStore.pokemon!.megaEvolutions.length > 1 ? "s" : ""}",
-                  style: AppTheme.texts.pokemonTabViewTitle,
+                  style: textTheme.bodyText1
+                      ?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 ...megaEvolutionChain
               ],
@@ -41,7 +43,8 @@ class SuperEvolutionChainWidget extends StatelessWidget {
               children: [
                 Text(
                   "Gigantamax Evolution${_pokemonStore.pokemon!.megaEvolutions.length > 1 ? "s" : ""}",
-                  style: AppTheme.texts.pokemonTabViewTitle,
+                  style: textTheme.bodyText1
+                      ?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 ..._pokemonStore.pokemon!.gigantamaxEvolutions.map(
                   (gigantamax) => Center(
@@ -73,7 +76,7 @@ class SuperEvolutionChainWidget extends StatelessWidget {
                         ),
                         Text(
                           gigantamax.name,
-                          style: AppTheme.texts.pokemonEvolutionChainName,
+                          style: textTheme.bodyText1,
                         ),
                       ],
                     ),

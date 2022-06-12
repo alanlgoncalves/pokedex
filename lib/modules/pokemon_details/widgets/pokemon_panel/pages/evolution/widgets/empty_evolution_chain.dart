@@ -4,7 +4,6 @@ import 'package:get_it/get_it.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
-import 'package:pokedex/theme/app_theme.dart';
 
 class EmptyEvolutionChainWidget extends StatelessWidget {
   final PokemonStore _pokemonStore = GetIt.instance<PokemonStore>();
@@ -13,6 +12,8 @@ class EmptyEvolutionChainWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Column(
       children: [
         Center(
@@ -27,7 +28,7 @@ class EmptyEvolutionChainWidget extends StatelessWidget {
         ),
         Text(
           "${_pokemonStore.pokemon!.name} does not have any evolution chain",
-          style: AppTheme.texts.pokemonEvolutionChainName,
+          style: textTheme.bodyText1,
         )
       ],
     );

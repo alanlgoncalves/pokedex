@@ -8,7 +8,6 @@ import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pokemon_mo
 import 'package:pokedex/modules/pokemon_grid/widgets/poke_item.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
-import 'package:pokedex/theme/app_theme.dart';
 
 class PokemonFavorites extends StatelessWidget {
   static final PokemonStore pokemonStore = GetIt.instance<PokemonStore>();
@@ -29,6 +28,8 @@ class PokemonFavorites extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     final size = MediaQuery.of(context).size;
 
     final horizontalPadding = getDetailsPanelsPadding(size);
@@ -40,7 +41,7 @@ class PokemonFavorites extends StatelessWidget {
           children: [
             Text(
               "You do not have any favorited Pokemon yet",
-              style: AppTheme.texts.pokemonText,
+              style: textTheme.bodyText1,
             ),
             Center(
               child: Lottie.asset(
@@ -104,13 +105,12 @@ class PokemonFavorites extends StatelessWidget {
           ),
           Container(
             height: 40,
-            color: Colors.white,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Favotires Pokemons",
-                  style: AppTheme.texts.pokemonText,
+                  "Favorites Pokemons",
+                  style: textTheme.bodyText1,
                 ),
               ],
             ),

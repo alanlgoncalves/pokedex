@@ -11,14 +11,20 @@ class HeightWeightInfoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Container(
       height: 72,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).brightness == Brightness.light
+            ? Theme.of(context).backgroundColor
+            : AppTheme.getColors(context).panelBackground,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
+            color: Theme.of(context).brightness == Brightness.light
+                ? Colors.grey.withOpacity(0.3)
+                : Colors.black.withOpacity(0.3),
             spreadRadius: 3,
             blurRadius: 15,
             offset: Offset(0, 8),
@@ -32,9 +38,12 @@ class HeightWeightInfoWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Height",
-                style: AppTheme.texts.pokemonTabViewSubTitle,
+              Opacity(
+                opacity: 0.4,
+                child: Text(
+                  "Height",
+                  style: textTheme.bodyText1,
+                ),
               ),
               SizedBox(
                 height: 11,
@@ -42,7 +51,7 @@ class HeightWeightInfoWidget extends StatelessWidget {
               Observer(
                 builder: (_) => Text(
                   _pokemonStore.pokemon!.height,
-                  style: AppTheme.texts.pokemonText,
+                  style: textTheme.bodyText1,
                 ),
               )
             ],
@@ -51,9 +60,12 @@ class HeightWeightInfoWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Weight",
-                style: AppTheme.texts.pokemonTabViewSubTitle,
+              Opacity(
+                opacity: 0.4,
+                child: Text(
+                  "Weight",
+                  style: textTheme.bodyText1,
+                ),
               ),
               SizedBox(
                 height: 11,
@@ -61,7 +73,7 @@ class HeightWeightInfoWidget extends StatelessWidget {
               Observer(
                 builder: (_) => Text(
                   _pokemonStore.pokemon!.weight,
-                  style: AppTheme.texts.pokemonText,
+                  style: textTheme.bodyText1,
                 ),
               )
             ],

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/modules/home/home_page_store.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
-import 'package:pokedex/theme/app_theme.dart';
 
 class TextFilterWidget extends StatelessWidget {
   static final PokemonStore pokemonStore = GetIt.instance<PokemonStore>();
@@ -24,6 +23,8 @@ class TextFilterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextTheme textTheme = Theme.of(context).textTheme;
+
     return Padding(
       padding: const EdgeInsets.only(left: 28, right: 28, top: 30),
       child: Column(
@@ -34,7 +35,7 @@ class TextFilterWidget extends StatelessWidget {
             autofocus: true,
             minLines: 1,
             textAlign: TextAlign.center,
-            style: AppTheme.texts.pokemonText,
+            style: textTheme.bodyText1,
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.search),
               suffixIcon: IconButton(
@@ -45,7 +46,9 @@ class TextFilterWidget extends StatelessWidget {
                 onPressed: onClose,
               ),
               hintText: hintText,
-              fillColor: Color(0xFFE1E1E1),
+              fillColor: Theme.of(context).brightness == Brightness.light
+                  ? Color(0xFFE1E1E1)
+                  : null,
               filled: true,
               //hintStyle: AppTheme.textStyles.stepperHintTextField,
               border: OutlineInputBorder(

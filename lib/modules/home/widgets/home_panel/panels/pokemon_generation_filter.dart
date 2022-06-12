@@ -28,6 +28,8 @@ class PokemonGenerationFilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     final size = MediaQuery.of(context).size;
 
     final horizontalPadding = getDetailsPanelsPadding(size);
@@ -59,11 +61,11 @@ class PokemonGenerationFilter extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final generation = Generation.values[index];
 
-                    Color? color =
-                        pokemonStore.pokemonFilter.generationFilter ==
-                                generation
-                            ? AppTheme.colors.selectedGenerationFilter
-                            : Colors.white;
+                    Color? color = pokemonStore
+                                .pokemonFilter.generationFilter ==
+                            generation
+                        ? AppTheme.getColors(context).selectedGenerationFilter
+                        : AppTheme.getColors(context).generationFilter;
 
                     return GenerationItemWidget(
                       generation: generation,
@@ -89,13 +91,12 @@ class PokemonGenerationFilter extends StatelessWidget {
             if (pokemonStore.pokemonFilter.generationFilter != null)
               Container(
                 height: 40,
-                color: Colors.white,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       "Click on the selected item to clear the filter",
-                      style: AppTheme.texts.pokemonText,
+                      style: textTheme.bodyText1,
                     ),
                   ],
                 ),

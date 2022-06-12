@@ -49,6 +49,8 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     final size = MediaQuery.of(context).size;
 
     double? viewportFraction = getViewportFraction(size);
@@ -70,7 +72,8 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
                   padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
                   child: Text(
                     "${_pokemonStore.pokemon!.name} Cards",
-                    style: AppTheme.texts.pokemonTabViewTitle,
+                    style: textTheme.bodyText1
+                        ?.copyWith(fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -116,7 +119,8 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
                                       borderRadius: BorderRadius.circular(15),
                                       border: Border.fromBorderSide(
                                         BorderSide(
-                                            color: AppTheme.colors.tabDivisor),
+                                            color: AppTheme.getColors(context)
+                                                .tabDivisor),
                                       ),
                                       boxShadow: [
                                         BoxShadow(
@@ -134,13 +138,13 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
                               ),
                               Text(
                                 "${card.number} - ${card.name}",
-                                style: AppTheme.texts.pokemonText,
+                                style: textTheme.bodyText1,
                               ),
                               FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: Text(
                                   "${card.expansionName}",
-                                  style: AppTheme.texts.pokemonText,
+                                  style: textTheme.bodyText1,
                                 ),
                               ),
                             ],

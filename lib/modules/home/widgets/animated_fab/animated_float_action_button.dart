@@ -67,6 +67,8 @@ class _AnimatedFloatActionButtonWidgetState
     widget.openAnimationController.addListener(() {
       isOpen = widget.openAnimationController.isCompleted;
 
+      if (!mounted) return;
+
       setState(() {});
     });
   }
@@ -151,7 +153,7 @@ class _AnimatedFloatActionButtonWidgetState
                           width: 20,
                           height: 20,
                         ),
-                  color: AppTheme.colors.floatActionButton,
+                  color: AppTheme.getColors(context).floatActionButton,
                   onClick: () {
                     if (widget.openAnimationController.isCompleted) {
                       widget.openAnimationController.reverse();

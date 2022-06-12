@@ -21,6 +21,8 @@ class DrawerMenuItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Padding(
       padding: const EdgeInsets.all(5),
       child: InkWell(
@@ -31,7 +33,9 @@ class DrawerMenuItemWidget extends StatelessWidget {
               },
         child: Container(
           decoration: BoxDecoration(
-            color: onTap != null ? color : AppTheme.colors.drawerDisabled,
+            color: onTap != null
+                ? color
+                : AppTheme.getColors(context).drawerDisabled,
             borderRadius: BorderRadius.circular(15),
           ),
           child: ClipRRect(
@@ -61,7 +65,8 @@ class DrawerMenuItemWidget extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 10),
                       child: Text(
                         text,
-                        style: AppTheme.texts.drawerMenuItem,
+                        style:
+                            textTheme.bodyText1?.copyWith(color: Colors.white),
                       ),
                     ),
                   ],
