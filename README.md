@@ -26,6 +26,10 @@
 
 ![Screen Shot 2021-09-07 at 15 53 03](https://user-images.githubusercontent.com/8467311/132396453-3de6e399-66bc-45cb-bb2b-7d256477dc23.png)
 
+<h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/384.png" width="24" height="24"/> Did you like this project? ❤</h3>
+
+- Support it by ⭐ to joining on the [stargazers](https://github.com/alanlgoncalves/pokedex/stargazers) list of this Pokedex project.
+- Follow me for my next creations! 💪🏾
 
 <h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/145.png" width="24" height="24"/> Actual Release</h3>
 
@@ -135,11 +139,6 @@ $ flutter pub get
 # Run the APP on the open device (Android or IOS)
 $ flutter run
 ```
-
-<h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/384.png" width="24" height="24"/> Find this repository useful? ❤</h3>
-
-- Support it by joining [stargazers](https://github.com/alanlgoncalves/pokedex/stargazers) for this repository. ⭐
-- Follow me for my next creations! 💪🏾
 
 <h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/894.png" width="24" height="24"/> Special Thanks ❤</h3>
 
