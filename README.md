@@ -30,24 +30,26 @@
 <h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/145.png" width="24" height="24"/> Actual Release</h3>
 
 | Version | Platform                                                                             | Download                                                                                                                    | Performance                                                |
-| ------- | ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| 1.1.0   | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) | [![](https://img.shields.io/badge/-Download_APK-blue?&logo=Android)](https://github.com/alanlgoncalves/pokedex/releases)    | ![](https://img.shields.io/badge/-Very%20Good-brightgreen) |
-| 1.1.0   | ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat)           |                                                                                                                             | ![](https://img.shields.io/badge/-Very%20Good-brightgreen) |
-| 1.1.0   | ![Web](https://img.shields.io/badge/WEB-Alpha-000?&logo=Google-Chrome&style=flat)    | [![](https://img.shields.io/badge/-Access_Now-blue?&logo=Google-Chrome&logoColor=white)]((https://pokedex.alansantos.dev/)) | ![](https://img.shields.io/badge/-Good-green)              |
+|---------| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| 1.2.0   | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) | [![](https://img.shields.io/badge/-Download_APK-blue?&logo=Android)](https://github.com/alanlgoncalves/pokedex/releases)    | ![](https://img.shields.io/badge/-Very%20Good-brightgreen) |
+| 1.2.0   | ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat)           |                                                                                                                             | ![](https://img.shields.io/badge/-Very%20Good-brightgreen) |
+| 1.2.0   | ![Web](https://img.shields.io/badge/WEB-Alpha-000?&logo=Google-Chrome&style=flat)    | [![](https://img.shields.io/badge/-Access_Now-blue?&logo=Google-Chrome&logoColor=white)]((https://pokedex.alansantos.dev/)) | ![](https://img.shields.io/badge/-Good-green)              |
 
 <h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/146.png" width="24" height="24"/> Future Release</h3>
 
 | Version | New Functionalities | Supported Platforms                                                                                                                                                                                                                                                                                                                                                                                                    |
-| ------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|---------|---------------------| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 1.1.0   | - Items page        | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat) ![Web](https://img.shields.io/badge/WEB-Alpha-000?&logo=Google-Chrome&style=flat)                                                                                                                                                                      |
-| 1.2.0   | - Moves page        | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat) ![Web](https://img.shields.io/badge/WEB-Alpha-000?&logo=Google-Chrome&style=flat)                                                                                                                                                                      |
-| 1.3.0   | - Abilities page    | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat) ![Web](https://img.shields.io/badge/WEB-Alpha-000?&logo=Google-Chrome&style=flat)                                                                                                                                                                      |
-| 1.4.0   | - Pokémon News      | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat) ![Web](https://img.shields.io/badge/WEB-Beta-000?&logo=Google-Chrome&style=flat)                                                                                                                                                                       |
-| 1.5.0   | - MacOS App         | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat) ![Web](https://img.shields.io/badge/WEB-Stable-000?&logo=Google-Chrome&style=flat) ![MacOS](https://img.shields.io/badge/MacOs-Stable-000?&logo=Apple&style=flat)                                                                                      |
-| 1.6.0   | - Windows App       | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat) ![Web](https://img.shields.io/badge/WEB-Stable-000?&logo=Google-Chrome&style=flat) ![MacOS](https://img.shields.io/badge/MacOs-Stable-000?&logo=Apple&style=flat) ![Windows](https://img.shields.io/badge/Windows-Stable-000?&logo=Windows&style=flat) |
+| 1.2.0   | - Dark Theme        | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat) ![Web](https://img.shields.io/badge/WEB-Alpha-000?&logo=Google-Chrome&style=flat)                                                                                                                                                                      |
+| 1.3.0   | - Moves page        | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat) ![Web](https://img.shields.io/badge/WEB-Alpha-000?&logo=Google-Chrome&style=flat)                                                                                                                                                                      |
+| 1.4.0   | - Abilities page    | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat) ![Web](https://img.shields.io/badge/WEB-Alpha-000?&logo=Google-Chrome&style=flat)                                                                                                                                                                      |
+| 1.5.0   | - Pokémon News      | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat) ![Web](https://img.shields.io/badge/WEB-Beta-000?&logo=Google-Chrome&style=flat)                                                                                                                                                                       |
+| 1.6.0   | - MacOS App         | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat) ![Web](https://img.shields.io/badge/WEB-Stable-000?&logo=Google-Chrome&style=flat) ![MacOS](https://img.shields.io/badge/MacOs-Stable-000?&logo=Apple&style=flat)                                                                                      |
+| 1.7.0   | - Windows App       | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat) ![Web](https://img.shields.io/badge/WEB-Stable-000?&logo=Google-Chrome&style=flat) ![MacOS](https://img.shields.io/badge/MacOs-Stable-000?&logo=Apple&style=flat) ![Windows](https://img.shields.io/badge/Windows-Stable-000?&logo=Windows&style=flat) |
 
 <h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/144.png" width="24" height="24"/> Functionalities</h3>
 
+- Sun (Light) and Moon (Dark) Themes 
 - List of all 898 Pokémons
 - All generations (I, II, III, IV, V, VI, VII, VIII)
 - Pokémons details
@@ -66,6 +68,8 @@
 - Filter by Pokémons types
 - Filter by Pokémons name or number
 - Items 
+
+<h3 align="center">Moon Theme</h3>
 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/8467311/133906121-dbacd422-c185-4e74-b951-dbec68819ae0.png" width="200" />
@@ -94,6 +98,7 @@
 - [Flutter Launcher Icons](https://pub.dev/packages/flutter_launcher_icons)
 - [Flutter Native Splash](https://pub.dev/packages/flutter_native_splash)
 - [Shared Preferences](https://pub.dev/packages/shared_preferences)
+- [Animated Theme Switcher](https://pub.dev/packages/animated_theme_switcher)
 
 <h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/150.png" width="24" height="24"/> Prerequisites</h3>
 
