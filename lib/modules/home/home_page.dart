@@ -20,6 +20,7 @@ import 'package:pokedex/shared/utils/converters.dart';
 import 'package:pokedex/theme/app_theme.dart';
 import 'package:pokedex/theme/dark/dark_theme.dart';
 import 'package:pokedex/theme/light/light_theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class HomePage extends StatefulWidget {
@@ -181,10 +182,18 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         builder: (_, child) => FadeTransition(
                             opacity: _blackBackgroundOpacityAnimation,
                             child: child),
-                        child: Container(
-                          height: MediaQuery.of(context).size.height,
-                          width: MediaQuery.of(context).size.width,
-                          color: Colors.black87,
+                        child: GestureDetector(
+                          child: Container(
+                            height: MediaQuery.of(context).size.height,
+                            width: MediaQuery.of(context).size.width,
+                            color: Colors.black87,
+                          ),
+                          onTap: () {
+                            if (_homeStore.isBackgroundBlack) {
+                              _homeStore.hideBackgroundBlack();
+                              _fabAnimationOpenController.reverse();
+                            }
+                          },
                         ),
                       );
                     } else {
@@ -230,12 +239,19 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 ),
                               ),
                               color: Theme.of(context).backgroundColor,
-                              onClick: () {
+                              onClick: () async {
                                 ThemeSwitcher.of(context)?.changeTheme(
                                     theme: Theme.of(context).brightness ==
                                             Brightness.light
                                         ? darkTheme
                                         : lightTheme);
+
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                prefs.setBool(
+                                    "darkTheme",
+                                    !(Theme.of(context).brightness ==
+                                        Brightness.dark));
                               },
                             ),
                             if (_homeStore.page == HomePageType.POKEMON_GRID)

@@ -3,13 +3,24 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/shared/getit/getit.dart';
 import 'package:pokedex/shared/routes/router.dart' as router;
+import 'package:pokedex/theme/dark/dark_theme.dart';
 import 'package:pokedex/theme/light/light_theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences.getInstance().then((instance) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    runApp(MyApp(prefs));
+  });
 }
 
 class MyApp extends StatelessWidget {
+  final SharedPreferences prefs;
+
+  const MyApp(this.prefs);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -18,7 +29,8 @@ class MyApp extends StatelessWidget {
     final botToastBuilder = BotToastInit();
 
     return ThemeProvider(
-      initTheme: lightTheme,
+      initTheme:
+          this.prefs.getBool("darkTheme") ?? false ? darkTheme : lightTheme,
       child: MaterialApp(
         title: 'Pokedex',
         builder: (context, child) {

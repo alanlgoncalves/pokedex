@@ -18,6 +18,7 @@ import 'package:pokedex/shared/ui/canvas/white_pokeball_canvas.dart';
 import 'package:pokedex/shared/ui/enums/device_screen_type.dart';
 import 'package:pokedex/shared/utils/converters.dart';
 import 'package:pokedex/theme/app_theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../theme/dark/dark_theme.dart';
 import '../../theme/light/light_theme.dart';
@@ -171,12 +172,19 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                         },
                         icon: ThemeSwitcher(builder: (context) {
                           return InkWell(
-                            onTap: () {
+                            onTap: () async {
                               ThemeSwitcher.of(context)?.changeTheme(
                                   theme: Theme.of(context).brightness ==
                                           Brightness.light
                                       ? darkTheme
                                       : lightTheme);
+
+                              SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              prefs.setBool(
+                                  "darkTheme",
+                                  !(Theme.of(context).brightness ==
+                                      Brightness.dark));
                             },
                             child: Icon(
                                 Theme.of(context).brightness == Brightness.light
