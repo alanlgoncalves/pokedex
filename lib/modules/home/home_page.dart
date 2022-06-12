@@ -18,10 +18,11 @@ import 'package:pokedex/shared/ui/widgets/drawer_menu/drawer_menu.dart';
 import 'package:pokedex/shared/utils/app_constants.dart';
 import 'package:pokedex/shared/utils/converters.dart';
 import 'package:pokedex/theme/app_theme.dart';
-import 'package:pokedex/theme/dark/dark_theme.dart';
 import 'package:pokedex/theme/light/light_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+
+import '../../theme/dark/dark_theme.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -207,162 +208,160 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       itemStore: _itemStore)
                 ],
               ),
-              Observer(builder: (_) {
-                return AnimatedBuilder(
-                    animation: _fabAnimationRotationController,
-                    builder: (_, child) => Transform(
-                          alignment: Alignment.bottomRight,
-                          transform: Matrix4.rotationZ(
-                              getRadiansFromDegree(_fabRotateAnimation.value))
-                            ..scale(_fabSizeAnimation.value),
-                          child: child,
-                        ),
-                    child: ThemeSwitcher(
-                      builder: (context) {
-                        return AnimatedFloatActionButtonWidget(
-                          homeStore: _homeStore,
-                          openAnimationController: _fabAnimationOpenController,
-                          buttons: [
+              ThemeSwitcher(builder: (context) {
+                return Observer(
+                  builder: (_) {
+                    return AnimatedBuilder(
+                      animation: _fabAnimationRotationController,
+                      builder: (_, child) => Transform(
+                        alignment: Alignment.bottomRight,
+                        transform: Matrix4.rotationZ(
+                            getRadiansFromDegree(_fabRotateAnimation.value))
+                          ..scale(_fabSizeAnimation.value),
+                        child: child,
+                      ),
+                      child: AnimatedFloatActionButtonWidget(
+                        homeStore: _homeStore,
+                        openAnimationController: _fabAnimationOpenController,
+                        buttons: [
+                          CircularFabTextButton(
+                            text:
+                                Theme.of(context).brightness == Brightness.light
+                                    ? "Moon Theme"
+                                    : "Sun Theme",
+                            icon: SizedBox(
+                              child: Icon(
+                                Theme.of(context).brightness == Brightness.light
+                                    ? Icons.dark_mode
+                                    : Icons.light_mode,
+                                color: AppTheme.getColors(context)
+                                    .floatActionButton,
+                              ),
+                            ),
+                            color: Theme.of(context).backgroundColor,
+                            onClick: () async {
+                              ThemeSwitcher.of(context)?.changeTheme(
+                                  theme: Theme.of(context).brightness ==
+                                          Brightness.light
+                                      ? darkTheme
+                                      : lightTheme);
+
+                              SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              prefs.setBool(
+                                  "darkTheme",
+                                  !(Theme.of(context).brightness ==
+                                      Brightness.dark));
+                            },
+                          ),
+                          if (_homeStore.page == HomePageType.POKEMON_GRID)
                             CircularFabTextButton(
-                              text: Theme.of(context).brightness ==
-                                      Brightness.light
-                                  ? "Moon Theme"
-                                  : "Sun Theme",
+                              text: _getSearchFabButtonText(_pokemonStore
+                                  .pokemonFilter.pokemonNameNumberFilter),
                               icon: SizedBox(
                                 child: Icon(
-                                  Theme.of(context).brightness ==
-                                          Brightness.light
-                                      ? Icons.dark_mode
-                                      : Icons.light_mode,
+                                  Icons.search,
                                   color: AppTheme.getColors(context)
                                       .floatActionButton,
                                 ),
                               ),
                               color: Theme.of(context).backgroundColor,
-                              onClick: () async {
-                                ThemeSwitcher.of(context)?.changeTheme(
-                                    theme: Theme.of(context).brightness ==
-                                            Brightness.light
-                                        ? darkTheme
-                                        : lightTheme);
-
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.setBool(
-                                    "darkTheme",
-                                    !(Theme.of(context).brightness ==
-                                        Brightness.dark));
+                              onClick: () {
+                                _fabAnimationOpenController.reverse();
+                                _homeStore.setPanelType(
+                                    PanelType.FILTER_POKEMON_NAME_NUMBER);
+                                _homeStore.openFilter();
+                                _homeStore.hideBackgroundBlack();
                               },
                             ),
-                            if (_homeStore.page == HomePageType.POKEMON_GRID)
-                              CircularFabTextButton(
-                                text: _getSearchFabButtonText(_pokemonStore
-                                    .pokemonFilter.pokemonNameNumberFilter),
-                                icon: SizedBox(
-                                  child: Icon(
-                                    Icons.search,
-                                    color: AppTheme.getColors(context)
-                                        .floatActionButton,
-                                  ),
-                                ),
-                                color: Theme.of(context).backgroundColor,
-                                onClick: () {
-                                  _fabAnimationOpenController.reverse();
-                                  _homeStore.setPanelType(
-                                      PanelType.FILTER_POKEMON_NAME_NUMBER);
-                                  _homeStore.openFilter();
-                                  _homeStore.hideBackgroundBlack();
-                                },
-                              ),
-                            if (_homeStore.page == HomePageType.ITENS)
-                              CircularFabTextButton(
-                                text:
-                                    _getSearchFabButtonText(_itemStore.filter),
-                                icon: SizedBox(
-                                  child: Icon(
-                                    Icons.search,
-                                    color: AppTheme.getColors(context)
-                                        .floatActionButton,
-                                  ),
-                                ),
-                                color: Theme.of(context).backgroundColor,
-                                onClick: () {
-                                  _fabAnimationOpenController.reverse();
-                                  _homeStore
-                                      .setPanelType(PanelType.FILTER_ITEMS);
-                                  _homeStore.openFilter();
-                                  _homeStore.hideBackgroundBlack();
-                                },
-                              ),
-                            if (_homeStore.page == HomePageType.POKEMON_GRID)
-                              CircularFabTextButton(
-                                text: _pokemonStore
-                                            .pokemonFilter.generationFilter ==
-                                        null
-                                    ? "All Generations"
-                                    : Generation
-                                        .values[_pokemonStore.pokemonFilter
-                                            .generationFilter!.index]
-                                        .description,
-                                icon: CustomPaint(
-                                  size: Size(
-                                      20, (20 * 1.0040160642570282).toDouble()),
-                                  painter: PokeballLogoPainter(
-                                    color: AppTheme.getColors(context)
-                                        .floatActionButton,
-                                  ),
-                                ),
-                                color: Theme.of(context).backgroundColor,
-                                onClick: () {
-                                  _fabAnimationOpenController.reverse();
-                                  _homeStore.setPanelType(
-                                      PanelType.FILTER_POKEMON_GENERATION);
-                                  _homeStore.openFilter();
-                                },
-                              ),
-                            if (_homeStore.page == HomePageType.POKEMON_GRID)
-                              CircularFabTextButton(
-                                text: _pokemonStore.pokemonFilter.typeFilter ==
-                                        null
-                                    ? "All Types"
-                                    : _pokemonStore.pokemonFilter.typeFilter!,
-                                icon: CustomPaint(
-                                  size: Size(
-                                      20, (20 * 1.0040160642570282).toDouble()),
-                                  painter: PokeballLogoPainter(
-                                    color: AppTheme.getColors(context)
-                                        .floatActionButton,
-                                  ),
-                                ),
-                                color: Theme.of(context).backgroundColor,
-                                onClick: () {
-                                  _fabAnimationOpenController.reverse();
-                                  _homeStore.setPanelType(
-                                      PanelType.FILTER_POKEMON_TYPE);
-                                  _homeStore.openFilter();
-                                },
-                              ),
-                            if (_homeStore.page == HomePageType.POKEMON_GRID)
-                              CircularFabTextButton(
-                                text: "Favorite Pokemons",
-                                icon: Icon(
-                                  Icons.favorite,
+                          if (_homeStore.page == HomePageType.ITENS)
+                            CircularFabTextButton(
+                              text: _getSearchFabButtonText(_itemStore.filter),
+                              icon: SizedBox(
+                                child: Icon(
+                                  Icons.search,
                                   color: AppTheme.getColors(context)
                                       .floatActionButton,
                                 ),
-                                color: Theme.of(context).backgroundColor,
-                                onClick: () {
-                                  _fabAnimationOpenController.reverse();
-                                  _homeStore.setPanelType(
-                                      PanelType.FAVORITES_POKEMONS);
-                                  _homeStore.openFilter();
-                                },
                               ),
-                          ],
-                        );
-                      },
-                    ));
-              }),
+                              color: Theme.of(context).backgroundColor,
+                              onClick: () {
+                                _fabAnimationOpenController.reverse();
+                                _homeStore.setPanelType(PanelType.FILTER_ITEMS);
+                                _homeStore.openFilter();
+                                _homeStore.hideBackgroundBlack();
+                              },
+                            ),
+                          if (_homeStore.page == HomePageType.POKEMON_GRID)
+                            CircularFabTextButton(
+                              text: _pokemonStore
+                                          .pokemonFilter.generationFilter ==
+                                      null
+                                  ? "All Generations"
+                                  : Generation
+                                      .values[_pokemonStore.pokemonFilter
+                                          .generationFilter!.index]
+                                      .description,
+                              icon: CustomPaint(
+                                size: Size(
+                                    20, (20 * 1.0040160642570282).toDouble()),
+                                painter: PokeballLogoPainter(
+                                  color: AppTheme.getColors(context)
+                                      .floatActionButton,
+                                ),
+                              ),
+                              color: Theme.of(context).backgroundColor,
+                              onClick: () {
+                                _fabAnimationOpenController.reverse();
+                                _homeStore.setPanelType(
+                                    PanelType.FILTER_POKEMON_GENERATION);
+                                _homeStore.openFilter();
+                              },
+                            ),
+                          if (_homeStore.page == HomePageType.POKEMON_GRID)
+                            CircularFabTextButton(
+                              text:
+                                  _pokemonStore.pokemonFilter.typeFilter == null
+                                      ? "All Types"
+                                      : _pokemonStore.pokemonFilter.typeFilter!,
+                              icon: CustomPaint(
+                                size: Size(
+                                    20, (20 * 1.0040160642570282).toDouble()),
+                                painter: PokeballLogoPainter(
+                                  color: AppTheme.getColors(context)
+                                      .floatActionButton,
+                                ),
+                              ),
+                              color: Theme.of(context).backgroundColor,
+                              onClick: () {
+                                _fabAnimationOpenController.reverse();
+                                _homeStore.setPanelType(
+                                    PanelType.FILTER_POKEMON_TYPE);
+                                _homeStore.openFilter();
+                              },
+                            ),
+                          if (_homeStore.page == HomePageType.POKEMON_GRID)
+                            CircularFabTextButton(
+                              text: "Favorite Pokemons",
+                              icon: Icon(
+                                Icons.favorite,
+                                color: AppTheme.getColors(context)
+                                    .floatActionButton,
+                              ),
+                              color: Theme.of(context).backgroundColor,
+                              onClick: () {
+                                _fabAnimationOpenController.reverse();
+                                _homeStore
+                                    .setPanelType(PanelType.FAVORITES_POKEMONS);
+                                _homeStore.openFilter();
+                              },
+                            ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              })
             ],
           ),
         );
