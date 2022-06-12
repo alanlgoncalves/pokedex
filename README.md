@@ -29,11 +29,11 @@
 
 <h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/145.png" width="24" height="24"/> Actual Release</h3>
 
-| Version | Platform                                                                             | Download                                                                                                                    | Performance                                                |
-|---------| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| 1.2.0   | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) | [![](https://img.shields.io/badge/-Download_APK-blue?&logo=Android)](https://github.com/alanlgoncalves/pokedex/releases)    | ![](https://img.shields.io/badge/-Very%20Good-brightgreen) |
-| 1.2.0   | ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat)           |                                                                                                                             | ![](https://img.shields.io/badge/-Very%20Good-brightgreen) |
-| 1.2.0   | ![Web](https://img.shields.io/badge/WEB-Alpha-000?&logo=Google-Chrome&style=flat)    | [![](https://img.shields.io/badge/-Access_Now-blue?&logo=Google-Chrome&logoColor=white)]((https://pokedex.alansantos.dev/)) | ![](https://img.shields.io/badge/-Good-green)              |
+| Version | Platform                                                                             | Download                                                                                                                  | Performance                                                |
+|---------| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| 1.2.0   | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) | [![](https://img.shields.io/badge/-Download_APK-blue?&logo=Android)](https://github.com/alanlgoncalves/pokedex/releases)  | ![](https://img.shields.io/badge/-Very%20Good-brightgreen) |
+| 1.2.0   | ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat)           |                                                                                                                           | ![](https://img.shields.io/badge/-Very%20Good-brightgreen) |
+| 1.2.0   | ![Web](https://img.shields.io/badge/WEB-Alpha-000?&logo=Google-Chrome&style=flat)    | [![](https://img.shields.io/badge/-Access_Now-blue?&logo=Google-Chrome&logoColor=white)](https://pokedex.alansantos.dev/) | ![](https://img.shields.io/badge/-Good-green)              |
 
 <h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/146.png" width="24" height="24"/> Future Release</h3>
 
