@@ -39,9 +39,9 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget>
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
 
-    return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
-      body: Stack(
+    return Container(
+      color: Theme.of(context).backgroundColor,
+      child: Stack(
         children: [
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
