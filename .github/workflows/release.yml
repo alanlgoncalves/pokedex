@@ -18,7 +18,10 @@ jobs:
       - name: 📱️ Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.0.0'
+          flutter-version: '3.3.2'
+          channel: 'stable'
+        run: |
+          flutter config --enable-macos-desktop
       - name: 🔨 Setup NodeJS
         uses: actions/setup-node@v3
         with:
@@ -35,6 +38,11 @@ jobs:
         run: |
           flutter build appbundle --release
           mv build/app/outputs/bundle/release/app-release.aab  build/app/outputs/bundle/release/pokedex.aab
+      - name: 🍎 Build macOS
+        run: |
+          flutter build macos
+          npm install -g appdmg
+          appdmg ./installers/macos/config.json ./installers/macos/pokedex.dmg
       - name: 🤖 Build Android (APK)
         run: |
           flutter build apk --split-per-abi
@@ -45,11 +53,6 @@ jobs:
         run: |
           flutter build web --web-renderer canvaskit --release
           zip -r pokedex-web.zip build/web/
-      - name: 🍎 Build macOS
-        run: |
-          flutter build macos
-          npm install -g appdmg
-          appdmg ./installers/macos/config.json ./installers/macos/pokedex.dmg
       - name: 🚀 Create Github Release
         uses: ncipollo/release-action@v1
         with:
