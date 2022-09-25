@@ -9,7 +9,7 @@ on:
 jobs:
   build_app:
     name: Build Flutter APP
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: ☕️ Setup Java
         uses: actions/setup-java@v1
