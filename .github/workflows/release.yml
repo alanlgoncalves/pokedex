@@ -41,8 +41,13 @@ jobs:
         run: |
           flutter build web --web-renderer canvaskit --release
           zip -r pokedex-web.zip build/web/
+      - name: 🍎 Build macOS
+          run: |
+            flutter build macos --release
+            npm install -g appdmg
+            appdmg ./installers/macos/config.json ./installers/macos/pokedex.dmg
       - name: 🚀 Create Github Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/bundle/release/pokedex.aab,build/app/outputs/apk/release/pokedex-armeabi-v7a-release.apk,build/app/outputs/apk/release/pokedex-arm64-v8a-release.apk,build/app/outputs/apk/release/pokedex-x86_64-release.apk,pokedex-web.zip"
+          artifacts: "build/app/outputs/bundle/release/pokedex.aab,build/app/outputs/apk/release/pokedex-armeabi-v7a-release.apk,build/app/outputs/apk/release/pokedex-arm64-v8a-release.apk,build/app/outputs/apk/release/pokedex-x86_64-release.apk,pokedex-web.zip,installers/macos/pokedex.dmg"
           token: ${{ secrets.TOKEN }}
