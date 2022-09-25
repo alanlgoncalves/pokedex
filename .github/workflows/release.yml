@@ -47,7 +47,7 @@ jobs:
           zip -r pokedex-web.zip build/web/
       - name: 🍎 Build macOS
         run: |
-          flutter build macos --release
+          flutter build macos
           npm install -g appdmg
           appdmg ./installers/macos/config.json ./installers/macos/pokedex.dmg
       - name: 🚀 Create Github Release
