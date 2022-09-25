@@ -78,6 +78,7 @@
 <h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/791.png" width="24" height="24"/> Sun Theme</h3>
 
 <p align="center">
+    <img src="https://user-images.githubusercontent.com/8467311/132415854-e2dd533f-f495-472b-b1ac-1de27ae0fd4f.gif" width="200" />
     <img src="https://user-images.githubusercontent.com/8467311/133906121-dbacd422-c185-4e74-b951-dbec68819ae0.png" width="200" />
     <img src="https://user-images.githubusercontent.com/8467311/133906106-cda0f7b5-49d8-4dd7-bd93-4da60684cddd.png" width="200" />
     <img src="https://user-images.githubusercontent.com/8467311/133906113-820fd242-084b-4fdf-8f2c-8e30cf7f37b9.png" width="200" />
@@ -85,12 +86,12 @@
     <img src="https://user-images.githubusercontent.com/8467311/133906124-35313530-7290-4ba0-b7b8-0090d0cd993c.png" width="200" />
     <img src="https://user-images.githubusercontent.com/8467311/133906127-aff2e45c-5550-4dd2-85ee-f7920fa3f578.png" width="200" />
     <img src="https://user-images.githubusercontent.com/8467311/133906129-7642caab-81f9-4fc7-8a41-b91e4f954f42.png" width="200" />
-    <img src="https://user-images.githubusercontent.com/8467311/132415854-e2dd533f-f495-472b-b1ac-1de27ae0fd4f.gif" width="200" />
 </p>
 
 <h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/792.png" width="24" height="24"/> Moon Theme</h3>
 
 <p align="center">
+    <img src="https://user-images.githubusercontent.com/8467311/173214242-37a015d7-1fea-4ba1-8485-04ed0b2d32c2.gif" width="200" />
     <img src="https://user-images.githubusercontent.com/8467311/173213901-f9797757-ca40-4d3c-a1f5-195b68429edf.png" width="200" />
     <img src="https://user-images.githubusercontent.com/8467311/173213906-e970e7ae-a2ae-48df-b1b5-fcc165382337.png" width="200" />
     <img src="https://user-images.githubusercontent.com/8467311/173213912-dcdfed23-39e4-4f54-989b-88e5c046bbda.png" width="200" />
@@ -98,7 +99,6 @@
     <img src="https://user-images.githubusercontent.com/8467311/173213921-2bf69250-d412-4bf4-9ac4-f8a5ed584ca9.png" width="200" />
     <img src="https://user-images.githubusercontent.com/8467311/173213992-599f6e36-5452-4da0-a142-2ee43adb089f.png" width="200" />
     <img src="https://user-images.githubusercontent.com/8467311/173213993-c9cdea58-271d-46af-8562-946b9777492c.png" width="200" />
-    <img src="https://user-images.githubusercontent.com/8467311/173214242-37a015d7-1fea-4ba1-8485-04ed0b2d32c2.gif" width="200" />
 </p>
 
 <h3><img align="left" src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/249.png" width="24" height="24"/> Technologies</h3>
