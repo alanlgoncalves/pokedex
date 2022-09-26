@@ -20,7 +20,7 @@ class PokemonTypeFilter extends StatelessWidget {
 
   double get topPadding {
     if (pokemonStore.pokemonFilter.typeFilter != null) {
-      return kIsWeb ? 68 : 10;
+      return kIsWeb ? 68 : 50;
     } else {
       return 0;
     }
@@ -29,6 +29,7 @@ class PokemonTypeFilter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
+    final theme = Theme.of(context);
 
     return Observer(builder: (_) {
       return Padding(
@@ -88,7 +89,7 @@ class PokemonTypeFilter extends StatelessWidget {
             if (pokemonStore.pokemonFilter.typeFilter != null)
               Container(
                 height: 40,
-                color: Colors.white,
+                color: theme.backgroundColor,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
