@@ -171,6 +171,7 @@ jobs:
       - build_macos
       - build_android
       - build_web
+      - build_windows
     steps:
       - name: ⬇️️ Download DMG artifact
         uses: actions/download-artifact@v3
