@@ -1,7 +1,9 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -38,6 +40,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
   late PokemonStore _pokemonStore;
   late PokemonDetailsStore _pokemonDetailsStore;
   late AnimationController _animationController;
+  late PageController _pageController;
   late AudioPlayer player;
 
   @override
@@ -45,6 +48,8 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
     super.initState();
     _pokemonStore = GetIt.instance<PokemonStore>();
     _pokemonDetailsStore = PokemonDetailsStore();
+    _pageController =
+        PageController(initialPage: _pokemonStore.index, viewportFraction: 0.4);
 
     player = AudioPlayer();
 
@@ -57,6 +62,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
   void dispose() {
     player.dispose();
     _animationController.dispose();
+    _pageController.dispose();
     super.dispose();
   }
 
@@ -285,10 +291,76 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                                           const EdgeInsets.only(bottom: 30),
                                       child: Container(
                                         height: 220,
-                                        child: PokemonPagerWidget(
-                                          pokemonDetailStore:
-                                              _pokemonDetailsStore,
-                                          isFavorite: widget.isFavoritePokemon,
+                                        child: Stack(
+                                          children: [
+                                            PokemonPagerWidget(
+                                              pageController: _pageController,
+                                              pokemonDetailStore:
+                                                  _pokemonDetailsStore,
+                                              isFavorite:
+                                                  widget.isFavoritePokemon,
+                                            ),
+                                            if (Platform.isWindows ||
+                                                Platform.isLinux ||
+                                                Platform.isMacOS ||
+                                                kIsWeb)
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 60),
+                                                    child: InkWell(
+                                                      child: Icon(
+                                                        Icons.arrow_back_ios,
+                                                        color: Theme.of(context)
+                                                            .backgroundColor
+                                                            .withOpacity(0.3),
+                                                        size: 70,
+                                                      ),
+                                                      onTap: () {
+                                                        _pageController
+                                                            .previousPage(
+                                                                duration: Duration(
+                                                                    milliseconds:
+                                                                        300),
+                                                                curve: Curves
+                                                                    .bounceIn);
+                                                      },
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 280,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 70),
+                                                    child: InkWell(
+                                                      child: Icon(
+                                                        Icons.arrow_forward_ios,
+                                                        color: Theme.of(context)
+                                                            .backgroundColor
+                                                            .withOpacity(0.3),
+                                                        size: 60,
+                                                      ),
+                                                      onTap: () {
+                                                        _pageController.nextPage(
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    300),
+                                                            curve:
+                                                                Curves.linear);
+                                                      },
+                                                    ),
+                                                  ),
+                                                ],
+                                              )
+                                          ],
                                         ),
                                       ),
                                     ),
