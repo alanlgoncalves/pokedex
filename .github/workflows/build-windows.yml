@@ -5,7 +5,7 @@ on:
 
 jobs:
   build_windows:
-    name: Build Windows
+    name: 🪟 Build Windows
     runs-on: windows-latest
     steps:
       - name: 📱️Setup Flutter
@@ -22,3 +22,14 @@ jobs:
       - name: 🪟 Build Windows
         run: |
           flutter build windows
+      - name: Archive Release
+        uses: thedoctor0/zip-release@main
+        with:
+          path: build/windows/runner/Release/
+          type: 'zip'
+          filename: 'pokedex-windows.zip'
+      - name: ⬆️ Upload Windows artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: pokedex-windows.zip
+          path: pokedex-windows.zip
