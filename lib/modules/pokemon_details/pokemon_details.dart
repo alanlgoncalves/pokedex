@@ -303,10 +303,15 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                                               isFavorite:
                                                   widget.isFavoritePokemon,
                                             ),
-                                            if (kIsWeb ||
-                                                Platform.isWindows ||
-                                                Platform.isLinux ||
-                                                Platform.isMacOS)
+                                            if ((kIsWeb &&
+                                                    getDeviceScreenType(
+                                                            context) !=
+                                                        DeviceScreenType
+                                                            .CELLPHONE) ||
+                                                (!kIsWeb &&
+                                                    (Platform.isWindows ||
+                                                        Platform.isLinux ||
+                                                        Platform.isMacOS)))
                                               Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
