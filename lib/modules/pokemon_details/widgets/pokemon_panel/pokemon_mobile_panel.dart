@@ -73,19 +73,17 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
   }
 
   void onScroll(UserScrollNotification scrollInfo) {
-    if (io.Platform.isWindows ||
+    if (kIsWeb ||
+        io.Platform.isWindows ||
         io.Platform.isLinux ||
-        io.Platform.isMacOS ||
-        kIsWeb) {
+        io.Platform.isMacOS) {
       if (scrollInfo.metrics.pixels > 0) {
-        if (!_panelController.isPanelOpen &&
-            scrollInfo.direction == ScrollDirection.reverse) {
+        if (!_panelController.isPanelOpen) {
           _panelController.open();
         }
       }
 
-      if (scrollInfo.metrics.pixels == 0 &&
-          scrollInfo.direction == ScrollDirection.idle) {
+      if (scrollInfo.metrics.pixels == 0) {
         if (_panelController.isPanelOpen) {
           _panelController.close();
         }

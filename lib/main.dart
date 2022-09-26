@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/shared/getit/getit.dart';
 import 'package:pokedex/shared/routes/router.dart' as router;
@@ -17,7 +18,8 @@ void main() {
 
     WidgetsFlutterBinding.ensureInitialized();
 
-    if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+    if (!kIsWeb &&
+        (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
       setWindowTitle('Pokédex by Alan Santos');
       setWindowMinSize(const Size(1366, 768));
     }
