@@ -8,7 +8,7 @@ on:
 
 jobs:
   build_app:
-    name: Build Flutter APP
+    name: 🧪 Build Flutter APP
     runs-on: macos-latest
     steps:
       - name: 📱️ Setup Flutter
@@ -26,7 +26,7 @@ jobs:
         run: flutter test --coverage
 
   build_macos:
-    name: Build macOS
+    name: 🍎 Build macOS
     runs-on: macos-latest
     needs: build_app
     steps:
@@ -57,7 +57,7 @@ jobs:
           path: installers/macos/pokedex.dmg
 
   build_android:
-    name: Build Android
+    name: 🤖 Build Android
     runs-on: ubuntu-latest
     needs: build_app
     steps:
@@ -108,7 +108,7 @@ jobs:
           path: build/app/outputs/apk/release/pokedex-x86_64-release.apk
 
   build_web:
-    name: Build WEB
+    name: ＠ Build WEB
     runs-on: ubuntu-latest
     needs: build_app
     steps:
@@ -132,6 +132,36 @@ jobs:
         with:
           name: pokedex-web.zip
           path: pokedex-web.zip
+
+  build_windows:
+    name: 🪟 Build Windows
+    runs-on: windows-latest
+    steps:
+      - name: 📱️Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.3.2'
+          channel: 'stable'
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+      - name: 🧹 Clean
+        run: flutter clean
+      - name: ⬇️ Get dependencies
+        run: flutter pub get
+      - name: 🪟 Build Windows
+        run: |
+          flutter build windows
+      - name: Archive Release
+        uses: thedoctor0/zip-release@main
+        with:
+          path: build/windows/runner/Release/
+          type: 'zip'
+          filename: 'pokedex-windows.zip'
+      - name: ⬆️ Upload Windows artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: pokedex-windows.zip
+          path: pokedex-windows.zip
 
   release:
     name: Create APP release
@@ -162,6 +192,10 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: pokedex-x86_64-release.apk
+      - name: ⬇️️ Download Windows artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: pokedex-windows.zip
       - name: ⬇️️ Download WEB artifact
         uses: actions/download-artifact@v3
         with:
@@ -169,5 +203,5 @@ jobs:
       - name: 🚀 Create Github Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "pokedex.aab,pokedex-armeabi-v7a-release.apk,pokedex-arm64-v8a-release.apk,pokedex-x86_64-release.apk,pokedex-web.zip,pokedex.dmg"
+          artifacts: "pokedex.aab,pokedex-armeabi-v7a-release.apk,pokedex-arm64-v8a-release.apk,pokedex-x86_64-release.apk,pokedex-windows.zip,pokedex-web.zip,pokedex.dmg"
           token: ${{ secrets.TOKEN }}
