@@ -303,10 +303,10 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                                               isFavorite:
                                                   widget.isFavoritePokemon,
                                             ),
-                                            if (Platform.isWindows ||
+                                            if (kIsWeb ||
+                                                Platform.isWindows ||
                                                 Platform.isLinux ||
-                                                Platform.isMacOS ||
-                                                kIsWeb)
+                                                Platform.isMacOS)
                                               Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
@@ -326,13 +326,12 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                                                         size: 70,
                                                       ),
                                                       onTap: () {
-                                                        _pageController
-                                                            .previousPage(
-                                                                duration: Duration(
-                                                                    milliseconds:
-                                                                        300),
-                                                                curve: Curves
-                                                                    .bounceIn);
+                                                        _pageController.previousPage(
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    300),
+                                                            curve: Curves
+                                                                .fastLinearToSlowEaseIn);
                                                       },
                                                     ),
                                                   ),
@@ -356,8 +355,8 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                                                             duration: Duration(
                                                                 milliseconds:
                                                                     300),
-                                                            curve:
-                                                                Curves.linear);
+                                                            curve: Curves
+                                                                .fastLinearToSlowEaseIn);
                                                       },
                                                     ),
                                                   ),
