@@ -134,7 +134,7 @@ jobs:
           path: pokedex-web.zip
 
   release:
-    name: Build macOS
+    name: Create APP release
     runs-on: ubuntu-latest
     needs:
       - build_app
