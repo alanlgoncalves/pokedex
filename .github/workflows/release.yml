@@ -11,11 +11,26 @@ jobs:
     name: Build Flutter APP
     runs-on: macos-latest
     steps:
-      - name: ☕️ Setup Java
-        uses: actions/setup-java@v1
-        with:
-          java-version: "12.x"
       - name: 📱️ Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.3.2'
+          channel: 'stable'
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+      - name: 🧹 Clean
+        run: flutter clean
+      - name: ⬇️ Get dependencies
+        run: flutter pub get
+      - name: 🧪 Test
+        run: flutter test --coverage
+
+  build_macos:
+    name: Build macOS
+    runs-on: macos-latest
+    needs: build_app
+    steps:
+      - name: 📱️Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.3.2'
@@ -30,13 +45,37 @@ jobs:
         run: flutter clean
       - name: ⬇️ Get dependencies
         run: flutter pub get
-      - name: 🧪 Test
-        run: flutter test --coverage
       - name: 🍎 Build macOS
         run: |
           flutter build macos
           npm install -g appdmg
           appdmg ./installers/macos/config.json ./installers/macos/pokedex.dmg
+      - name: ⬆️ Upload DMG artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: pokedex.dmg
+          path: installers/macos/pokedex.dmg
+
+  build_android:
+    name: Build Android
+    runs-on: ubuntu-latest
+    needs: build_app
+    steps:
+      - name: 📱️Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.3.2'
+          channel: 'stable'
+      - name: ☕️ Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+      - name: 🧹 Clean
+        run: flutter clean
+      - name: ⬇️ Get dependencies
+        run: flutter pub get
       - name: 🤖 Build Android (AAB)
         run: |
           flutter build appbundle --release
@@ -47,12 +86,88 @@ jobs:
           mv build/app/outputs/apk/release/app-armeabi-v7a-release.apk build/app/outputs/apk/release/pokedex-armeabi-v7a-release.apk
           mv build/app/outputs/apk/release/app-arm64-v8a-release.apk build/app/outputs/apk/release/pokedex-arm64-v8a-release.apk
           mv build/app/outputs/apk/release/app-x86_64-release.apk build/app/outputs/apk/release/pokedex-x86_64-release.apk
+      - name: ⬆️ Upload AAB artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: pokedex.aab
+          path: build/app/outputs/bundle/release/pokedex.aab
+      - name: ⬆️ Upload APK artifact (armeabi-v7a)
+        uses: actions/upload-artifact@v3
+        with:
+          name: pokedex-armeabi-v7a-release.apk
+          path: build/app/outputs/apk/release/pokedex-armeabi-v7a-release.apk
+      - name: ⬆️ Upload APK artifact (arm64-v8a)
+        uses: actions/upload-artifact@v3
+        with:
+          name: pokedex-arm64-v8a-release.apk
+          path: build/app/outputs/apk/release/pokedex-arm64-v8a-release.apk
+      - name: ⬆️ Upload APK artifact (x86_64)
+        uses: actions/upload-artifact@v3
+        with:
+          name: pokedex-x86_64-release.apk
+          path: build/app/outputs/apk/release/pokedex-x86_64-release.apk
+
+  build_web:
+    name: Build WEB
+    runs-on: ubuntu-latest
+    needs: build_app
+    steps:
+      - name: 📱️Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.3.2'
+          channel: 'stable'
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+      - name: 🧹 Clean
+        run: flutter clean
+      - name: ⬇️ Get dependencies
+        run: flutter pub get
       - name: ＠ Build WEB
         run: |
           flutter build web --web-renderer canvaskit --release
           zip -r pokedex-web.zip build/web/
+      - name: ⬆️ Upload WEB artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: pokedex-web.zip
+          path: pokedex-web.zip
+
+  release:
+    name: Build macOS
+    runs-on: ubuntu-latest
+    needs:
+      - build_app
+      - build_macos
+      - build_android
+      - build_web
+    steps:
+      - name: ⬇️️ Download DMG artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: pokedex.dmg
+      - name: ⬇️️ Download AAB artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: pokedex.aab
+      - name: ⬇️️ Download APK artifact (armeabi-v7a)
+        uses: actions/download-artifact@v3
+        with:
+          name: pokedex-armeabi-v7a-release.apk
+      - name: ⬇️️ Download APK artifact (arm64-v8a)
+        uses: actions/download-artifact@v3
+        with:
+          name: pokedex-arm64-v8a-release.apk
+      - name: ⬇️️ Download APK artifact (x86_64)
+        uses: actions/download-artifact@v3
+        with:
+          name: pokedex-x86_64-release.apk
+      - name: ⬇️️ Download WEB artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: pokedex-web.zip
       - name: 🚀 Create Github Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/bundle/release/pokedex.aab,build/app/outputs/apk/release/pokedex-armeabi-v7a-release.apk,build/app/outputs/apk/release/pokedex-arm64-v8a-release.apk,build/app/outputs/apk/release/pokedex-x86_64-release.apk,pokedex-web.zip,installers/macos/pokedex.dmg"
+          artifacts: "pokedex.aab,pokedex-armeabi-v7a-release.apk,pokedex-arm64-v8a-release.apk,pokedex-x86_64-release.apk,pokedex-web.zip,pokedex.dmg"
           token: ${{ secrets.TOKEN }}
