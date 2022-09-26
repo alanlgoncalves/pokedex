@@ -22,7 +22,8 @@ class EvolutionPage extends StatelessWidget {
     final horizontalPadding = getDetailsPanelsPadding(size);
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+      padding:
+          EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 20),
       child: Observer(builder: (_) {
         final evolutionChain =
             EvolutionChainUtils.buildEvolutionChain(_pokemonStore.pokemon!);
