@@ -136,6 +136,7 @@ jobs:
   build_windows:
     name: 🪟 Build Windows
     runs-on: windows-latest
+    needs: build_app
     steps:
       - name: 📱️Setup Flutter
         uses: subosito/flutter-action@v2
