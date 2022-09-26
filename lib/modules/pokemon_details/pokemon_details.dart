@@ -129,7 +129,10 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                     title: AnimatedOpacity(
                         duration: Duration(milliseconds: 30),
                         opacity: _pokemonDetailsStore.opacityTitleAppbar,
-                        child: AppBarNavigationWidget()),
+                        child: Visibility(
+                          child: AppBarNavigationWidget(),
+                          visible: _pokemonDetailsStore.opacityTitleAppbar > 0,
+                        )),
                     backgroundColor: Colors.transparent,
                     shadowColor: Colors.transparent,
                     leading: IconButton(
