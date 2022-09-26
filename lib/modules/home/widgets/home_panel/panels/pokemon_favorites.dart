@@ -20,7 +20,7 @@ class PokemonFavorites extends StatelessWidget {
 
   double get topPadding {
     if (pokemonStore.favoritesPokemonsSummary.isNotEmpty) {
-      return kIsWeb ? 68 : 10;
+      return kIsWeb ? 68 : 50;
     } else {
       return 0;
     }

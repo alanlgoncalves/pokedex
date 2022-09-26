@@ -20,7 +20,7 @@ class PokemonGenerationFilter extends StatelessWidget {
 
   double get topPadding {
     if (pokemonStore.pokemonFilter.generationFilter != null) {
-      return kIsWeb ? 68 : 10;
+      return kIsWeb ? 68 : 50;
     } else {
       return 0;
     }
