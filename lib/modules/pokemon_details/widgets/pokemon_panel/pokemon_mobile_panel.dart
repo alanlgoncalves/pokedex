@@ -1,4 +1,8 @@
+import 'dart:io' as io;
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/about/about_page.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/base_stats/base_stats_page.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/evolution/evolution_page.dart';
@@ -40,6 +44,11 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
         TickerProviderStateMixin,
         AutomaticKeepAliveClientMixin<PokemonMobilePanelWidget> {
   late TabController _tabController;
+  late PanelController _panelController;
+  late ScrollController _aboutScrollController;
+  late ScrollController _baseStatsController;
+  late ScrollController _evolutionController;
+  late ScrollController _movesController;
 
   @override
   bool get wantKeepAlive => true;
@@ -49,6 +58,11 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
     super.initState();
 
     _tabController = TabController(vsync: this, length: 4);
+    _panelController = PanelController();
+    _aboutScrollController = ScrollController();
+    _baseStatsController = ScrollController();
+    _evolutionController = ScrollController();
+    _movesController = ScrollController();
   }
 
   @override
@@ -56,6 +70,27 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
     _tabController.dispose();
 
     super.dispose();
+  }
+
+  void onScroll(UserScrollNotification scrollInfo) {
+    if (io.Platform.isWindows ||
+        io.Platform.isLinux ||
+        io.Platform.isMacOS ||
+        kIsWeb) {
+      if (scrollInfo.metrics.pixels > 0) {
+        if (!_panelController.isPanelOpen &&
+            scrollInfo.direction == ScrollDirection.reverse) {
+          _panelController.open();
+        }
+      }
+
+      if (scrollInfo.metrics.pixels == 0 &&
+          scrollInfo.direction == ScrollDirection.idle) {
+        if (_panelController.isPanelOpen) {
+          _panelController.close();
+        }
+      }
+    }
   }
 
   @override
@@ -69,6 +104,7 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
       minHeight: MediaQuery.of(context).size.height * 0.50,
       parallaxEnabled: true,
       parallaxOffset: 0.5,
+      controller: _panelController,
       color: Theme.of(context).backgroundColor,
       panelBuilder: (scrollController) {
         return Padding(
@@ -157,17 +193,49 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                    SingleChildScrollView(
-                      child: const AboutPage(),
+                    NotificationListener<UserScrollNotification>(
+                      child: SingleChildScrollView(
+                        controller: _aboutScrollController,
+                        child: const AboutPage(),
+                      ),
+                      onNotification: (UserScrollNotification scrollInfo) {
+                        onScroll(scrollInfo);
+
+                        return true;
+                      },
                     ),
-                    SingleChildScrollView(
-                      child: const BaseStatsPage(),
+                    NotificationListener<UserScrollNotification>(
+                      child: SingleChildScrollView(
+                        child: const BaseStatsPage(),
+                        controller: _baseStatsController,
+                      ),
+                      onNotification: (UserScrollNotification scrollInfo) {
+                        onScroll(scrollInfo);
+
+                        return true;
+                      },
                     ),
-                    SingleChildScrollView(
-                      child: const EvolutionPage(),
+                    NotificationListener<UserScrollNotification>(
+                      child: SingleChildScrollView(
+                        child: const EvolutionPage(),
+                        controller: _evolutionController,
+                      ),
+                      onNotification: (UserScrollNotification scrollInfo) {
+                        onScroll(scrollInfo);
+
+                        return true;
+                      },
                     ),
-                    SingleChildScrollView(
-                      child: const MovesPage(),
+                    NotificationListener<UserScrollNotification>(
+                      child: SingleChildScrollView(
+                        child: const MovesPage(),
+                        controller: _movesController,
+                      ),
+                      onNotification: (UserScrollNotification scrollInfo) {
+                        onScroll(scrollInfo);
+
+                        return true;
+                      },
                     ),
                   ],
                 ),
