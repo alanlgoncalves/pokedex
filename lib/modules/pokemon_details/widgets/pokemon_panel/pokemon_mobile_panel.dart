@@ -7,6 +7,7 @@ import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/abou
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/base_stats/base_stats_page.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/evolution/evolution_page.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/moves/moves_page.dart';
+import 'package:pokedex/shared/ui/enums/device_screen_type.dart';
 import 'package:pokedex/theme/app_theme.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -89,6 +90,15 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
         }
       }
     }
+  }
+
+  ScrollController? setScrollControllerByPlatform(
+      BuildContext context, ScrollController scrollController) {
+    return (kIsWeb &&
+                getDeviceScreenType(context) != DeviceScreenType.CELLPHONE) ||
+            (!kIsWeb && !io.Platform.isAndroid && !io.Platform.isIOS)
+        ? scrollController
+        : null;
   }
 
   @override
@@ -193,7 +203,8 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
                   children: [
                     NotificationListener<UserScrollNotification>(
                       child: SingleChildScrollView(
-                        controller: _aboutScrollController,
+                        controller: setScrollControllerByPlatform(
+                            context, _aboutScrollController),
                         child: const AboutPage(),
                       ),
                       onNotification: (UserScrollNotification scrollInfo) {
@@ -205,7 +216,8 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
                     NotificationListener<UserScrollNotification>(
                       child: SingleChildScrollView(
                         child: const BaseStatsPage(),
-                        controller: _baseStatsController,
+                        controller: setScrollControllerByPlatform(
+                            context, _baseStatsController),
                       ),
                       onNotification: (UserScrollNotification scrollInfo) {
                         onScroll(scrollInfo);
@@ -216,7 +228,8 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
                     NotificationListener<UserScrollNotification>(
                       child: SingleChildScrollView(
                         child: const EvolutionPage(),
-                        controller: _evolutionController,
+                        controller: setScrollControllerByPlatform(
+                            context, _evolutionController),
                       ),
                       onNotification: (UserScrollNotification scrollInfo) {
                         onScroll(scrollInfo);
@@ -227,7 +240,8 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
                     NotificationListener<UserScrollNotification>(
                       child: SingleChildScrollView(
                         child: const MovesPage(),
-                        controller: _movesController,
+                        controller: setScrollControllerByPlatform(
+                            context, _movesController),
                       ),
                       onNotification: (UserScrollNotification scrollInfo) {
                         onScroll(scrollInfo);
