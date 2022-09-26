@@ -31,6 +31,10 @@ dependencies:
   infinite_scroll_pagination: ^3.1.0
   dio: ^4.0.0
   animated_theme_switcher: ^2.0.6
+  window_size:
+    git:
+      url: https://github.com/google/flutter-desktop-embedding.git
+      path: plugins/window_size
   
 
 dev_dependencies:
