@@ -193,6 +193,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             if (_homeStore.isBackgroundBlack) {
                               _homeStore.hideBackgroundBlack();
                               _fabAnimationOpenController.reverse();
+                              _panelController.close();
                             }
                           },
                         ),
