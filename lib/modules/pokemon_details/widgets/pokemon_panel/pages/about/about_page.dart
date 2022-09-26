@@ -62,7 +62,8 @@ class _AboutPageState extends State<AboutPage> {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+          padding:
+              EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 20),
           child: Column(
             children: [
               Observer(builder: (_) {

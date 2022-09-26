@@ -21,7 +21,8 @@ class BaseStatsPage extends StatelessWidget {
     final horizontalPadding = getDetailsPanelsPadding(size);
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+      padding:
+          EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -81,7 +82,7 @@ class BaseStatsPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 100,
+            height: 300,
           )
         ],
       ),
