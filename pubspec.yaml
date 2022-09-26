@@ -1,4 +1,4 @@
-name: Pokedex
+name: pokedex
 description: Fully functional multiplatform Pokedex App developed using Flutter with lots of animations and all Pokémon generations
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
