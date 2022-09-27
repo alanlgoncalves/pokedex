@@ -152,10 +152,10 @@ jobs:
       - name: 🪟 Build Windows
         run: |
           flutter build windows
-      - name: Archive Release
+      - name: 🗜 Archive Release
         uses: thedoctor0/zip-release@main
         with:
-          path: build/windows/runner/Release/
+          directory: build/windows/runner/Release/
           type: 'zip'
           filename: 'pokedex-windows.zip'
       - name: ⬆️ Upload Windows artifact
