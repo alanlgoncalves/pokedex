@@ -162,7 +162,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: pokedex-windows.zip
-          path: pokedex-windows.zip
+          path: build/windows/runner/Release/pokedex-windows.zip
 
   release:
     name: Create APP release
