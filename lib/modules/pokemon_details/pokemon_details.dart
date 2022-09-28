@@ -2,13 +2,13 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:pokedex/modules/pokemon_details/pokemon_details_store.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/app_bar_navigation.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_pager.dart';
