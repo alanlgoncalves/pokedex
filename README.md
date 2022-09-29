@@ -1,11 +1,12 @@
 <h1 align="center"><img src="https://user-images.githubusercontent.com/8467311/132367198-86750e1d-96ce-4bb3-8c60-7f85fe90fc8d.png" width="30" height="30"/> Pokedex</h1>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/v1.4.0-000?&style=flat&color=C4180D" />
+    <img src="https://img.shields.io/badge/v1.4.1-000?&style=flat&color=C4180D" />
     <img src="https://img.shields.io/badge/v3.3.2-000?&logo=Flutter&style=flat&color=50BEF0" />
     <img src="https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat" />
     <img src="https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat" />
     <img src="https://img.shields.io/badge/macOS-Stable-000?&logo=Apple&style=flat" />
+    <img src="https://img.shields.io/badge/Windows-Stable-000?&logo=Windows&style=flat" />
     <img src="https://img.shields.io/badge/WEB-Alpha-000?&logo=Google-Chrome&style=flat" />
     <br />
     <a href="https://github.com/alanlgoncalves/pokedex/actions/workflows/ci-cd.yml">
@@ -39,10 +40,10 @@
 
 | Version | Platform                                                                             | Download                                                                                                                  | Performance                                                |
 |---------|--------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------|
-| 1.4.0   | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) | [![](https://img.shields.io/badge/-Download_APK-blue?&logo=Android)](https://github.com/alanlgoncalves/pokedex/releases)  | ![](https://img.shields.io/badge/-Very%20Good-brightgreen) |
-| 1.4.0   | ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat)           |                                                                                                                           | ![](https://img.shields.io/badge/-Very%20Good-brightgreen) |
-| 1.4.0   | ![Web](https://img.shields.io/badge/WEB-Alpha-000?&logo=Google-Chrome&style=flat)    | [![](https://img.shields.io/badge/-Access_Now-blue?&logo=Google-Chrome&logoColor=white)](https://pokedex.alansantos.dev/) | ![](https://img.shields.io/badge/-Good-green)              |
-| 1.4.0   | ![macOS](https://img.shields.io/badge/macOS-Stable-000?&logo=Apple&style=flat)       | [![](https://img.shields.io/badge/-Download_DMG-blue?&logo=Apple)](https://github.com/alanlgoncalves/pokedex/releases)    | ![](https://img.shields.io/badge/-Very%20Good-brightgreen) |
+| 1.4.1   | ![Android](https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat) | [![](https://img.shields.io/badge/-Download_APK-blue?&logo=Android)](https://github.com/alanlgoncalves/pokedex/releases)  | ![](https://img.shields.io/badge/-Very%20Good-brightgreen) |
+| 1.4.1   | ![IOS](https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat)           |                                                                                                                           | ![](https://img.shields.io/badge/-Very%20Good-brightgreen) |
+| 1.4.1   | ![Web](https://img.shields.io/badge/WEB-Alpha-000?&logo=Google-Chrome&style=flat)    | [![](https://img.shields.io/badge/-Access_Now-blue?&logo=Google-Chrome&logoColor=white)](https://pokedex.alansantos.dev/) | ![](https://img.shields.io/badge/-Good-green)              |
+| 1.4.1   | ![macOS](https://img.shields.io/badge/macOS-Stable-000?&logo=Apple&style=flat)       | [![](https://img.shields.io/badge/-Download_DMG-blue?&logo=Apple)](https://github.com/alanlgoncalves/pokedex/releases)    | ![](https://img.shields.io/badge/-Very%20Good-brightgreen) |
 
 <h3><img src="https://pokedex.alansantos.dev/assets/pokemons/thumbs/146.png" width="24" height="24"/> Future Releases</h3>
 
