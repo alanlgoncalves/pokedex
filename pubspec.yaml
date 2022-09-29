@@ -23,7 +23,6 @@ dependencies:
   sliding_up_panel: ^2.0.0+1
   font_awesome_flutter: ^10.1.0
   bot_toast: ^4.0.1
-  just_audio: ^0.9.29
   audio_video_progress_bar: ^0.10.0
   flutter_launcher_icons: ^0.10.0
   flutter_native_splash: ^2.2.0+1
@@ -35,6 +34,7 @@ dependencies:
     git:
       url: https://github.com/google/flutter-desktop-embedding.git
       path: plugins/window_size
+  audioplayers: ^1.1.0
   
 
 dev_dependencies:
