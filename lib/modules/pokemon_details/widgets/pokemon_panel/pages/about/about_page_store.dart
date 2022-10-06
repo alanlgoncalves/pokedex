@@ -9,16 +9,10 @@ abstract class _AboutPageStoreBase with Store {
   Duration _audioProgress = Duration.zero;
 
   @observable
-  Duration _audioBuffered = Duration.zero;
-
-  @observable
   Duration _audioTotal = Duration.zero;
 
   @computed
   Duration get audioProgress => _audioProgress;
-
-  @computed
-  Duration get audioBuffered => _audioBuffered;
 
   @computed
   Duration get audioTotal => _audioTotal;
@@ -26,11 +20,6 @@ abstract class _AboutPageStoreBase with Store {
   @action
   void setAudioProgress(Duration audioProgress) {
     _audioProgress = audioProgress;
-  }
-
-  @action
-  void setAudioBuffered(Duration audioBuffered) {
-    _audioBuffered = audioBuffered;
   }
 
   @action

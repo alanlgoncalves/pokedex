@@ -16,13 +16,6 @@ mixin _$AboutPageStore on _AboutPageStoreBase, Store {
       (_$audioProgressComputed ??= Computed<Duration>(() => super.audioProgress,
               name: '_AboutPageStoreBase.audioProgress'))
           .value;
-  Computed<Duration>? _$audioBufferedComputed;
-
-  @override
-  Duration get audioBuffered =>
-      (_$audioBufferedComputed ??= Computed<Duration>(() => super.audioBuffered,
-              name: '_AboutPageStoreBase.audioBuffered'))
-          .value;
   Computed<Duration>? _$audioTotalComputed;
 
   @override
@@ -44,22 +37,6 @@ mixin _$AboutPageStore on _AboutPageStoreBase, Store {
   set _audioProgress(Duration value) {
     _$_audioProgressAtom.reportWrite(value, super._audioProgress, () {
       super._audioProgress = value;
-    });
-  }
-
-  late final _$_audioBufferedAtom =
-      Atom(name: '_AboutPageStoreBase._audioBuffered', context: context);
-
-  @override
-  Duration get _audioBuffered {
-    _$_audioBufferedAtom.reportRead();
-    return super._audioBuffered;
-  }
-
-  @override
-  set _audioBuffered(Duration value) {
-    _$_audioBufferedAtom.reportWrite(value, super._audioBuffered, () {
-      super._audioBuffered = value;
     });
   }
 
@@ -94,17 +71,6 @@ mixin _$AboutPageStore on _AboutPageStoreBase, Store {
   }
 
   @override
-  void setAudioBuffered(Duration audioBuffered) {
-    final _$actionInfo = _$_AboutPageStoreBaseActionController.startAction(
-        name: '_AboutPageStoreBase.setAudioBuffered');
-    try {
-      return super.setAudioBuffered(audioBuffered);
-    } finally {
-      _$_AboutPageStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void setAudioTotal(Duration audioTotal) {
     final _$actionInfo = _$_AboutPageStoreBaseActionController.startAction(
         name: '_AboutPageStoreBase.setAudioTotal');
@@ -119,7 +85,6 @@ mixin _$AboutPageStore on _AboutPageStoreBase, Store {
   String toString() {
     return '''
 audioProgress: ${audioProgress},
-audioBuffered: ${audioBuffered},
 audioTotal: ${audioTotal}
     ''';
   }

@@ -1,8 +1,8 @@
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/about/about_page_store.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pokemon_mobile_panel.dart';
 import 'package:pokedex/shared/models/pokemon.dart';
@@ -48,14 +48,13 @@ class SoundPlayer extends StatelessWidget {
               ),
               onPressed: () async {
                 player.seek(Duration.zero);
-                player.play();
+                player.play(UrlSource(pokemon!.soundUrl!));
               },
             ),
             SizedBox(
               child: Observer(
                 builder: (_) => ProgressBar(
                   progress: aboutPageStore.audioProgress,
-                  buffered: aboutPageStore.audioBuffered,
                   total: aboutPageStore.audioTotal,
                   progressBarColor: AppTheme.colors
                       .pokemonItem(pokemonStore.pokemon!.types[0]),

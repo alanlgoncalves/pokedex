@@ -1,7 +1,7 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/about/about_page_store.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/about/widget/animated_sprites.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/about/widget/breeding_info.dart';
@@ -30,18 +30,13 @@ class _AboutPageState extends State<AboutPage> {
     super.initState();
     _player = AudioPlayer();
     _aboutPageStoreStore = AboutPageStore();
-    _player.positionStream.listen((state) {
+
+    _player.onPositionChanged.listen((state) {
       _aboutPageStoreStore.setAudioProgress(state);
     });
 
-    _player.bufferedPositionStream.listen((state) {
-      _aboutPageStoreStore.setAudioBuffered(state);
-    });
-
-    _player.durationStream.listen((state) {
-      if (state != null) {
-        _aboutPageStoreStore.setAudioTotal(state);
-      }
+    _player.onDurationChanged.listen((state) {
+      _aboutPageStoreStore.setAudioTotal(state);
     });
   }
 
@@ -68,7 +63,7 @@ class _AboutPageState extends State<AboutPage> {
             children: [
               Observer(builder: (_) {
                 if (_pokemonStore.pokemon!.soundUrl != null) {
-                  _player.setUrl(_pokemonStore.pokemon!.soundUrl!);
+                  _player.setSourceUrl(_pokemonStore.pokemon!.soundUrl!);
                   _player.pause();
                 }
 
