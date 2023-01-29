@@ -2,7 +2,7 @@
 
 <p align="center">
     <img src="https://img.shields.io/badge/v1.4.1-000?&style=flat&color=C4180D" />
-    <img src="https://img.shields.io/badge/v3.3.2-000?&logo=Flutter&style=flat&color=50BEF0" />
+    <img src="https://img.shields.io/badge/v3.7.0-000?&logo=Flutter&style=flat&color=50BEF0" />
     <img src="https://img.shields.io/badge/Android-Stable-000?&logo=Android&style=flat" />
     <img src="https://img.shields.io/badge/IOS-Stable-000?&logo=Apple&style=flat" />
     <img src="https://img.shields.io/badge/macOS-Stable-000?&logo=Apple&style=flat" />
