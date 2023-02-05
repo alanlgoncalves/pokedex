@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pokedex/shared/ui/widgets/animated_pokeball.dart';
 import 'package:pokedex/theme/app_theme.dart';
 
 import '../../utils/app_constants.dart';
+import '../enums/device_screen_type.dart';
 
 class AppBarWidget extends StatefulWidget {
   final String title;
@@ -61,13 +63,17 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                 width: 5,
               ),
               Text(widget.title, style: textTheme.headline1),
-              SizedBox(
-                width: 5,
-              ),
-              Image.network(
-                AppConstants.getRandomPokemonGif(),
-                height: 32,
-              )
+              if (kIsWeb &&
+                  getDeviceScreenType(context) != DeviceScreenType.CELLPHONE)
+                SizedBox(
+                  width: 5,
+                ),
+              if (kIsWeb &&
+                  getDeviceScreenType(context) != DeviceScreenType.CELLPHONE)
+                Image.network(
+                  AppConstants.getRandomPokemonGif(),
+                  height: 32,
+                )
             ],
           ),
         ),
