@@ -1,8 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pokedex/shared/ui/widgets/animated_pokeball.dart';
 import 'package:pokedex/theme/app_theme.dart';
+
+import '../../utils/app_constants.dart';
 
 class AppBarWidget extends StatefulWidget {
   final String title;
@@ -60,6 +61,13 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                 width: 5,
               ),
               Text(widget.title, style: textTheme.headline1),
+              SizedBox(
+                width: 5,
+              ),
+              Image.network(
+                AppConstants.getRandomPokemonGif(),
+                height: 32,
+              )
             ],
           ),
         ),
