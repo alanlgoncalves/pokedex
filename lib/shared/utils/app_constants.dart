@@ -1,9 +1,18 @@
+import 'dart:math';
+
 class AppConstants {
   static String get pikachuLottie => "assets/lotties/pikachu.json";
   static String get squirtleLottie => "assets/lotties/squirtle.json";
   static String get diglettLottie => "assets/lotties/diglett.json";
   static String get fabIcon => "assets/images/icons/fab.png";
   static String get pokedexIcon => "assets/images/icons/pokedex_icon.png";
+
+  static String getRandomPokemonGif() {
+    final pokemonGif = Random().nextInt(650).toString().padLeft(3, '0');
+
+    return "https://pokedex.alansantos.dev/assets/pokemons/sprites/" +
+        "${pokemonGif}/${pokemonGif}_front_animated.gif";
+  }
 
   static List<String> types = [
     "Normal",
