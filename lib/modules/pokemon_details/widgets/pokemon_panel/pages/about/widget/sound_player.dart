@@ -47,8 +47,11 @@ class SoundPlayer extends StatelessWidget {
                     AppTheme.getColors(context).pokemonItem(pokemon.types[0]),
               ),
               onPressed: () async {
-                player.seek(Duration.zero);
-                player.play(UrlSource(pokemon!.soundUrl!));
+                WidgetsBinding.instance
+                    .addPostFrameCallback((_) async {
+                  player.seek(Duration.zero);
+                  player.play(UrlSource(pokemon!.soundUrl!));
+                });
               },
             ),
             SizedBox(
