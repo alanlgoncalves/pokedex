@@ -14,7 +14,7 @@ jobs:
       - name: 📱️ Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.7.0'
+          flutter-version: '3.27.1'
           channel: 'stable'
       - name: 🚚 Get latest code
         uses: actions/checkout@v2
@@ -33,7 +33,7 @@ jobs:
       - name: 📱️Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.7.0'
+          flutter-version: '3.27.1'
           channel: 'stable'
       - name: 🔨 Setup NodeJS
         uses: actions/setup-node@v3
@@ -64,7 +64,7 @@ jobs:
       - name: 📱️Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.7.0'
+          flutter-version: '3.27.1'
           channel: 'stable'
       - name: ☕️ Setup Java
         uses: actions/setup-java@v1
@@ -115,7 +115,7 @@ jobs:
       - name: 📱️Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.7.0'
+          flutter-version: '3.27.1'
           channel: 'stable'
       - name: 🚚 Get latest code
         uses: actions/checkout@v2
@@ -141,7 +141,7 @@ jobs:
       - name: 📱️Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.7.0'
+          flutter-version: '3.27.1'
           channel: 'stable'
       - name: 🚚 Get latest code
         uses: actions/checkout@v2
