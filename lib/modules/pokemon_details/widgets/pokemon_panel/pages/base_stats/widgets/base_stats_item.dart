@@ -50,7 +50,7 @@ class BaseStatsItemWidget extends StatelessWidget {
             width: 87,
             child: Opacity(
               opacity: 0.4,
-              child: Text(title, style: textTheme.bodyText1),
+              child: Text(title, style: textTheme.bodyLarge),
             ),
           ),
           Observer(
@@ -58,7 +58,7 @@ class BaseStatsItemWidget extends StatelessWidget {
               width: 40,
               child: Text(
                 value().toString(),
-                style: textTheme.bodyText1,
+                style: textTheme.bodyLarge,
               ),
             ),
           ),

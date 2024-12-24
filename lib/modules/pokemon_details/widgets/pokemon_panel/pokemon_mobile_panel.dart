@@ -2,7 +2,6 @@ import 'dart:io' as io;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/about/about_page.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/base_stats/base_stats_page.dart';
 import 'package:pokedex/modules/pokemon_details/widgets/pokemon_panel/pages/evolution/evolution_page.dart';
@@ -113,7 +112,7 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
       parallaxEnabled: true,
       parallaxOffset: 0.5,
       controller: _panelController,
-      color: Theme.of(context).backgroundColor,
+      color: Theme.of(context).colorScheme.surface,
       panelBuilder: (scrollController) {
         return Padding(
           padding: const EdgeInsets.only(top: 10),
@@ -123,7 +122,7 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
                 topLeft: Radius.circular(30),
                 topRight: Radius.circular(30),
               ),
-              color: Theme.of(context).backgroundColor,
+              color: Theme.of(context).colorScheme.surface,
             ),
             child: NestedScrollView(
               controller: scrollController,
@@ -139,7 +138,7 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                            color: Theme.of(context).backgroundColor,
+                            color: Theme.of(context).colorScheme.surface,
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(30),
                               topRight: Radius.circular(30),
@@ -150,9 +149,9 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
                                 AppTheme.getColors(context).pokemonTabTitle,
                             labelColor: AppTheme.getColors(context)
                                 .selectPokemonTabTitle,
-                            unselectedLabelStyle: textTheme.bodyText1
+                            unselectedLabelStyle: textTheme.bodyLarge
                                 ?.copyWith(fontWeight: FontWeight.bold),
-                            labelStyle: textTheme.bodyText1?.copyWith(
+                            labelStyle: textTheme.bodyLarge?.copyWith(
                               fontWeight: FontWeight.bold,
                               color: null,
                             ),
@@ -164,28 +163,28 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
                                 child: FittedBox(
                                   fit: BoxFit.fitWidth,
                                   child:
-                                      Text("About", style: textTheme.bodyText1),
+                                      Text("About", style: textTheme.bodyLarge),
                                 ),
                               ),
                               Tab(
                                 child: FittedBox(
                                   fit: BoxFit.fitWidth,
                                   child: Text("Base Stats",
-                                      style: textTheme.bodyText1),
+                                      style: textTheme.bodyLarge),
                                 ),
                               ),
                               Tab(
                                 child: FittedBox(
                                   fit: BoxFit.fitWidth,
                                   child: Text("Evolution",
-                                      style: textTheme.bodyText1),
+                                      style: textTheme.bodyLarge),
                                 ),
                               ),
                               Tab(
                                 child: FittedBox(
                                   fit: BoxFit.fitWidth,
                                   child:
-                                      Text("Moves", style: textTheme.bodyText1),
+                                      Text("Moves", style: textTheme.bodyLarge),
                                 ),
                               ),
                             ],

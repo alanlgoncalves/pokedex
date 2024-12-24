@@ -27,7 +27,7 @@ class BreedingInfoWidget extends StatelessWidget {
               child: Text(
                 "Breeding",
                 style:
-                    textTheme.bodyText1?.copyWith(fontWeight: FontWeight.bold),
+                    textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
               ),
             ),
             SingleChildScrollView(
@@ -49,7 +49,7 @@ class BreedingInfoWidget extends StatelessWidget {
                                   opacity: 0.4,
                                   child: Text(
                                     "Gender",
-                                    style: textTheme.bodyText1,
+                                    style: textTheme.bodyLarge,
                                   ),
                                 ),
                               ),
@@ -87,14 +87,14 @@ class BreedingInfoWidget extends StatelessWidget {
                                               horizontal: 5),
                                           child: Text(
                                             "???",
-                                            style: textTheme.bodyText1,
+                                            style: textTheme.bodyLarge,
                                           ),
                                         ),
                                       Text(
                                         gender.type == GenderType.UNKNOWN
                                             ? "--%"
                                             : "${gender.percentage}",
-                                        style: textTheme.bodyText1,
+                                        style: textTheme.bodyLarge,
                                       ),
                                     ],
                                   ),
@@ -113,13 +113,13 @@ class BreedingInfoWidget extends StatelessWidget {
                               child: Opacity(
                                 opacity: 0.4,
                                 child: Text("Egg Groups",
-                                    style: textTheme.bodyText1),
+                                    style: textTheme.bodyLarge),
                               ),
                             ),
                             Observer(
                               builder: (_) => Text(
                                 "${_pokemonStore.pokemon!.breeding.egg!.groups.join(", ")}",
-                                style: textTheme.bodyText1,
+                                style: textTheme.bodyLarge,
                               ),
                             ),
                           ],
@@ -135,14 +135,14 @@ class BreedingInfoWidget extends StatelessWidget {
                                 opacity: 0.4,
                                 child: Text(
                                   "Egg Cycle",
-                                  style: textTheme.bodyText1,
+                                  style: textTheme.bodyLarge,
                                 ),
                               ),
                             ),
                             Observer(
                               builder: (_) => Text(
                                 "${_pokemonStore.pokemon!.breeding.egg!.cycle}",
-                                style: textTheme.bodyText1,
+                                style: textTheme.bodyLarge,
                               ),
                             ),
                           ],

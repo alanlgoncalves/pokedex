@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
@@ -63,7 +62,7 @@ class _PokemonGridPageState extends State<PokemonGridPage> {
                         padding: const EdgeInsets.only(bottom: 30),
                         child: Text(
                           "${_pokemonStore.pokemonFilter.pokemonNameNumberFilter} was not found",
-                          style: textTheme.bodyText1,
+                          style: textTheme.bodyLarge,
                         ),
                       ),
                     )

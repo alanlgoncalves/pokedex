@@ -55,7 +55,7 @@ class BaseStatsPage extends StatelessWidget {
           SizedBox(height: 40),
           Text(
             "Type Effectiveness",
-            style: textTheme.bodyText1?.copyWith(fontWeight: FontWeight.bold),
+            style: textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 20),
           Observer(

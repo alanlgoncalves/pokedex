@@ -35,7 +35,7 @@ class TextFilterWidget extends StatelessWidget {
             autofocus: true,
             minLines: 1,
             textAlign: TextAlign.center,
-            style: textTheme.bodyText1,
+            style: textTheme.bodyLarge,
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.search),
               suffixIcon: IconButton(

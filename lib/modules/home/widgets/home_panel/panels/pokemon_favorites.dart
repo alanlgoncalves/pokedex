@@ -41,7 +41,7 @@ class PokemonFavorites extends StatelessWidget {
           children: [
             Text(
               "You do not have any favorited Pokemon yet",
-              style: textTheme.bodyText1,
+              style: textTheme.bodyLarge,
             ),
             Center(
               child: Lottie.asset(
@@ -110,7 +110,7 @@ class PokemonFavorites extends StatelessWidget {
               children: [
                 Text(
                   "Favorites Pokemons",
-                  style: textTheme.bodyText1,
+                  style: textTheme.bodyLarge,
                 ),
               ],
             ),

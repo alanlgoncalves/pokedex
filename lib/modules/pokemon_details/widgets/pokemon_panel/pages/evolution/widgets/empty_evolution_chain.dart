@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:lottie/lottie.dart';
@@ -28,7 +27,7 @@ class EmptyEvolutionChainWidget extends StatelessWidget {
         ),
         Text(
           "${_pokemonStore.pokemon!.name} does not have any evolution chain",
-          style: textTheme.bodyText1,
+          style: textTheme.bodyLarge,
         )
       ],
     );

@@ -30,7 +30,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
       expandedHeight: 170.0,
       collapsedHeight: 70,
       elevation: 0,
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       actions: [
         Padding(
           padding: EdgeInsets.only(top: 20),
@@ -62,7 +62,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
               SizedBox(
                 width: 5,
               ),
-              Text(widget.title, style: textTheme.headline1),
+              Text(widget.title, style: textTheme.displayLarge),
               if (kIsWeb &&
                   getDeviceScreenType(context) != DeviceScreenType.CELLPHONE)
                 SizedBox(

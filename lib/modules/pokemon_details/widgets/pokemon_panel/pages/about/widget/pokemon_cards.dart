@@ -72,7 +72,7 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
                   padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
                   child: Text(
                     "${_pokemonStore.pokemon!.name} Cards",
-                    style: textTheme.bodyText1
+                    style: textTheme.bodyLarge
                         ?.copyWith(fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -138,13 +138,13 @@ class _PokemonCardsWidgetState extends State<PokemonCardsWidget> {
                               ),
                               Text(
                                 "${card.number} - ${card.name}",
-                                style: textTheme.bodyText1,
+                                style: textTheme.bodyLarge,
                               ),
                               FittedBox(
                                 fit: BoxFit.scaleDown,
                                 child: Text(
                                   "${card.expansionName}",
-                                  style: textTheme.bodyText1,
+                                  style: textTheme.bodyLarge,
                                 ),
                               ),
                             ],

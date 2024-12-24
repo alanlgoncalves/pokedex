@@ -64,7 +64,7 @@ class GenerationItemWidget extends StatelessWidget {
                     children: [
                       Text(
                         generation.description,
-                        style: textTheme.bodyText1,
+                        style: textTheme.bodyLarge,
                       ),
                       Row(
                         children: [

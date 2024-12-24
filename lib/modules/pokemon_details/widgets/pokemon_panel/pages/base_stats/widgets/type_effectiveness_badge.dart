@@ -46,7 +46,7 @@ class TypeEffectivenessWidget extends StatelessWidget {
                   ),
                   child: Text(
                     value!,
-                    style: textTheme.bodyText1,
+                    style: textTheme.bodyLarge,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -63,7 +63,7 @@ class TypeEffectivenessWidget extends StatelessWidget {
         ),
         Text(
           hasNone! ? "NONE" : type!,
-          style: textTheme.bodyText1?.copyWith(fontSize: 8),
+          style: textTheme.bodyLarge?.copyWith(fontSize: 8),
         )
       ],
     );

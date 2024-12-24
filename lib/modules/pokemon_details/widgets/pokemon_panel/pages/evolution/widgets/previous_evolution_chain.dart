@@ -19,7 +19,7 @@ class PreviousEvolutionChainWidget extends StatelessWidget {
       children: [
         Text(
           "Previous Evolution${_pokemonStore.pokemon!.previousEvolutions.length > 1 ? "s" : ""}",
-          style: textTheme.bodyText1?.copyWith(fontWeight: FontWeight.bold),
+          style: textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
         ),
         ...evolutionChain
             .where((element) =>

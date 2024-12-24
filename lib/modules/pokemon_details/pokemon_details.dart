@@ -106,7 +106,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                         height: 144,
                         width: 144,
                         decoration: BoxDecoration(
-                          color: Theme.of(context).backgroundColor,
+                          color: Theme.of(context).colorScheme.surface,
                           borderRadius: BorderRadius.circular(24),
                         ),
                       ),
@@ -237,7 +237,8 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                                       topLeft: Radius.circular(30),
                                       topRight: Radius.circular(30),
                                     ),
-                                    color: Theme.of(context).backgroundColor,
+                                    color:
+                                        Theme.of(context).colorScheme.surface,
                                   ),
                                   height: 80,
                                 ),
@@ -272,7 +273,8 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                                                       .toDouble()),
                                               painter: PokeballLogoPainter(
                                                   color: Theme.of(context)
-                                                      .backgroundColor
+                                                      .colorScheme
+                                                      .surface
                                                       .withOpacity(0.3)),
                                             ),
                                           ),
@@ -326,7 +328,8 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                                                       child: Icon(
                                                         Icons.arrow_back_ios,
                                                         color: Theme.of(context)
-                                                            .backgroundColor
+                                                            .colorScheme
+                                                            .surface
                                                             .withOpacity(0.3),
                                                         size: 70,
                                                       ),
@@ -351,7 +354,8 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage>
                                                       child: Icon(
                                                         Icons.arrow_forward_ios,
                                                         color: Theme.of(context)
-                                                            .backgroundColor
+                                                            .colorScheme
+                                                            .surface
                                                             .withOpacity(0.3),
                                                         size: 60,
                                                       ),

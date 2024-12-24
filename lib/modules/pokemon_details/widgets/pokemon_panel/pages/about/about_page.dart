@@ -73,7 +73,7 @@ class _AboutPageState extends State<AboutPage> {
                             padding: const EdgeInsets.symmetric(vertical: 4),
                             child: Text(
                               it,
-                              style: textTheme.bodyText1,
+                              style: textTheme.bodyLarge,
                             ),
                           ))
                       .toList(),

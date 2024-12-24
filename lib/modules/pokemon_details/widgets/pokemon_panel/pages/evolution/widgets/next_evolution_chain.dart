@@ -21,7 +21,7 @@ class NextEvolutionChainWidget extends StatelessWidget {
       children: [
         Text(
           "Next Evolution${_pokemonStore.pokemon!.nextEvolutions.length > 1 ? "s" : ""}",
-          style: textTheme.bodyText1?.copyWith(fontWeight: FontWeight.bold),
+          style: textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
         ),
         ...evolutionChain
             .where((element) =>

@@ -44,7 +44,7 @@ class HomePanelWidget extends StatelessWidget {
             topLeft: Radius.circular(30),
             topRight: Radius.circular(30),
           ),
-          color: Theme.of(context).backgroundColor,
+          color: Theme.of(context).colorScheme.surface,
           boxShadow: [
             BoxShadow(
               color: Color(0xFF000000).withOpacity(0.9),

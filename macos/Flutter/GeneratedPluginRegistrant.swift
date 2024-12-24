@@ -8,7 +8,7 @@ import Foundation
 import audioplayers_darwin
 import path_provider_foundation
 import shared_preferences_foundation
-import sqflite
+import sqflite_darwin
 import window_size
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {

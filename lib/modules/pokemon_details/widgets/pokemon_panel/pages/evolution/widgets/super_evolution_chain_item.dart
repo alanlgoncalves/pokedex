@@ -75,7 +75,7 @@ class SuperEvolutionChainItemWidget extends StatelessWidget {
                 ),
                 Text(
                   pokemon.name,
-                  style: textTheme.bodyText1,
+                  style: textTheme.bodyLarge,
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -137,7 +137,7 @@ class SuperEvolutionChainItemWidget extends StatelessWidget {
                 ),
                 Text(
                   superEvolution.name,
-                  style: textTheme.bodyText1,
+                  style: textTheme.bodyLarge,
                   textAlign: TextAlign.center,
                 ),
               ],

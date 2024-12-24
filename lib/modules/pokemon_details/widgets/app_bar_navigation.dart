@@ -36,7 +36,7 @@ class AppBarNavigationWidget extends StatelessWidget {
         ),
         Text(
           _pokemonStore.pokemon!.name,
-          style: themeData.headline5?.copyWith(
+          style: themeData.headlineSmall?.copyWith(
             color: AppTheme.getColors(context).pokemonDetailsTitleColor,
           ),
         ),
