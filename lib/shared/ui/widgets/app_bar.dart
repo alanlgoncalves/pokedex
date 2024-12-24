@@ -30,7 +30,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
       expandedHeight: 170.0,
       collapsedHeight: 70,
       elevation: 0,
-      backgroundColor: Theme.of(context).colorScheme.surface,
+      surfaceTintColor: Theme.of(context).colorScheme.surface,
       actions: [
         Padding(
           padding: EdgeInsets.only(top: 20),
