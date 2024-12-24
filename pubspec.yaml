@@ -48,8 +48,12 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/lotties/
     - assets/images/icons/
     - assets/images/pokemons_types/
+    - assets/images/pokemons_types/16/
+    - assets/images/pokemons_types/20/
+    - assets/images/pokemons_types/60/
     - assets/images/technical_records_types/
     - assets/images/technical_machines_types/
     - assets/images/pokemons_generations/generation_1/
@@ -61,7 +65,6 @@ flutter:
     - assets/images/pokemons_generations/generation_7/
     - assets/images/pokemons_generations/generation_7/
     - assets/images/pokemons_generations/generation_8/
-    - assets/lotties/
 
   fonts:
     - family: CircularStd-Book
