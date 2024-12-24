@@ -95,16 +95,16 @@ class _ItemsPageState extends State<ItemsPage> {
               ),
         title: Text(
           item.name,
-          style: textTheme.bodyText1,
+          style: textTheme.bodyLarge,
         ),
         trailing: Text(
           item.category,
-          style: textTheme.bodyText1,
+          style: textTheme.bodyLarge,
         ),
         subtitle: item.effect.trim().length > 0
             ? Text(
                 item.effect,
-                style: textTheme.subtitle1,
+                style: textTheme.titleMedium,
               )
             : null,
       );

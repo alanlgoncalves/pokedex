@@ -51,9 +51,9 @@ void main() {
         if (widget is Text) {
           return widget.data == "Pokedex" &&
               widget.style?.fontSize ==
-                  lightTheme.textTheme.headline1?.fontSize &&
+                  lightTheme.textTheme.displayLarge?.fontSize &&
               widget.style?.fontFamily ==
-                  lightTheme.textTheme.headline1?.fontFamily;
+                  lightTheme.textTheme.displayLarge?.fontFamily;
         }
         return false;
       });

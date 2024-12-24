@@ -96,7 +96,7 @@ class PokemonGenerationFilter extends StatelessWidget {
                   children: [
                     Text(
                       "Click on the selected item to clear the filter",
-                      style: textTheme.bodyText1,
+                      style: textTheme.bodyLarge,
                     ),
                   ],
                 ),

@@ -23,7 +23,7 @@ class PokemonTitleInfoWidget extends StatelessWidget {
               Observer(builder: (_) {
                 return Text(
                   _pokemonStore.pokemon!.name,
-                  style: textTheme.headline1?.copyWith(
+                  style: textTheme.displayLarge?.copyWith(
                     fontSize: 36,
                     fontWeight: FontWeight.w900,
                     color: AppTheme.getColors(context).pokemonDetailsTitleColor,
@@ -32,7 +32,7 @@ class PokemonTitleInfoWidget extends StatelessWidget {
               }),
               Observer(builder: (_) {
                 return Text("#${_pokemonStore.pokemon!.number}",
-                    style: textTheme.headline4?.copyWith(
+                    style: textTheme.headlineMedium?.copyWith(
                       color:
                           AppTheme.getColors(context).pokemonDetailsTitleColor,
                     ));
@@ -56,7 +56,7 @@ class PokemonTitleInfoWidget extends StatelessWidget {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 15, vertical: 5),
                                 child: Text(type,
-                                    style: textTheme.bodyText1?.copyWith(
+                                    style: textTheme.bodyLarge?.copyWith(
                                       fontWeight: FontWeight.bold,
                                       color: AppTheme.getColors(context)
                                           .pokemonDetailsTitleColor,
@@ -75,7 +75,7 @@ class PokemonTitleInfoWidget extends StatelessWidget {
               Observer(
                 builder: (_) {
                   return Text("${_pokemonStore.pokemon!.specie} Pokemon",
-                      style: textTheme.bodyText1?.copyWith(
+                      style: textTheme.bodyLarge?.copyWith(
                         color: AppTheme.getColors(context)
                             .pokemonDetailsTitleColor,
                       ));

@@ -2,56 +2,56 @@ import 'package:flutter/material.dart';
 
 ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
-  backgroundColor: Colors.white,
+  colorScheme: ColorScheme.light(surface: Colors.white),
   textTheme: TextTheme(
-    bodyText1: TextStyle(
+    bodyLarge: TextStyle(
       fontFamily: "CircularStd-Book",
       fontSize: 14,
       fontWeight: FontWeight.normal,
       color: Color(0xFF303943),
     ),
-    bodyText2: TextStyle(
+    bodyMedium: TextStyle(
       fontFamily: "CircularStd-Book",
       fontSize: 14,
       fontWeight: FontWeight.normal,
     ),
-    subtitle1: TextStyle(
+    titleMedium: TextStyle(
       fontFamily: "CircularStd-Book",
       fontSize: 14,
       fontWeight: FontWeight.normal,
       color: Color(0xFFA4A4A4),
     ),
-    headline1: TextStyle(
+    displayLarge: TextStyle(
       fontFamily: "CircularStd-Book",
       fontSize: 30,
       fontWeight: FontWeight.bold,
       color: Color(0xFF303943),
     ),
-    headline2: TextStyle(
+    displayMedium: TextStyle(
       fontFamily: "CircularStd-Book",
       fontSize: 30,
       fontWeight: FontWeight.bold,
       color: Color(0xFF303943),
     ),
-    headline3: TextStyle(
+    displaySmall: TextStyle(
       fontFamily: "CircularStd-Book",
       fontSize: 26,
       fontWeight: FontWeight.bold,
       color: Color(0xFF303943),
     ),
-    headline4: TextStyle(
+    headlineMedium: TextStyle(
       fontFamily: "CircularStd-Book",
       fontSize: 22,
       fontWeight: FontWeight.bold,
       color: Color(0xFF303943),
     ),
-    headline5: TextStyle(
+    headlineSmall: TextStyle(
       fontFamily: "CircularStd-Book",
       fontSize: 18,
       fontWeight: FontWeight.bold,
       color: Color(0xFF303943),
     ),
-    headline6: TextStyle(
+    titleLarge: TextStyle(
       fontFamily: "CircularStd-Book",
       fontSize: 14,
       fontWeight: FontWeight.bold,

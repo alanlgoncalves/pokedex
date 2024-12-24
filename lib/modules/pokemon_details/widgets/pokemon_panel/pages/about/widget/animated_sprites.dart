@@ -3,7 +3,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pokedex/shared/stores/pokemon_store/pokemon_store.dart';
 import 'package:pokedex/shared/utils/image_utils.dart';
-import 'package:pokedex/theme/app_theme.dart';
 
 class AnimatedSpritesWidget extends StatelessWidget {
   static final _pokemonStore = GetIt.instance<PokemonStore>();
@@ -31,7 +30,6 @@ class AnimatedSpritesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     TextTheme textTheme = Theme.of(context).textTheme;
 
     return Padding(
@@ -50,7 +48,7 @@ class AnimatedSpritesWidget extends StatelessWidget {
               ),
               Text(
                 frontTitle,
-                style: textTheme.bodyText1,
+                style: textTheme.bodyLarge,
                 textAlign: TextAlign.center,
               ),
             ],
@@ -66,7 +64,7 @@ class AnimatedSpritesWidget extends StatelessWidget {
               ),
               Text(
                 backTitle,
-                style: textTheme.bodyText1,
+                style: textTheme.bodyLarge,
                 textAlign: TextAlign.center,
               ),
             ],

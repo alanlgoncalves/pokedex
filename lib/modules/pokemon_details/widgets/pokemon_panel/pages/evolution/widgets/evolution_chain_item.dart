@@ -73,12 +73,12 @@ class EvolutionChainItemWidget extends StatelessWidget {
                 ),
                 Text(
                   previousEvolution.name,
-                  style: textTheme.bodyText1,
+                  style: textTheme.bodyLarge,
                   textAlign: TextAlign.center,
                 ),
                 Text(
                   "#${previousEvolution.number}",
-                  style: textTheme.bodyText1?.copyWith(fontSize: 12),
+                  style: textTheme.bodyLarge?.copyWith(fontSize: 12),
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -93,7 +93,7 @@ class EvolutionChainItemWidget extends StatelessWidget {
                 width: 100,
                 child: Text(
                   nextEvolution.requirement!,
-                  style: textTheme.bodyText1?.copyWith(fontSize: 12),
+                  style: textTheme.bodyLarge?.copyWith(fontSize: 12),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -149,12 +149,12 @@ class EvolutionChainItemWidget extends StatelessWidget {
                 ),
                 Text(
                   nextEvolution.name,
-                  style: textTheme.bodyText1,
+                  style: textTheme.bodyLarge,
                   textAlign: TextAlign.center,
                 ),
                 Text(
                   "#${nextEvolution.number}",
-                  style: textTheme.bodyText1?.copyWith(fontSize: 12),
+                  style: textTheme.bodyLarge?.copyWith(fontSize: 12),
                   textAlign: TextAlign.center,
                 ),
               ],

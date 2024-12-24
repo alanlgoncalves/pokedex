@@ -29,7 +29,7 @@ class SuperEvolutionChainWidget extends StatelessWidget {
               children: [
                 Text(
                   "Mega Evolution${_pokemonStore.pokemon!.megaEvolutions.length > 1 ? "s" : ""}",
-                  style: textTheme.bodyText1
+                  style: textTheme.bodyLarge
                       ?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 ...megaEvolutionChain
@@ -43,7 +43,7 @@ class SuperEvolutionChainWidget extends StatelessWidget {
               children: [
                 Text(
                   "Gigantamax Evolution${_pokemonStore.pokemon!.megaEvolutions.length > 1 ? "s" : ""}",
-                  style: textTheme.bodyText1
+                  style: textTheme.bodyLarge
                       ?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 ..._pokemonStore.pokemon!.gigantamaxEvolutions.map(
@@ -76,7 +76,7 @@ class SuperEvolutionChainWidget extends StatelessWidget {
                         ),
                         Text(
                           gigantamax.name,
-                          style: textTheme.bodyText1,
+                          style: textTheme.bodyLarge,
                         ),
                       ],
                     ),

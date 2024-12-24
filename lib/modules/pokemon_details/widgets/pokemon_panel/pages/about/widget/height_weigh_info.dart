@@ -17,7 +17,7 @@ class HeightWeightInfoWidget extends StatelessWidget {
       height: 72,
       decoration: BoxDecoration(
         color: Theme.of(context).brightness == Brightness.light
-            ? Theme.of(context).backgroundColor
+            ? Theme.of(context).colorScheme.surface
             : AppTheme.getColors(context).panelBackground,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
@@ -42,7 +42,7 @@ class HeightWeightInfoWidget extends StatelessWidget {
                 opacity: 0.4,
                 child: Text(
                   "Height",
-                  style: textTheme.bodyText1,
+                  style: textTheme.bodyLarge,
                 ),
               ),
               SizedBox(
@@ -51,7 +51,7 @@ class HeightWeightInfoWidget extends StatelessWidget {
               Observer(
                 builder: (_) => Text(
                   _pokemonStore.pokemon!.height,
-                  style: textTheme.bodyText1,
+                  style: textTheme.bodyLarge,
                 ),
               )
             ],
@@ -64,7 +64,7 @@ class HeightWeightInfoWidget extends StatelessWidget {
                 opacity: 0.4,
                 child: Text(
                   "Weight",
-                  style: textTheme.bodyText1,
+                  style: textTheme.bodyLarge,
                 ),
               ),
               SizedBox(
@@ -73,7 +73,7 @@ class HeightWeightInfoWidget extends StatelessWidget {
               Observer(
                 builder: (_) => Text(
                   _pokemonStore.pokemon!.weight,
-                  style: textTheme.bodyText1,
+                  style: textTheme.bodyLarge,
                 ),
               )
             ],

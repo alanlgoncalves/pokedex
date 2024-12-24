@@ -3,38 +3,38 @@ description: Fully functional multiplatform Pokedex App developed using Flutter 
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.4.0
+version: 1.5.0
 
 environment:
-  sdk: '>=2.12.0 <3.3.2'
+  sdk: '>=3.6.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.2
-  flutter_svg: ^1.0.3
-  http: ^0.13.3
-  mobx: ^2.0.4
-  flutter_mobx: ^2.0.2
-  mobx_codegen: ^2.0.2
-  cached_network_image: ^3.1.0
-  get_it: ^7.1.3
-  lottie: ^2.2.0
+  cupertino_icons: ^1.0.8
+  flutter_svg: ^2.0.16
+  http: ^1.2.2
+  mobx: ^2.5.0
+  flutter_mobx: ^2.3.0
+  mobx_codegen: ^2.7.0
+  cached_network_image: ^3.4.1
+  get_it: ^8.0.3
+  lottie: ^3.3.0
   sliding_up_panel: ^2.0.0+1
-  font_awesome_flutter: ^10.1.0
-  bot_toast: ^4.0.1
-  audio_video_progress_bar: ^0.11.0
-  flutter_launcher_icons: ^0.11.0
-  flutter_native_splash: ^2.2.0+1
-  shared_preferences: ^2.0.7
-  infinite_scroll_pagination: ^3.1.0
-  dio: ^4.0.0
-  animated_theme_switcher: ^2.0.6
+  font_awesome_flutter: ^10.8.0
+  bot_toast: ^4.1.3
+  audio_video_progress_bar: ^2.0.3
+  flutter_launcher_icons: ^0.14.2
+  flutter_native_splash: ^2.4.3
+  shared_preferences: ^2.3.4
+  infinite_scroll_pagination: ^4.1.0
+  dio: ^5.7.0
+  animated_theme_switcher: 2.0.9
+  audioplayers: ^6.1.0
   window_size:
     git:
       url: https://github.com/google/flutter-desktop-embedding.git
       path: plugins/window_size
-  audioplayers: ^3.0.1
   
 
 dev_dependencies:
@@ -48,8 +48,12 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/lotties/
     - assets/images/icons/
     - assets/images/pokemons_types/
+    - assets/images/pokemons_types/16/
+    - assets/images/pokemons_types/20/
+    - assets/images/pokemons_types/60/
     - assets/images/technical_records_types/
     - assets/images/technical_machines_types/
     - assets/images/pokemons_generations/generation_1/
@@ -61,7 +65,6 @@ flutter:
     - assets/images/pokemons_generations/generation_7/
     - assets/images/pokemons_generations/generation_7/
     - assets/images/pokemons_generations/generation_8/
-    - assets/lotties/
 
   fonts:
     - family: CircularStd-Book

@@ -66,7 +66,7 @@ class DrawerMenuItemWidget extends StatelessWidget {
                       child: Text(
                         text,
                         style:
-                            textTheme.bodyText1?.copyWith(color: Colors.white),
+                            textTheme.bodyLarge?.copyWith(color: Colors.white),
                       ),
                     ),
                   ],

@@ -62,7 +62,7 @@ class _MovesPageState extends State<MovesPage>
 
               return Theme(
                 data: Theme.of(context)
-                    .copyWith(cardColor: Theme.of(context).backgroundColor),
+                    .copyWith(cardColor: Theme.of(context).colorScheme.surface),
                 child: ExpansionPanelList(
                   elevation: 0,
                   expandedHeaderPadding: EdgeInsets.zero,
@@ -73,7 +73,7 @@ class _MovesPageState extends State<MovesPage>
                         headerBuilder: (context, opened) => Center(
                           child: Text(
                             "Moves learnt by level up",
-                            style: textTheme.bodyText1
+                            style: textTheme.bodyLarge
                                 ?.copyWith(fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -92,7 +92,7 @@ class _MovesPageState extends State<MovesPage>
                         headerBuilder: (context, opened) => Center(
                           child: Text(
                             "Moves learnt by Technical Machines",
-                            style: textTheme.bodyText1
+                            style: textTheme.bodyLarge
                                 ?.copyWith(fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -111,7 +111,7 @@ class _MovesPageState extends State<MovesPage>
                         headerBuilder: (context, opened) => Center(
                           child: Text(
                             "Moves learnt by Technical Records",
-                            style: textTheme.bodyText1
+                            style: textTheme.bodyLarge
                                 ?.copyWith(fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -129,7 +129,7 @@ class _MovesPageState extends State<MovesPage>
                         headerBuilder: (context, opened) => Center(
                           child: Text(
                             "Moves learnt on evolution",
-                            style: textTheme.bodyText1
+                            style: textTheme.bodyLarge
                                 ?.copyWith(fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -147,7 +147,7 @@ class _MovesPageState extends State<MovesPage>
                         headerBuilder: (context, opened) => Center(
                           child: Text(
                             "Egg moves",
-                            style: textTheme.bodyText1
+                            style: textTheme.bodyLarge
                                 ?.copyWith(fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -165,7 +165,7 @@ class _MovesPageState extends State<MovesPage>
                         headerBuilder: (context, opened) => Center(
                           child: Text(
                             "Tutor moves",
-                            style: textTheme.bodyText1
+                            style: textTheme.bodyLarge
                                 ?.copyWith(fontWeight: FontWeight.bold),
                           ),
                         ),

@@ -26,7 +26,7 @@ class PokemonTypeItemWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: Theme.of(context).brightness == Brightness.light
               ? color
-              : Theme.of(context).backgroundColor,
+              : Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.circular(15),
           border: Border.fromBorderSide(
             BorderSide(color: AppTheme.getColors(context).tabDivisor),
@@ -83,7 +83,7 @@ class PokemonTypeItemWidget extends StatelessWidget {
                     children: [
                       Text(
                         type,
-                        style: textTheme.bodyText1,
+                        style: textTheme.bodyLarge,
                       ),
                       Image.asset(
                         AppConstants.pokemonTypeLogo(type, size: 60),

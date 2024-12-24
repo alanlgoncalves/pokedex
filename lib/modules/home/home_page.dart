@@ -1,5 +1,4 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
@@ -138,7 +137,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     return ThemeSwitchingArea(
       child: Builder(builder: (context) {
         return Scaffold(
-          backgroundColor: Theme.of(context).backgroundColor,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           endDrawer: Drawer(
             child: DrawerMenuWidget(),
           ),
@@ -239,7 +238,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     .floatActionButton,
                               ),
                             ),
-                            color: Theme.of(context).backgroundColor,
+                            color: Theme.of(context).colorScheme.surface,
                             onClick: () async {
                               ThemeSwitcher.of(context)?.changeTheme(
                                   theme: Theme.of(context).brightness ==
@@ -266,7 +265,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                       .floatActionButton,
                                 ),
                               ),
-                              color: Theme.of(context).backgroundColor,
+                              color: Theme.of(context).colorScheme.surface,
                               onClick: () {
                                 _fabAnimationOpenController.reverse();
                                 _homeStore.setPanelType(
@@ -285,7 +284,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                       .floatActionButton,
                                 ),
                               ),
-                              color: Theme.of(context).backgroundColor,
+                              color: Theme.of(context).colorScheme.surface,
                               onClick: () {
                                 _fabAnimationOpenController.reverse();
                                 _homeStore.setPanelType(PanelType.FILTER_ITEMS);
@@ -311,7 +310,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                       .floatActionButton,
                                 ),
                               ),
-                              color: Theme.of(context).backgroundColor,
+                              color: Theme.of(context).colorScheme.surface,
                               onClick: () {
                                 _fabAnimationOpenController.reverse();
                                 _homeStore.setPanelType(
@@ -333,7 +332,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                       .floatActionButton,
                                 ),
                               ),
-                              color: Theme.of(context).backgroundColor,
+                              color: Theme.of(context).colorScheme.surface,
                               onClick: () {
                                 _fabAnimationOpenController.reverse();
                                 _homeStore.setPanelType(
@@ -349,7 +348,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 color: AppTheme.getColors(context)
                                     .floatActionButton,
                               ),
-                              color: Theme.of(context).backgroundColor,
+                              color: Theme.of(context).colorScheme.surface,
                               onClick: () {
                                 _fabAnimationOpenController.reverse();
                                 _homeStore

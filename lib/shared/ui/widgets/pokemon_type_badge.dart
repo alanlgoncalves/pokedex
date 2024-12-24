@@ -48,7 +48,7 @@ class PokemonTypeBadge extends StatelessWidget {
             child: Text(
               type,
               textAlign: TextAlign.center,
-              style: textTheme.bodyText1?.copyWith(fontSize: 8),
+              style: textTheme.bodyLarge?.copyWith(fontSize: 8),
             ),
           )
       ],

@@ -89,13 +89,13 @@ class PokemonTypeFilter extends StatelessWidget {
             if (pokemonStore.pokemonFilter.typeFilter != null)
               Container(
                 height: 40,
-                color: theme.backgroundColor,
+                color: theme.colorScheme.surface,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       "Click on the selected item to clear the filter",
-                      style: textTheme.bodyText1,
+                      style: textTheme.bodyLarge,
                     ),
                   ],
                 ),

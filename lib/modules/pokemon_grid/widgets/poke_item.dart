@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/shared/models/pokemon_summary.dart';
 import 'package:pokedex/shared/ui/canvas/white_pokeball_canvas.dart';
@@ -84,7 +83,7 @@ class PokeItemWidget extends StatelessWidget {
                 children: [
                   Text(
                     pokemon.name,
-                    style: textTheme.bodyText1?.copyWith(
+                    style: textTheme.bodyLarge?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: AppTheme.getColors(context)
                             .pokemonDetailsTitleColor),
@@ -103,7 +102,7 @@ class PokeItemWidget extends StatelessWidget {
                                       horizontal: 15, vertical: 5),
                                   child: Text(
                                     type,
-                                    style: textTheme.bodyText1?.copyWith(
+                                    style: textTheme.bodyLarge?.copyWith(
                                       fontSize: 8,
                                       color: AppTheme.getColors(context)
                                           .pokemonDetailsTitleColor,

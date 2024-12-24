@@ -40,7 +40,7 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget>
     final TextTheme textTheme = Theme.of(context).textTheme;
 
     return Container(
-      color: Theme.of(context).backgroundColor,
+      color: Theme.of(context).colorScheme.surface,
       child: Stack(
         children: [
           Column(
@@ -62,7 +62,7 @@ class _DrawerMenuWidgetState extends State<DrawerMenuWidget>
                       SizedBox(
                         width: 5,
                       ),
-                      Text("Pokedex", style: textTheme.headline1),
+                      Text("Pokedex", style: textTheme.displayLarge),
                     ],
                   ),
                 ],
