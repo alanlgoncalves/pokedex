@@ -157,6 +157,7 @@ class _PokemonMobilePanelWidgetState extends State<PokemonMobilePanelWidget>
                             ),
                             indicatorColor:
                                 AppTheme.getColors(context).tabIndicator,
+                            dividerColor: Colors.transparent,
                             controller: _tabController,
                             tabs: [
                               Tab(
